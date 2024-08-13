@@ -65,6 +65,9 @@ module.exports = {
 			typescript: true,
 			node: true,
 		},
+		tailwindcss: {
+			callees: ['twJoin'],
+		},
 	},
 	ignorePatterns: ['**/*.js', '**/*.mjs'],
 };

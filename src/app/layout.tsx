@@ -1,9 +1,11 @@
 import { twJoin } from 'tailwind-merge';
 
+import { Header } from '@/components/layout/header/header';
+
 import { bebasNeue } from '@/lib/fonts/bebas-neue';
 import { bozon } from '@/lib/fonts/bozon';
 
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import type { ReactNode } from 'react';
 
 import '@/assets/styles/globals.css';
@@ -13,13 +15,20 @@ export const metadata: Metadata = {
 	description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
 };
 
+export const viewport: Viewport = {
+	themeColor: '#000',
+};
+
 type RootLayoutProps = Readonly<{
 	children: ReactNode;
 }>;
 
 const RootLayout = ({ children }: RootLayoutProps) => (
 	<html lang="pl" className={twJoin(bebasNeue.variable, bozon.variable)}>
-		<body>{children}</body>
+		<body className="bg-background">
+			<Header />
+			{children}
+		</body>
 	</html>
 );
 

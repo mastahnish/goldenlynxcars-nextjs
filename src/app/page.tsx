@@ -1,5 +1,9 @@
+import { Hero } from '@/components/landing/hero/hero';
+
 const IndexPage = () => (
-	<h1 className="text-4xl font-bold">Golden Lynx Cars</h1>
+	<>
+		<Hero />
+	</>
 );
 
 export default IndexPage;
