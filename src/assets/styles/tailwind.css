@@ -1,3 +1,17 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer utilities {
+	.text-stroke {
+		text-shadow:
+			2px 0 var(--tw-shadow-color),
+			-2px 0 var(--tw-shadow-color),
+			0 2px var(--tw-shadow-color),
+			0 -2px var(--tw-shadow-color),
+			1px 1px var(--tw-shadow-color),
+			-1px -1px var(--tw-shadow-color),
+			1px -1px var(--tw-shadow-color),
+			-1px 1px var(--tw-shadow-color);
+	}
+}

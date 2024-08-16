@@ -24,7 +24,10 @@ type RootLayoutProps = Readonly<{
 }>;
 
 const RootLayout = ({ children }: RootLayoutProps) => (
-	<html lang="pl" className={twJoin(bebasNeue.variable, bozon.variable)}>
+	<html
+		lang="pl"
+		className={twJoin('scroll-smooth', bebasNeue.variable, bozon.variable)}
+	>
 		<body className="bg-background">
 			<Header />
 			{children}

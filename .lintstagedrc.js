@@ -1,6 +1,6 @@
-const path = require('node:path');
+import path from 'node:path';
 
-module.exports = {
+export default {
 	'*.{js,mjs,css,json,md}': ['prettier -w'],
 	'*.{ts,mts,tsx}': [
 		filenames =>

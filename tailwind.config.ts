@@ -9,6 +9,8 @@ export default {
 			backgroundImage: {
 				hero: "url('/images/hero-background.png')",
 				'hero-desktop': "url('/images/hero-background-desktop.png')",
+				'service-item':
+					'linear-gradient(264.72deg, #ca9f59 3.64%, #fff5e4 98.39%)',
 			},
 			borderWidth: {
 				3: '3px',
@@ -19,6 +21,7 @@ export default {
 			colors: {
 				background: '#171717',
 				primary: '#e3b262',
+				secondary: '#ca9f59',
 			},
 			fontFamily: {
 				'bebas-neue': 'var(--font-bebas-neue)',
@@ -35,6 +38,9 @@ export default {
 			},
 			transitionProperty: {
 				width: 'width',
+			},
+			zIndex: {
+				1: '1',
 			},
 		},
 	},

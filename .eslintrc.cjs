@@ -69,5 +69,5 @@ module.exports = {
 			callees: ['twJoin'],
 		},
 	},
-	ignorePatterns: ['**/*.js', '**/*.mjs'],
+	ignorePatterns: ['**/*.js', '**/*.cjs', '**/*.mjs'],
 };

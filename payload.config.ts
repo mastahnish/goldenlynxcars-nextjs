@@ -8,11 +8,12 @@ import sharp from 'sharp';
 
 import { env } from '@/lib/env';
 import { Hero } from '@/payload/globals/Hero/Hero';
+import { ServicesSection } from '@/payload/globals/ServicesSection/ServicesSection';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 export default buildConfig({
-	globals: [Hero],
+	globals: [Hero, ServicesSection],
 	editor: slateEditor({}),
 	secret: env.PAYLOAD_SECRET,
 	db: postgresAdapter({

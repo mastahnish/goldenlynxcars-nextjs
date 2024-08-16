@@ -3,6 +3,8 @@ import config from '@payload-config';
 /* DO NOT MODIFY IT BECAUSE IT COULD BE REWRITTEN AT ANY TIME. */
 import { generatePageMetadata, RootPage } from '@payloadcms/next/views';
 
+import { importMap } from '../importMap';
+
 import type { Metadata } from 'next';
 
 type Args = {
@@ -21,6 +23,6 @@ export const generateMetadata = ({
 	generatePageMetadata({ config, params, searchParams });
 
 const Page = ({ params, searchParams }: Args) =>
-	RootPage({ config, params, searchParams });
+	RootPage({ config, importMap, params, searchParams });
 
 export default Page;
