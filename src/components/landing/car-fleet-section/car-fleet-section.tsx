@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button/button';
 export const CarFleetSection = async () => {
 	const { title, label, cars } = await getCarFleetSectionContent();
 
-	const filteredCars = cars.filter(car => typeof car !== 'number');
+	const filteredCars = (cars ?? []).filter(car => typeof car !== 'number');
 
 	return (
 		<Section title={title} label={label}>
