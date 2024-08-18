@@ -7,7 +7,7 @@ export const ServicesSection = async () => {
 	const { title, label, services } = await getServicesSectionContent();
 
 	return (
-		<Section id="services" title={title} label={label ?? null}>
+		<Section id="services" title={title} label={label}>
 			<ServicesSectionList services={services} />
 		</Section>
 	);

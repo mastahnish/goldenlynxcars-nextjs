@@ -10,6 +10,9 @@ import type { ReactNode } from 'react';
 
 import '@/assets/styles/globals.css';
 
+import 'swiper/css';
+import 'swiper/css/pagination';
+
 export const metadata: Metadata = {
 	title: 'Golden Lynx Cars',
 	description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',

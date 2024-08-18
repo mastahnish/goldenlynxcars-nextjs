@@ -22,6 +22,7 @@ export default {
 				background: '#171717',
 				primary: '#e3b262',
 				secondary: '#ca9f59',
+				'semi-black': '#121212',
 			},
 			fontFamily: {
 				'bebas-neue': 'var(--font-bebas-neue)',

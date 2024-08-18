@@ -7,14 +7,14 @@ import type { ReactNode } from 'react';
 type SectionProps = Readonly<{
 	id?: string;
 	title: string;
-	label: string | null;
+	label?: string | null;
 	children: ReactNode;
 }>;
 
 export const Section = ({ id, title, label, children }: SectionProps) => (
 	<section
 		id={id}
-		className="w-full px-4 sm:px-8 md:mx-auto md:max-w-4xl lg:max-w-5xl xl:max-w-7xl"
+		className="w-full px-4 py-12 sm:px-8 md:mx-auto md:max-w-4xl lg:max-w-5xl xl:max-w-7xl"
 	>
 		<h2
 			style={{ ...(label && { '--label': `'${label}' / ''` }) }}

@@ -5,7 +5,9 @@ import createJiti from 'jiti';
 
 const jiti = createJiti(fileURLToPath(import.meta.url));
 
-jiti('./src/lib/env.ts');
+const { env } = jiti('./src/lib/env.ts');
+
+const mediaURL = new URL(env.NEXT_PUBLIC_MEDIA_BASE_URL);
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -13,6 +15,14 @@ const nextConfig = {
 		ppr: true,
 		reactCompiler: true,
 		typedRoutes: true,
+	},
+	images: {
+		remotePatterns: [
+			{
+				protocol: mediaURL.protocol.slice(0, -1),
+				hostname: mediaURL.hostname,
+			},
+		],
 	},
 	logging: {
 		fetches: {

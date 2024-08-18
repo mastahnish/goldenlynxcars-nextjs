@@ -1,0 +1,8 @@
+:root {
+	--swiper-pagination-color: theme('colors.secondary');
+	--swiper-pagination-bullet-inactive-color: #c3c3c3;
+}
+
+.swiper {
+	padding-bottom: 40px !important;
+}

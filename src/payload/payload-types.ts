@@ -11,6 +11,8 @@ export interface Config {
     users: UserAuthOperations;
   };
   collections: {
+    media: Media;
+    'car-fleet': CarFleet;
     users: User;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -21,6 +23,7 @@ export interface Config {
   globals: {
     hero: Hero;
     'services-section': ServicesSection;
+    'car-fleet-section': CarFleetSection;
   };
   locale: null;
   user: User & {
@@ -44,6 +47,43 @@ export interface UserAuthOperations {
     email: string;
     password: string;
   };
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "media".
+ */
+export interface Media {
+  id: number;
+  alt: string;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  thumbnailURL?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+  focalX?: number | null;
+  focalY?: number | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "car-fleet".
+ */
+export interface CarFleet {
+  id: number;
+  image: number | Media;
+  name: string;
+  price: number;
+  details: {
+    hp: number;
+    transmission: 'manual' | 'sequential' | 'automatic';
+    seats: number;
+    fuel: 'gasoline' | 'diesel' | 'lpg' | 'hybrid';
+  };
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -124,6 +164,18 @@ export interface ServicesSection {
     isNew: boolean;
     id?: string | null;
   }[];
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "car-fleet-section".
+ */
+export interface CarFleetSection {
+  id: number;
+  title: string;
+  label?: string | null;
+  cars: (number | CarFleet)[];
   updatedAt?: string | null;
   createdAt?: string | null;
 }

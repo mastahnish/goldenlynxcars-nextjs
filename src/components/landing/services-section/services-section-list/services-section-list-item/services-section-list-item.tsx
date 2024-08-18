@@ -1,7 +1,7 @@
 import { useId } from 'react';
 import { twMerge } from 'tailwind-merge';
 
-import { ServicesSectionListItemContent } from './services-section-list-item-content/services-section-list-item-content';
+import { ServicesSectionListItemContent } from './services-section-list-item-content';
 import { ServicesSectionListItemTitle } from './services-section-list-item-title';
 
 import type { Service } from '../../services-section.types';

@@ -1,6 +1,6 @@
 import { AnimatePresence, motion } from 'framer-motion';
 
-import { ServicesSectionListItemContentFindOutMore } from './services-section-list-item-content-find-out-more';
+import { Button } from '@/components/ui/button/button';
 
 type ServicesSectionListItemContentProps = Readonly<{
 	id: string;
@@ -25,7 +25,9 @@ export const ServicesSectionListItemContent = ({
 			>
 				<p className="pt-4 text-neutral-300">{content}</p>
 				<div className="pb-4">
-					<ServicesSectionListItemContentFindOutMore />
+					<Button variant="ghost" withArrow>
+						Dowiedz się wiecej
+					</Button>
 				</div>
 			</motion.div>
 		)}

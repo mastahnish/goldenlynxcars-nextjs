@@ -11,6 +11,9 @@
 /.next/
 /out/
 
+# payload media
+public/media
+
 # production
 /build
 

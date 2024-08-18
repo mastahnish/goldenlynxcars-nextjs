@@ -66,7 +66,7 @@ module.exports = {
 			node: true,
 		},
 		tailwindcss: {
-			callees: ['twJoin'],
+			callees: ['cva', 'twJoin'],
 		},
 	},
 	ignorePatterns: ['**/*.js', '**/*.cjs', '**/*.mjs'],
