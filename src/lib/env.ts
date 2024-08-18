@@ -9,6 +9,7 @@ export const env = createEnv({
 		NODE_ENV: z.enum(['development', 'production', 'test']).optional(),
 		DATABASE_URL: z.string(),
 		PAYLOAD_SECRET: z.string(),
+		BLOB_READ_WRITE_TOKEN: z.string(),
 	},
 	experimental__runtimeEnv: {
 		NEXT_PUBLIC_MEDIA_BASE_URL: process.env.NEXT_PUBLIC_MEDIA_BASE_URL,

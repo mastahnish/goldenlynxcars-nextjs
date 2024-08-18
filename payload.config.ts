@@ -3,6 +3,7 @@ import { fileURLToPath } from 'node:url';
 
 import { postgresAdapter } from '@payloadcms/db-postgres';
 import { slateEditor } from '@payloadcms/richtext-slate';
+import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob';
 import { buildConfig } from 'payload';
 import sharp from 'sharp';
 
@@ -30,4 +31,12 @@ export default buildConfig({
 		outputFile: path.resolve(__dirname, 'src', 'payload', 'payload-types.ts'),
 	},
 	sharp,
+	plugins: [
+		vercelBlobStorage({
+			collections: {
+				[Media.slug]: true,
+			},
+			token: env.BLOB_READ_WRITE_TOKEN,
+		}),
+	],
 });
