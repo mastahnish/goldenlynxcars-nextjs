@@ -19,7 +19,7 @@ export const Section = ({ id, title, label, children }: SectionProps) => (
 		<h2
 			style={{ ...(label && { '--label': `'${label}' / ''` }) }}
 			className={twJoin(
-				'relative mb-8 font-bebas-neue text-5xl text-white xs:text-6xl md:text-7xl',
+				'relative mb-12 font-bebas-neue text-5xl text-white xs:text-6xl md:text-7xl',
 				label &&
 					'after:text-stroke after:absolute after:-top-1.5 after:left-0 after:-z-1 after:-translate-x-1/4 after:text-8xl after:text-background after:opacity-5 after:shadow-secondary after:content-[--label] after:xs:-top-4 after:xs:text-9xl',
 			)}

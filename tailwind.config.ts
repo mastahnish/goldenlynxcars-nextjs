@@ -31,6 +31,12 @@ export default {
 			fontSize: {
 				'10xl': '10rem',
 			},
+			height: {
+				'opinion-item': '21.5rem',
+			},
+			margin: {
+				'opinion-item': '4.5rem',
+			},
 			scale: {
 				102: '1.02',
 			},

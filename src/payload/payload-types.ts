@@ -24,6 +24,7 @@ export interface Config {
     hero: Hero;
     'services-section': ServicesSection;
     'car-fleet-section': CarFleetSection;
+    'opinion-section': OpinionSection;
   };
   locale: null;
   user: User & {
@@ -176,6 +177,23 @@ export interface CarFleetSection {
   title: string;
   label?: string | null;
   cars: (number | CarFleet)[];
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "opinion-section".
+ */
+export interface OpinionSection {
+  id: number;
+  title: string;
+  label?: string | null;
+  opinions: {
+    image: number | Media;
+    fullName: string;
+    content: string;
+    id?: string | null;
+  }[];
   updatedAt?: string | null;
   createdAt?: string | null;
 }

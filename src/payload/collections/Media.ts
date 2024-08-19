@@ -19,7 +19,5 @@ export const Media: CollectionConfig = {
 	access: {
 		read: anyone,
 	},
-	upload: {
-		staticDir: path.resolve(__dirname, '../../../public/media'),
-	},
+	upload: true,
 };
