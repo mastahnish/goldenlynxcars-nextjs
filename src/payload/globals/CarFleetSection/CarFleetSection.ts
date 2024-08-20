@@ -22,7 +22,6 @@ export const CarFleetSection: GlobalConfig = {
 			relationTo: 'car-fleet',
 			required: true,
 			hasMany: true,
-			maxRows: 3,
 		},
 	],
 	admin: {
