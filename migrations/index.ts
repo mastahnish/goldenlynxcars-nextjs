@@ -3,6 +3,7 @@ import * as migration_20240814_085314_add_hero_global from './20240814_085314_ad
 import * as migration_20240816_133846_add_services_section from './20240816_133846_add_services_section';
 import * as migration_20240818_152625_add_car_fleet from './20240818_152625_add_car_fleet';
 import * as migration_20240819_074811_add_opinion_section from './20240819_074811_add_opinion_section';
+import * as migration_20240820_133214_add_faq_section from './20240820_133214_add_faq_section';
 
 export const migrations = [
 	{
@@ -29,5 +30,10 @@ export const migrations = [
 		up: migration_20240819_074811_add_opinion_section.up,
 		down: migration_20240819_074811_add_opinion_section.down,
 		name: '20240819_074811_add_opinion_section',
+	},
+	{
+		up: migration_20240820_133214_add_faq_section.up,
+		down: migration_20240820_133214_add_faq_section.down,
+		name: '20240820_133214_add_faq_section',
 	},
 ];

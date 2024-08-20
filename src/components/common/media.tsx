@@ -6,16 +6,24 @@ import type { Media as MediaType } from '@/payload/payload-types';
 
 interface MediaProps {
 	resource: MediaType | string | number;
+	width?: number;
+	height?: number;
 	fill?: boolean;
 	className?: string;
 }
 
-export const Media = ({ resource, fill, className }: MediaProps) => {
+export const Media = ({
+	resource,
+	width,
+	height,
+	fill,
+	className,
+}: MediaProps) => {
 	if (typeof resource !== 'object') {
 		return null;
 	}
 
-	const { alt, width, height, url } = resource;
+	const { alt, url } = resource;
 	const src = `${env.NEXT_PUBLIC_MEDIA_BASE_URL}${url}`;
 
 	return (
@@ -25,8 +33,8 @@ export const Media = ({ resource, fill, className }: MediaProps) => {
 			fill={fill}
 			className={className}
 			{...(!fill && {
-				width: width ?? undefined,
-				height: height ?? undefined,
+				width: width ?? resource.width ?? undefined,
+				height: height ?? resource.height ?? undefined,
 			})}
 		/>
 	);

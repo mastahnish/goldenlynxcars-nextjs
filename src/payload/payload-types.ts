@@ -25,6 +25,7 @@ export interface Config {
     'services-section': ServicesSection;
     'car-fleet-section': CarFleetSection;
     'opinion-section': OpinionSection;
+    'faq-section': FAQSection;
   };
   locale: null;
   user: User & {
@@ -192,6 +193,26 @@ export interface OpinionSection {
     image: number | Media;
     fullName: string;
     content: string;
+    id?: string | null;
+  }[];
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "faq-section".
+ */
+export interface FAQSection {
+  id: number;
+  title: string;
+  label?: string | null;
+  images: {
+    image: number | Media;
+    id?: string | null;
+  }[];
+  faqs: {
+    question: string;
+    answer: string;
     id?: string | null;
   }[];
   updatedAt?: string | null;

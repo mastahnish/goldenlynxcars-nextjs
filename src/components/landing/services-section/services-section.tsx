@@ -1,5 +1,5 @@
 import { getServicesSectionContent } from './services-section.content';
-import { ServicesSectionList } from './services-section-list/services-section-list';
+import { ServicesSectionAccordion } from './services-section-accordion/services-section-accordion';
 
 import { Section } from '@/components/common/section';
 
@@ -8,7 +8,7 @@ export const ServicesSection = async () => {
 
 	return (
 		<Section id="services" title={title} label={label}>
-			<ServicesSectionList services={services} />
+			<ServicesSectionAccordion services={services} />
 		</Section>
 	);
 };

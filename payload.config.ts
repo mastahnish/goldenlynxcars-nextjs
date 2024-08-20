@@ -11,6 +11,7 @@ import { env } from '@/lib/env';
 import { CarFleet } from '@/payload/collections/CarFleet';
 import { Media } from '@/payload/collections/Media';
 import { CarFleetSection } from '@/payload/globals/CarFleetSection/CarFleetSection';
+import { FAQSection } from '@/payload/globals/FAQSection/FAQSection';
 import { Hero } from '@/payload/globals/Hero/Hero';
 import { OpinionSection } from '@/payload/globals/OpinionSection/OpinionSection';
 import { ServicesSection } from '@/payload/globals/ServicesSection/ServicesSection';
@@ -19,7 +20,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 export default buildConfig({
 	collections: [Media, CarFleet],
-	globals: [Hero, ServicesSection, CarFleetSection, OpinionSection],
+	globals: [Hero, ServicesSection, CarFleetSection, OpinionSection, FAQSection],
 	editor: slateEditor({}),
 	secret: env.PAYLOAD_SECRET,
 	db: postgresAdapter({
