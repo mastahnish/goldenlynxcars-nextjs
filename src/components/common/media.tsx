@@ -24,7 +24,7 @@ export const Media = ({
 	}
 
 	const { alt, url } = resource;
-	const src = `${env.NEXT_PUBLIC_MEDIA_BASE_URL}${url}`;
+	const src = `${env.NEXT_PUBLIC_SERVER_BASE_URL}${url}`;
 
 	return (
 		<Image

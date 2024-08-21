@@ -16,7 +16,7 @@
 		"@payloadcms/db-postgres": "3.0.0-beta.84",
 		"@payloadcms/next": "3.0.0-beta.84",
 		"@payloadcms/richtext-slate": "3.0.0-beta.84",
-		"@payloadcms/storage-vercel-blob": "3.0.0-beta.84",
+		"@payloadcms/storage-gcs": "3.0.0-beta.84",
 		"@radix-ui/react-slot": "1.1.0",
 		"@t3-oss/env-nextjs": "0.11.0",
 		"class-variance-authority": "0.7.0",

@@ -7,7 +7,7 @@ const jiti = createJiti(fileURLToPath(import.meta.url));
 
 const { env } = jiti('./src/lib/env.ts');
 
-const mediaURL = new URL(env.NEXT_PUBLIC_MEDIA_BASE_URL);
+const mediaURL = new URL(env.NEXT_PUBLIC_SERVER_BASE_URL);
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {

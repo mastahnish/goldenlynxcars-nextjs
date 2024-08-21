@@ -3,7 +3,7 @@ import { fileURLToPath } from 'node:url';
 
 import { postgresAdapter } from '@payloadcms/db-postgres';
 import { slateEditor } from '@payloadcms/richtext-slate';
-import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob';
+import { gcsStorage } from '@payloadcms/storage-gcs';
 import { buildConfig } from 'payload';
 import sharp from 'sharp';
 
@@ -34,11 +34,16 @@ export default buildConfig({
 	},
 	sharp,
 	plugins: [
-		vercelBlobStorage({
+		gcsStorage({
 			collections: {
 				[Media.slug]: true,
 			},
-			token: env.BLOB_READ_WRITE_TOKEN,
+			bucket: env.GCS_BUCKET,
+			options: {
+				apiEndpoint: env.GCS_ENDPOINT,
+				projectId: env.GCS_PROJECT_ID,
+				credentials: JSON.parse(env.GCS_CREDENTIALS),
+			},
 		}),
 	],
 });
