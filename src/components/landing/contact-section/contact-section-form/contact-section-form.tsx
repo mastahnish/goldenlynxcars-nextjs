@@ -78,7 +78,7 @@ export const ContactSectionForm = ({ cars }: ContactSectionFormProps) => {
 				</div>
 			</div>
 			{/* eslint-disable-next-line tailwindcss/no-arbitrary-value */}
-			<div className="sm:w-[264px]">
+			<div className="sm:w-[266px]">
 				<Button type="submit" icon={ArrowRight} moveIcon fullWidth>
 					Wyślij zapytanie
 				</Button>
