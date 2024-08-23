@@ -11,6 +11,7 @@ export interface Config {
     users: UserAuthOperations;
   };
   collections: {
+    'contact-request': ContactRequest;
     media: Media;
     'car-fleet': CarFleet;
     users: User;
@@ -26,6 +27,7 @@ export interface Config {
     'car-fleet-section': CarFleetSection;
     'opinion-section': OpinionSection;
     'faq-section': FAQSection;
+    'contact-section': ContactSection;
   };
   locale: null;
   user: User & {
@@ -52,22 +54,17 @@ export interface UserAuthOperations {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "media".
+ * via the `definition` "contact-request".
  */
-export interface Media {
+export interface ContactRequest {
   id: number;
-  alt: string;
+  email: string;
+  firstName: string;
+  phoneNumber: string;
+  car: number | CarFleet;
+  date: string;
   updatedAt: string;
   createdAt: string;
-  url?: string | null;
-  thumbnailURL?: string | null;
-  filename?: string | null;
-  mimeType?: string | null;
-  filesize?: number | null;
-  width?: number | null;
-  height?: number | null;
-  focalX?: number | null;
-  focalY?: number | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -86,6 +83,25 @@ export interface CarFleet {
   };
   updatedAt: string;
   createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "media".
+ */
+export interface Media {
+  id: number;
+  alt: string;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  thumbnailURL?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+  focalX?: number | null;
+  focalY?: number | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -215,6 +231,18 @@ export interface FAQSection {
     answer: string;
     id?: string | null;
   }[];
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "contact-section".
+ */
+export interface ContactSection {
+  id: number;
+  title: string;
+  label?: string | null;
+  image: number | Media;
   updatedAt?: string | null;
   createdAt?: string | null;
 }

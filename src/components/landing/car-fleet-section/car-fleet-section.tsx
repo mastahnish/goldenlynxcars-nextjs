@@ -13,7 +13,7 @@ export const CarFleetSection = async () => {
 		<Section title={title} label={label}>
 			<CarFleetSectionCars cars={filteredCars} />
 			<div className="mx-auto mt-4 w-fit">
-				<Button size="medium">Zobacz pełną flotę</Button>
+				<Button size="large">Zobacz pełną flotę</Button>
 			</div>
 		</Section>
 	);

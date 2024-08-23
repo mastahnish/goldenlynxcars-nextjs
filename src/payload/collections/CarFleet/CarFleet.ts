@@ -1,3 +1,5 @@
+import { revalidateCarFleet } from './hooks/revalidate-car-fleet';
+
 import type { CollectionConfig } from 'payload';
 
 export const CarFleet: CollectionConfig = {
@@ -62,5 +64,8 @@ export const CarFleet: CollectionConfig = {
 	],
 	admin: {
 		useAsTitle: 'name',
+	},
+	hooks: {
+		afterChange: [revalidateCarFleet],
 	},
 };

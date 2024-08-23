@@ -1,6 +1,7 @@
 import { getHeroContent } from './hero.content';
 
 import { Button } from '@/components/ui/button/button';
+import { ArrowRight } from '@/components/ui/icons';
 
 export const Hero = async () => {
 	const { title, description } = await getHeroContent();
@@ -15,7 +16,7 @@ export const Hero = async () => {
 				<p className="max-w-4xl text-center text-white sm:text-lg">
 					{description}
 				</p>
-				<Button withArrow asChild>
+				<Button icon={ArrowRight} moveIcon asChild>
 					<a href="#services">Sprawdź nasze usługi</a>
 				</Button>
 			</div>

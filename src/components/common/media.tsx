@@ -9,6 +9,7 @@ interface MediaProps {
 	width?: number;
 	height?: number;
 	fill?: boolean;
+	sizes?: string;
 	className?: string;
 }
 
@@ -17,6 +18,7 @@ export const Media = ({
 	width,
 	height,
 	fill,
+	sizes,
 	className,
 }: MediaProps) => {
 	if (typeof resource !== 'object') {
@@ -31,6 +33,7 @@ export const Media = ({
 			src={src}
 			alt={alt}
 			fill={fill}
+			sizes={sizes}
 			className={className}
 			{...(!fill && {
 				width: width ?? resource.width ?? undefined,

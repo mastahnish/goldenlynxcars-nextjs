@@ -13,6 +13,6 @@ export const getCarFleetSectionContent = unstable_cache(
 	},
 	[],
 	{
-		tags: ['global_car_fleet_section'],
+		tags: ['collection_car_fleet', 'global_car_fleet_section'],
 	},
 );

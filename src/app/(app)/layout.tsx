@@ -1,3 +1,4 @@
+import { Toaster } from 'react-hot-toast';
 import { twJoin } from 'tailwind-merge';
 
 import { Header } from '@/components/layout/header/header';
@@ -34,6 +35,7 @@ const RootLayout = ({ children }: RootLayoutProps) => (
 		<body className="bg-background">
 			<Header />
 			{children}
+			<Toaster position="top-right" />
 		</body>
 	</html>
 );

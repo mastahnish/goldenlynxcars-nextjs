@@ -3,6 +3,7 @@ import { CarFleetCardGeneral } from './car-fleet-card-general';
 
 import { Media } from '@/components/common/media';
 import { Button } from '@/components/ui/button/button';
+import { ArrowRight } from '@/components/ui/icons';
 
 import type { CarFleet } from './car-fleet-card.types';
 
@@ -18,7 +19,7 @@ export const CarFleetCard = ({ car }: CarFleetCardProps) => (
 		<CarFleetCardGeneral car={car} />
 		<CarFleetCardDetails details={car.details} />
 		<div className="mt-8">
-			<Button variant="ghost" withArrow>
+			<Button variant="ghost" icon={ArrowRight} moveIcon>
 				Wylicz swoją cenę
 			</Button>
 		</div>
