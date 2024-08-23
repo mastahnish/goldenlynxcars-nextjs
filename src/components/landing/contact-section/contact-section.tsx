@@ -12,7 +12,7 @@ export const ContactSection = async () => {
 		<section className="flex bg-semi-black">
 			<Section
 				as="div"
-				title={`${title}${Date.now()}`}
+				title={title}
 				titleGap="small"
 				label={label}
 				className="w-full space-y-6"
