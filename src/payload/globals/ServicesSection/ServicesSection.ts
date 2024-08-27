@@ -17,6 +17,29 @@ export const ServicesSection: GlobalConfig = {
 			defaultValue: 'Usługi',
 		},
 		{
+			name: 'reelSection',
+			type: 'group',
+			fields: [
+				{
+					name: 'title',
+					type: 'text',
+					required: true,
+					defaultValue: 'Obejrzyj REEL',
+				},
+				{
+					name: 'label',
+					type: 'text',
+					defaultValue: 'REEL',
+				},
+				{
+					name: 'video',
+					type: 'upload',
+					relationTo: 'media',
+					required: true,
+				},
+			],
+		},
+		{
 			name: 'services',
 			type: 'array',
 			required: true,

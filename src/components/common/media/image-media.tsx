@@ -2,18 +2,9 @@ import Image from 'next/image';
 
 import { env } from '@/lib/env';
 
-import type { Media as MediaType } from '@/payload/payload-types';
+import type { MediaProps } from './media.types';
 
-interface MediaProps {
-	resource: MediaType | string | number;
-	width?: number;
-	height?: number;
-	fill?: boolean;
-	sizes?: string;
-	className?: string;
-}
-
-export const Media = ({
+export const ImageMedia = ({
 	resource,
 	width,
 	height,

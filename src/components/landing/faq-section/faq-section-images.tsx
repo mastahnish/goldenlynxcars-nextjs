@@ -1,6 +1,6 @@
 import { twMerge } from 'tailwind-merge';
 
-import { Media } from '@/components/common/media';
+import { Media } from '@/components/common/media/media';
 
 import type { Media as MediaType } from '@/payload/payload-types';
 

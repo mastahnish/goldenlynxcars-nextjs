@@ -1,6 +1,6 @@
 /* eslint-disable tailwindcss/no-arbitrary-value */
 
-import { twMerge } from 'tailwind-merge';
+import { twJoin } from 'tailwind-merge';
 
 import { Container } from './container';
 
@@ -24,7 +24,7 @@ export const Section = ({
 	<Container as={as} {...props}>
 		<h2
 			style={{ ...(label && { '--label': `'${label}' / ''` }) }}
-			className={twMerge(
+			className={twJoin(
 				'relative font-bebas-neue text-5xl text-white xs:text-6xl md:text-7xl',
 				label &&
 					'after:text-stroke after:absolute after:-top-1.5 after:left-0 after:-z-1 after:-translate-x-1/4 after:text-8xl after:text-background after:opacity-5 after:shadow-secondary after:content-[--label] after:xs:-top-4 after:xs:text-9xl',

@@ -176,6 +176,11 @@ export interface ServicesSection {
   id: number;
   title: string;
   label?: string | null;
+  reelSection: {
+    title: string;
+    label?: string | null;
+    video: number | Media;
+  };
   services: {
     title: string;
     content: string;

@@ -1,4 +1,4 @@
-import { Media } from '@/components/common/media';
+import { Media } from '@/components/common/media/media';
 
 import type { ComponentProps } from 'react';
 

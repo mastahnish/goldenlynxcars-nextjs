@@ -12,7 +12,7 @@ type ServicesSectionAccordionProps = Readonly<{
 export const ServicesSectionAccordion = ({
 	services,
 }: ServicesSectionAccordionProps) => (
-	<Accordion>
+	<Accordion fullWidth>
 		{services.map((service, i) => (
 			<Accordion.Item key={i} value={i}>
 				<ServicesSectionAccordionTitle service={service} />

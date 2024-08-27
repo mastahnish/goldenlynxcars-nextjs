@@ -1,7 +1,7 @@
 import { CarFleetCardDetails } from './car-fleet-card-details/car-fleet-card-details';
 import { CarFleetCardGeneral } from './car-fleet-card-general';
 
-import { Media } from '@/components/common/media';
+import { Media } from '@/components/common/media/media';
 import { Button } from '@/components/ui/button/button';
 import { ArrowRight } from '@/components/ui/icons';
 
