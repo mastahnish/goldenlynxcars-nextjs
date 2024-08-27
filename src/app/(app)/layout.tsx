@@ -1,6 +1,7 @@
 import { Toaster } from 'react-hot-toast';
 import { twJoin } from 'tailwind-merge';
 
+import { Footer } from '@/components/layout/footer/footer';
 import { Header } from '@/components/layout/header/header';
 
 import { bebasNeue } from '@/lib/fonts/bebas-neue';
@@ -35,6 +36,7 @@ const RootLayout = ({ children }: RootLayoutProps) => (
 		<body className="bg-background">
 			<Header />
 			{children}
+			<Footer />
 			<Toaster position="top-right" />
 		</body>
 	</html>

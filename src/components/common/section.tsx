@@ -1,38 +1,30 @@
 /* eslint-disable tailwindcss/no-arbitrary-value */
 
-import { twJoin, twMerge } from 'tailwind-merge';
+import { twMerge } from 'tailwind-merge';
 
-import type { ReactNode } from 'react';
+import { Container } from './container';
+
+import type { ComponentProps } from 'react';
 
 type SectionProps = Readonly<{
-	as?: keyof HTMLElementTagNameMap;
-	id?: string;
 	title: string;
 	titleGap?: 'small' | 'medium';
 	label?: string | null;
-	className?: string;
-	children: ReactNode;
-}>;
+}> &
+	ComponentProps<typeof Container>;
 
 export const Section = ({
-	as: As = 'section',
-	id,
+	as = 'section',
 	title,
 	titleGap = 'medium',
 	label,
-	className,
 	children,
+	...props
 }: SectionProps) => (
-	<As
-		id={id}
-		className={twMerge(
-			'w-full px-4 py-12 sm:px-8 md:mx-auto md:max-w-4xl lg:max-w-5xl xl:max-w-7xl',
-			className,
-		)}
-	>
+	<Container as={as} {...props}>
 		<h2
 			style={{ ...(label && { '--label': `'${label}' / ''` }) }}
-			className={twJoin(
+			className={twMerge(
 				'relative font-bebas-neue text-5xl text-white xs:text-6xl md:text-7xl',
 				label &&
 					'after:text-stroke after:absolute after:-top-1.5 after:left-0 after:-z-1 after:-translate-x-1/4 after:text-8xl after:text-background after:opacity-5 after:shadow-secondary after:content-[--label] after:xs:-top-4 after:xs:text-9xl',
@@ -43,5 +35,5 @@ export const Section = ({
 			{title}
 		</h2>
 		{children}
-	</As>
+	</Container>
 );

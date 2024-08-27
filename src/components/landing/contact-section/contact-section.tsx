@@ -9,7 +9,7 @@ export const ContactSection = async () => {
 	const { title, label, image, carFleet } = await getContactSectionContent();
 
 	return (
-		<section className="flex bg-semi-black">
+		<section className="flex bg-semi-black pb-6">
 			<Section
 				as="div"
 				title={title}
