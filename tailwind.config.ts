@@ -44,6 +44,9 @@ export default {
 			margin: {
 				'opinion-item': '4.5rem',
 			},
+			maxWidth: {
+				'realization-card': '600px',
+			},
 			scale: {
 				102: '1.02',
 			},

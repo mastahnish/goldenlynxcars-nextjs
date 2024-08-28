@@ -3,6 +3,7 @@ import { ContactSection } from '@/components/landing/contact-section/contact-sec
 import { FAQSection } from '@/components/landing/faq-section/faq-section';
 import { Hero } from '@/components/landing/hero/hero';
 import { OpinionSection } from '@/components/landing/opinion-section/opinion-section';
+import { RealizationsSection } from '@/components/landing/realizations-section/realizations-section';
 import { ServicesSection } from '@/components/landing/services-section/services-section';
 
 const IndexPage = () => (
@@ -11,6 +12,7 @@ const IndexPage = () => (
 		<ServicesSection />
 		<CarFleetSection />
 		<OpinionSection />
+		<RealizationsSection />
 		<FAQSection />
 		<ContactSection />
 	</>

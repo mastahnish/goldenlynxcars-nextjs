@@ -6,5 +6,7 @@ export interface MediaProps {
 	height?: number;
 	fill?: boolean;
 	sizes?: string;
+	autoPlay?: boolean;
+	muted?: boolean;
 	className?: string;
 }

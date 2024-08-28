@@ -17,6 +17,8 @@ export const ServicesSection = async () => {
 					{!reelSection.isHidden && (
 						<Media
 							resource={reelSection.video}
+							autoPlay
+							muted
 							width={300}
 							height={533}
 							className="hidden self-start rounded-lg lg:block"

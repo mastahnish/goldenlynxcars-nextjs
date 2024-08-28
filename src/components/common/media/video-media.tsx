@@ -1,11 +1,16 @@
+import { twMerge } from 'tailwind-merge';
+
 import { env } from '@/lib/env';
 
 import type { MediaProps } from './media.types';
 
 export const VideoMedia = ({
 	resource,
+	fill,
 	width,
 	height,
+	autoPlay,
+	muted,
 	className,
 }: MediaProps) => {
 	if (typeof resource !== 'object') {
@@ -16,13 +21,13 @@ export const VideoMedia = ({
 
 	return (
 		<video
-			autoPlay
+			autoPlay={autoPlay}
 			controls
-			muted
+			muted={muted}
 			playsInline
 			width={width}
 			height={height}
-			className={className}
+			className={twMerge(fill && 'absolute w-full h-full inset-0', className)}
 		>
 			<source src={src} />
 		</video>

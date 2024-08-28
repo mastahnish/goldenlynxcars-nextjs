@@ -16,6 +16,7 @@ import { ContactSection } from '@/payload/globals/ContactSection/ContactSection'
 import { FAQSection } from '@/payload/globals/FAQSection/FAQSection';
 import { Hero } from '@/payload/globals/Hero/Hero';
 import { OpinionSection } from '@/payload/globals/OpinionSection/OpinionSection';
+import { RealizationsSection } from '@/payload/globals/RealizationsSection/RealizationsSection';
 import { ServicesSection } from '@/payload/globals/ServicesSection/ServicesSection';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -27,6 +28,7 @@ export default buildConfig({
 		ServicesSection,
 		CarFleetSection,
 		OpinionSection,
+		RealizationsSection,
 		FAQSection,
 		ContactSection,
 	],

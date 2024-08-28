@@ -27,6 +27,11 @@ export const buttonVariants = cva(
 				variant: 'ghost',
 				className: 'h-fit hover:bg-transparent',
 			},
+			{
+				variant: 'ghost',
+				size: 'small',
+				className: 'px-0',
+			},
 		],
 		defaultVariants: {
 			variant: 'outline',

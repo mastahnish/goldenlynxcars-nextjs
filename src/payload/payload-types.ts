@@ -26,6 +26,7 @@ export interface Config {
     'services-section': ServicesSection;
     'car-fleet-section': CarFleetSection;
     'opinion-section': OpinionSection;
+    'realizations-section': RealizationsSection;
     'faq-section': FAQSection;
     'contact-section': ContactSection;
   };
@@ -215,6 +216,23 @@ export interface OpinionSection {
     image: number | Media;
     fullName: string;
     content: string;
+    id?: string | null;
+  }[];
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "realizations-section".
+ */
+export interface RealizationsSection {
+  id: number;
+  title: string;
+  label?: string | null;
+  realizations: {
+    video: number | Media;
+    title: string;
+    description: string;
     id?: string | null;
   }[];
   updatedAt?: string | null;
