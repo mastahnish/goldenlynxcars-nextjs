@@ -180,6 +180,7 @@ export interface ServicesSection {
     title: string;
     label?: string | null;
     video: number | Media;
+    isHidden: boolean;
   };
   services: {
     title: string;

@@ -37,6 +37,11 @@ export const ServicesSection: GlobalConfig = {
 					relationTo: 'media',
 					required: true,
 				},
+				{
+					name: 'isHidden',
+					type: 'checkbox',
+					required: true,
+				},
 			],
 		},
 		{

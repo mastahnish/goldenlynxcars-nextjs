@@ -16,10 +16,12 @@ export const VideoMedia = ({
 
 	return (
 		<video
+			autoPlay
+			controls
+			muted
+			playsInline
 			width={width}
 			height={height}
-			controls
-			playsInline
 			className={className}
 		>
 			<source src={src} />

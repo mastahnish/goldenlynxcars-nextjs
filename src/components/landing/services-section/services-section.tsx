@@ -14,15 +14,17 @@ export const ServicesSection = async () => {
 			<Section id="services" title={title} label={label}>
 				<div className="flex gap-24">
 					<ServicesSectionAccordion services={services} />
-					<Media
-						resource={reelSection.video}
-						width={300}
-						height={533}
-						className="hidden self-start rounded-lg lg:block"
-					/>
+					{!reelSection.isHidden && (
+						<Media
+							resource={reelSection.video}
+							width={300}
+							height={533}
+							className="hidden self-start rounded-lg lg:block"
+						/>
+					)}
 				</div>
 			</Section>
-			<ReelSection {...reelSection} />
+			{!reelSection.isHidden && <ReelSection {...reelSection} />}
 		</>
 	);
 };
