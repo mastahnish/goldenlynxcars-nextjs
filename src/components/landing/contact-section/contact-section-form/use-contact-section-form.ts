@@ -30,8 +30,9 @@ export const useContactSectionForm = ({ cars }: UseContactSectionFormInput) => {
 		reset();
 		setValue('carId', '');
 
-		// eslint-disable-next-line @typescript-eslint/no-floating-promises
-		toast.promise(addContactRequest({ ...data }), {
+		const addContactRequestPromise = addContactRequest({ ...data });
+
+		void toast.promise(addContactRequestPromise, {
 			loading: 'Wysyłanie...',
 			success: 'Wysłano',
 			error: 'Ups, coś poszło nie tak!',

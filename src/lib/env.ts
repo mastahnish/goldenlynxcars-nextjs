@@ -23,6 +23,10 @@ export const env = createEnv({
 			},
 			{ message: 'Invalid JSON' },
 		),
+		EMAIL_SERVICE: z.string(),
+		EMAIL_USERNAME: z.string(),
+		EMAIL_PASSWORD: z.string(),
+		CONTACT_TARGET_EMAIL: z.string(),
 	},
 	experimental__runtimeEnv: {
 		NEXT_PUBLIC_SERVER_BASE_URL: process.env.NEXT_PUBLIC_SERVER_BASE_URL,

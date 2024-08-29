@@ -53,6 +53,9 @@ importers:
       next:
         specifier: 15.0.0-canary.115
         version: 15.0.0-canary.115(@babel/core@7.25.2)(babel-plugin-react-compiler@0.0.0-experimental-334f00b-20240725)(react-dom@19.0.0-rc-49496d49-20240814(react@19.0.0-rc-49496d49-20240814))(react@19.0.0-rc-49496d49-20240814)(sass@1.77.4)
+      nodemailer:
+        specifier: 6.9.14
+        version: 6.9.14
       payload:
         specifier: 3.0.0-beta.84
         version: 3.0.0-beta.84(graphql@16.9.0)(typescript@5.5.4)
@@ -105,6 +108,9 @@ importers:
       '@types/node':
         specifier: 22.3.0
         version: 22.3.0
+      '@types/nodemailer':
+        specifier: 6.4.15
+        version: 6.4.15
       '@types/react':
         specifier: 18.3.3
         version: 18.3.3
@@ -2234,6 +2240,9 @@ packages:
   '@types/node@22.3.0':
     resolution: {integrity: sha512-nrWpWVaDZuaVc5X84xJ0vNrLvomM205oQyLsRt7OHNZbSHslcWsvgFR7O7hire2ZonjLrWBbedmotmIlJDVd6g==}
 
+  '@types/nodemailer@6.4.15':
+    resolution: {integrity: sha512-0EBJxawVNjPkng1zm2vopRctuWVCxk34JcIlRuXSf54habUWdz1FB7wHDqOqvDa8Mtpt0Q3LTXQkAs2LNyK5jQ==}
+
   '@types/parse-json@4.0.2':
     resolution: {integrity: sha512-dISoDXWWQwUquiKsyZ4Ng+HX2KsPL7LyHKHQwgGFEA3IaKac4Obd+h2a/a6waisAoepJlBcx9paWqjA8/HVjCw==}
 
@@ -4249,6 +4258,10 @@ packages:
 
   node-releases@2.0.18:
     resolution: {integrity: sha512-d9VeXT4SJ7ZeOqGX6R5EM022wpL+eWPooLI+5UpWn2jCT1aosUQEhQP214x33Wkwx3JQMvIm+tIoVOdodFS40g==}
+
+  nodemailer@6.9.14:
+    resolution: {integrity: sha512-Dobp/ebDKBvz91sbtRKhcznLThrKxKt97GI2FAlAyy+fk19j73Uz3sBXolVtmcXjaorivqsbbbjDY+Jkt4/bQA==}
+    engines: {node: '>=6.0.0'}
 
   normalize-path@3.0.0:
     resolution: {integrity: sha512-6eZs5Ls3WtCisHWp9S2GUy8dqkpGi4BVSz3GaqiE6ezub0512ESztXUwUB6C6IKbQkY2Pnb/mD4WYojCRwcwLA==}
@@ -7681,6 +7694,10 @@ snapshots:
     dependencies:
       undici-types: 6.18.2
 
+  '@types/nodemailer@6.4.15':
+    dependencies:
+      '@types/node': 22.3.0
+
   '@types/parse-json@4.0.2': {}
 
   '@types/prettier@2.7.3': {}
@@ -10016,6 +10033,8 @@ snapshots:
       whatwg-url: 5.0.0
 
   node-releases@2.0.18: {}
+
+  nodemailer@6.9.14: {}
 
   normalize-path@3.0.0: {}
 

@@ -9,7 +9,7 @@ import sharp from 'sharp';
 
 import { env } from '@/lib/env';
 import { CarFleet } from '@/payload/collections/CarFleet/CarFleet';
-import { ContactRequest } from '@/payload/collections/ContactRequest';
+import { ContactRequest } from '@/payload/collections/ContactRequest/ContactRequest';
 import { Media } from '@/payload/collections/Media';
 import { CarFleetSection } from '@/payload/globals/CarFleetSection/CarFleetSection';
 import { ContactSection } from '@/payload/globals/ContactSection/ContactSection';

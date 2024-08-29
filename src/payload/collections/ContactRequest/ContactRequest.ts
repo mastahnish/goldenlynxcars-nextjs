@@ -1,4 +1,5 @@
-import { noone } from '../access/noone';
+import { noone } from '../../access/noone';
+import { sendContactRequestMail } from './hooks/send-contact-request-mail';
 
 import type { CollectionConfig } from 'payload';
 
@@ -35,6 +36,9 @@ export const ContactRequest: CollectionConfig = {
 	access: {
 		create: noone,
 		update: noone,
+	},
+	hooks: {
+		afterOperation: [sendContactRequestMail],
 	},
 	defaultSort: 'date',
 };
