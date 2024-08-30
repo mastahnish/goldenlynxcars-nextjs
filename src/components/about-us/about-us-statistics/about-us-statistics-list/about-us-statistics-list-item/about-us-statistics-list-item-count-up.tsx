@@ -9,5 +9,5 @@ type AboutUsStatisticsListItemCountUpProps = Readonly<{
 export const AboutUsStatisticsListItemCountUp = ({
 	value,
 }: AboutUsStatisticsListItemCountUpProps) => (
-	<CountUp start={0} end={value} enableScrollSpy />
+	<CountUp start={0} end={value} enableScrollSpy scrollSpyOnce />
 );
