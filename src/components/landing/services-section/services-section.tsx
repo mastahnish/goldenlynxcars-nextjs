@@ -1,13 +1,14 @@
 import { ReelSection } from './reel-section/reel-section';
-import { getServicesSectionContent } from './services-section.content';
 import { ServicesSectionAccordion } from './services-section-accordion/services-section-accordion';
 
 import { Media } from '@/components/common/media/media';
 import { Section } from '@/components/common/section';
 
+import { getCachedGlobal } from '@/lib/get-cached-global';
+
 export const ServicesSection = async () => {
 	const { title, label, reelSection, services } =
-		await getServicesSectionContent();
+		await getCachedGlobal('services-section')();
 
 	return (
 		<>

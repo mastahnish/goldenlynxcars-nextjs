@@ -8,16 +8,18 @@ import { buildConfig } from 'payload';
 import sharp from 'sharp';
 
 import { env } from '@/lib/env';
-import { CarFleet } from '@/payload/collections/CarFleet/CarFleet';
+import { CarFleet } from '@/payload/collections/CarFleet';
 import { ContactRequest } from '@/payload/collections/ContactRequest/ContactRequest';
 import { Media } from '@/payload/collections/Media';
-import { CarFleetSection } from '@/payload/globals/CarFleetSection/CarFleetSection';
-import { ContactSection } from '@/payload/globals/ContactSection/ContactSection';
-import { FAQSection } from '@/payload/globals/FAQSection/FAQSection';
-import { Hero } from '@/payload/globals/Hero/Hero';
-import { OpinionSection } from '@/payload/globals/OpinionSection/OpinionSection';
-import { RealizationsSection } from '@/payload/globals/RealizationsSection/RealizationsSection';
-import { ServicesSection } from '@/payload/globals/ServicesSection/ServicesSection';
+import { AboutUsHeader } from '@/payload/globals/about-us/AboutUsHeader';
+import { AboutUsStatisticNumbers } from '@/payload/globals/about-us/AboutUsStatisticNumbers';
+import { CarFleetSection } from '@/payload/globals/landing/CarFleetSection';
+import { ContactSection } from '@/payload/globals/landing/ContactSection';
+import { FAQSection } from '@/payload/globals/landing/FAQSection';
+import { Hero } from '@/payload/globals/landing/Hero';
+import { OpinionSection } from '@/payload/globals/landing/OpinionSection';
+import { RealizationsSection } from '@/payload/globals/landing/RealizationsSection';
+import { ServicesSection } from '@/payload/globals/landing/ServicesSection';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -31,6 +33,8 @@ export default buildConfig({
 		RealizationsSection,
 		FAQSection,
 		ContactSection,
+		AboutUsHeader,
+		AboutUsStatisticNumbers,
 	],
 	editor: slateEditor({}),
 	secret: env.PAYLOAD_SECRET,

@@ -45,6 +45,7 @@ export default {
 				'opinion-item': '4.5rem',
 			},
 			maxWidth: {
+				'8xl': '88rem',
 				'realization-card': '600px',
 			},
 			scale: {

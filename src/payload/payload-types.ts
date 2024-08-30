@@ -29,6 +29,8 @@ export interface Config {
     'realizations-section': RealizationsSection;
     'faq-section': FAQSection;
     'contact-section': ContactSection;
+    'about-us-header': AboutUsHeader;
+    'about-us-statistic-numbers': AboutUsStatisticNumber;
   };
   locale: null;
   user: User & {
@@ -267,6 +269,30 @@ export interface ContactSection {
   title: string;
   label?: string | null;
   image: number | Media;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "about-us-header".
+ */
+export interface AboutUsHeader {
+  id: number;
+  title: string;
+  label?: string | null;
+  content: string;
+  subContent?: string | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "about-us-statistic-numbers".
+ */
+export interface AboutUsStatisticNumber {
+  id: number;
+  clients: number;
+  kilometers: number;
   updatedAt?: string | null;
   createdAt?: string | null;
 }

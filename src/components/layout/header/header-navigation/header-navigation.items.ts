@@ -23,7 +23,7 @@ export const navItems: NavItem[] = [
 		label: 'Kalkulator najmu',
 	},
 	{
-		href: '#',
+		href: '/about-us',
 		label: 'O firmie',
 	},
 ];

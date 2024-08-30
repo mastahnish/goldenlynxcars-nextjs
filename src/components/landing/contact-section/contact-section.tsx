@@ -1,12 +1,15 @@
-import { getContactSectionContent } from './contact-section.content';
 import { ContactSectionForm } from './contact-section-form/contact-section-form';
 import { ContactSectionImage } from './contact-section-image';
 
 import { ContactPhoneButton } from '@/components/common/contact-phone-button';
 import { Section } from '@/components/common/section';
 
+import { getCachedCollection } from '@/lib/get-cached-collection';
+import { getCachedGlobal } from '@/lib/get-cached-global';
+
 export const ContactSection = async () => {
-	const { title, label, image, carFleet } = await getContactSectionContent();
+	const { title, label, image } = await getCachedGlobal('contact-section')();
+	const carFleet = await getCachedCollection('car-fleet')();
 
 	return (
 		<section className="flex bg-semi-black pb-6">

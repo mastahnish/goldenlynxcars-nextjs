@@ -1,14 +1,11 @@
-/* eslint-disable tailwindcss/no-arbitrary-value */
-
-import { twJoin } from 'tailwind-merge';
-
 import { Container } from './container';
+import { Title } from './title';
 
 import type { ComponentProps } from 'react';
 
 type SectionProps = Readonly<{
 	title: string;
-	titleGap?: 'small' | 'medium';
+	titleGap?: ComponentProps<typeof Title>['gap'];
 	label?: string | null;
 }> &
 	ComponentProps<typeof Container>;
@@ -22,18 +19,9 @@ export const Section = ({
 	...props
 }: SectionProps) => (
 	<Container as={as} {...props}>
-		<h2
-			style={{ ...(label && { '--label': `'${label}' / ''` }) }}
-			className={twJoin(
-				'relative font-bebas-neue text-5xl text-white xs:text-6xl md:text-7xl',
-				label &&
-					'after:text-stroke after:absolute after:-top-1.5 after:left-0 after:-z-1 after:-translate-x-1/4 after:text-8xl after:text-background after:opacity-5 after:shadow-secondary after:content-[--label] after:xs:-top-4 after:xs:text-9xl',
-				titleGap === 'small' && 'mb-6',
-				titleGap === 'medium' && 'mb-12',
-			)}
-		>
+		<Title gap={titleGap} label={label}>
 			{title}
-		</h2>
+		</Title>
 		{children}
 	</Container>
 );

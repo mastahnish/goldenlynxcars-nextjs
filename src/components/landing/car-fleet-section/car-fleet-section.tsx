@@ -1,11 +1,14 @@
-import { getCarFleetSectionContent } from './car-fleet-section.content';
 import { CarFleetSectionCars } from './car-fleet-section-cars';
 
 import { Section } from '@/components/common/section';
 import { Button } from '@/components/ui/button/button';
 
+import { getCachedGlobal } from '@/lib/get-cached-global';
+
 export const CarFleetSection = async () => {
-	const { title, label, cars } = await getCarFleetSectionContent();
+	const { title, label, cars } = await getCachedGlobal('car-fleet-section', {
+		tags: ['collection_car-fleet'],
+	})();
 
 	const filteredCars = (cars ?? []).filter(car => typeof car !== 'number');
 
