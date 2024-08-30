@@ -62,6 +62,9 @@ importers:
       react:
         specifier: 19.0.0-rc-49496d49-20240814
         version: 19.0.0-rc-49496d49-20240814
+      react-countup:
+        specifier: 6.5.3
+        version: 6.5.3(react@19.0.0-rc-49496d49-20240814)
       react-day-picker:
         specifier: 8.10.1
         version: 8.10.1(date-fns@3.6.0)(react@19.0.0-rc-49496d49-20240814)
@@ -2797,6 +2800,9 @@ packages:
       typescript:
         optional: true
 
+  countup.js@2.8.0:
+    resolution: {integrity: sha512-f7xEhX0awl4NOElHulrl4XRfKoNH3rB+qfNSZZyjSZhaAoUk6elvhH+MNxMmlmuUJ2/QNTWPSA7U4mNtIAKljQ==}
+
   cross-spawn@7.0.3:
     resolution: {integrity: sha512-iRDPJKUPVEND7dHPO8rkbOnPpyDygcDFtWjpeWNCgy8WP2rXcxXL8TskReQl6OrB2G7+UJrags1q15Fudc7G6w==}
     engines: {node: '>= 8'}
@@ -4625,6 +4631,11 @@ packages:
     peerDependencies:
       react: '>=15.6.2'
       react-dom: '>=15.6.2'
+
+  react-countup@6.5.3:
+    resolution: {integrity: sha512-udnqVQitxC7QWADSPDOxVWULkLvKUWrDapn5i53HE4DPRVgs+Y5rr4bo25qEl8jSh+0l2cToJgGMx+clxPM3+w==}
+    peerDependencies:
+      react: '>= 16.3.0'
 
   react-datepicker@6.9.0:
     resolution: {integrity: sha512-QTxuzeem7BUfVFWv+g5WuvzT0c5BPo+XTCNbMTZKSZQLU+cMMwSUHwspaxuIcDlwNcOH0tiJ+bh1fJ2yxOGYWA==}
@@ -8350,6 +8361,8 @@ snapshots:
     optionalDependencies:
       typescript: 5.5.4
 
+  countup.js@2.8.0: {}
+
   cross-spawn@7.0.3:
     dependencies:
       path-key: 3.1.1
@@ -10406,6 +10419,11 @@ snapshots:
       prop-types: 15.8.1
       react: 19.0.0-rc-49496d49-20240814
       react-dom: 19.0.0-rc-49496d49-20240814(react@19.0.0-rc-49496d49-20240814)
+
+  react-countup@6.5.3(react@19.0.0-rc-49496d49-20240814):
+    dependencies:
+      countup.js: 2.8.0
+      react: 19.0.0-rc-49496d49-20240814
 
   react-datepicker@6.9.0(react-dom@19.0.0-rc-49496d49-20240814(react@19.0.0-rc-49496d49-20240814))(react@19.0.0-rc-49496d49-20240814):
     dependencies:

@@ -2,7 +2,7 @@ import { BiLike } from 'react-icons/bi';
 import { LiaCarAltSolid } from 'react-icons/lia';
 import { MdOutlinePeopleAlt } from 'react-icons/md';
 
-import { AboutUsStatisticsListItem } from './about-us-statistics-list-item';
+import { AboutUsStatisticsListItem } from './about-us-statistics-list-item/about-us-statistics-list-item';
 
 type AboutUsStatisticsListProps = Readonly<{
 	clients: number;

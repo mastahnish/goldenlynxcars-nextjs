@@ -1,3 +1,5 @@
+import { AboutUsStatisticsListItemCountUp } from './about-us-statistics-list-item-count-up';
+
 import type { IconType } from '@/components/ui/icons';
 
 type AboutUsStatisticsListItemProps = Readonly<{
@@ -15,7 +17,7 @@ export const AboutUsStatisticsListItem = ({
 }: AboutUsStatisticsListItemProps) => (
 	<article className="mx-auto size-full max-w-about-us-statistic-card rounded-lg border border-primary/10 bg-semi-black px-4 py-6 text-white">
 		<p className="text-center text-6xl font-bold sm:text-7xl">
-			{value}
+			<AboutUsStatisticsListItemCountUp value={value} />
 			{suffix && (
 				<span className="ml-2 text-3xl font-semibold sm:ml-4 sm:text-4xl">
 					{suffix}

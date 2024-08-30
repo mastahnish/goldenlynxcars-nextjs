@@ -31,6 +31,7 @@
 		"nodemailer": "6.9.14",
 		"payload": "3.0.0-beta.84",
 		"react": "19.0.0-rc-49496d49-20240814",
+		"react-countup": "6.5.3",
 		"react-day-picker": "8.10.1",
 		"react-dom": "19.0.0-rc-49496d49-20240814",
 		"react-hook-form": "7.52.2",
