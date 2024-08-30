@@ -30,7 +30,7 @@ export interface Config {
     'faq-section': FAQSection;
     'contact-section': ContactSection;
     'about-us-header': AboutUsHeader;
-    'about-us-statistic-numbers': AboutUsStatisticNumber;
+    'about-us-statistics': AboutUsStatistic;
   };
   locale: null;
   user: User & {
@@ -287,12 +287,16 @@ export interface AboutUsHeader {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "about-us-statistic-numbers".
+ * via the `definition` "about-us-statistics".
  */
-export interface AboutUsStatisticNumber {
+export interface AboutUsStatistic {
   id: number;
-  clients: number;
-  kilometers: number;
+  title: string;
+  label?: string | null;
+  statistics: {
+    clients: number;
+    kilometers: number;
+  };
   updatedAt?: string | null;
   createdAt?: string | null;
 }

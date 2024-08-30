@@ -46,7 +46,8 @@ export default {
 			},
 			maxWidth: {
 				'8xl': '88rem',
-				'realization-card': '600px',
+				'realization-card': '37.5rem',
+				'about-us-statistic-card': '23.3rem',
 			},
 			scale: {
 				102: '1.02',
