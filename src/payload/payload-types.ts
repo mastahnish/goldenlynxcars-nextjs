@@ -31,6 +31,7 @@ export interface Config {
     'contact-section': ContactSection;
     'about-us-header': AboutUsHeader;
     'about-us-statistics': AboutUsStatistic;
+    'about-us-team': AboutUsTeam;
   };
   locale: null;
   user: User & {
@@ -297,6 +298,23 @@ export interface AboutUsStatistic {
     clients: number;
     kilometers: number;
   };
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "about-us-team".
+ */
+export interface AboutUsTeam {
+  id: number;
+  title: string;
+  label?: string | null;
+  team: {
+    image: number | Media;
+    firstName: string;
+    description: string;
+    id?: string | null;
+  }[];
   updatedAt?: string | null;
   createdAt?: string | null;
 }

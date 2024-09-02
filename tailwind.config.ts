@@ -48,6 +48,7 @@ export default {
 				'8xl': '88rem',
 				'realization-card': '37.5rem',
 				'about-us-statistic-card': '23.3rem',
+				'team-card': '34.25rem',
 			},
 			scale: {
 				102: '1.02',

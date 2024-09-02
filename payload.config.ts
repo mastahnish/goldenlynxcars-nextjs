@@ -13,6 +13,7 @@ import { ContactRequest } from '@/payload/collections/ContactRequest/ContactRequ
 import { Media } from '@/payload/collections/Media';
 import { AboutUsHeader } from '@/payload/globals/about-us/AboutUsHeader';
 import { AboutUsStatistics } from '@/payload/globals/about-us/AboutUsStatistics';
+import { AboutUsTeam } from '@/payload/globals/about-us/AboutUsTeam';
 import { CarFleetSection } from '@/payload/globals/landing/CarFleetSection';
 import { ContactSection } from '@/payload/globals/landing/ContactSection';
 import { FAQSection } from '@/payload/globals/landing/FAQSection';
@@ -35,6 +36,7 @@ export default buildConfig({
 		ContactSection,
 		AboutUsHeader,
 		AboutUsStatistics,
+		AboutUsTeam,
 	],
 	editor: slateEditor({}),
 	secret: env.PAYLOAD_SECRET,
