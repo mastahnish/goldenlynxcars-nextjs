@@ -1,7 +1,7 @@
 import { ReelSection } from './reel-section/reel-section';
 import { ServicesSectionAccordion } from './services-section-accordion/services-section-accordion';
+import { ServicesSectionVideo } from './services-section-video';
 
-import { Media } from '@/components/common/media/media';
 import { Section } from '@/components/common/section';
 
 import { getCachedGlobal } from '@/lib/get-cached-global';
@@ -16,14 +16,7 @@ export const ServicesSection = async () => {
 				<div className="flex gap-24">
 					<ServicesSectionAccordion services={services} />
 					{!reelSection.isHidden && (
-						<Media
-							resource={reelSection.video}
-							autoPlay
-							muted
-							width={300}
-							height={533}
-							className="hidden self-start rounded-lg lg:block"
-						/>
+						<ServicesSectionVideo video={reelSection.video} />
 					)}
 				</div>
 			</Section>
