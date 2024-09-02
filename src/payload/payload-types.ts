@@ -30,6 +30,7 @@ export interface Config {
     'faq-section': FAQSection;
     'contact-section': ContactSection;
     'about-us-header': AboutUsHeader;
+    'about-us-overview': AboutUsOverview;
     'about-us-statistics': AboutUsStatistic;
     'about-us-team': AboutUsTeam;
   };
@@ -283,6 +284,19 @@ export interface AboutUsHeader {
   label?: string | null;
   content: string;
   subContent?: string | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "about-us-overview".
+ */
+export interface AboutUsOverview {
+  id: number;
+  video: number | Media;
+  title: string;
+  subTitle: string;
+  content: string;
   updatedAt?: string | null;
   createdAt?: string | null;
 }

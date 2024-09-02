@@ -12,6 +12,7 @@ import { CarFleet } from '@/payload/collections/CarFleet';
 import { ContactRequest } from '@/payload/collections/ContactRequest/ContactRequest';
 import { Media } from '@/payload/collections/Media';
 import { AboutUsHeader } from '@/payload/globals/about-us/AboutUsHeader';
+import { AboutUsOverview } from '@/payload/globals/about-us/AboutUsOverview';
 import { AboutUsStatistics } from '@/payload/globals/about-us/AboutUsStatistics';
 import { AboutUsTeam } from '@/payload/globals/about-us/AboutUsTeam';
 import { CarFleetSection } from '@/payload/globals/landing/CarFleetSection';
@@ -35,6 +36,7 @@ export default buildConfig({
 		FAQSection,
 		ContactSection,
 		AboutUsHeader,
+		AboutUsOverview,
 		AboutUsStatistics,
 		AboutUsTeam,
 	],
