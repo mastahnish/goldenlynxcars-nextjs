@@ -22,13 +22,13 @@ export interface Config {
     defaultIDType: number;
   };
   globals: {
+    'contact-section': ContactSection;
     hero: Hero;
     'services-section': ServicesSection;
     'car-fleet-section': CarFleetSection;
     'opinion-section': OpinionSection;
     'realizations-section': RealizationsSection;
     'faq-section': FAQSection;
-    'contact-section': ContactSection;
     'about-us-header': AboutUsHeader;
     'about-us-overview': AboutUsOverview;
     'about-us-statistics': AboutUsStatistic;
@@ -161,6 +161,18 @@ export interface PayloadMigration {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "contact-section".
+ */
+export interface ContactSection {
+  id: number;
+  title: string;
+  label?: string | null;
+  image: number | Media;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "hero".
  */
 export interface Hero {
@@ -259,18 +271,6 @@ export interface FAQSection {
     answer: string;
     id?: string | null;
   }[];
-  updatedAt?: string | null;
-  createdAt?: string | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "contact-section".
- */
-export interface ContactSection {
-  id: number;
-  title: string;
-  label?: string | null;
-  image: number | Media;
   updatedAt?: string | null;
   createdAt?: string | null;
 }

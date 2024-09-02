@@ -23,9 +23,6 @@ export const ContactSection: GlobalConfig = {
 			required: true,
 		},
 	],
-	admin: {
-		group: 'Landing',
-	},
 	hooks: {
 		afterChange: [createRevalidateGlobalHook('contact-section')],
 	},

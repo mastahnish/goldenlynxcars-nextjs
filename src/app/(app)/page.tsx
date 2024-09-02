@@ -1,5 +1,5 @@
+import { ContactSection } from '@/components/common/contact-section/contact-section';
 import { CarFleetSection } from '@/components/landing/car-fleet-section/car-fleet-section';
-import { ContactSection } from '@/components/landing/contact-section/contact-section';
 import { FAQSection } from '@/components/landing/faq-section/faq-section';
 import { Hero } from '@/components/landing/hero';
 import { OpinionSection } from '@/components/landing/opinion-section/opinion-section';
