@@ -33,6 +33,7 @@ export interface Config {
     'about-us-overview': AboutUsOverview;
     'about-us-statistics': AboutUsStatistic;
     'about-us-team': AboutUsTeam;
+    'car-fleet-header': CarFleetHeader;
   };
   locale: null;
   user: User & {
@@ -329,6 +330,19 @@ export interface AboutUsTeam {
     description: string;
     id?: string | null;
   }[];
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "car-fleet-header".
+ */
+export interface CarFleetHeader {
+  id: number;
+  title: string;
+  label?: string | null;
+  content: string;
+  subContent?: string | null;
   updatedAt?: string | null;
   createdAt?: string | null;
 }

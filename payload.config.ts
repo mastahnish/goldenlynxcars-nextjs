@@ -15,6 +15,7 @@ import { AboutUsHeader } from '@/payload/globals/about-us/AboutUsHeader';
 import { AboutUsOverview } from '@/payload/globals/about-us/AboutUsOverview';
 import { AboutUsStatistics } from '@/payload/globals/about-us/AboutUsStatistics';
 import { AboutUsTeam } from '@/payload/globals/about-us/AboutUsTeam';
+import { CarFleetHeader } from '@/payload/globals/car-fieet/CarFleetHeader';
 import { ContactSection } from '@/payload/globals/ContactSection';
 import { CarFleetSection } from '@/payload/globals/landing/CarFleetSection';
 import { FAQSection } from '@/payload/globals/landing/FAQSection';
@@ -39,6 +40,7 @@ export default buildConfig({
 		AboutUsOverview,
 		AboutUsStatistics,
 		AboutUsTeam,
+		CarFleetHeader,
 	],
 	editor: slateEditor({}),
 	secret: env.PAYLOAD_SECRET,

@@ -11,7 +11,7 @@ export const navItems: NavItem[] = [
 		label: 'Usługi',
 	},
 	{
-		href: '#',
+		href: '/car-fleet',
 		label: 'Flota samochodów',
 	},
 	{
