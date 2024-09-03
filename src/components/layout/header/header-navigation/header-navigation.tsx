@@ -1,4 +1,4 @@
-import { navItems } from './header-navigation.items';
+import { navItems } from '../header-navigation-items';
 import { HeaderNavigationItem } from './header-navigation-item';
 
 export const HeaderNavigation = () => (

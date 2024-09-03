@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-import type { NavItem } from './header-navigation.items';
+import type { NavItem } from '../header-navigation-items';
 
 type HeaderNavigationItemProps = Readonly<NavItem>;
 
