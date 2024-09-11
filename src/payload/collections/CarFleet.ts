@@ -17,6 +17,20 @@ export const CarFleet: CollectionConfig = {
 			required: true,
 		},
 		{
+			name: 'brand',
+			type: 'relationship',
+			relationTo: 'car-fleet-brands',
+			required: true,
+			hasMany: false,
+		},
+		{
+			name: 'type',
+			type: 'relationship',
+			relationTo: 'car-fleet-types',
+			required: true,
+			hasMany: false,
+		},
+		{
 			name: 'price',
 			type: 'number',
 			required: true,
@@ -64,6 +78,7 @@ export const CarFleet: CollectionConfig = {
 	],
 	admin: {
 		useAsTitle: 'name',
+		group: 'Car Fleet',
 	},
 	hooks: {
 		afterChange: [createRevalidateCollectionHook('car-fleet')],

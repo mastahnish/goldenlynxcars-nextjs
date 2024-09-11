@@ -16,7 +16,7 @@ type CarFleetCardDetailsProps = Readonly<{
 }>;
 
 export const CarFleetCardDetails = ({ details }: CarFleetCardDetailsProps) => (
-	<ul className="mt-4 space-y-3 border-t border-primary/10 pt-4">
+	<ul className="space-y-3 border-t border-primary/10 pt-4">
 		<CarFleetCardDetailsItem
 			icon={<EngineIcon />}
 			content={`${details.hp} KM`}

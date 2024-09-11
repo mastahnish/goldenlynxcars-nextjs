@@ -1,11 +1,15 @@
 import { forwardRef } from 'react';
 import { twMerge } from 'tailwind-merge';
 
+import type { ChangeEventHandler } from 'react';
+
 type InputProps = Readonly<{
 	type?: 'email' | 'text' | 'tel';
 	placeholder: string;
 	isError?: boolean;
 	fullWidth?: boolean;
+	value?: string;
+	onChange?: ChangeEventHandler<HTMLInputElement>;
 }>;
 
 export const Input = forwardRef<HTMLInputElement, InputProps>(

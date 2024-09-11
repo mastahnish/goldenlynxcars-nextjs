@@ -15,7 +15,9 @@ import { AboutUsHeader } from '@/payload/globals/about-us/AboutUsHeader';
 import { AboutUsOverview } from '@/payload/globals/about-us/AboutUsOverview';
 import { AboutUsStatistics } from '@/payload/globals/about-us/AboutUsStatistics';
 import { AboutUsTeam } from '@/payload/globals/about-us/AboutUsTeam';
+import { CarFleetBrands } from '@/payload/globals/car-fieet/CarFleetBrands';
 import { CarFleetHeader } from '@/payload/globals/car-fieet/CarFleetHeader';
+import { CarFleetTypes } from '@/payload/globals/car-fieet/CarFleetTypes';
 import { ContactSection } from '@/payload/globals/ContactSection';
 import { CarFleetSection } from '@/payload/globals/landing/CarFleetSection';
 import { FAQSection } from '@/payload/globals/landing/FAQSection';
@@ -27,7 +29,7 @@ import { ServicesSection } from '@/payload/globals/landing/ServicesSection';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 export default buildConfig({
-	collections: [ContactRequest, Media, CarFleet],
+	collections: [ContactRequest, Media, CarFleetBrands, CarFleetTypes, CarFleet],
 	globals: [
 		ContactSection,
 		Hero,

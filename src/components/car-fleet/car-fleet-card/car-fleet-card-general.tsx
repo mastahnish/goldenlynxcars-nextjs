@@ -5,7 +5,7 @@ type CarFleetCardGeneralProps = Readonly<{
 }>;
 
 export const CarFleetCardGeneral = ({ car }: CarFleetCardGeneralProps) => (
-	<div className="flex flex-col gap-4 text-white">
+	<div className="mb-4 space-y-4 text-white">
 		<h3 className="text-xl font-bold">{car.name}</h3>
 		<p className="text-lg">Od {car.price}zł/dzień</p>
 	</div>

@@ -13,6 +13,8 @@ export interface Config {
   collections: {
     'contact-request': ContactRequest;
     media: Media;
+    'car-fleet-brands': CarFleetBrand;
+    'car-fleet-types': CarFleetType;
     'car-fleet': CarFleet;
     users: User;
     'payload-preferences': PayloadPreference;
@@ -80,6 +82,8 @@ export interface CarFleet {
   id: number;
   image: number | Media;
   name: string;
+  brand: number | CarFleetBrand;
+  type: number | CarFleetType;
   price: number;
   details: {
     hp: number;
@@ -108,6 +112,22 @@ export interface Media {
   height?: number | null;
   focalX?: number | null;
   focalY?: number | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "car-fleet-brands".
+ */
+export interface CarFleetBrand {
+  id: number;
+  brand: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "car-fleet-types".
+ */
+export interface CarFleetType {
+  id: number;
+  type: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

@@ -1,3 +1,5 @@
+import { twMerge } from 'tailwind-merge';
+
 import { CarFleetCardDetails } from './car-fleet-card-details/car-fleet-card-details';
 import { CarFleetCardGeneral } from './car-fleet-card-general';
 
@@ -9,19 +11,36 @@ import type { CarFleet } from './car-fleet-card.types';
 
 type CarFleetCardProps = Readonly<{
 	car: CarFleet;
+	layout?: 'horizontal' | 'vertical';
 }>;
 
-export const CarFleetCard = ({ car }: CarFleetCardProps) => (
-	<article className="mx-auto w-full max-w-96 rounded-2xl border border-primary/10 bg-semi-black p-4">
-		<div className="relative mb-4 h-48">
+export const CarFleetCard = ({
+	car,
+	layout = 'vertical',
+}: CarFleetCardProps) => (
+	<article
+		className={twMerge(
+			'mx-auto flex w-full gap-4 rounded-2xl border border-primary/10 bg-semi-black p-4',
+			layout === 'horizontal' && 'max-md:max-w-96 max-md:flex-col',
+			layout === 'vertical' && 'max-w-96 flex-col',
+		)}
+	>
+		<div
+			className={twMerge(
+				'relative shrink-0 aspect-video',
+				layout === 'horizontal' && 'md:w-72 lg:w-96',
+			)}
+		>
 			<Media resource={car.image} fill className="rounded-xl object-cover" />
 		</div>
-		<CarFleetCardGeneral car={car} />
-		<CarFleetCardDetails details={car.details} />
-		<div className="mt-8">
-			<Button variant="ghost" icon={ArrowRight} moveIcon>
-				Wylicz swoją cenę
-			</Button>
+		<div className="w-full">
+			<CarFleetCardGeneral car={car} />
+			<CarFleetCardDetails details={car.details} />
+			<div className="mt-8">
+				<Button variant="ghost" icon={ArrowRight} moveIcon>
+					Wylicz swoją cenę
+				</Button>
+			</div>
 		</div>
 	</article>
 );

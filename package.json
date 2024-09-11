@@ -29,6 +29,7 @@
 		"libphonenumber-js": "1.11.7",
 		"next": "15.0.0-canary.115",
 		"nodemailer": "6.9.14",
+		"nuqs": "1.19.1",
 		"payload": "3.0.0-beta.84",
 		"react": "19.0.0-rc-49496d49-20240814",
 		"react-countup": "6.5.3",

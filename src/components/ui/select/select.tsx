@@ -4,12 +4,15 @@ import { twMerge } from 'tailwind-merge';
 import { ChevronDown, ChevronUp } from '../icons';
 import { SelectItem } from './select-item';
 
+export type SelectOptions = { value: string; label: string }[];
+
 type SelectProps = Readonly<{
-	'aria-label': string;
+	'aria-label'?: string;
 	placeholder: string;
 	fullWidth?: boolean;
 	isError?: boolean;
-	options: { value: string; label: string }[];
+	options: SelectOptions;
+	value?: string;
 	onValueChange?: (value: string) => void;
 }>;
 
@@ -19,12 +22,13 @@ export const Select = ({
 	fullWidth,
 	isError,
 	options,
+	value,
 	onValueChange,
 	...props
 }: SelectProps) => (
-	<SelectPrimitive.Root onValueChange={onValueChange} {...props}>
+	<SelectPrimitive.Root value={value} onValueChange={onValueChange} {...props}>
 		<SelectPrimitive.Trigger
-			aria-label={ariaLabel}
+			aria-label={ariaLabel ?? placeholder}
 			className={twMerge(
 				'inline-flex h-14 items-center justify-between rounded-lg bg-form-field px-5 leading-none text-neutral-300 outline-none data-[placeholder]:text-form-field-placeholder',
 				isError && 'bg-red-500/60 data-[placeholder]:text-white/40',
