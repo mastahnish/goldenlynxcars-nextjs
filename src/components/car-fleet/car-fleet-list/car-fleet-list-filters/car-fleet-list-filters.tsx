@@ -28,7 +28,7 @@ export const CarFleetListFilters = ({
 		label: type,
 	}));
 	const pricesOptions = removeDuplicates(
-		carFleet.map(({ price }) => price.toString()),
+		carFleet.map(({ prices }) => prices.d_1_2.toString()),
 	).map(price => ({
 		value: price,
 		label: price,

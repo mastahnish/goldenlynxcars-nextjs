@@ -17,15 +17,20 @@ export const calculateLocationPrice = ({
 }: CalculateLocationPriceInput) => {
 	const collectionAndReturnPrice =
 		!diffCollectionAndReturnAddress &&
+		collectionAndReturnAddress &&
 		collectionAndReturnAddress !== defaultAddress
 			? LOCATION_PRICE * 2
 			: 0;
 	const collectionPrice =
-		diffCollectionAndReturnAddress && collectionAddress !== defaultAddress
+		diffCollectionAndReturnAddress &&
+		collectionAddress &&
+		collectionAddress !== defaultAddress
 			? LOCATION_PRICE
 			: 0;
 	const returnPrice =
-		diffCollectionAndReturnAddress && returnAddress !== defaultAddress
+		diffCollectionAndReturnAddress &&
+		returnAddress &&
+		returnAddress !== defaultAddress
 			? LOCATION_PRICE
 			: 0;
 
