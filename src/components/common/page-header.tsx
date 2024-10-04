@@ -5,7 +5,7 @@ import { Title } from './title';
 import { getCachedGlobal } from '@/lib/get-cached-global';
 
 type PageHeaderProps = Readonly<{
-	global: 'about-us-header' | 'car-fleet-header';
+	global: 'about-us-header' | 'car-fleet-header' | 'rental-calculator-header';
 }>;
 
 export const PageHeader = async ({ global }: PageHeaderProps) => {

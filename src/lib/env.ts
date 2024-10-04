@@ -27,6 +27,7 @@ export const env = createEnv({
 		EMAIL_USERNAME: z.string(),
 		EMAIL_PASSWORD: z.string(),
 		CONTACT_TARGET_EMAIL: z.string(),
+		GOOGLE_PLACES_API_KEY: z.string(),
 	},
 	experimental__runtimeEnv: {
 		NEXT_PUBLIC_SERVER_BASE_URL: process.env.NEXT_PUBLIC_SERVER_BASE_URL,

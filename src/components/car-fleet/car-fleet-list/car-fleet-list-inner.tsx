@@ -19,7 +19,7 @@ export const CarFleetListInner = ({ cars }: CarFleetListInnerProps) => {
 				typeof car.brand === 'number' ||
 				car.brand.id == Number(brand)) &&
 			(!type || typeof car.type === 'number' || car.type.id == Number(type)) &&
-			(!price || car.price == Number(price)) &&
+			(!price || car.prices.d_1_2 == Number(price)) &&
 			(!seats || car.details.seats == Number(seats)),
 	);
 

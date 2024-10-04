@@ -19,7 +19,7 @@ export const navItems: NavItem[] = [
 		label: 'Sklep z merchem',
 	},
 	{
-		href: '#',
+		href: '/rental-calculator',
 		label: 'Kalkulator najmu',
 	},
 	{

@@ -4,6 +4,7 @@ module.exports = {
 	extends: [
 		'eslint:recommended',
 		'next/core-web-vitals',
+		'plugin:@tanstack/query/recommended',
 		'plugin:@typescript-eslint/recommended',
 		'plugin:import/recommended',
 		'plugin:import/typescript',

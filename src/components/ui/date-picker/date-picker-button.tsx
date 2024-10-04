@@ -5,12 +5,14 @@ import { twMerge } from 'tailwind-merge';
 import { OutlineCalendarMonth } from '../icons';
 
 type DatePickerButtonProps = Readonly<{
+	label: string;
 	isError?: boolean;
 	fullWidth?: boolean;
 	date?: Date;
 }>;
 
 export const DatePickerButton = ({
+	label,
 	isError,
 	fullWidth,
 	date,
@@ -26,7 +28,7 @@ export const DatePickerButton = ({
 		{...props}
 	>
 		<div className="text-left">
-			<p className="text-sm text-neutral-400">Wstępny termin</p>
+			<p className="text-sm text-neutral-400">{label}</p>
 			<p className="text-gray-300">
 				{date ? format(date, 'PPP', { locale: pl }) : 'Wybierz date'}
 			</p>

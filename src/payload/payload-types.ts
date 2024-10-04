@@ -36,6 +36,7 @@ export interface Config {
     'about-us-statistics': AboutUsStatistic;
     'about-us-team': AboutUsTeam;
     'car-fleet-header': CarFleetHeader;
+    'rental-calculator-header': RentalCalculatorHeader;
   };
   locale: null;
   user: User & {
@@ -84,7 +85,15 @@ export interface CarFleet {
   name: string;
   brand: number | CarFleetBrand;
   type: number | CarFleetType;
-  price: number;
+  prices: {
+    d_1_2: number;
+    d_3_6: number;
+    d_7_13: number;
+    d_14_20: number;
+    d_21_30: number;
+    m_1: number;
+    m_3: number;
+  };
   details: {
     hp: number;
     transmission: 'manual' | 'sequential' | 'automatic';
@@ -358,6 +367,19 @@ export interface AboutUsTeam {
  * via the `definition` "car-fleet-header".
  */
 export interface CarFleetHeader {
+  id: number;
+  title: string;
+  label?: string | null;
+  content: string;
+  subContent?: string | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "rental-calculator-header".
+ */
+export interface RentalCalculatorHeader {
   id: number;
   title: string;
   label?: string | null;

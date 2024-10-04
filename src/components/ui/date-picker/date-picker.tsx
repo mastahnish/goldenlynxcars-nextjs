@@ -8,6 +8,7 @@ import {
 } from '@/components/ui/popover';
 
 type DatePickerProps = Readonly<{
+	label: string;
 	value: Date | undefined;
 	isError?: boolean;
 	fullWidth?: boolean;
@@ -16,6 +17,7 @@ type DatePickerProps = Readonly<{
 }>;
 
 export const DatePicker = ({
+	label,
 	value,
 	isError,
 	fullWidth,
@@ -24,7 +26,12 @@ export const DatePicker = ({
 }: DatePickerProps) => (
 	<Popover>
 		<PopoverTrigger asChild>
-			<DatePickerButton isError={isError} fullWidth={fullWidth} date={value} />
+			<DatePickerButton
+				label={label}
+				isError={isError}
+				fullWidth={fullWidth}
+				date={value}
+			/>
 		</PopoverTrigger>
 		<PopoverContent className="w-auto p-0">
 			<Calendar

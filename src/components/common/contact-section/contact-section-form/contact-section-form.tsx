@@ -67,6 +67,7 @@ export const ContactSectionForm = ({ cars }: ContactSectionFormProps) => {
 						control={control}
 						render={({ field: { onChange, ...field } }) => (
 							<DatePicker
+								label="Wstępny termin"
 								fromDate={new Date()}
 								onSelect={onChange}
 								isError={!!errors.date}

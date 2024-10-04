@@ -6,6 +6,7 @@ import { Header } from '@/components/layout/header/header';
 
 import { bebasNeue } from '@/lib/fonts/bebas-neue';
 import { bozon } from '@/lib/fonts/bozon';
+import { AppProviders } from '@/providers/app-providers';
 
 import type { Metadata, Viewport } from 'next';
 import type { ReactNode } from 'react';
@@ -34,10 +35,12 @@ const RootLayout = ({ children }: RootLayoutProps) => (
 		className={twJoin('scroll-smooth', bebasNeue.variable, bozon.variable)}
 	>
 		<body className="bg-background">
-			<Header />
-			{children}
-			<Footer />
-			<Toaster position="top-right" />
+			<AppProviders>
+				<Header />
+				{children}
+				<Footer />
+				<Toaster position="top-right" />
+			</AppProviders>
 		</body>
 	</html>
 );
