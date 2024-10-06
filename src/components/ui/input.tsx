@@ -4,7 +4,7 @@ import { twMerge } from 'tailwind-merge';
 import type { ChangeEventHandler } from 'react';
 
 type InputProps = Readonly<{
-	type?: 'email' | 'text' | 'tel';
+	type?: 'email' | 'number' | 'text' | 'tel';
 	placeholder: string;
 	isError?: boolean;
 	fullWidth?: boolean;

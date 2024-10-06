@@ -6,7 +6,8 @@ import { Input } from '@/components/ui/input';
 type LocationSelectProps = Readonly<{
 	placeholder: string;
 	defaultPlaces?: string[];
-	value: string;
+	value?: string;
+	isError?: boolean;
 	onValueChange: (value: string) => void;
 }>;
 
@@ -14,6 +15,7 @@ export const LocationSelect = ({
 	placeholder,
 	defaultPlaces = [],
 	value,
+	isError: isInputError,
 	onValueChange,
 }: LocationSelectProps) => {
 	const {
@@ -39,6 +41,7 @@ export const LocationSelect = ({
 				placeholder={placeholder}
 				value={inputValue}
 				onChange={handleInputChange}
+				isError={isInputError}
 				fullWidth
 			/>
 			{isListOpen && (

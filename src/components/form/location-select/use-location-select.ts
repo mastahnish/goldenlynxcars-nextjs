@@ -7,7 +7,7 @@ import type { ChangeEvent } from 'react';
 
 interface UseLocationSelectInput {
 	defaultPlaces: string[];
-	value: string;
+	value?: string;
 	onValueChange: (value: string) => void;
 }
 
