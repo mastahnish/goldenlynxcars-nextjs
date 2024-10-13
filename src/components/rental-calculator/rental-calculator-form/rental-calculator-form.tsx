@@ -6,6 +6,7 @@ import { Controller } from 'react-hook-form';
 import { Container } from '../../common/container';
 import { Checkbox } from '../../ui/checkbox/checkbox';
 import { DEFAULT_ADDRESS } from './rental-calculator-form.constants';
+import { RentalCalculatorFormInfo } from './rental-calculator-form-info';
 import { useRentalCalculatorForm } from './use-rental-calculator-form';
 
 import { DatePickerField } from '@/components/form/date-picker-field';
@@ -14,6 +15,7 @@ import { SelectField } from '@/components/form/select-field';
 import { TextField } from '@/components/form/text-field';
 import { Button } from '@/components/ui/button/button';
 import { ArrowRight } from '@/components/ui/icons';
+import { Slider } from '@/components/ui/slider';
 
 import type { CarFleet } from '@/payload/payload-types';
 
@@ -28,16 +30,20 @@ export const RentalCalculatorForm = ({ cars }: RentalCalculatorFormProps) => {
 		control,
 		errors,
 		diffCollectionAndReturnAddress,
+		biggerMileageLimit,
 		selectOptions,
 		startDate,
 		price,
+		deposit,
+		mileageLimit,
+		additionalMileageLimit,
 	} = useRentalCalculatorForm({
 		cars,
 	});
 
 	return (
 		<Container>
-			<form onSubmit={onSubmit}>
+			<form onSubmit={onSubmit} className="space-y-5">
 				<div className="flex flex-col gap-4">
 					<Controller
 						name="carId"
@@ -167,14 +173,58 @@ export const RentalCalculatorForm = ({ cars }: RentalCalculatorFormProps) => {
 						</div>
 					</div>
 				</div>
-				<h3 className="mt-4 text-2xl font-bold text-white">Twoja cena:</h3>
-				<p className="mb-8 mt-2 text-5xl font-bold text-primary">
-					{Math.round(price)}zł{' '}
-					<span className="text-2xl font-semibold">brutto</span>
-				</p>
-				<Button type="submit" icon={ArrowRight} moveIcon>
-					Wyślij zapytanie
-				</Button>
+				<div className="flex flex-col gap-4">
+					<RentalCalculatorFormInfo
+						title="Twoja cena:"
+						content={Math.round(price)}
+						suffix="zł"
+					/>
+					<RentalCalculatorFormInfo
+						title="Kaucja"
+						content={deposit}
+						suffix="zł"
+						size="sm"
+					/>
+					<RentalCalculatorFormInfo
+						title="Limit kilometrów:"
+						content={mileageLimit + additionalMileageLimit}
+						suffix="km"
+						size="sm"
+					/>
+				</div>
+				<Controller
+					name="biggerMileageLimit"
+					control={control}
+					render={({ field: { onChange, ...field } }) => (
+						<Checkbox
+							label="Potrzebuję dodatkowego limitu kilometrów"
+							onCheckedChange={onChange}
+							{...field}
+						/>
+					)}
+				/>
+				{biggerMileageLimit && (
+					<>
+						<Controller
+							name="additionalMileageLimit"
+							control={control}
+							render={({ field: { onChange, ...field } }) => (
+								<Slider
+									step={10}
+									max={5 * mileageLimit}
+									onValueChange={onChange}
+									className="py-2"
+									{...field}
+								/>
+							)}
+						/>
+					</>
+				)}
+				<div className="w-full sm:w-fit">
+					<Button type="submit" icon={ArrowRight} moveIcon fullWidth>
+						Wyślij zapytanie
+					</Button>
+				</div>
 			</form>
 		</Container>
 	);

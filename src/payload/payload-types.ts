@@ -85,7 +85,18 @@ export interface CarFleet {
   name: string;
   brand: number | CarFleetBrand;
   type: number | CarFleetType;
+  deposit: number;
+  additionalMileagePrice: number;
   prices: {
+    d_1_2: number;
+    d_3_6: number;
+    d_7_13: number;
+    d_14_20: number;
+    d_21_30: number;
+    m_1: number;
+    m_3: number;
+  };
+  mileageLimits: {
     d_1_2: number;
     d_3_6: number;
     d_7_13: number;

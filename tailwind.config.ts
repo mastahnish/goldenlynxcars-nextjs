@@ -23,6 +23,7 @@ export default {
 				'hero-image': `inset 0px 50px 50px -10px ${theme('colors.background')}, inset 0px -50px 50px -10px ${theme('colors.background')}`,
 				select:
 					'0 10px 38px -10px rgba(22, 23, 24, 0.35), 0 10px 20px -15px rgba(22, 23, 24, 0.2)',
+				'slider-thumb-focus': '0 0 0 5px',
 			}),
 			colors: {
 				background: '#171717',

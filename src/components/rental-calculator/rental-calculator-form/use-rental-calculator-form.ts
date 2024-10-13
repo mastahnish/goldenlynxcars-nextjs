@@ -4,6 +4,7 @@ import { toast } from 'react-hot-toast';
 import { DEFAULT_ADDRESS } from './rental-calculator-form.constants';
 import { rentalCalculatorFormSchema } from './rental-calculator-form.schema';
 import { calculateLocationPrice } from './utils/calculate-location-price';
+import { calculateMileageLimit } from './utils/calculate-mileage-limit';
 import { calculateRentalPrice } from './utils/calculate-rental-price';
 
 import { sendRentalPriceRequest } from '@/actions/rental-price';
@@ -36,6 +37,8 @@ export const useRentalCalculatorForm = ({
 		collectionAndReturnAddress,
 		collectionAddress,
 		returnAddress,
+		biggerMileageLimit,
+		[additionalMileageLimit] = [0],
 	] = useWatch({
 		control,
 		name: [
@@ -46,6 +49,8 @@ export const useRentalCalculatorForm = ({
 			'collectionAndReturnAddress',
 			'collectionAddress',
 			'returnAddress',
+			'biggerMileageLimit',
+			'additionalMileageLimit',
 		],
 	});
 
@@ -67,7 +72,16 @@ export const useRentalCalculatorForm = ({
 			? (returnAddress ?? '')
 			: (collectionAndReturnAddress ?? ''),
 	});
-	const price = rentalPrice + locationPrice;
+	const deposit = car?.deposit ?? 0;
+	const mileageLimit =
+		car && startDate && endDate
+			? calculateMileageLimit({ car, startDate, endDate })
+			: 0;
+	const additionalMileagePrice =
+		car && biggerMileageLimit
+			? car.additionalMileagePrice * additionalMileageLimit
+			: 0;
+	const price = rentalPrice + locationPrice + additionalMileagePrice;
 
 	const onSubmit = handleSubmit(
 		({ carId, startDate, endDate, age, email, phoneNumber, ...data }) => {
@@ -88,6 +102,8 @@ export const useRentalCalculatorForm = ({
 				collectionAddress: rentalCollectionAddress,
 				returnAddress: rentalReturnAddress,
 				price,
+				mileageLimit,
+				additionalMileageLimit,
 			});
 
 			void toast.promise(sendRentalPriceRequestPromise, {
@@ -104,8 +120,12 @@ export const useRentalCalculatorForm = ({
 		control,
 		errors,
 		diffCollectionAndReturnAddress,
+		biggerMileageLimit,
 		selectOptions,
 		startDate,
 		price,
+		deposit,
+		mileageLimit,
+		additionalMileageLimit: biggerMileageLimit ? additionalMileageLimit : 0,
 	};
 };

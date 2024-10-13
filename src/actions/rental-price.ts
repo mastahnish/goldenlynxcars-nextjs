@@ -20,6 +20,8 @@ interface SendRentalPriceRequestInput {
 	email: string;
 	phoneNumber: string;
 	price: number;
+	mileageLimit: number;
+	additionalMileageLimit: number;
 }
 
 export const sendRentalPriceRequest = async ({
@@ -32,6 +34,8 @@ export const sendRentalPriceRequest = async ({
 	email,
 	phoneNumber,
 	price,
+	mileageLimit,
+	additionalMileageLimit,
 }: SendRentalPriceRequestInput) => {
 	const payload = await getPayloadHMR({ config });
 	const car = await payload.findByID({
@@ -51,7 +55,10 @@ export const sendRentalPriceRequest = async ({
 			<p>Wiek: <b>${age}</b></p>
 			<p>E-mail: <b>${email}</b></p>
 			<p>Numer telefonu: <b>${phoneNumber}</b></p>
-			<p>Oszacowana cena: <b><u>${price} zł</u> brutto</b></p>
+			<p>Limit kilometrów: <b>${mileageLimit}</b> km</p>
+			${additionalMileageLimit ? `<p>Dodatkowe kilometry: <b>${additionalMileageLimit} km</b></p>` : ''}
+			<p>Cena kaucji: <b>${car.deposit} zł</b></p>
+			<p>Oszacowana cena: <b><u>${price} zł brutto</u></b></p>
 		`,
 	});
 };

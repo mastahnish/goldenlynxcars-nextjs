@@ -6,6 +6,8 @@ const rentalCalculatorFormBaseSchema = z.object({
 	startDate: z.date({ message: 'Wybierz datę odbioru' }),
 	endDate: z.date({ message: 'Wybierz datę zwrotu' }),
 	age: z.coerce.number().min(21, 'Minimalny wiek to 21 lat'),
+	biggerMileageLimit: z.boolean().optional(),
+	additionalMileageLimit: z.array(z.number()).optional(),
 	email: z
 		.string()
 		.min(1, 'Podaj adres email')
