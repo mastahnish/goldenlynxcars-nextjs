@@ -26,6 +26,7 @@ export const useRentalCalculatorForm = ({
 		formState: { errors },
 	} = useZodForm(rentalCalculatorFormSchema, {
 		defaultValues: {
+			collectionAndReturnAddress: '',
 			diffCollectionAndReturnAddress: false,
 		},
 	});

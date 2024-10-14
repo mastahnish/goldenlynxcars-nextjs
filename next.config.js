@@ -13,7 +13,6 @@ const mediaURL = new URL(env.NEXT_PUBLIC_SERVER_BASE_URL);
 const nextConfig = {
 	experimental: {
 		ppr: true,
-		reactCompiler: true,
 		typedRoutes: true,
 	},
 	images: {
