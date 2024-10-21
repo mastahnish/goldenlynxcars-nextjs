@@ -13,10 +13,12 @@ import { useZodForm } from '@/hooks/use-zod-form';
 import type { CarFleet } from '@/payload/payload-types';
 
 interface UseRentalCalculatorFormInput {
+	defaultCarId?: string;
 	cars: CarFleet[];
 }
 
 export const useRentalCalculatorForm = ({
+	defaultCarId,
 	cars,
 }: UseRentalCalculatorFormInput) => {
 	const {
@@ -26,6 +28,7 @@ export const useRentalCalculatorForm = ({
 		formState: { errors },
 	} = useZodForm(rentalCalculatorFormSchema, {
 		defaultValues: {
+			carId: defaultCarId,
 			collectionAndReturnAddress: '',
 			diffCollectionAndReturnAddress: false,
 		},
@@ -120,6 +123,7 @@ export const useRentalCalculatorForm = ({
 		onSubmit,
 		control,
 		errors,
+		car,
 		diffCollectionAndReturnAddress,
 		biggerMileageLimit,
 		selectOptions,

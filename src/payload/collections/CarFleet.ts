@@ -17,6 +17,12 @@ export const CarFleet: CollectionConfig = {
 			required: true,
 		},
 		{
+			name: 'description',
+			type: 'textarea',
+			required: true,
+			defaultValue: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+		},
+		{
 			name: 'brand',
 			type: 'relationship',
 			relationTo: 'car-fleet-brands',
@@ -41,6 +47,73 @@ export const CarFleet: CollectionConfig = {
 			type: 'number',
 			required: true,
 			defaultValue: 0,
+		},
+		{
+			name: 'details',
+			type: 'group',
+			fields: [
+				{
+					name: 'hp',
+					label: 'HP',
+					type: 'number',
+					min: 1,
+					required: true,
+				},
+				{
+					name: 'transmission',
+					type: 'select',
+					required: true,
+					options: [
+						{ label: 'Manual', value: 'manual' },
+						{ label: 'Sequential', value: 'sequential' },
+						{ label: 'Automatic', value: 'automatic' },
+					],
+				},
+				{
+					name: 'seats',
+					type: 'number',
+					min: 1,
+					required: true,
+				},
+				{
+					name: 'fuel',
+					type: 'select',
+					required: true,
+					options: [
+						{ label: 'Gasoline', value: 'gasoline' },
+						{ label: 'Diesel', value: 'diesel' },
+						{ label: 'LPG', value: 'lpg' },
+						{ label: 'Hybrid', value: 'hybrid' },
+					],
+				},
+			],
+		},
+		{
+			name: 'media',
+			type: 'group',
+			fields: [
+				{
+					name: 'info',
+					type: 'upload',
+					relationTo: 'media',
+				},
+				{
+					name: 'rentalPrice',
+					type: 'upload',
+					relationTo: 'media',
+				},
+				{
+					name: 'gallery',
+					type: 'array',
+					fields: [
+						{
+							name: 'image',
+							type: 'upload',
+							relationTo: 'media',
+						},
+					],
+				},
+			],
 		},
 		{
 			name: 'prices',
@@ -142,46 +215,6 @@ export const CarFleet: CollectionConfig = {
 					type: 'number',
 					required: true,
 					defaultValue: 0,
-				},
-			],
-		},
-		{
-			name: 'details',
-			type: 'group',
-			fields: [
-				{
-					name: 'hp',
-					label: 'HP',
-					type: 'number',
-					min: 1,
-					required: true,
-				},
-				{
-					name: 'transmission',
-					type: 'select',
-					required: true,
-					options: [
-						{ label: 'Manual', value: 'manual' },
-						{ label: 'Sequential', value: 'sequential' },
-						{ label: 'Automatic', value: 'automatic' },
-					],
-				},
-				{
-					name: 'seats',
-					type: 'number',
-					min: 1,
-					required: true,
-				},
-				{
-					name: 'fuel',
-					type: 'select',
-					required: true,
-					options: [
-						{ label: 'Gasoline', value: 'gasoline' },
-						{ label: 'Diesel', value: 'diesel' },
-						{ label: 'LPG', value: 'lpg' },
-						{ label: 'Hybrid', value: 'hybrid' },
-					],
 				},
 			],
 		},

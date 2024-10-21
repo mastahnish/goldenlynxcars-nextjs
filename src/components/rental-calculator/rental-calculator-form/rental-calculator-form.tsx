@@ -9,6 +9,7 @@ import { DEFAULT_ADDRESS } from './rental-calculator-form.constants';
 import { RentalCalculatorFormInfo } from './rental-calculator-form-info';
 import { useRentalCalculatorForm } from './use-rental-calculator-form';
 
+import { Media } from '@/components/common/media/media';
 import { DatePickerField } from '@/components/form/date-picker-field';
 import { LocationSelectField } from '@/components/form/location-select-field';
 import { SelectField } from '@/components/form/select-field';
@@ -20,15 +21,22 @@ import { Slider } from '@/components/ui/slider';
 import type { CarFleet } from '@/payload/payload-types';
 
 type RentalCalculatorFormProps = Readonly<{
+	title?: string;
+	defaultCarId?: string;
 	cars: CarFleet[];
 }>;
 
-export const RentalCalculatorForm = ({ cars }: RentalCalculatorFormProps) => {
+export const RentalCalculatorForm = ({
+	title,
+	defaultCarId,
+	cars,
+}: RentalCalculatorFormProps) => {
 	const {
 		register,
 		onSubmit,
 		control,
 		errors,
+		car,
 		diffCollectionAndReturnAddress,
 		biggerMileageLimit,
 		selectOptions,
@@ -38,13 +46,17 @@ export const RentalCalculatorForm = ({ cars }: RentalCalculatorFormProps) => {
 		mileageLimit,
 		additionalMileageLimit,
 	} = useRentalCalculatorForm({
+		defaultCarId,
 		cars,
 	});
 
 	return (
 		<Container>
-			<form onSubmit={onSubmit} className="space-y-5">
-				<div className="flex flex-col gap-4">
+			<form onSubmit={onSubmit} className="flex flex-col lg:flex-row lg:gap-16">
+				<div className="flex w-full flex-col gap-5">
+					{title && (
+						<h2 className="mb-2 text-2xl font-bold text-white">{title}</h2>
+					)}
 					<Controller
 						name="carId"
 						control={control}
@@ -60,7 +72,7 @@ export const RentalCalculatorForm = ({ cars }: RentalCalculatorFormProps) => {
 							/>
 						)}
 					/>
-					<div className="flex w-full flex-col gap-4 md:flex-row">
+					<div className="flex w-full flex-col gap-5 md:flex-row">
 						<Controller
 							name="startDate"
 							control={control}
@@ -90,8 +102,8 @@ export const RentalCalculatorForm = ({ cars }: RentalCalculatorFormProps) => {
 							)}
 						/>
 					</div>
-					<div className="flex flex-col gap-4 md:flex-row">
-						<div className="flex w-full flex-col gap-4">
+					<div className="flex flex-col gap-5 md:flex-row">
+						<div className="flex w-full flex-col gap-5">
 							{diffCollectionAndReturnAddress ? (
 								<>
 									<Controller
@@ -172,8 +184,45 @@ export const RentalCalculatorForm = ({ cars }: RentalCalculatorFormProps) => {
 							/>
 						</div>
 					</div>
+					<Controller
+						name="biggerMileageLimit"
+						control={control}
+						render={({ field: { onChange, ...field } }) => (
+							<Checkbox
+								label="Potrzebuję dodatkowego limitu kilometrów"
+								onCheckedChange={onChange}
+								{...field}
+							/>
+						)}
+					/>
+					{biggerMileageLimit && (
+						<>
+							<Controller
+								name="additionalMileageLimit"
+								control={control}
+								render={({ field: { onChange, ...field } }) => (
+									<Slider
+										step={10}
+										max={5 * mileageLimit}
+										onValueChange={onChange}
+										className="mt-2"
+										{...field}
+									/>
+								)}
+							/>
+						</>
+					)}
 				</div>
-				<div className="flex flex-col gap-4">
+				<div className="space-y-5">
+					<div className="relative hidden size-72 overflow-hidden rounded-xl lg:block">
+						{car?.media?.rentalPrice && (
+							<Media
+								resource={car.media.rentalPrice}
+								fill
+								className="object-cover"
+							/>
+						)}
+					</div>
 					<RentalCalculatorFormInfo
 						title="Twoja cena:"
 						content={Math.round(price)}
@@ -191,39 +240,11 @@ export const RentalCalculatorForm = ({ cars }: RentalCalculatorFormProps) => {
 						suffix="km"
 						size="sm"
 					/>
-				</div>
-				<Controller
-					name="biggerMileageLimit"
-					control={control}
-					render={({ field: { onChange, ...field } }) => (
-						<Checkbox
-							label="Potrzebuję dodatkowego limitu kilometrów"
-							onCheckedChange={onChange}
-							{...field}
-						/>
-					)}
-				/>
-				{biggerMileageLimit && (
-					<>
-						<Controller
-							name="additionalMileageLimit"
-							control={control}
-							render={({ field: { onChange, ...field } }) => (
-								<Slider
-									step={10}
-									max={5 * mileageLimit}
-									onValueChange={onChange}
-									className="py-2"
-									{...field}
-								/>
-							)}
-						/>
-					</>
-				)}
-				<div className="w-full sm:w-fit">
-					<Button type="submit" icon={ArrowRight} moveIcon fullWidth>
-						Wyślij zapytanie
-					</Button>
+					<div className="w-full sm:w-fit lg:w-full">
+						<Button type="submit" icon={ArrowRight} moveIcon fullWidth>
+							Wyślij zapytanie
+						</Button>
+					</div>
 				</div>
 			</form>
 		</Container>

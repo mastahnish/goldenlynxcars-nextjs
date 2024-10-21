@@ -14,7 +14,7 @@ export const PageHeader = async ({ global }: PageHeaderProps) => {
 	return (
 		<header className="bg-black pb-20 pt-28 sm:pt-40 lg:pt-44">
 			<div className="flex flex-col px-4 sm:px-8 lg:mx-auto lg:max-w-8xl lg:flex-row lg:gap-12 2xl:gap-24">
-				<div className="relative z-1 shrink-0">
+				<div className="shrink-0">
 					<Title label={label} gap="small">
 						{title}
 					</Title>

@@ -12,6 +12,7 @@ import type { Metadata, Viewport } from 'next';
 import type { ReactNode } from 'react';
 
 import '@/assets/styles/globals.css';
+import 'yet-another-react-lightbox/styles.css';
 
 import 'swiper/css';
 import 'swiper/css/pagination';

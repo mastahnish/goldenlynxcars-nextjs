@@ -83,10 +83,27 @@ export interface CarFleet {
   id: number;
   image: number | Media;
   name: string;
+  description: string;
   brand: number | CarFleetBrand;
   type: number | CarFleetType;
   deposit: number;
   additionalMileagePrice: number;
+  details: {
+    hp: number;
+    transmission: 'manual' | 'sequential' | 'automatic';
+    seats: number;
+    fuel: 'gasoline' | 'diesel' | 'lpg' | 'hybrid';
+  };
+  media?: {
+    info?: number | Media | null;
+    rentalPrice?: number | Media | null;
+    gallery?:
+      | {
+          image?: number | Media | null;
+          id?: string | null;
+        }[]
+      | null;
+  };
   prices: {
     d_1_2: number;
     d_3_6: number;
@@ -104,12 +121,6 @@ export interface CarFleet {
     d_21_30: number;
     m_1: number;
     m_3: number;
-  };
-  details: {
-    hp: number;
-    transmission: 'manual' | 'sequential' | 'automatic';
-    seats: number;
-    fuel: 'gasoline' | 'diesel' | 'lpg' | 'hybrid';
   };
   updatedAt: string;
   createdAt: string;
