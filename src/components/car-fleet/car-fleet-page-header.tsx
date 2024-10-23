@@ -14,7 +14,7 @@ export const CarFleetPageHeader = ({ car }: CarFleetPageHeaderProps) => (
 				{car.name}
 			</Title>
 		</div>
-		<div className="absolute inset-y-0 right-0 z-10 hidden w-1/2 bg-blue-500 lg:block">
+		<div className="absolute inset-y-0 right-0 z-10 hidden w-1/2 lg:block">
 			<Media resource={car.image} fill className="object-cover" />
 		</div>
 	</header>

@@ -27,9 +27,13 @@ type CarPageProps = Readonly<{
 
 const CarPage = async ({ params: { slug } }: CarPageProps) => {
 	const payload = await getPayloadHMR({ config });
-	const car = await payload.findByID({
+	const {
+		docs: [car],
+	} = await payload.find({
 		collection: 'car-fleet',
-		id: slug,
+		where: {
+			slug: { equals: slug },
+		},
 	});
 
 	return (

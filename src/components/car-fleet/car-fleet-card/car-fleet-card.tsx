@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { twMerge } from 'tailwind-merge';
 
 import { CarFleetCardDetails } from './car-fleet-card-details/car-fleet-card-details';
@@ -37,8 +38,8 @@ export const CarFleetCard = ({
 			<CarFleetCardGeneral car={car} />
 			<CarFleetCardDetails details={car.details} />
 			<div className="mt-8">
-				<Button variant="ghost" icon={ArrowRight} moveIcon>
-					Wylicz swoją cenę
+				<Button variant="ghost" icon={ArrowRight} moveIcon asChild>
+					<Link href={`/car/${car.slug}`}>Wylicz swoją cenę</Link>
 				</Button>
 			</div>
 		</div>

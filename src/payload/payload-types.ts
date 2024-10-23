@@ -82,6 +82,7 @@ export interface ContactRequest {
 export interface CarFleet {
   id: number;
   image: number | Media;
+  slug: string;
   name: string;
   description: string;
   brand: number | CarFleetBrand;

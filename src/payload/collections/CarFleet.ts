@@ -12,6 +12,11 @@ export const CarFleet: CollectionConfig = {
 			required: true,
 		},
 		{
+			name: 'slug',
+			type: 'text',
+			required: true,
+		},
+		{
 			name: 'name',
 			type: 'text',
 			required: true,
