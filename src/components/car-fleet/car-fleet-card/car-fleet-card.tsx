@@ -21,9 +21,9 @@ export const CarFleetCard = ({
 }: CarFleetCardProps) => (
 	<article
 		className={twMerge(
-			'mx-auto flex w-full gap-4 rounded-2xl border border-primary/10 bg-semi-black p-4',
-			layout === 'horizontal' && 'max-w-96 md:max-w-3xl max-md:flex-col',
-			layout === 'vertical' && 'max-w-96 flex-col',
+			'mx-auto flex max-w-96 w-full gap-4 rounded-2xl border border-primary/10 bg-semi-black p-4',
+			layout === 'horizontal' && 'md:max-w-3xl max-md:flex-col',
+			layout === 'vertical' && 'flex-col',
 		)}
 	>
 		<div

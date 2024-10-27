@@ -37,6 +37,7 @@ export interface Config {
     'about-us-team': AboutUsTeam;
     'car-fleet-header': CarFleetHeader;
     'rental-calculator-header': RentalCalculatorHeader;
+    shop: Shop;
   };
   locale: null;
   user: User & {
@@ -408,6 +409,33 @@ export interface RentalCalculatorHeader {
   label?: string | null;
   content: string;
   subContent?: string | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "shop".
+ */
+export interface Shop {
+  id: number;
+  header: {
+    title: string;
+    label?: string | null;
+    content: string;
+    subContent?: string | null;
+  };
+  products: {
+    thumbnail: number | Media;
+    slug: string;
+    name: string;
+    description: string;
+    price: number;
+    gallery: {
+      image: number | Media;
+      id?: string | null;
+    }[];
+    id?: string | null;
+  }[];
   updatedAt?: string | null;
   createdAt?: string | null;
 }

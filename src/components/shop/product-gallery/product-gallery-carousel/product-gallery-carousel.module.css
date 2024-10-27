@@ -1,0 +1,23 @@
+.wrapper {
+	--swiper-pagination-bullet-size: 10px;
+	--swiper-pagination-color: theme('colors.neutral.800');
+	--swiper-pagination-bullet-inactive-color: transparent;
+	--swiper-pagination-bottom: 48px;
+	--swiper-pagination-bullet-inactive-opacity: 1;
+	--swiper-navigation-color: theme('colors.neutral.500');
+
+	cursor: pointer;
+}
+
+.wrapper
+	:global
+	.swiper-pagination-bullet:not(.swiper-pagination-bullet-active) {
+	border: 1px solid theme('colors.neutral.800') !important;
+}
+
+@media (min-width: 640px) {
+	.wrapper :global .swiper-button-prev,
+	.wrapper :global .swiper-button-next {
+		display: none;
+	}
+}

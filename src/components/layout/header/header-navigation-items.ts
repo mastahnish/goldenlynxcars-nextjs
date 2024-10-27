@@ -15,7 +15,7 @@ export const navItems: NavItem[] = [
 		label: 'Flota samochodów',
 	},
 	{
-		href: '#',
+		href: '/shop',
 		label: 'Sklep z merchem',
 	},
 	{

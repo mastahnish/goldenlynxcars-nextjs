@@ -7,6 +7,9 @@ export default {
 	content: ['./src/**/*.{ts,tsx}'],
 	theme: {
 		extend: {
+			aspectRatio: {
+				'product-thumbnail': '16/11',
+			},
 			backgroundColor: {
 				'form-field': '#292929',
 			},

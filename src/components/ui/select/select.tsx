@@ -32,11 +32,11 @@ export const Select = ({
 			className={twMerge(
 				'inline-flex h-14 items-center justify-between rounded-lg bg-form-field px-5 leading-none text-neutral-300 outline-none data-[placeholder]:text-form-field-placeholder',
 				isError && 'bg-red-500/60 data-[placeholder]:text-white/40',
-				fullWidth && 'w-full',
+				fullWidth ? 'w-full' : 'w-fit',
 			)}
 		>
 			<SelectPrimitive.Value placeholder={placeholder} />
-			<SelectPrimitive.Icon className="text-neutral-300">
+			<SelectPrimitive.Icon className="ml-2 text-neutral-300">
 				<ChevronDown size={16} />
 			</SelectPrimitive.Icon>
 		</SelectPrimitive.Trigger>

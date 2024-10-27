@@ -26,6 +26,7 @@ import { OpinionSection } from '@/payload/globals/landing/OpinionSection';
 import { RealizationsSection } from '@/payload/globals/landing/RealizationsSection';
 import { ServicesSection } from '@/payload/globals/landing/ServicesSection';
 import { RentalCalculatorHeader } from '@/payload/globals/rental-calculator/RentalCalculatorHeader';
+import { Shop } from '@/payload/globals/Shop';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -45,6 +46,7 @@ export default buildConfig({
 		AboutUsTeam,
 		CarFleetHeader,
 		RentalCalculatorHeader,
+		Shop,
 	],
 	editor: slateEditor({}),
 	secret: env.PAYLOAD_SECRET,

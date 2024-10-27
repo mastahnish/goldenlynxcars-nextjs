@@ -16,6 +16,7 @@ import 'yet-another-react-lightbox/styles.css';
 
 import 'swiper/css';
 import 'swiper/css/pagination';
+import 'swiper/css/navigation';
 
 export const metadata: Metadata = {
 	title: 'Golden Lynx Cars',
