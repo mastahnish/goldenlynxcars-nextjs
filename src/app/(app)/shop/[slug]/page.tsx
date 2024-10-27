@@ -2,7 +2,7 @@ import { notFound } from 'next/navigation';
 
 import { ContactSection } from '@/components/common/contact-section/contact-section';
 import { Container } from '@/components/common/container';
-import { ProductDetails } from '@/components/shop/product-details';
+import { ProductDetails } from '@/components/shop/product-details/product-details';
 import { ProductGallery } from '@/components/shop/product-gallery/product-gallery';
 
 import { getCachedGlobal } from '@/lib/get-cached-global';
