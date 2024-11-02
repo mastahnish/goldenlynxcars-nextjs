@@ -9,6 +9,8 @@ export const env = createEnv({
 		NODE_ENV: z.enum(['development', 'production', 'test']).optional(),
 		DATABASE_URL: z.string(),
 		PAYLOAD_SECRET: z.string(),
+		STRIPE_SECRET_KEY: z.string(),
+		STRIPE_WEBHOOKS_ENDPOINT_SECRET: z.string(),
 		GCS_BUCKET: z.string(),
 		GCS_ENDPOINT: z.string().url(),
 		GCS_PROJECT_ID: z.string(),

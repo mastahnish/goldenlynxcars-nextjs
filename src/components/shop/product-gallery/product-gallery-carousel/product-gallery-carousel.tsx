@@ -5,19 +5,19 @@ import { Media } from '@/components/common/media/media';
 
 import type { SwiperClass } from 'swiper/react';
 
-import type { Product } from '@/types/shop.types';
+import type { Media as PayloadMedia } from '@/payload/payload-types';
 
 import styles from './product-gallery-carousel.module.css';
 
 type ProductGalleryCarouselProps = Readonly<{
-	product: Product;
+	gallery: PayloadMedia[];
 	swiper: SwiperClass | null;
 	setSwiper: (swiper: SwiperClass) => void;
 	setLightboxIndex: (index: number) => void;
 }>;
 
 export const ProductGalleryCarousel = ({
-	product,
+	gallery,
 	swiper,
 	setSwiper,
 	setLightboxIndex,
@@ -32,10 +32,10 @@ export const ProductGalleryCarousel = ({
 		className={styles.wrapper}
 		onClick={() => setLightboxIndex(swiper?.activeIndex ?? -1)}
 	>
-		{product.gallery.map(media => (
+		{gallery.map(media => (
 			<SwiperSlide key={media.id}>
 				<div className="relative aspect-square">
-					<Media resource={media.image} fill className="object-cover" />
+					<Media resource={media} fill className="object-cover" />
 				</div>
 			</SwiperSlide>
 		))}

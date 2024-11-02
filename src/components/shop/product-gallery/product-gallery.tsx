@@ -1,45 +1,23 @@
-'use client';
+import config from '@payload-config';
+import { getPayloadHMR } from '@payloadcms/next/utilities';
 
-import { useState } from 'react';
-import { Lightbox } from 'yet-another-react-lightbox';
+import { ProductGalleryInner } from './product-gallery-inner';
 
-import { getProductGallerySlides } from './product-gallery.utils';
-import { ProductGalleryCarousel } from './product-gallery-carousel/product-gallery-carousel';
-import { ProductGalleryThumbnails } from './product-gallery-thumbnails';
-
-import type { SwiperClass } from 'swiper/react';
-
-import type { Product } from '@/types/shop.types';
+import type { Product } from '@/lib/shop';
 
 type ProductGalleryProps = Readonly<{
 	product: Product;
 }>;
+export const ProductGallery = async ({ product }: ProductGalleryProps) => {
+	const mediaIds = product.metadata.gallery.split(',');
 
-export const ProductGallery = ({ product }: ProductGalleryProps) => {
-	const [swiper, setSwiper] = useState<SwiperClass | null>(null);
-	const [lightboxIndex, setLightboxIndex] = useState(-1);
+	const payload = await getPayloadHMR({ config });
+	const gallery = await payload.find({
+		collection: 'media',
+		where: {
+			or: mediaIds.map(mediaId => ({ id: { equals: mediaId } })),
+		},
+	});
 
-	const slides = getProductGallerySlides(product);
-
-	return (
-		<div className="w-full overflow-hidden">
-			<ProductGalleryCarousel
-				product={product}
-				swiper={swiper}
-				setSwiper={setSwiper}
-				setLightboxIndex={setLightboxIndex}
-			/>
-			<ProductGalleryThumbnails
-				product={product}
-				swiper={swiper}
-				setLightboxIndex={setLightboxIndex}
-			/>
-			<Lightbox
-				index={lightboxIndex}
-				open={lightboxIndex >= 0}
-				close={() => setLightboxIndex(-1)}
-				slides={slides}
-			/>
-		</div>
-	);
+	return <ProductGalleryInner gallery={gallery.docs} />;
 };

@@ -17,6 +17,7 @@ const nextConfig = {
 	},
 	images: {
 		remotePatterns: [
+			{ hostname: 'files.stripe.com' },
 			{
 				protocol: mediaURL.protocol.slice(0, -1),
 				hostname: mediaURL.hostname,

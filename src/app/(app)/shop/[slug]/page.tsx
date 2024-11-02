@@ -5,27 +5,16 @@ import { Container } from '@/components/common/container';
 import { ProductDetails } from '@/components/shop/product-details/product-details';
 import { ProductGallery } from '@/components/shop/product-gallery/product-gallery';
 
-import { getCachedGlobal } from '@/lib/get-cached-global';
+import * as shop from '@/lib/shop';
 
 import type { Params } from '@/types/next.types';
-
-export const dynamicParams = false;
-
-export const generateStaticParams = async () => {
-	const { products } = await getCachedGlobal('shop')();
-
-	return products.map(({ slug }) => ({
-		slug,
-	}));
-};
 
 type ShopProductPageProps = Readonly<{
 	params: Params<'slug'>;
 }>;
 
 const ShopProductPage = async ({ params: { slug } }: ShopProductPageProps) => {
-	const shop = await getCachedGlobal('shop')();
-	const product = shop.products.find(product => product.slug === slug);
+	const product = await shop.getProductBySlug(slug);
 
 	if (!product) {
 		notFound();

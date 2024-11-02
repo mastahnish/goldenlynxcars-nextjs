@@ -2,7 +2,7 @@ import { ShopProductListItem } from './shop-product-list-item';
 
 import { Container } from '@/components/common/container';
 
-import type { Product } from '@/types/shop.types';
+import type { Product } from '@/lib/shop';
 
 type ShopProductListProps = Readonly<{
 	products: Product[];

@@ -4,7 +4,9 @@ import { Button } from '@/components/ui/button/button';
 import { ArrowRight } from '@/components/ui/icons';
 import { Select } from '@/components/ui/select/select';
 
-import type { Product } from '@/types/shop.types';
+import { formatPrice } from '@/utils/shop.utils';
+
+import type { Product } from '@/lib/shop';
 
 type ProductDetailsProps = Readonly<{
 	product: Product;
@@ -19,7 +21,7 @@ export const ProductDetails = ({ product }: ProductDetailsProps) => {
 				{product.name}
 			</h2>
 			<p className="text-4xl font-bold text-primary lg:text-5xl">
-				{product.price}zł
+				{formatPrice(product.default_price.unit_amount)}zł
 			</p>
 			<p className="text-white lg:text-lg">{product.description}</p>
 			<Select placeholder="Ilość" options={selectAmountOptions} />

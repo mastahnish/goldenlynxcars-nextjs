@@ -2,19 +2,14 @@ import { ContactSection } from '@/components/common/contact-section/contact-sect
 import { PageHeader } from '@/components/common/page-header';
 import { ShopProductList } from '@/components/shop/shop-product-list/shop-product-list';
 
-import { getCachedGlobal } from '@/lib/get-cached-global';
+import * as shop from '@/lib/shop';
 
 const ShopPage = async () => {
-	const { header, products } = await getCachedGlobal('shop')();
+	const products = await shop.getAllProducts();
 
 	return (
 		<>
-			<PageHeader
-				title={header.title}
-				label={header.label}
-				content={header.content}
-				subContent={header.subContent}
-			/>
+			<PageHeader global="shop-header" />
 			<ShopProductList products={products} />
 			<ContactSection />
 		</>

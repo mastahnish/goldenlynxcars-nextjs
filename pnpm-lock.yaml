@@ -13,13 +13,13 @@ importers:
         version: 3.9.0(react-hook-form@7.52.2(react@19.0.0-rc-49496d49-20240814))
       '@payloadcms/db-postgres':
         specifier: 3.0.0-beta.84
-        version: 3.0.0-beta.84(@types/react@18.3.3)(payload@3.0.0-beta.84(graphql@16.9.0)(typescript@5.5.4))(react@19.0.0-rc-49496d49-20240814)
+        version: 3.0.0-beta.84(@types/pg@8.10.2)(@types/react@18.3.3)(payload@3.0.0-beta.84(graphql@16.9.0)(typescript@5.5.4))(react@19.0.0-rc-49496d49-20240814)
       '@payloadcms/next':
         specifier: 3.0.0-beta.84
         version: 3.0.0-beta.84(@types/react@18.3.3)(graphql@16.9.0)(monaco-editor@0.38.0)(next@15.0.0-canary.115(@babel/core@7.25.2)(react-dom@19.0.0-rc-49496d49-20240814(react@19.0.0-rc-49496d49-20240814))(react@19.0.0-rc-49496d49-20240814)(sass@1.77.4))(payload@3.0.0-beta.84(graphql@16.9.0)(typescript@5.5.4))(react-dom@19.0.0-rc-49496d49-20240814(react@19.0.0-rc-49496d49-20240814))(react@19.0.0-rc-49496d49-20240814)(typescript@5.5.4)
       '@payloadcms/richtext-slate':
         specifier: 3.0.0-beta.84
-        version: 3.0.0-beta.84(@payloadcms/translations@3.0.0-canary.12a836c)(@payloadcms/ui@3.0.0-beta.84(@types/react@18.3.3)(monaco-editor@0.38.0)(next@15.0.0-canary.115(@babel/core@7.25.2)(react-dom@19.0.0-rc-49496d49-20240814(react@19.0.0-rc-49496d49-20240814))(react@19.0.0-rc-49496d49-20240814)(sass@1.77.4))(payload@3.0.0-beta.84(graphql@16.9.0)(typescript@5.5.4))(react-dom@19.0.0-rc-49496d49-20240814(react@19.0.0-rc-49496d49-20240814))(react@19.0.0-rc-49496d49-20240814)(typescript@5.5.4))(payload@3.0.0-beta.84(graphql@16.9.0)(typescript@5.5.4))(react-dom@19.0.0-rc-49496d49-20240814(react@19.0.0-rc-49496d49-20240814))(react@19.0.0-rc-49496d49-20240814)
+        version: 3.0.0-beta.84(@payloadcms/translations@3.0.0-beta.120)(@payloadcms/ui@3.0.0-beta.84(@types/react@18.3.3)(monaco-editor@0.38.0)(next@15.0.0-canary.115(@babel/core@7.25.2)(react-dom@19.0.0-rc-49496d49-20240814(react@19.0.0-rc-49496d49-20240814))(react@19.0.0-rc-49496d49-20240814)(sass@1.77.4))(payload@3.0.0-beta.84(graphql@16.9.0)(typescript@5.5.4))(react-dom@19.0.0-rc-49496d49-20240814(react@19.0.0-rc-49496d49-20240814))(react@19.0.0-rc-49496d49-20240814)(typescript@5.5.4))(payload@3.0.0-beta.84(graphql@16.9.0)(typescript@5.5.4))(react-dom@19.0.0-rc-49496d49-20240814(react@19.0.0-rc-49496d49-20240814))(react@19.0.0-rc-49496d49-20240814)
       '@payloadcms/storage-gcs':
         specifier: 3.0.0-beta.84
         version: 3.0.0-beta.84(@vercel/blob@0.22.3)(payload@3.0.0-beta.84(graphql@16.9.0)(typescript@5.5.4))
@@ -98,6 +98,9 @@ importers:
       sharp:
         specifier: 0.33.4
         version: 0.33.4
+      stripe:
+        specifier: 17.2.1
+        version: 17.2.1
       swiper:
         specifier: 11.1.9
         version: 11.1.9
@@ -993,9 +996,11 @@ packages:
 
   '@esbuild-kit/core-utils@3.3.2':
     resolution: {integrity: sha512-sPRAnw9CdSsRmEtnsl2WXWdyquogVpB3yZ3dgwJfe8zrOzTsV7cJvmwrKVa+0ma5BoiGJ+BoqkMvawbayKUsqQ==}
+    deprecated: 'Merged into tsx: https://tsx.is'
 
   '@esbuild-kit/esm-loader@2.6.5':
     resolution: {integrity: sha512-FxEMIkJKnodyA1OaCUoEvbYRkoZlLZ4d/eXFu9Fh8CbBBgP5EmZxrfTRyN0qpXZ4vOvqnE5YdRdcrmUUXuU+dA==}
+    deprecated: 'Merged into tsx: https://tsx.is'
 
   '@esbuild/aix-ppc64@0.19.12':
     resolution: {integrity: sha512-bmoCYyWdEL3wDQIVbcyzRyeKLgk2WtWLTWz1ZIAZF/EGbNOwSA6ew3PftJ1PqMiOOGu0OyFMzG53L0zqIpPeNA==}
@@ -1662,8 +1667,8 @@ packages:
   '@next/env@15.0.0-canary.115':
     resolution: {integrity: sha512-pbiR6CUF2cfl48JvUkuL57z1DHPelMBUPLy+RtaW6rBQbhfjMiiEMBHlW2OZk+MI9To0JH0Qvh08H5VkHu0tNw==}
 
-  '@next/env@15.0.0-rc.0':
-    resolution: {integrity: sha512-6W0ndQvHR9sXcqcKeR/inD2UTRCs9+VkSK3lfaGmEuZs7EjwwXMO2BPYjz9oBrtfPL3xuTjtXsHKSsalYQ5l1Q==}
+  '@next/env@15.0.2':
+    resolution: {integrity: sha512-c0Zr0ModK5OX7D4ZV8Jt/wqoXtitLNPwUfG9zElCZztdaZyNVnN40rDXVZ/+FGuR4CcNV5AEfM6N8f+Ener7Dg==}
 
   '@next/eslint-plugin-next@14.2.5':
     resolution: {integrity: sha512-LY3btOpPh+OTIpviNojDpUdIbHW9j0JBYBjsIp8IxtDFfYFyORvw3yNq6N231FVqQA7n7lwaf7xHbVJlA1ED7g==}
@@ -1798,11 +1803,11 @@ packages:
     peerDependencies:
       payload: 3.0.0-beta.84
 
+  '@payloadcms/translations@3.0.0-beta.120':
+    resolution: {integrity: sha512-JEozuZRoIUCYOcw8yzfKLbj43WRpz9fG/B/aHMYGjHMYeALExiYawbzLpTicljmiMjf15vHK7faWdDu1v4JIug==}
+
   '@payloadcms/translations@3.0.0-beta.84':
     resolution: {integrity: sha512-t9a3DzcWnJrGiQ0Xs7dGu+r+D9WtGeRZMKQUS6imtZcqloW1aKJikX/MNYxym3nJsnQ2VolPUJ0J3wx2CBH1og==}
-
-  '@payloadcms/translations@3.0.0-canary.12a836c':
-    resolution: {integrity: sha512-KHmROw3HWkTi+4Emt9axE0WGF9ohPUphrDab7aYCWUx7gvVNgAZgiBbAK9cjDowfJg6KYUA4oa3eWkCIj7H38g==}
 
   '@payloadcms/ui@3.0.0-beta.84':
     resolution: {integrity: sha512-A2J06Gv7xtv6uULDN2Ix6qM9sbKmVj32uyBToT6zH/ly4NBc7726vCEPI4/1G4Kep+uMPaS49tgJZqaX6yNlQQ==}
@@ -2295,6 +2300,9 @@ packages:
 
   '@types/parse-json@4.0.2':
     resolution: {integrity: sha512-dISoDXWWQwUquiKsyZ4Ng+HX2KsPL7LyHKHQwgGFEA3IaKac4Obd+h2a/a6waisAoepJlBcx9paWqjA8/HVjCw==}
+
+  '@types/pg@8.10.2':
+    resolution: {integrity: sha512-MKFs9P6nJ+LAeHLU3V0cODEOgyThJ3OAnmOlsZsxux6sfQs3HRXR5bBn7xG5DjckEFhTAxsXi7k7cd0pCMxpJw==}
 
   '@types/prettier@2.7.3':
     resolution: {integrity: sha512-+68kP9yzs4LMp7VNh8gdzMSPZFL44MLGqiHWvttYJe+6qnuVr4Ek9wSBQoveqY/r+LwjCcU29kNVkidwim+kYA==}
@@ -4368,6 +4376,9 @@ packages:
     resolution: {integrity: sha512-yBYjY9QX2hnRmZHAjG/f13MzmBzxzYgQhFrke06TTyKY5zSTEqkOeukBzIdVA3j3ulu8Qa3MbVFShV7T2RmGtQ==}
     engines: {node: '>= 0.4'}
 
+  obuf@1.1.2:
+    resolution: {integrity: sha512-PX1wu0AmAdPqOL1mWhqmlOd8kOIZQwGZw6rh7uby9fTc5lhaOWFLX3I6R1hrF9k3zUY40e6igsLGkDXK92LJNg==}
+
   on-exit-leak-free@2.1.2:
     resolution: {integrity: sha512-0eJJY6hXLGf1udHwfNftBqH+g73EU4B504nZeKpz1sYRKafAghwxEJunB2O7rDZkL4PGfsMVnTXZ2EjibbqcsA==}
     engines: {node: '>=14.0.0'}
@@ -4476,6 +4487,10 @@ packages:
     resolution: {integrity: sha512-WCtabS6t3c8SkpDBUlb1kjOs7l66xsGdKpIPZsg4wR+B3+u9UAum2odSsF9tnvxg80h4ZxLWMy4pRjOsFIqQpw==}
     engines: {node: '>=4.0.0'}
 
+  pg-numeric@1.0.2:
+    resolution: {integrity: sha512-BM/Thnrw5jm2kKLE5uJkXqqExRUY/toLHda65XgFTBTFYZyopbKjBe29Ii3RbkvlsMoFwD+tHeGaCjjv0gHlyw==}
+    engines: {node: '>=4'}
+
   pg-pool@3.6.2:
     resolution: {integrity: sha512-Htjbg8BlwXqSBQ9V8Vjtc+vzf/6fVUuak/3/XXKA9oxZprwW3IMDQTGHP+KDmVL7rtd+R1QjbnCFPuTHm3G4hg==}
     peerDependencies:
@@ -4487,6 +4502,10 @@ packages:
   pg-types@2.2.0:
     resolution: {integrity: sha512-qTAAlrEsl8s4OiEQY69wDvcMIdQN6wdz5ojQiOy6YRMuynxenON0O5oCpJI6lshc6scgAY8qvJ2On/p+CXY0GA==}
     engines: {node: '>=4'}
+
+  pg-types@4.0.2:
+    resolution: {integrity: sha512-cRL3JpS3lKMGsKaWndugWQoLOCoP+Cic8oseVcbr0qhPzYD5DWXK+RZ9LY9wxRf7RQia4SCwQlXk0q6FCPrVng==}
+    engines: {node: '>=10'}
 
   pg@8.11.3:
     resolution: {integrity: sha512-+9iuvG8QfaaUrrph+kpF24cXkH1YOOUeArRNYIxq1viYHZagBxrTno7cecY1Fa44tJeZvaoG+Djpkc3JwehN5g==}
@@ -4591,17 +4610,36 @@ packages:
     resolution: {integrity: sha512-VpZrUqU5A69eQyW2c5CA1jtLecCsN2U/bD6VilrFDWq5+5UIEVO7nazS3TEcHf1zuPYO/sqGvUvW62g86RXZuA==}
     engines: {node: '>=4'}
 
+  postgres-array@3.0.2:
+    resolution: {integrity: sha512-6faShkdFugNQCLwucjPcY5ARoW1SlbnrZjmGl0IrrqewpvxvhSLHimCVzqeuULCbG0fQv7Dtk1yDbG3xv7Veog==}
+    engines: {node: '>=12'}
+
   postgres-bytea@1.0.0:
     resolution: {integrity: sha512-xy3pmLuQqRBZBXDULy7KbaitYqLcmxigw14Q5sj8QBVLqEwXfeybIKVWiqAXTlcvdvb0+xkOtDbfQMOf4lST1w==}
     engines: {node: '>=0.10.0'}
+
+  postgres-bytea@3.0.0:
+    resolution: {integrity: sha512-CNd4jim9RFPkObHSjVHlVrxoVQXz7quwNFpz7RY1okNNme49+sVyiTvTRobiLV548Hx/hb1BG+iE7h9493WzFw==}
+    engines: {node: '>= 6'}
 
   postgres-date@1.0.7:
     resolution: {integrity: sha512-suDmjLVQg78nMK2UZ454hAG+OAW+HQPZ6n++TNDUX+L0+uUlLywnoxJKDou51Zm+zTCjrCl0Nq6J9C5hP9vK/Q==}
     engines: {node: '>=0.10.0'}
 
+  postgres-date@2.1.0:
+    resolution: {integrity: sha512-K7Juri8gtgXVcDfZttFKVmhglp7epKb1K4pgrkLxehjqkrgPhfG6OO8LHLkfaqkbpjNRnra018XwAr1yQFWGcA==}
+    engines: {node: '>=12'}
+
   postgres-interval@1.2.0:
     resolution: {integrity: sha512-9ZhXKM/rw350N1ovuWHbGxnGh/SNJ4cnxHiM0rxE4VN41wsg8P8zWn9hv/buK00RP4WvlOyr/RBDiptyxVbkZQ==}
     engines: {node: '>=0.10.0'}
+
+  postgres-interval@3.0.0:
+    resolution: {integrity: sha512-BSNDnbyZCXSxgA+1f5UU2GmwhoI0aU5yMxRGO8CdFEcY2BQF9xm/7MqKnYoM1nJDk8nONNWDk9WeSmePFhQdlw==}
+    engines: {node: '>=12'}
+
+  postgres-range@1.1.4:
+    resolution: {integrity: sha512-i/hbxIE9803Alj/6ytL7UHQxRvZkI9O4Sy+J3HGc4F4oo/2eQAjTSNJ0bfxyse3bH0nuVesCk+3IRLaMtG3H6w==}
 
   prelude-ls@1.2.1:
     resolution: {integrity: sha512-vkcDPrRZo1QZLbn5RLGPpg/WmIQ65qoWWhcGKf/b5eplkkarX0m9z8ppCat4mlOqUsWpyNuYgO3VRyrYHSzX5g==}
@@ -4645,6 +4683,10 @@ packages:
   qs-esm@7.0.2:
     resolution: {integrity: sha512-D8NAthKSD7SGn748v+GLaaO6k08Mvpoqroa35PqIQC4gtUa8/Pb/k+r0m0NnGBVbHDP1gKZ2nVywqfMisRhV5A==}
     engines: {node: '>=18'}
+
+  qs@6.13.0:
+    resolution: {integrity: sha512-+38qI9SOr8tfZ4QmJNplMUxqjbe7LKvvZgWdExBOmd+egZTtjLB67Gu0HRX3u/XOq7UU2Nx6nsjvS16Z9uwfpg==}
+    engines: {node: '>=0.6'}
 
   queue-microtask@1.2.3:
     resolution: {integrity: sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A==}
@@ -5106,6 +5148,10 @@ packages:
   strip-json-comments@3.1.1:
     resolution: {integrity: sha512-6fPc+R4ihwqP6N/aIv2f1gMH8lOVtWQHoqC4yK6oSDVVocumAsfCqjkXnqiYMhmMwS/mEHLp7Vehlt3ql6lEig==}
     engines: {node: '>=8'}
+
+  stripe@17.2.1:
+    resolution: {integrity: sha512-Mwb0SitV/UjxTLSUiTlUQ0VDE/gfyQ7OHDGdvDdvKIH4CNNqobPKlzlWhoZHFFU0OA/YsZyBtPULK4JG86BAAg==}
+    engines: {node: '>=12.*'}
 
   strnum@1.0.5:
     resolution: {integrity: sha512-J8bbNyKKXl5qYcR36TIO8W3mVGVHrmmxsd5PAItGkmyzwJvybiw2IVq5nqd0i4LSNSkB/sx9VHllbfFdr9k1JA==}
@@ -7050,7 +7096,7 @@ snapshots:
 
   '@next/env@15.0.0-canary.115': {}
 
-  '@next/env@15.0.0-rc.0': {}
+  '@next/env@15.0.2': {}
 
   '@next/eslint-plugin-next@14.2.5':
     dependencies:
@@ -7095,12 +7141,12 @@ snapshots:
       '@nodelib/fs.scandir': 2.1.5
       fastq: 1.17.1
 
-  '@payloadcms/db-postgres@3.0.0-beta.84(@types/react@18.3.3)(payload@3.0.0-beta.84(graphql@16.9.0)(typescript@5.5.4))(react@19.0.0-rc-49496d49-20240814)':
+  '@payloadcms/db-postgres@3.0.0-beta.84(@types/pg@8.10.2)(@types/react@18.3.3)(payload@3.0.0-beta.84(graphql@16.9.0)(typescript@5.5.4))(react@19.0.0-rc-49496d49-20240814)':
     dependencies:
-      '@payloadcms/drizzle': 3.0.0-beta.84(@types/react@18.3.3)(payload@3.0.0-beta.84(graphql@16.9.0)(typescript@5.5.4))(pg@8.11.3)(react@19.0.0-rc-49496d49-20240814)
+      '@payloadcms/drizzle': 3.0.0-beta.84(@types/pg@8.10.2)(@types/react@18.3.3)(payload@3.0.0-beta.84(graphql@16.9.0)(typescript@5.5.4))(pg@8.11.3)(react@19.0.0-rc-49496d49-20240814)
       console-table-printer: 2.11.2
       drizzle-kit: 0.23.2-df9e596
-      drizzle-orm: 0.32.1(@types/react@18.3.3)(pg@8.11.3)(react@19.0.0-rc-49496d49-20240814)
+      drizzle-orm: 0.32.1(@types/pg@8.10.2)(@types/react@18.3.3)(pg@8.11.3)(react@19.0.0-rc-49496d49-20240814)
       payload: 3.0.0-beta.84(graphql@16.9.0)(typescript@5.5.4)
       pg: 8.11.3
       prompts: 2.4.2
@@ -7137,10 +7183,10 @@ snapshots:
       - sqlite3
       - supports-color
 
-  '@payloadcms/drizzle@3.0.0-beta.84(@types/react@18.3.3)(payload@3.0.0-beta.84(graphql@16.9.0)(typescript@5.5.4))(pg@8.11.3)(react@19.0.0-rc-49496d49-20240814)':
+  '@payloadcms/drizzle@3.0.0-beta.84(@types/pg@8.10.2)(@types/react@18.3.3)(payload@3.0.0-beta.84(graphql@16.9.0)(typescript@5.5.4))(pg@8.11.3)(react@19.0.0-rc-49496d49-20240814)':
     dependencies:
       console-table-printer: 2.11.2
-      drizzle-orm: 0.32.1(@types/react@18.3.3)(pg@8.11.3)(react@19.0.0-rc-49496d49-20240814)
+      drizzle-orm: 0.32.1(@types/pg@8.10.2)(@types/react@18.3.3)(pg@8.11.3)(react@19.0.0-rc-49496d49-20240814)
       payload: 3.0.0-beta.84(graphql@16.9.0)(typescript@5.5.4)
       prompts: 2.4.2
       to-snake-case: 1.0.0
@@ -7226,9 +7272,9 @@ snapshots:
       '@google-cloud/storage': 7.12.1
       '@vercel/blob': 0.22.3
 
-  '@payloadcms/richtext-slate@3.0.0-beta.84(@payloadcms/translations@3.0.0-canary.12a836c)(@payloadcms/ui@3.0.0-beta.84(@types/react@18.3.3)(monaco-editor@0.38.0)(next@15.0.0-canary.115(@babel/core@7.25.2)(react-dom@19.0.0-rc-49496d49-20240814(react@19.0.0-rc-49496d49-20240814))(react@19.0.0-rc-49496d49-20240814)(sass@1.77.4))(payload@3.0.0-beta.84(graphql@16.9.0)(typescript@5.5.4))(react-dom@19.0.0-rc-49496d49-20240814(react@19.0.0-rc-49496d49-20240814))(react@19.0.0-rc-49496d49-20240814)(typescript@5.5.4))(payload@3.0.0-beta.84(graphql@16.9.0)(typescript@5.5.4))(react-dom@19.0.0-rc-49496d49-20240814(react@19.0.0-rc-49496d49-20240814))(react@19.0.0-rc-49496d49-20240814)':
+  '@payloadcms/richtext-slate@3.0.0-beta.84(@payloadcms/translations@3.0.0-beta.120)(@payloadcms/ui@3.0.0-beta.84(@types/react@18.3.3)(monaco-editor@0.38.0)(next@15.0.0-canary.115(@babel/core@7.25.2)(react-dom@19.0.0-rc-49496d49-20240814(react@19.0.0-rc-49496d49-20240814))(react@19.0.0-rc-49496d49-20240814)(sass@1.77.4))(payload@3.0.0-beta.84(graphql@16.9.0)(typescript@5.5.4))(react-dom@19.0.0-rc-49496d49-20240814(react@19.0.0-rc-49496d49-20240814))(react@19.0.0-rc-49496d49-20240814)(typescript@5.5.4))(payload@3.0.0-beta.84(graphql@16.9.0)(typescript@5.5.4))(react-dom@19.0.0-rc-49496d49-20240814(react@19.0.0-rc-49496d49-20240814))(react@19.0.0-rc-49496d49-20240814)':
     dependencies:
-      '@payloadcms/translations': 3.0.0-canary.12a836c
+      '@payloadcms/translations': 3.0.0-beta.120
       '@payloadcms/ui': 3.0.0-beta.84(@types/react@18.3.3)(monaco-editor@0.38.0)(next@15.0.0-canary.115(@babel/core@7.25.2)(react-dom@19.0.0-rc-49496d49-20240814(react@19.0.0-rc-49496d49-20240814))(react@19.0.0-rc-49496d49-20240814)(sass@1.77.4))(payload@3.0.0-beta.84(graphql@16.9.0)(typescript@5.5.4))(react-dom@19.0.0-rc-49496d49-20240814(react@19.0.0-rc-49496d49-20240814))(react@19.0.0-rc-49496d49-20240814)(typescript@5.5.4)
       is-hotkey: 0.2.0
       payload: 3.0.0-beta.84(graphql@16.9.0)(typescript@5.5.4)
@@ -7254,11 +7300,11 @@ snapshots:
       - encoding
       - supports-color
 
-  '@payloadcms/translations@3.0.0-beta.84':
+  '@payloadcms/translations@3.0.0-beta.120':
     dependencies:
       date-fns: 3.3.1
 
-  '@payloadcms/translations@3.0.0-canary.12a836c':
+  '@payloadcms/translations@3.0.0-beta.84':
     dependencies:
       date-fns: 3.3.1
 
@@ -7759,6 +7805,13 @@ snapshots:
       '@types/node': 22.3.0
 
   '@types/parse-json@4.0.2': {}
+
+  '@types/pg@8.10.2':
+    dependencies:
+      '@types/node': 22.3.0
+      pg-protocol: 1.6.1
+      pg-types: 4.0.2
+    optional: true
 
   '@types/prettier@2.7.3': {}
 
@@ -8601,8 +8654,9 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  drizzle-orm@0.32.1(@types/react@18.3.3)(pg@8.11.3)(react@19.0.0-rc-49496d49-20240814):
+  drizzle-orm@0.32.1(@types/pg@8.10.2)(@types/react@18.3.3)(pg@8.11.3)(react@19.0.0-rc-49496d49-20240814):
     optionalDependencies:
+      '@types/pg': 8.10.2
       '@types/react': 18.3.3
       pg: 8.11.3
       react: 19.0.0-rc-49496d49-20240814
@@ -10143,6 +10197,9 @@ snapshots:
       define-properties: 1.2.1
       es-object-atoms: 1.0.0
 
+  obuf@1.1.2:
+    optional: true
+
   on-exit-leak-free@2.1.2: {}
 
   once@1.4.0:
@@ -10222,7 +10279,7 @@ snapshots:
 
   payload@3.0.0-beta.84(graphql@16.9.0)(typescript@5.5.4):
     dependencies:
-      '@next/env': 15.0.0-rc.0
+      '@next/env': 15.0.2
       '@payloadcms/translations': 3.0.0-beta.84
       ajv: 8.14.0
       bson-objectid: 2.0.4
@@ -10260,6 +10317,9 @@ snapshots:
 
   pg-int8@1.0.1: {}
 
+  pg-numeric@1.0.2:
+    optional: true
+
   pg-pool@3.6.2(pg@8.11.3):
     dependencies:
       pg: 8.11.3
@@ -10273,6 +10333,17 @@ snapshots:
       postgres-bytea: 1.0.0
       postgres-date: 1.0.7
       postgres-interval: 1.2.0
+
+  pg-types@4.0.2:
+    dependencies:
+      pg-int8: 1.0.1
+      pg-numeric: 1.0.2
+      postgres-array: 3.0.2
+      postgres-bytea: 3.0.0
+      postgres-date: 2.1.0
+      postgres-interval: 3.0.0
+      postgres-range: 1.1.4
+    optional: true
 
   pg@8.11.3:
     dependencies:
@@ -10387,13 +10458,30 @@ snapshots:
 
   postgres-array@2.0.0: {}
 
+  postgres-array@3.0.2:
+    optional: true
+
   postgres-bytea@1.0.0: {}
 
+  postgres-bytea@3.0.0:
+    dependencies:
+      obuf: 1.1.2
+    optional: true
+
   postgres-date@1.0.7: {}
+
+  postgres-date@2.1.0:
+    optional: true
 
   postgres-interval@1.2.0:
     dependencies:
       xtend: 4.0.2
+
+  postgres-interval@3.0.0:
+    optional: true
+
+  postgres-range@1.1.4:
+    optional: true
 
   prelude-ls@1.2.1: {}
 
@@ -10428,6 +10516,10 @@ snapshots:
   punycode@2.3.1: {}
 
   qs-esm@7.0.2: {}
+
+  qs@6.13.0:
+    dependencies:
+      side-channel: 1.0.6
 
   queue-microtask@1.2.3: {}
 
@@ -10964,6 +11056,11 @@ snapshots:
   strip-final-newline@3.0.0: {}
 
   strip-json-comments@3.1.1: {}
+
+  stripe@17.2.1:
+    dependencies:
+      '@types/node': 22.3.0
+      qs: 6.13.0
 
   strnum@1.0.5: {}
 
