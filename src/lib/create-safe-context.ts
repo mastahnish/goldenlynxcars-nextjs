@@ -13,5 +13,5 @@ export const createSafeContext = <T>() => {
 		return ctx;
 	};
 
-	return [useSafeContext, context.Provider] as const;
+	return [useSafeContext, context] as const;
 };

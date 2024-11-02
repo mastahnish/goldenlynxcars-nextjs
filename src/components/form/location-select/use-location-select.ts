@@ -1,5 +1,5 @@
-import { useRef, useState } from 'react';
-import { useDebounceValue, useOnClickOutside } from 'usehooks-ts';
+import { useClickAway, useDebounce } from '@uidotdev/usehooks';
+import { useState } from 'react';
 
 import { useGetPlacesByText } from '@/hooks/use-get-places-by-text';
 
@@ -16,14 +16,12 @@ export const useLocationSelect = ({
 	value,
 	onValueChange,
 }: UseLocationSelectInput) => {
-	const containerRef = useRef<HTMLDivElement>(null);
 	const [isOpen, setIsOpen] = useState(false);
 	const [inputValue, setInputValue] = useState('');
-	const [debouncedValue] = useDebounceValue(inputValue, 1000);
+	const debouncedValue = useDebounce(inputValue, 1000);
 	const { isLoading, isFetched, isSuccess, isError, data } =
 		useGetPlacesByText(debouncedValue);
-
-	useOnClickOutside(containerRef, () => setIsOpen(false));
+	const containerRef = useClickAway<HTMLDivElement>(() => setIsOpen(false));
 
 	const handleInputChange = ({ target }: ChangeEvent<HTMLInputElement>) => {
 		setInputValue(target.value);

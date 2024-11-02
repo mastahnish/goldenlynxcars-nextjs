@@ -17,8 +17,20 @@ export interface Config {
     'car-fleet-types': CarFleetType;
     'car-fleet': CarFleet;
     users: User;
+    'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
+  };
+  collectionsSelect?: {
+    'contact-request': ContactRequestSelect<false> | ContactRequestSelect<true>;
+    media: MediaSelect<false> | MediaSelect<true>;
+    'car-fleet-brands': CarFleetBrandsSelect<false> | CarFleetBrandsSelect<true>;
+    'car-fleet-types': CarFleetTypesSelect<false> | CarFleetTypesSelect<true>;
+    'car-fleet': CarFleetSelect<false> | CarFleetSelect<true>;
+    users: UsersSelect<false> | UsersSelect<true>;
+    'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
+    'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
+    'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
   };
   db: {
     defaultIDType: number;
@@ -39,9 +51,29 @@ export interface Config {
     'rental-calculator-header': RentalCalculatorHeader;
     'shop-header': ShopHeader;
   };
+  globalsSelect?: {
+    'contact-section': ContactSectionSelect<false> | ContactSectionSelect<true>;
+    hero: HeroSelect<false> | HeroSelect<true>;
+    'services-section': ServicesSectionSelect<false> | ServicesSectionSelect<true>;
+    'car-fleet-section': CarFleetSectionSelect<false> | CarFleetSectionSelect<true>;
+    'opinion-section': OpinionSectionSelect<false> | OpinionSectionSelect<true>;
+    'realizations-section': RealizationsSectionSelect<false> | RealizationsSectionSelect<true>;
+    'faq-section': FaqSectionSelect<false> | FaqSectionSelect<true>;
+    'about-us-header': AboutUsHeaderSelect<false> | AboutUsHeaderSelect<true>;
+    'about-us-overview': AboutUsOverviewSelect<false> | AboutUsOverviewSelect<true>;
+    'about-us-statistics': AboutUsStatisticsSelect<false> | AboutUsStatisticsSelect<true>;
+    'about-us-team': AboutUsTeamSelect<false> | AboutUsTeamSelect<true>;
+    'car-fleet-header': CarFleetHeaderSelect<false> | CarFleetHeaderSelect<true>;
+    'rental-calculator-header': RentalCalculatorHeaderSelect<false> | RentalCalculatorHeaderSelect<true>;
+    'shop-header': ShopHeaderSelect<false> | ShopHeaderSelect<true>;
+  };
   locale: null;
   user: User & {
     collection: 'users';
+  };
+  jobs?: {
+    tasks: unknown;
+    workflows?: unknown;
   };
 }
 export interface UserAuthOperations {
@@ -97,11 +129,11 @@ export interface CarFleet {
     fuel: 'gasoline' | 'diesel' | 'lpg' | 'hybrid';
   };
   media?: {
-    info?: number | Media | null;
-    rentalPrice?: number | Media | null;
+    info?: (number | null) | Media;
+    rentalPrice?: (number | null) | Media;
     gallery?:
       | {
-          image?: number | Media | null;
+          image?: (number | null) | Media;
           id?: string | null;
         }[]
       | null;
@@ -181,6 +213,45 @@ export interface User {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "payload-locked-documents".
+ */
+export interface PayloadLockedDocument {
+  id: number;
+  document?:
+    | ({
+        relationTo: 'contact-request';
+        value: number | ContactRequest;
+      } | null)
+    | ({
+        relationTo: 'media';
+        value: number | Media;
+      } | null)
+    | ({
+        relationTo: 'car-fleet-brands';
+        value: number | CarFleetBrand;
+      } | null)
+    | ({
+        relationTo: 'car-fleet-types';
+        value: number | CarFleetType;
+      } | null)
+    | ({
+        relationTo: 'car-fleet';
+        value: number | CarFleet;
+      } | null)
+    | ({
+        relationTo: 'users';
+        value: number | User;
+      } | null);
+  globalSlug?: string | null;
+  user: {
+    relationTo: 'users';
+    value: number | User;
+  };
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-preferences".
  */
 export interface PayloadPreference {
@@ -212,6 +283,156 @@ export interface PayloadMigration {
   batch?: number | null;
   updatedAt: string;
   createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "contact-request_select".
+ */
+export interface ContactRequestSelect<T extends boolean = true> {
+  email?: T;
+  firstName?: T;
+  phoneNumber?: T;
+  car?: T;
+  date?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "media_select".
+ */
+export interface MediaSelect<T extends boolean = true> {
+  alt?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  url?: T;
+  thumbnailURL?: T;
+  filename?: T;
+  mimeType?: T;
+  filesize?: T;
+  width?: T;
+  height?: T;
+  focalX?: T;
+  focalY?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "car-fleet-brands_select".
+ */
+export interface CarFleetBrandsSelect<T extends boolean = true> {
+  brand?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "car-fleet-types_select".
+ */
+export interface CarFleetTypesSelect<T extends boolean = true> {
+  type?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "car-fleet_select".
+ */
+export interface CarFleetSelect<T extends boolean = true> {
+  image?: T;
+  slug?: T;
+  name?: T;
+  description?: T;
+  brand?: T;
+  type?: T;
+  deposit?: T;
+  additionalMileagePrice?: T;
+  details?:
+    | T
+    | {
+        hp?: T;
+        transmission?: T;
+        seats?: T;
+        fuel?: T;
+      };
+  media?:
+    | T
+    | {
+        info?: T;
+        rentalPrice?: T;
+        gallery?:
+          | T
+          | {
+              image?: T;
+              id?: T;
+            };
+      };
+  prices?:
+    | T
+    | {
+        d_1_2?: T;
+        d_3_6?: T;
+        d_7_13?: T;
+        d_14_20?: T;
+        d_21_30?: T;
+        m_1?: T;
+        m_3?: T;
+      };
+  mileageLimits?:
+    | T
+    | {
+        d_1_2?: T;
+        d_3_6?: T;
+        d_7_13?: T;
+        d_14_20?: T;
+        d_21_30?: T;
+        m_1?: T;
+        m_3?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "users_select".
+ */
+export interface UsersSelect<T extends boolean = true> {
+  updatedAt?: T;
+  createdAt?: T;
+  email?: T;
+  resetPasswordToken?: T;
+  resetPasswordExpiration?: T;
+  salt?: T;
+  hash?: T;
+  loginAttempts?: T;
+  lockUntil?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "payload-locked-documents_select".
+ */
+export interface PayloadLockedDocumentsSelect<T extends boolean = true> {
+  document?: T;
+  globalSlug?: T;
+  user?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "payload-preferences_select".
+ */
+export interface PayloadPreferencesSelect<T extends boolean = true> {
+  user?: T;
+  key?: T;
+  value?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "payload-migrations_select".
+ */
+export interface PayloadMigrationsSelect<T extends boolean = true> {
+  name?: T;
+  batch?: T;
+  updatedAt?: T;
+  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -424,6 +645,236 @@ export interface ShopHeader {
   subContent?: string | null;
   updatedAt?: string | null;
   createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "contact-section_select".
+ */
+export interface ContactSectionSelect<T extends boolean = true> {
+  title?: T;
+  label?: T;
+  image?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "hero_select".
+ */
+export interface HeroSelect<T extends boolean = true> {
+  title?:
+    | T
+    | {
+        firstPart?: T;
+        secondPart?: T;
+      };
+  description?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "services-section_select".
+ */
+export interface ServicesSectionSelect<T extends boolean = true> {
+  title?: T;
+  label?: T;
+  reelSection?:
+    | T
+    | {
+        title?: T;
+        label?: T;
+        video?: T;
+        isHidden?: T;
+      };
+  services?:
+    | T
+    | {
+        title?: T;
+        content?: T;
+        isNew?: T;
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "car-fleet-section_select".
+ */
+export interface CarFleetSectionSelect<T extends boolean = true> {
+  title?: T;
+  label?: T;
+  cars?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "opinion-section_select".
+ */
+export interface OpinionSectionSelect<T extends boolean = true> {
+  title?: T;
+  label?: T;
+  opinions?:
+    | T
+    | {
+        image?: T;
+        fullName?: T;
+        content?: T;
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "realizations-section_select".
+ */
+export interface RealizationsSectionSelect<T extends boolean = true> {
+  title?: T;
+  label?: T;
+  realizations?:
+    | T
+    | {
+        video?: T;
+        title?: T;
+        description?: T;
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "faq-section_select".
+ */
+export interface FaqSectionSelect<T extends boolean = true> {
+  title?: T;
+  label?: T;
+  images?:
+    | T
+    | {
+        image?: T;
+        id?: T;
+      };
+  faqs?:
+    | T
+    | {
+        question?: T;
+        answer?: T;
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "about-us-header_select".
+ */
+export interface AboutUsHeaderSelect<T extends boolean = true> {
+  title?: T;
+  label?: T;
+  content?: T;
+  subContent?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "about-us-overview_select".
+ */
+export interface AboutUsOverviewSelect<T extends boolean = true> {
+  video?: T;
+  title?: T;
+  subTitle?: T;
+  content?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "about-us-statistics_select".
+ */
+export interface AboutUsStatisticsSelect<T extends boolean = true> {
+  title?: T;
+  label?: T;
+  statistics?:
+    | T
+    | {
+        clients?: T;
+        kilometers?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "about-us-team_select".
+ */
+export interface AboutUsTeamSelect<T extends boolean = true> {
+  title?: T;
+  label?: T;
+  team?:
+    | T
+    | {
+        image?: T;
+        firstName?: T;
+        description?: T;
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "car-fleet-header_select".
+ */
+export interface CarFleetHeaderSelect<T extends boolean = true> {
+  title?: T;
+  label?: T;
+  content?: T;
+  subContent?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "rental-calculator-header_select".
+ */
+export interface RentalCalculatorHeaderSelect<T extends boolean = true> {
+  title?: T;
+  label?: T;
+  content?: T;
+  subContent?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "shop-header_select".
+ */
+export interface ShopHeaderSelect<T extends boolean = true> {
+  title?: T;
+  label?: T;
+  content?: T;
+  subContent?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

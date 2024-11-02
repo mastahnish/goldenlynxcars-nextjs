@@ -13,7 +13,8 @@ type ShopProductPageProps = Readonly<{
 	params: Params<'slug'>;
 }>;
 
-const ShopProductPage = async ({ params: { slug } }: ShopProductPageProps) => {
+const ShopProductPage = async ({ params }: ShopProductPageProps) => {
+	const { slug } = await params;
 	const product = await shop.getProductBySlug(slug);
 
 	if (!product) {

@@ -1,15 +1,12 @@
 import * as SliderPrimitive from '@radix-ui/react-slider';
-import { forwardRef } from 'react';
 import { twMerge } from 'tailwind-merge';
 
-import type { ComponentPropsWithoutRef, ElementRef } from 'react';
+import type { ComponentPropsWithoutRef } from 'react';
 
-export const Slider = forwardRef<
-	ElementRef<typeof SliderPrimitive.Root>,
-	ComponentPropsWithoutRef<typeof SliderPrimitive.Root>
->(({ className, ...props }, ref) => (
+type SliderProps = ComponentPropsWithoutRef<typeof SliderPrimitive.Root>;
+
+export const Slider = ({ className, ...props }: SliderProps) => (
 	<SliderPrimitive.Root
-		ref={ref}
 		className={twMerge(
 			'relative flex touch-none select-none items-center mt-4',
 			className,
@@ -21,6 +18,4 @@ export const Slider = forwardRef<
 		</SliderPrimitive.Track>
 		<SliderPrimitive.Thumb className="block size-5 rounded-full border-2 border-background bg-secondary focus:shadow-slider-thumb-focus focus:shadow-black focus:outline-none" />
 	</SliderPrimitive.Root>
-));
-
-Slider.displayName = 'Slider';
+);

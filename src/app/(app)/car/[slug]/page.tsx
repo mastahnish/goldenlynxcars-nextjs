@@ -25,7 +25,8 @@ type CarPageProps = Readonly<{
 	params: Params<'slug'>;
 }>;
 
-const CarPage = async ({ params: { slug } }: CarPageProps) => {
+const CarPage = async ({ params }: CarPageProps) => {
+	const { slug } = await params;
 	const payload = await getPayloadHMR({ config });
 	const {
 		docs: [car],

@@ -1,27 +1,19 @@
-import { fileURLToPath } from 'node:url';
-
 import { withPayload } from '@payloadcms/next/withPayload';
-import createJiti from 'jiti';
 
-const jiti = createJiti(fileURLToPath(import.meta.url));
+import { env } from './src/lib/env';
 
-const { env } = jiti('./src/lib/env.ts');
+import type { NextConfig } from 'next';
 
 const mediaURL = new URL(env.NEXT_PUBLIC_SERVER_BASE_URL);
 
-/** @type {import('next').NextConfig} */
-const nextConfig = {
+const config: NextConfig = {
 	experimental: {
-		ppr: true,
 		typedRoutes: true,
 	},
 	images: {
 		remotePatterns: [
 			{ hostname: 'files.stripe.com' },
-			{
-				protocol: mediaURL.protocol.slice(0, -1),
-				hostname: mediaURL.hostname,
-			},
+			{ hostname: mediaURL.hostname },
 		],
 	},
 	logging: {
@@ -30,7 +22,8 @@ const nextConfig = {
 		},
 	},
 	webpack: config => {
-		const fileLoaderRule = config.module.rules.find(rule =>
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
+		const fileLoaderRule = config.module.rules.find((rule: any) =>
 			rule.test?.test?.('.svg'),
 		);
 
@@ -54,4 +47,4 @@ const nextConfig = {
 	},
 };
 
-export default withPayload(nextConfig);
+export default withPayload(config);

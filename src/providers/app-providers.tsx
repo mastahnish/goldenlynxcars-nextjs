@@ -1,3 +1,5 @@
+import { NuqsAdapter } from 'nuqs/adapters/next/app';
+
 import { TanStackQueryProvider } from './tanstack-query-provider';
 
 import type { ReactNode } from 'react';
@@ -7,5 +9,7 @@ type AppProvidersProps = Readonly<{
 }>;
 
 export const AppProviders = ({ children }: AppProvidersProps) => (
-	<TanStackQueryProvider>{children}</TanStackQueryProvider>
+	<NuqsAdapter>
+		<TanStackQueryProvider>{children}</TanStackQueryProvider>
+	</NuqsAdapter>
 );

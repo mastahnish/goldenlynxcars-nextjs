@@ -1,20 +1,26 @@
 'use client';
 
 import * as PopoverPrimitive from '@radix-ui/react-popover';
-import * as React from 'react';
 import { twMerge } from 'tailwind-merge';
+
+import type { ComponentPropsWithoutRef } from 'react';
 
 const Popover = PopoverPrimitive.Root;
 
 const PopoverTrigger = PopoverPrimitive.Trigger;
 
-const PopoverContent = React.forwardRef<
-	React.ElementRef<typeof PopoverPrimitive.Content>,
-	React.ComponentPropsWithoutRef<typeof PopoverPrimitive.Content>
->(({ className, align = 'center', sideOffset = 4, ...props }, ref) => (
+type PopoverContentProps = ComponentPropsWithoutRef<
+	typeof PopoverPrimitive.Content
+>;
+
+const PopoverContent = ({
+	className,
+	align = 'center',
+	sideOffset = 4,
+	...props
+}: PopoverContentProps) => (
 	<PopoverPrimitive.Portal>
 		<PopoverPrimitive.Content
-			ref={ref}
 			align={align}
 			sideOffset={sideOffset}
 			className={twMerge(
@@ -24,7 +30,6 @@ const PopoverContent = React.forwardRef<
 			{...props}
 		/>
 	</PopoverPrimitive.Portal>
-));
-PopoverContent.displayName = PopoverPrimitive.Content.displayName;
+);
 
 export { Popover, PopoverContent, PopoverTrigger };
