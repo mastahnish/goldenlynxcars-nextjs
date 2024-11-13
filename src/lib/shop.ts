@@ -1,20 +1,21 @@
+'use server';
+
 import { unstable_cache } from 'next/cache';
-import Stripe from 'stripe';
 import { z } from 'zod';
 
-import { env } from './env';
+import { stripe } from './stripe';
 
-export const stripe = new Stripe(env.STRIPE_SECRET_KEY);
-
-const productMetadataSchema = z.object({
-	slug: z.string(),
-	gallery: z.string(),
-});
+import type Stripe from 'stripe';
 
 export type Product = Stripe.Product & {
 	default_price: Stripe.Price;
 	metadata: z.infer<typeof productMetadataSchema>;
 };
+
+const productMetadataSchema = z.object({
+	slug: z.string(),
+	gallery: z.string(),
+});
 
 const normalizeStripeProduct = async (product: Stripe.Product) => {
 	const { default_price: defaultPrice } = product;

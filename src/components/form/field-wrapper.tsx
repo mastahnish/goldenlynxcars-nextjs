@@ -13,7 +13,7 @@ export const FieldWrapper = ({
 	error,
 	children,
 }: FieldWrapperProps) => (
-	<div className={twMerge(fullWidth && 'w-full')}>
+	<div className={twMerge(fullWidth ? 'w-full' : 'w-fit')}>
 		{children}
 		{error && <p className="mt-1.5 text-red-500">{error}</p>}
 	</div>

@@ -1,7 +1,7 @@
 import { revalidateTag } from 'next/cache';
 
 import { env } from '@/lib/env';
-import { stripe } from '@/lib/shop';
+import { stripe } from '@/lib/stripe';
 
 export const POST = async (request: Request) => {
 	try {

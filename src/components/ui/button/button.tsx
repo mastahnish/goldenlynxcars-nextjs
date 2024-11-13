@@ -5,7 +5,7 @@ import { buttonVariants } from './button.variants';
 
 import type { IconType } from '../icons';
 import type { ButtonVariantProps } from './button.variants';
-import type { ReactNode } from 'react';
+import type { MouseEvent, ReactNode } from 'react';
 
 type ButtonProps = Readonly<{
 	type?: 'button' | 'submit';
@@ -13,6 +13,7 @@ type ButtonProps = Readonly<{
 	icon?: IconType;
 	moveIcon?: boolean;
 	fullWidth?: boolean;
+	onClick?: (event: MouseEvent<HTMLButtonElement>) => void;
 	children: ReactNode;
 }> &
 	ButtonVariantProps;
@@ -26,6 +27,7 @@ export const Button = ({
 	icon: Icon,
 	moveIcon,
 	fullWidth,
+	onClick,
 	children,
 }: ButtonProps) => {
 	const Comp = asChild ? Slot : 'button';
@@ -38,7 +40,7 @@ export const Button = ({
 				fullWidth && 'w-full',
 				Icon && (variant === 'ghost' ? 'gap-1.5' : 'gap-2.5'),
 			)}
-			{...(Comp === 'button' && { type })}
+			{...(Comp === 'button' && { type, onClick })}
 		>
 			<Slottable>{children}</Slottable>
 			{Icon && (

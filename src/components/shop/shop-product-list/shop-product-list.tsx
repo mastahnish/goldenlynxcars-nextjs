@@ -1,4 +1,4 @@
-import { ShopProductListItem } from './shop-product-list-item';
+import { ShopProductListItem } from './shop-product-list-item/shop-product-list-item';
 
 import { Container } from '@/components/common/container';
 

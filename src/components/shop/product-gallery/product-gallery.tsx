@@ -8,6 +8,7 @@ import type { Product } from '@/lib/shop';
 type ProductGalleryProps = Readonly<{
 	product: Product;
 }>;
+
 export const ProductGallery = async ({ product }: ProductGalleryProps) => {
 	const mediaIds = product.metadata.gallery.split(',');
 

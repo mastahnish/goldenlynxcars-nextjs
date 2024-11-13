@@ -1,3 +1,4 @@
+import tailwindScrollbar from 'tailwind-scrollbar';
 import defaultTheme from 'tailwindcss/defaultTheme';
 import tailwindAnimate from 'tailwindcss-animate';
 
@@ -66,6 +67,9 @@ export default {
 			transitionProperty: {
 				width: 'width',
 			},
+			width: {
+				'shopping-cart-drawer': '28rem',
+			},
 			zIndex: {
 				1: '1',
 				100: '100',
@@ -73,5 +77,5 @@ export default {
 			},
 		},
 	},
-	plugins: [tailwindAnimate],
+	plugins: [tailwindAnimate, tailwindScrollbar({ nocompatible: true })],
 } satisfies Config;
