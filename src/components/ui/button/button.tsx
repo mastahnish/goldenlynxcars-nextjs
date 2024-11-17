@@ -34,13 +34,14 @@ export const Button = ({
 
 	return (
 		<Comp
+			onClick={onClick}
 			className={twMerge(
 				buttonVariants({ variant, color, size }),
 				moveIcon && 'group',
 				fullWidth && 'w-full',
 				Icon && (variant === 'ghost' ? 'gap-1.5' : 'gap-2.5'),
 			)}
-			{...(Comp === 'button' && { type, onClick })}
+			{...(Comp === 'button' && { type })}
 		>
 			<Slottable>{children}</Slottable>
 			{Icon && (

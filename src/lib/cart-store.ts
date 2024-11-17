@@ -12,6 +12,7 @@ interface CartStore {
 	items: CartItem[];
 	addToCart: (product: Product, amount?: number) => void;
 	deleteFromCart: (product: Product) => void;
+	clearCart: () => void;
 }
 
 export const useCartStore = create(
@@ -45,6 +46,7 @@ export const useCartStore = create(
 
 				set({ items: filteredItems });
 			},
+			clearCart: () => set({ items: [] }),
 		}),
 		{
 			name: 'cart',

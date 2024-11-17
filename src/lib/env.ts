@@ -4,6 +4,7 @@ import { z } from 'zod';
 export const env = createEnv({
 	client: {
 		NEXT_PUBLIC_SERVER_BASE_URL: z.string().url(),
+		NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY: z.string(),
 	},
 	server: {
 		NODE_ENV: z.enum(['development', 'production', 'test']).optional(),
@@ -33,5 +34,7 @@ export const env = createEnv({
 	},
 	experimental__runtimeEnv: {
 		NEXT_PUBLIC_SERVER_BASE_URL: process.env.NEXT_PUBLIC_SERVER_BASE_URL,
+		NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY:
+			process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY,
 	},
 });

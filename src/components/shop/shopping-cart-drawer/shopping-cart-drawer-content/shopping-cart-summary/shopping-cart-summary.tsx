@@ -1,6 +1,5 @@
 import { calculateTotalPrice } from './shopping-cart-summary.utils';
-
-import { Button } from '@/components/ui/button/button';
+import { ShoppingCartSummaryPayButton } from './shopping-cart-summary-pay-button';
 
 import { useCart } from '@/hooks/use-cart';
 import { formatPrice } from '@/utils/shop.utils';
@@ -16,7 +15,7 @@ export const ShoppingCartSummary = () => {
 				<p>Podsumowanie</p>
 				<p className="text-lg">{formatPrice(price)} zł</p>
 			</div>
-			<Button fullWidth>Zapłać</Button>
+			<ShoppingCartSummaryPayButton />
 		</div>
 	);
 };

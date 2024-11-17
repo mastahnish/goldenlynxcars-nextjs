@@ -10,7 +10,7 @@ export interface CartItem {
 }
 
 export const useCart = () => {
-	const { items, addToCart, deleteFromCart } = useCartStore();
+	const { items, addToCart, deleteFromCart, clearCart } = useCartStore();
 	const { data, isLoading } = useGetAllProducts();
 
 	const cartItems = items
@@ -26,5 +26,12 @@ export const useCart = () => {
 		.filter(item => item !== null);
 	const cartItemsAmount = isLoading ? items.length : cartItems.length;
 
-	return { isLoading, cartItems, cartItemsAmount, addToCart, deleteFromCart };
+	return {
+		isLoading,
+		cartItems,
+		cartItemsAmount,
+		addToCart,
+		deleteFromCart,
+		clearCart,
+	};
 };
