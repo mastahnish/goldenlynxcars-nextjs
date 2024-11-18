@@ -1,4 +1,4 @@
-import { ShoppingCartDrawerProductListItemDetails } from './shopping-cart-drawer-product-list-item-details';
+import { ShoppingCartDrawerProductListItemDetails } from './shopping-cart-drawer-product-list-item-details/shopping-cart-drawer-product-list-item-details';
 import { ShoppingCartDrawerProductListItemImage } from './shopping-cart-drawer-product-list-item-image';
 import { ShoppingCartDrawerProductListItemSummary } from './shopping-cart-drawer-product-list-item-summary/shopping-cart-drawer-product-list-item-summary';
 

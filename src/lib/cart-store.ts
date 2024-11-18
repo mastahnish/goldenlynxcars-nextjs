@@ -13,6 +13,7 @@ interface CartStore {
 	addToCart: (product: Product, amount?: number) => void;
 	deleteFromCart: (product: Product) => void;
 	clearCart: () => void;
+	updateAmount: (product: Product, amount: number) => void;
 }
 
 export const useCartStore = create(
@@ -47,6 +48,23 @@ export const useCartStore = create(
 				set({ items: filteredItems });
 			},
 			clearCart: () => set({ items: [] }),
+			updateAmount: ({ id }, amount) => {
+				const { items } = get();
+				const productIndex = items.findIndex(
+					({ productId }) => id === productId,
+				);
+
+				if (productIndex === -1) {
+					return;
+				}
+
+				const newItems = [...items];
+				const product = newItems[productIndex];
+
+				product.amount = amount;
+
+				set({ items: newItems });
+			},
 		}),
 		{
 			name: 'cart',

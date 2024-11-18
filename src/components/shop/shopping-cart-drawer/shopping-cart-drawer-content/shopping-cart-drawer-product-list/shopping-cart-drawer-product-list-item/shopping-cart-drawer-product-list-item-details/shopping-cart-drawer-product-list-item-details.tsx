@@ -1,3 +1,5 @@
+import { ShoppingCartDrawerProductListItemDetailsAmountSelect } from './shopping-cart-drawer-product-list-item-details-amount-select/shopping-cart-drawer-product-list-item-details-amount-select';
+
 import type { Product } from '@/lib/shop';
 
 type ShoppingCartDrawerProductListItemDetailsProps = Readonly<{
@@ -11,6 +13,9 @@ export const ShoppingCartDrawerProductListItemDetails = ({
 }: ShoppingCartDrawerProductListItemDetailsProps) => (
 	<div>
 		<h3 className="text-lg">{product.name}</h3>
-		<p className="mt-1 text-primary">x{amount}</p>
+		<ShoppingCartDrawerProductListItemDetailsAmountSelect
+			product={product}
+			amount={amount}
+		/>
 	</div>
 );
