@@ -19,7 +19,7 @@ export const HeaderMobileNavigationButton = () => {
 				aria-label={`${isOpen ? 'Zamknij' : 'Otwórz'} menu`}
 				aria-expanded={isOpen}
 				onClick={() => setIsOpen(isOpen => !isOpen)}
-				className="absolute right-4 top-4 z-110 flex size-8 flex-col items-center justify-center gap-1.5 lg:hidden"
+				className="absolute right-4 top-3 z-110 flex size-8 flex-col items-center justify-center gap-1.5 sm:top-6 lg:hidden"
 			>
 				<div
 					className={twMerge(

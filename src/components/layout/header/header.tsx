@@ -11,8 +11,10 @@ export const Header = () => (
 			<div className="mx-auto flex h-full max-w-screen-2xl items-center justify-between">
 				<HeaderLogo />
 				<HeaderNavigation />
-				<div className="hidden justify-center gap-7 xl:flex">
-					<ContactPhoneButton />
+				<div className="flex justify-center gap-7">
+					<div className="hidden xl:block">
+						<ContactPhoneButton />
+					</div>
 					<HeaderShoppingCart />
 				</div>
 			</div>
