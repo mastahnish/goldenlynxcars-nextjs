@@ -9,7 +9,8 @@ type PageHeaderProps = Readonly<{
 		| 'about-us-header'
 		| 'car-fleet-header'
 		| 'rental-calculator-header'
-		| 'shop-header';
+		| 'shop-header'
+		| 'vip-transfer-header';
 }>;
 
 export const PageHeader = async ({ global }: PageHeaderProps) => {

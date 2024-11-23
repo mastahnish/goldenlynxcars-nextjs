@@ -27,6 +27,8 @@ import { RealizationsSection } from '@/payload/globals/landing/RealizationsSecti
 import { ServicesSection } from '@/payload/globals/landing/ServicesSection';
 import { RentalCalculatorHeader } from '@/payload/globals/rental-calculator/RentalCalculatorHeader';
 import { ShopHeader } from '@/payload/globals/ShopHeader';
+import { VIPTransferContent } from '@/payload/globals/vip-transfer/VIPTransferContent';
+import { VIPTransferHeader } from '@/payload/globals/vip-transfer/VIPTransferHeader';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -47,6 +49,8 @@ export default buildConfig({
 		CarFleetHeader,
 		RentalCalculatorHeader,
 		ShopHeader,
+		VIPTransferHeader,
+		VIPTransferContent,
 	],
 	editor: slateEditor({}),
 	secret: env.PAYLOAD_SECRET,

@@ -50,6 +50,8 @@ export interface Config {
     'car-fleet-header': CarFleetHeader;
     'rental-calculator-header': RentalCalculatorHeader;
     'shop-header': ShopHeader;
+    'vip-transfer-header': VipTransferHeader;
+    'vip-transfer-content': VipTransferContent;
   };
   globalsSelect?: {
     'contact-section': ContactSectionSelect<false> | ContactSectionSelect<true>;
@@ -66,6 +68,8 @@ export interface Config {
     'car-fleet-header': CarFleetHeaderSelect<false> | CarFleetHeaderSelect<true>;
     'rental-calculator-header': RentalCalculatorHeaderSelect<false> | RentalCalculatorHeaderSelect<true>;
     'shop-header': ShopHeaderSelect<false> | ShopHeaderSelect<true>;
+    'vip-transfer-header': VipTransferHeaderSelect<false> | VipTransferHeaderSelect<true>;
+    'vip-transfer-content': VipTransferContentSelect<false> | VipTransferContentSelect<true>;
   };
   locale: null;
   user: User & {
@@ -648,6 +652,46 @@ export interface ShopHeader {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "vip-transfer-header".
+ */
+export interface VipTransferHeader {
+  id: number;
+  title: string;
+  label?: string | null;
+  content: string;
+  subContent?: string | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "vip-transfer-content".
+ */
+export interface VipTransferContent {
+  id: number;
+  serviceDescription: {
+    media: number | Media;
+    title: string;
+    content: string;
+  };
+  whyWorth: {
+    title: string;
+    description: string;
+    needments: {
+      content: string;
+      id?: string | null;
+    }[];
+  };
+  process: {
+    media: number | Media;
+    title: string;
+    content: string;
+  };
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "contact-section_select".
  */
 export interface ContactSectionSelect<T extends boolean = true> {
@@ -872,6 +916,54 @@ export interface ShopHeaderSelect<T extends boolean = true> {
   label?: T;
   content?: T;
   subContent?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "vip-transfer-header_select".
+ */
+export interface VipTransferHeaderSelect<T extends boolean = true> {
+  title?: T;
+  label?: T;
+  content?: T;
+  subContent?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "vip-transfer-content_select".
+ */
+export interface VipTransferContentSelect<T extends boolean = true> {
+  serviceDescription?:
+    | T
+    | {
+        media?: T;
+        title?: T;
+        content?: T;
+      };
+  whyWorth?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        needments?:
+          | T
+          | {
+              content?: T;
+              id?: T;
+            };
+      };
+  process?:
+    | T
+    | {
+        media?: T;
+        title?: T;
+        content?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;

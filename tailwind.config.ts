@@ -15,6 +15,7 @@ export default {
 				'form-field': '#292929',
 			},
 			backgroundImage: {
+				checkmark: 'url("/images/checkmark.png")',
 				hero: "url('/images/hero-background.png')",
 				'hero-desktop': "url('/images/hero-background-desktop.png')",
 				'service-item':
@@ -42,7 +43,6 @@ export default {
 			fontSize: {
 				'10xl': '10rem',
 			},
-
 			height: {
 				'opinion-item': '21.5rem',
 			},

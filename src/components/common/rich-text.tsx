@@ -1,10 +1,8 @@
-type CarFleetInfoDescriptionProps = Readonly<{
+type RichTextProps = Readonly<{
 	content: string;
 }>;
 
-export const CarFleetInfoDescription = ({
-	content,
-}: CarFleetInfoDescriptionProps) => {
+export const RichText = ({ content }: RichTextProps) => {
 	const lines = content.split('\n');
 
 	return (

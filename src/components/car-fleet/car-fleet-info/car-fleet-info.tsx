@@ -1,8 +1,8 @@
-import { CarFleetInfoDescription } from './car-fleet-info-description';
 import { CarFleetInfoDetails } from './car-fleet-info-details/car-fleet-info-details';
 
 import { Container } from '@/components/common/container';
 import { Media } from '@/components/common/media/media';
+import { RichText } from '@/components/common/rich-text';
 
 import type { CarFleet } from '@/payload/payload-types';
 
@@ -22,7 +22,7 @@ export const CarFleetInfo = ({ car }: CarFleetInfoProps) => (
 		/>
 		<div className="space-y-8">
 			<CarFleetInfoDetails car={car} />
-			<CarFleetInfoDescription content={car.description} />
+			<RichText content={car.description} />
 		</div>
 	</Container>
 );
