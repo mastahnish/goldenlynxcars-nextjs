@@ -23,6 +23,10 @@ export const navItems: NavItem[] = [
 		label: 'Kalkulator najmu',
 	},
 	{
+		href: '/transfery-vip',
+		label: 'Transfery VIP',
+	},
+	{
 		href: '/o-nas',
 		label: 'O firmie',
 	},
