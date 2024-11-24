@@ -11,7 +11,7 @@ export const HeaderShoppingCart = () => {
 	const [isOpen, setIsOpen] = useState(false);
 	const pathname = usePathname();
 
-	if (!pathname.startsWith('/shop')) {
+	if (!pathname.startsWith('/sklep')) {
 		return null;
 	}
 

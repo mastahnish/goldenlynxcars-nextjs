@@ -11,19 +11,19 @@ export const navItems: NavItem[] = [
 		label: 'Usługi',
 	},
 	{
-		href: '/car-fleet',
+		href: '/flota-samochodow',
 		label: 'Flota samochodów',
 	},
 	{
-		href: '/shop',
+		href: '/sklep',
 		label: 'Sklep z merchem',
 	},
 	{
-		href: '/rental-calculator',
+		href: '/kalkulator-najmu',
 		label: 'Kalkulator najmu',
 	},
 	{
-		href: '/about-us',
+		href: '/o-nas',
 		label: 'O firmie',
 	},
 ];

@@ -39,7 +39,7 @@ export const CarFleetCard = ({
 			<CarFleetCardDetails details={car.details} />
 			<div className="mt-8">
 				<Button variant="ghost" icon={ArrowRight} moveIcon asChild>
-					<Link href={`/car/${car.slug}`}>Wylicz swoją cenę</Link>
+					<Link href={`/auto/${car.slug}`}>Wylicz swoją cenę</Link>
 				</Button>
 			</div>
 		</div>

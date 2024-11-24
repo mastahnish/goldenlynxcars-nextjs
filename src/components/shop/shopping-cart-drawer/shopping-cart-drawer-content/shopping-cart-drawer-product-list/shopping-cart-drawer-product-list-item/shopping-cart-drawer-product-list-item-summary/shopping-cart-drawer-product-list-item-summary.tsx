@@ -18,7 +18,7 @@ export const ShoppingCartDrawerProductListItemSummary = ({
 	});
 
 	return (
-		<div className="flex flex-col">
+		<div className="ml-auto flex flex-col">
 			<p>
 				{formatPrice((product.default_price.unit_amount ?? 0) * amount)}
 				zł

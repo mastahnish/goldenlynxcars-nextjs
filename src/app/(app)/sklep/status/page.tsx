@@ -17,13 +17,13 @@ const ShopSuccessPage = async ({ searchParams }: ShopSuccessPageProps) => {
 	const { sessionId } = await searchParams;
 
 	if (typeof sessionId !== 'string') {
-		redirect('/shop');
+		redirect('/sklep');
 	}
 
 	const { status, payment_intent } = await getCheckoutSession(sessionId);
 
 	if (!status || !payment_intent) {
-		redirect('/shop');
+		redirect('/sklep');
 	}
 
 	return (

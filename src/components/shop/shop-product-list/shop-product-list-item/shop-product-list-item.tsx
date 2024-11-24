@@ -12,7 +12,7 @@ type ShopProductListItemProps = Readonly<{
 
 export const ShopProductListItem = ({ product }: ShopProductListItemProps) => (
 	<Link
-		href={`/shop/${product.metadata.slug}`}
+		href={`/sklep/${product.metadata.slug}`}
 		className="mx-auto block w-full max-w-96 rounded-2xl border border-primary/10 bg-semi-black p-4"
 	>
 		<ShopProductListItemImage product={product} />
