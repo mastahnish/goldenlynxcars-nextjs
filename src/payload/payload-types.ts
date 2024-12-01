@@ -52,6 +52,8 @@ export interface Config {
     'shop-header': ShopHeader;
     'vip-transfer-header': VipTransferHeader;
     'vip-transfer-content': VipTransferContent;
+    'investor-model-header': InvestorModelHeader;
+    'investor-model-content': InvestorModelContent;
   };
   globalsSelect?: {
     'contact-section': ContactSectionSelect<false> | ContactSectionSelect<true>;
@@ -70,6 +72,8 @@ export interface Config {
     'shop-header': ShopHeaderSelect<false> | ShopHeaderSelect<true>;
     'vip-transfer-header': VipTransferHeaderSelect<false> | VipTransferHeaderSelect<true>;
     'vip-transfer-content': VipTransferContentSelect<false> | VipTransferContentSelect<true>;
+    'investor-model-header': InvestorModelHeaderSelect<false> | InvestorModelHeaderSelect<true>;
+    'investor-model-content': InvestorModelContentSelect<false> | InvestorModelContentSelect<true>;
   };
   locale: null;
   user: User & {
@@ -692,6 +696,35 @@ export interface VipTransferContent {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "investor-model-header".
+ */
+export interface InvestorModelHeader {
+  id: number;
+  title: string;
+  label?: string | null;
+  content: string;
+  subContent?: string | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "investor-model-content".
+ */
+export interface InvestorModelContent {
+  id: number;
+  media: number | Media;
+  description: string;
+  steps: {
+    title: string;
+    content: string;
+    id?: string | null;
+  }[];
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "contact-section_select".
  */
 export interface ContactSectionSelect<T extends boolean = true> {
@@ -963,6 +996,37 @@ export interface VipTransferContentSelect<T extends boolean = true> {
         media?: T;
         title?: T;
         content?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "investor-model-header_select".
+ */
+export interface InvestorModelHeaderSelect<T extends boolean = true> {
+  title?: T;
+  label?: T;
+  content?: T;
+  subContent?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "investor-model-content_select".
+ */
+export interface InvestorModelContentSelect<T extends boolean = true> {
+  media?: T;
+  description?: T;
+  steps?:
+    | T
+    | {
+        title?: T;
+        content?: T;
+        id?: T;
       };
   updatedAt?: T;
   createdAt?: T;

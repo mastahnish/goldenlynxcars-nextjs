@@ -19,6 +19,8 @@ import { CarFleetBrands } from '@/payload/globals/car-fieet/CarFleetBrands';
 import { CarFleetHeader } from '@/payload/globals/car-fieet/CarFleetHeader';
 import { CarFleetTypes } from '@/payload/globals/car-fieet/CarFleetTypes';
 import { ContactSection } from '@/payload/globals/ContactSection';
+import { InvestorModelContent } from '@/payload/globals/investor-model/InvestorModelContent';
+import { InvestorModelHeader } from '@/payload/globals/investor-model/InvestorModelHeader';
 import { CarFleetSection } from '@/payload/globals/landing/CarFleetSection';
 import { FAQSection } from '@/payload/globals/landing/FAQSection';
 import { Hero } from '@/payload/globals/landing/Hero';
@@ -51,6 +53,8 @@ export default buildConfig({
 		ShopHeader,
 		VIPTransferHeader,
 		VIPTransferContent,
+		InvestorModelHeader,
+		InvestorModelContent,
 	],
 	editor: slateEditor({}),
 	secret: env.PAYLOAD_SECRET,
