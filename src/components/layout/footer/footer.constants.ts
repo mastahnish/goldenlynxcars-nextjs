@@ -18,8 +18,12 @@ export const footerSections: FooterSection[] = [
 		title: 'OFERTA',
 		items: [
 			{
-				href: '#',
+				href: '/transfery-vip',
 				label: 'Oferta transferów VIP',
+			},
+			{
+				href: '/model-inwestorski',
+				label: 'Model inwestorski',
 			},
 			{
 				href: '#',
