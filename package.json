@@ -18,6 +18,7 @@
 		"@payloadcms/next": "3.0.0-beta.123",
 		"@payloadcms/richtext-slate": "3.0.0-beta.123",
 		"@payloadcms/storage-gcs": "3.0.0-beta.123",
+		"@payloadcms/ui": "3.0.0-beta.123",
 		"@radix-ui/react-checkbox": "1.1.2",
 		"@radix-ui/react-popover": "1.1.2",
 		"@radix-ui/react-select": "2.1.2",

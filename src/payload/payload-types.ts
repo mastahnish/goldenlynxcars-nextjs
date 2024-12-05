@@ -11,6 +11,8 @@ export interface Config {
     users: UserAuthOperations;
   };
   collections: {
+    customers: Customer;
+    rentals: Rental;
     'contact-request': ContactRequest;
     media: Media;
     'car-fleet-brands': CarFleetBrand;
@@ -22,6 +24,8 @@ export interface Config {
     'payload-migrations': PayloadMigration;
   };
   collectionsSelect?: {
+    customers: CustomersSelect<false> | CustomersSelect<true>;
+    rentals: RentalsSelect<false> | RentalsSelect<true>;
     'contact-request': ContactRequestSelect<false> | ContactRequestSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
     'car-fleet-brands': CarFleetBrandsSelect<false> | CarFleetBrandsSelect<true>;
@@ -104,15 +108,47 @@ export interface UserAuthOperations {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "contact-request".
+ * via the `definition` "customers".
  */
-export interface ContactRequest {
+export interface Customer {
   id: number;
-  email: string;
-  firstName: string;
-  phoneNumber: string;
+  fullName: string;
+  personalData: {
+    fullName: string;
+    email: string;
+    address: string;
+    pesel: string;
+    idNumber: string;
+  };
+  drivingLicense: {
+    number: string;
+    blankNumber: string;
+    issueDate: string;
+    expirationDate: string;
+    issuingAuthority: string;
+  };
+  invoiceDetails?: {
+    companyName?: string | null;
+    NIP?: string | null;
+    address?: string | null;
+  };
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "rentals".
+ */
+export interface Rental {
+  id: number;
+  customer: number | Customer;
   car: number | CarFleet;
-  date: string;
+  startDate: string;
+  endDate: string;
+  rentalPrice: number;
+  depositAmount: number;
+  mileageBefore: number;
+  mileageAfter: number;
   updatedAt: string;
   createdAt: string;
 }
@@ -204,6 +240,20 @@ export interface CarFleetType {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "contact-request".
+ */
+export interface ContactRequest {
+  id: number;
+  email: string;
+  firstName: string;
+  phoneNumber: string;
+  car: number | CarFleet;
+  date: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "users".
  */
 export interface User {
@@ -226,6 +276,14 @@ export interface User {
 export interface PayloadLockedDocument {
   id: number;
   document?:
+    | ({
+        relationTo: 'customers';
+        value: number | Customer;
+      } | null)
+    | ({
+        relationTo: 'rentals';
+        value: number | Rental;
+      } | null)
     | ({
         relationTo: 'contact-request';
         value: number | ContactRequest;
@@ -291,6 +349,57 @@ export interface PayloadMigration {
   batch?: number | null;
   updatedAt: string;
   createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "customers_select".
+ */
+export interface CustomersSelect<T extends boolean = true> {
+  fullName?: T;
+  personalData?:
+    | T
+    | {
+        fullName?: T;
+        email?: T;
+        address?: T;
+        pesel?: T;
+        idNumber?: T;
+      };
+  drivingLicense?:
+    | T
+    | {
+        number?: T;
+        blankNumber?: T;
+        issueDate?: T;
+        expirationDate?: T;
+        issuingAuthority?: T;
+      };
+  invoiceDetails?:
+    | T
+    | {
+        companyName?: T;
+        NIP?: T;
+        address?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "rentals_select".
+ */
+export interface RentalsSelect<T extends boolean = true> {
+  customer?: T;
+  car?: T;
+  startDate?: T;
+  endDate?: T;
+  rentalPrice?: T;
+  depositAmount?: T;
+  mileageBefore?: T;
+  mileageAfter?: T;
+  status?: T;
+  updatedAt?: T;
+  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

@@ -10,6 +10,8 @@ import sharp from 'sharp';
 import { env } from '@/lib/env';
 import { CarFleet } from '@/payload/collections/CarFleet';
 import { ContactRequest } from '@/payload/collections/ContactRequest/ContactRequest';
+import { Customers } from '@/payload/collections/dashboard/Customers';
+import { Rentals } from '@/payload/collections/dashboard/Rentals/Rentals';
 import { Media } from '@/payload/collections/Media';
 import { AboutUsHeader } from '@/payload/globals/about-us/AboutUsHeader';
 import { AboutUsOverview } from '@/payload/globals/about-us/AboutUsOverview';
@@ -35,7 +37,15 @@ import { VIPTransferHeader } from '@/payload/globals/vip-transfer/VIPTransferHea
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 export default buildConfig({
-	collections: [ContactRequest, Media, CarFleetBrands, CarFleetTypes, CarFleet],
+	collections: [
+		Customers,
+		Rentals,
+		ContactRequest,
+		Media,
+		CarFleetBrands,
+		CarFleetTypes,
+		CarFleet,
+	],
 	globals: [
 		ContactSection,
 		Hero,
