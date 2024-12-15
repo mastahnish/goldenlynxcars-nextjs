@@ -6,6 +6,8 @@ import React from 'react';
 
 import { importMap } from './admin/importMap';
 
+import { TanStackQueryProvider } from '@/providers/tanstack-query-provider';
+
 import './custom.scss';
 
 import '@payloadcms/next/css';
@@ -16,7 +18,7 @@ type Args = {
 
 const Layout = ({ children }: Args) => (
 	<RootLayout config={configPromise} importMap={importMap}>
-		{children}
+		<TanStackQueryProvider>{children}</TanStackQueryProvider>
 	</RootLayout>
 );
 

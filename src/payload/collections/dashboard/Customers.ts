@@ -4,14 +4,14 @@ export const Customers: CollectionConfig = {
 	slug: 'customers',
 	fields: [
 		{
-			name: 'fullName',
+			name: 'email',
 			type: 'text',
 			required: true,
 			admin: {
 				hidden: true,
 			},
 			hooks: {
-				beforeChange: [({ data }) => `${data?.personalData.fullName}`],
+				beforeChange: [({ data }) => `${data?.personalData.email}`],
 			},
 		},
 		{
@@ -21,31 +21,37 @@ export const Customers: CollectionConfig = {
 					name: 'personalData',
 					fields: [
 						{
-							name: 'fullName',
-							type: 'text',
-							required: true,
-						},
-						{
 							name: 'email',
 							type: 'text',
 							required: true,
 						},
 						{
+							name: 'gender',
+							type: 'select',
+							options: ['Male', 'Female'],
+							required: true,
+						},
+						{
+							name: 'fullName',
+							type: 'text',
+						},
+						{
+							name: 'phoneNumber',
+							type: 'text',
+						},
+						{
 							name: 'address',
 							type: 'text',
-							required: true,
 						},
 						{
 							name: 'pesel',
 							label: 'PESEL',
 							type: 'text',
-							required: true,
 						},
 						{
 							name: 'idNumber',
 							label: 'ID Number',
 							type: 'text',
-							required: true,
 						},
 					],
 				},
@@ -55,27 +61,22 @@ export const Customers: CollectionConfig = {
 						{
 							name: 'number',
 							type: 'text',
-							required: true,
 						},
 						{
 							name: 'blankNumber',
 							type: 'text',
-							required: true,
 						},
 						{
 							name: 'issueDate',
 							type: 'date',
-							required: true,
 						},
 						{
 							name: 'expirationDate',
 							type: 'date',
-							required: true,
 						},
 						{
 							name: 'issuingAuthority',
 							type: 'text',
-							required: true,
 						},
 					],
 				},
@@ -102,6 +103,6 @@ export const Customers: CollectionConfig = {
 	],
 	admin: {
 		group: 'Dashboard',
-		useAsTitle: 'fullName',
+		useAsTitle: 'email',
 	},
 };

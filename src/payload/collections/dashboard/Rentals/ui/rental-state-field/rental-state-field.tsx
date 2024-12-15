@@ -4,9 +4,9 @@
 
 import { useField } from '@payloadcms/ui';
 
-import { getRentalStatus } from './rental-status-field.utils';
+import { getRentalStatus } from './rental-state-field.utils';
 
-export const RentalStatusField = () => {
+const RentalStateField = () => {
 	const { value: startDateValue } = useField<string>({ path: 'startDate' });
 	const { value: endDateValue } = useField<string>({ path: 'endDate' });
 
@@ -19,7 +19,7 @@ export const RentalStatusField = () => {
 	return (
 		<div className="field-type">
 			<p>
-				Status:{' '}
+				State:{' '}
 				<span style={{ fontWeight: 'bold', textDecoration: 'underline' }}>
 					{status}
 				</span>
@@ -27,3 +27,5 @@ export const RentalStatusField = () => {
 		</div>
 	);
 };
+
+export default RentalStateField;
