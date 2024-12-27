@@ -5,7 +5,12 @@ import { getPayloadHMR } from '@payloadcms/next/utilities';
 import { format } from 'date-fns';
 import { z } from 'zod';
 
+import { sendZip } from '../utils/file.utils';
+
+import { injectHTMLValues } from '@/actions/utils/html.utils';
 import { sendMail } from '@/lib/mailer';
+import { generatePDF } from '@/lib/pdf';
+import { numberToWords } from '@/utils/number-to-words';
 
 const customerSchema = z.object({
 	id: z.number(),
@@ -19,13 +24,20 @@ const customerSchema = z.object({
 		idNumber: z.string().min(1),
 	}),
 	drivingLicense: z.object({
-		number: z.string().min(1),
+		seriesAndNumber: z.string().min(1),
 		blankNumber: z.string().min(1),
 		issueDate: z.string().min(1),
 		expirationDate: z.string().min(1),
 		issuingAuthority: z.string().min(1),
 	}),
 });
+
+const fuelLabels = {
+	gasoline: 'PB 98 / benzyna',
+	diesel: 'Diesel',
+	lpg: 'Gaz',
+	hybrid: 'Hybrid',
+};
 
 export const sendRentalOffer = async (id: string | number) => {
 	const payload = await getPayloadHMR({ config });
@@ -80,7 +92,7 @@ export const sendRentalOffer = async (id: string | number) => {
 			<li>adres zamieszkania</li>
 			<li>PESEL</li>
 			<li>numer dowodu osobistego</li>
-			<li>numer prawa jazdy</li>
+			<li>seria i numer prawa jazdy</li>
 			<li>data wydania prawa jazdy</li>
 			<li>data ważności prawa jazdy</li>
 			<li>organ wydający prawo jazdy</li>
@@ -128,18 +140,157 @@ export const sendRentalOffer = async (id: string | number) => {
 
 export const generateRentalContracts = async (id: string | number) => {
 	const payload = await getPayloadHMR({ config });
-	const { customer } = await payload.findByID({
+	const {
+		customer,
+		additionalDriver,
+		car,
+		startDate,
+		endDate,
+		rentalPrice,
+		depositAmount,
+		mileageBefore,
+		mileageLimit,
+	} = await payload.findByID({
 		id,
 		collection: 'rentals',
 	});
 
-	if (typeof customer === 'number') {
+	if (
+		typeof customer === 'number' ||
+		typeof car === 'number' ||
+		typeof car.brand === 'number'
+	) {
 		throw new Error('Something went wrong');
 	}
 
-	const { success } = await customerSchema.safeParseAsync(customer);
+	const { success: customerSuccess, data: customerData } =
+		await customerSchema.safeParseAsync(customer);
 
-	if (!success) {
-		throw new Error('Wypełnij wszystkie dane!');
+	if (!customerSuccess) {
+		throw new Error('Wypełnij wszystkie dane klienta!');
 	}
+
+	const { success: additionalDriverSuccess, data: additionalDriverData } =
+		await customerSchema.safeParseAsync(additionalDriver);
+
+	if (additionalDriver && !additionalDriverSuccess) {
+		throw new Error('Wypełnij wszystkie dane upoważnionego klienta!');
+	}
+
+	const {
+		layout,
+		vehicleRental,
+		vehicleRentalAuthorized,
+		vehiclePickUp,
+		vehicleRelease,
+	} = await payload.findGlobal({
+		slug: 'contract-settings',
+	});
+
+	if (
+		typeof vehicleRental === 'number' ||
+		typeof vehicleRentalAuthorized === 'number' ||
+		typeof vehiclePickUp === 'number' ||
+		typeof vehicleRelease === 'number'
+	) {
+		throw new Error('Something went wrong');
+	}
+
+	const contractId = `${format(startDate, 'yyyy_MM_dd')}_${car.contract.registrationNumber}`;
+	const isAdditionalDriver =
+		!!additionalDriver && typeof additionalDriver !== 'number';
+
+	const templates = [
+		{ name: 'protokół_odbioru_pojazdu', template: vehiclePickUp.template },
+		{ name: 'protokół_wydania_pojazdu', template: vehicleRelease.template },
+		{
+			name: 'umowa_wynajmu_pojazdu',
+			template: (isAdditionalDriver ? vehicleRentalAuthorized : vehicleRental)
+				.template,
+		},
+	];
+	const values: Record<string, string> = {
+		fullName: customerData.personalData.fullName,
+		email: customerData.personalData.email,
+		phoneNumber: customerData.personalData.phoneNumber,
+		address: customerData.personalData.address,
+		pesel: customerData.personalData.pesel,
+		idNumber: customerData.personalData.idNumber,
+		drivingLicenseSeriesAndNumber: customerData.drivingLicense.seriesAndNumber,
+		drivingLicenseBlankNumber: customerData.drivingLicense.blankNumber,
+		drivingLicenseIssueDate: format(
+			customerData.drivingLicense.issueDate,
+			'MM.dd.yyyy',
+		),
+		drivingLicenseExpirationDate: format(
+			customerData.drivingLicense.expirationDate,
+			'MM.dd.yyyy',
+		),
+		drivingLicenseIssuingAuthority:
+			customerData.drivingLicense.issuingAuthority,
+		vehicleName: `${car.brand.brand} ${car.name}`,
+		vehicleBrand: car.brand.brand,
+		vehicleModel: car.name, // TODO: change it
+		vehicleRegistrationNumber: car.contract.registrationNumber ?? '',
+		vehicleRegistrationCertificateNumber:
+			car.contract.registrationCertificateNumber ?? '',
+		vehicleVIN: car.contract.VIN ?? '',
+		vehicleOC: car.contract.oc ?? '',
+		vehicleKeysAmount: car.contract.keysAmount.toString(),
+		vehicleTires: car.contract.tires ?? '',
+		currentMileage: mileageBefore.toString(),
+		mileageLimit: mileageLimit.toString(),
+		fuelType: fuelLabels[car.details.fuel],
+		contractId,
+		rentalPrice: rentalPrice.toString(),
+		rentalPriceInWords: numberToWords(rentalPrice),
+		accessories: car.contract.accessories ?? '',
+		depositAmount: depositAmount.toString(),
+		depositAmountInWords: numberToWords(depositAmount),
+		startDate: format(startDate, 'MM.dd.yyyy'),
+		startDateHour: format(startDate, 'kk:mm'),
+		endDate: format(endDate, 'MM.dd.yyyy'),
+		endDateHour: format(endDate, 'kk:mm'),
+	};
+
+	if (isAdditionalDriver && additionalDriverData) {
+		values.authorizedFullName = additionalDriverData.personalData.fullName;
+		values.authorizedEmail = additionalDriverData.personalData.email;
+		values.authorizedPhoneNumber =
+			additionalDriverData.personalData.phoneNumber;
+		values.authorizedAddress = additionalDriverData.personalData.address;
+		values.authorizedPesel = additionalDriverData.personalData.pesel;
+		values.authorizedIdNumber = additionalDriverData.personalData.idNumber;
+		values.authorizedDrivingLicenseSeriesAndNumber =
+			additionalDriverData.drivingLicense.seriesAndNumber;
+		values.authorizedDrivingLicenseBlankNumber =
+			additionalDriverData.drivingLicense.blankNumber;
+		values.authorizedDrivingLicenseIssueDate = format(
+			additionalDriverData.drivingLicense.issueDate,
+			'MM.dd.yyyy',
+		);
+		values.authorizedDrivingLicenseExpirationDate = format(
+			additionalDriverData.drivingLicense.expirationDate,
+			'MM.dd.yyyy',
+		);
+		values.authorizedDrivingLicenseIssuingAuthority =
+			additionalDriverData.drivingLicense.issuingAuthority;
+	}
+
+	const files = await Promise.all(
+		templates.map(async ({ name, template }) => {
+			const html = injectHTMLValues({
+				html: template,
+				values,
+			});
+			const buffer = await generatePDF({
+				html,
+				templates: { ...layout },
+			});
+
+			return { name: `${contractId}_${name}.pdf`, buffer };
+		}),
+	);
+
+	return { contractId, href: sendZip(files) };
 };

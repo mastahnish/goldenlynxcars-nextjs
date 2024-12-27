@@ -10,6 +10,7 @@ import sharp from 'sharp';
 import { env } from '@/lib/env';
 import { CarFleet } from '@/payload/collections/CarFleet';
 import { ContactRequest } from '@/payload/collections/ContactRequest/ContactRequest';
+import { ContractTemplates } from '@/payload/collections/dashboard/ContractTemplates';
 import { Customers } from '@/payload/collections/dashboard/Customers';
 import { Rentals } from '@/payload/collections/dashboard/Rentals/Rentals';
 import { Media } from '@/payload/collections/Media';
@@ -21,6 +22,7 @@ import { CarFleetBrands } from '@/payload/globals/car-fieet/CarFleetBrands';
 import { CarFleetHeader } from '@/payload/globals/car-fieet/CarFleetHeader';
 import { CarFleetTypes } from '@/payload/globals/car-fieet/CarFleetTypes';
 import { ContactSection } from '@/payload/globals/ContactSection';
+import { ContractSettings } from '@/payload/globals/dashboard/ContractSettings';
 import { InvestorModelContent } from '@/payload/globals/investor-model/InvestorModelContent';
 import { InvestorModelHeader } from '@/payload/globals/investor-model/InvestorModelHeader';
 import { CarFleetSection } from '@/payload/globals/landing/CarFleetSection';
@@ -40,6 +42,7 @@ export default buildConfig({
 	collections: [
 		Customers,
 		Rentals,
+		ContractTemplates,
 		ContactRequest,
 		Media,
 		CarFleetBrands,
@@ -47,6 +50,7 @@ export default buildConfig({
 		CarFleet,
 	],
 	globals: [
+		ContractSettings,
 		ContactSection,
 		Hero,
 		ServicesSection,

@@ -54,6 +54,44 @@ export const CarFleet: CollectionConfig = {
 			defaultValue: 0,
 		},
 		{
+			name: 'contract',
+			type: 'group',
+			fields: [
+				{
+					name: 'registrationNumber',
+					type: 'text',
+				},
+				{
+					name: 'registrationCertificateNumber',
+					type: 'text',
+				},
+				{
+					name: 'VIN',
+					label: 'VIN',
+					type: 'text',
+				},
+				{
+					name: 'oc',
+					label: 'OC',
+					type: 'text',
+				},
+				{
+					name: 'keysAmount',
+					type: 'number',
+					defaultValue: 1,
+					required: true,
+				},
+				{
+					name: 'tires',
+					type: 'text',
+				},
+				{
+					name: 'accessories',
+					type: 'text',
+				},
+			],
+		},
+		{
 			name: 'details',
 			type: 'group',
 			fields: [

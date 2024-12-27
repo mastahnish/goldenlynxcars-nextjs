@@ -2,7 +2,8 @@ import { Button, toast } from '@payloadcms/ui';
 import { useMutation } from '@tanstack/react-query';
 import { ImSpinner9 } from 'react-icons/im';
 
-import { generateRentalContracts as generateRentalContractsAction } from '@/actions/dashboard';
+import { generateRentalContracts as generateRentalContractsAction } from '@/actions/dashboard/rentals';
+import { downloadFile } from '@/utils/html.utils';
 
 type GenerateContractsButtonProps = Readonly<{
 	documentId: string | number;
@@ -11,31 +12,30 @@ type GenerateContractsButtonProps = Readonly<{
 export const GenerateContractsButton = ({
 	documentId,
 }: GenerateContractsButtonProps) => {
-	const {
-		mutateAsync: generateRentalContracts,
-		isPending,
-		isSuccess,
-	} = useMutation({
+	const { mutateAsync: generateRentalContracts, isPending } = useMutation({
 		mutationFn: generateRentalContractsAction,
 	});
 
-	const handleButtonClick = () =>
-		generateRentalContracts(documentId)
-			.then(() => toast.success('Wygenerowano umowy!'))
-			.catch(err => {
-				if (!(err instanceof Error)) return;
+	const handleButtonClick = async () => {
+		try {
+			const { contractId, href } = await generateRentalContracts(documentId);
 
-				toast.error(err.message);
-			});
+			downloadFile({ href, fileName: `${contractId}_umowy.zip` });
+			toast.success('Wygenerowano');
+		} catch (err) {
+			if (!(err instanceof Error)) return;
+
+			toast.error(err.message);
+		}
+	};
 
 	return (
 		<Button
 			iconPosition="left"
 			icon={isPending && <ImSpinner9 className="animate-spin" />}
 			onClick={handleButtonClick}
-			disabled={isSuccess}
 		>
-			{isSuccess ? 'Generated' : 'Generate contracts'}
+			Generate contracts
 		</Button>
 	);
 };

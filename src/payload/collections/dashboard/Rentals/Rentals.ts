@@ -10,6 +10,11 @@ export const Rentals: CollectionConfig = {
 			required: true,
 		},
 		{
+			name: 'additionalDriver',
+			type: 'relationship',
+			relationTo: 'customers',
+		},
+		{
 			name: 'car',
 			type: 'relationship',
 			relationTo: 'car-fleet',
@@ -22,11 +27,21 @@ export const Rentals: CollectionConfig = {
 					name: 'startDate',
 					type: 'date',
 					required: true,
+					admin: {
+						date: {
+							pickerAppearance: 'dayAndTime',
+						},
+					},
 				},
 				{
 					name: 'endDate',
 					type: 'date',
 					required: true,
+					admin: {
+						date: {
+							pickerAppearance: 'dayAndTime',
+						},
+					},
 				},
 			],
 		},

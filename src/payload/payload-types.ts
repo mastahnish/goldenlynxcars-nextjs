@@ -7,1191 +7,1254 @@
  */
 
 export interface Config {
-	auth: {
-		users: UserAuthOperations;
-	};
-	collections: {
-		customers: Customer;
-		rentals: Rental;
-		'contact-request': ContactRequest;
-		media: Media;
-		'car-fleet-brands': CarFleetBrand;
-		'car-fleet-types': CarFleetType;
-		'car-fleet': CarFleet;
-		users: User;
-		'payload-locked-documents': PayloadLockedDocument;
-		'payload-preferences': PayloadPreference;
-		'payload-migrations': PayloadMigration;
-	};
-	collectionsSelect?: {
-		customers: CustomersSelect<false> | CustomersSelect<true>;
-		rentals: RentalsSelect<false> | RentalsSelect<true>;
-		'contact-request': ContactRequestSelect<false> | ContactRequestSelect<true>;
-		media: MediaSelect<false> | MediaSelect<true>;
-		'car-fleet-brands':
-			| CarFleetBrandsSelect<false>
-			| CarFleetBrandsSelect<true>;
-		'car-fleet-types': CarFleetTypesSelect<false> | CarFleetTypesSelect<true>;
-		'car-fleet': CarFleetSelect<false> | CarFleetSelect<true>;
-		users: UsersSelect<false> | UsersSelect<true>;
-		'payload-locked-documents':
-			| PayloadLockedDocumentsSelect<false>
-			| PayloadLockedDocumentsSelect<true>;
-		'payload-preferences':
-			| PayloadPreferencesSelect<false>
-			| PayloadPreferencesSelect<true>;
-		'payload-migrations':
-			| PayloadMigrationsSelect<false>
-			| PayloadMigrationsSelect<true>;
-	};
-	db: {
-		defaultIDType: number;
-	};
-	globals: {
-		'contact-section': ContactSection;
-		hero: Hero;
-		'services-section': ServicesSection;
-		'car-fleet-section': CarFleetSection;
-		'opinion-section': OpinionSection;
-		'realizations-section': RealizationsSection;
-		'faq-section': FAQSection;
-		'about-us-header': AboutUsHeader;
-		'about-us-overview': AboutUsOverview;
-		'about-us-statistics': AboutUsStatistic;
-		'about-us-team': AboutUsTeam;
-		'car-fleet-header': CarFleetHeader;
-		'rental-calculator-header': RentalCalculatorHeader;
-		'shop-header': ShopHeader;
-		'vip-transfer-header': VipTransferHeader;
-		'vip-transfer-content': VipTransferContent;
-		'investor-model-header': InvestorModelHeader;
-		'investor-model-content': InvestorModelContent;
-	};
-	globalsSelect?: {
-		'contact-section': ContactSectionSelect<false> | ContactSectionSelect<true>;
-		hero: HeroSelect<false> | HeroSelect<true>;
-		'services-section':
-			| ServicesSectionSelect<false>
-			| ServicesSectionSelect<true>;
-		'car-fleet-section':
-			| CarFleetSectionSelect<false>
-			| CarFleetSectionSelect<true>;
-		'opinion-section': OpinionSectionSelect<false> | OpinionSectionSelect<true>;
-		'realizations-section':
-			| RealizationsSectionSelect<false>
-			| RealizationsSectionSelect<true>;
-		'faq-section': FaqSectionSelect<false> | FaqSectionSelect<true>;
-		'about-us-header': AboutUsHeaderSelect<false> | AboutUsHeaderSelect<true>;
-		'about-us-overview':
-			| AboutUsOverviewSelect<false>
-			| AboutUsOverviewSelect<true>;
-		'about-us-statistics':
-			| AboutUsStatisticsSelect<false>
-			| AboutUsStatisticsSelect<true>;
-		'about-us-team': AboutUsTeamSelect<false> | AboutUsTeamSelect<true>;
-		'car-fleet-header':
-			| CarFleetHeaderSelect<false>
-			| CarFleetHeaderSelect<true>;
-		'rental-calculator-header':
-			| RentalCalculatorHeaderSelect<false>
-			| RentalCalculatorHeaderSelect<true>;
-		'shop-header': ShopHeaderSelect<false> | ShopHeaderSelect<true>;
-		'vip-transfer-header':
-			| VipTransferHeaderSelect<false>
-			| VipTransferHeaderSelect<true>;
-		'vip-transfer-content':
-			| VipTransferContentSelect<false>
-			| VipTransferContentSelect<true>;
-		'investor-model-header':
-			| InvestorModelHeaderSelect<false>
-			| InvestorModelHeaderSelect<true>;
-		'investor-model-content':
-			| InvestorModelContentSelect<false>
-			| InvestorModelContentSelect<true>;
-	};
-	locale: null;
-	user: User & {
-		collection: 'users';
-	};
-	jobs?: {
-		tasks: unknown;
-		workflows?: unknown;
-	};
+  auth: {
+    users: UserAuthOperations;
+  };
+  collections: {
+    customers: Customer;
+    rentals: Rental;
+    'contract-templates': ContractTemplate;
+    'contact-request': ContactRequest;
+    media: Media;
+    'car-fleet-brands': CarFleetBrand;
+    'car-fleet-types': CarFleetType;
+    'car-fleet': CarFleet;
+    users: User;
+    'payload-locked-documents': PayloadLockedDocument;
+    'payload-preferences': PayloadPreference;
+    'payload-migrations': PayloadMigration;
+  };
+  collectionsSelect?: {
+    customers: CustomersSelect<false> | CustomersSelect<true>;
+    rentals: RentalsSelect<false> | RentalsSelect<true>;
+    'contract-templates': ContractTemplatesSelect<false> | ContractTemplatesSelect<true>;
+    'contact-request': ContactRequestSelect<false> | ContactRequestSelect<true>;
+    media: MediaSelect<false> | MediaSelect<true>;
+    'car-fleet-brands': CarFleetBrandsSelect<false> | CarFleetBrandsSelect<true>;
+    'car-fleet-types': CarFleetTypesSelect<false> | CarFleetTypesSelect<true>;
+    'car-fleet': CarFleetSelect<false> | CarFleetSelect<true>;
+    users: UsersSelect<false> | UsersSelect<true>;
+    'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
+    'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
+    'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
+  };
+  db: {
+    defaultIDType: number;
+  };
+  globals: {
+    'contract-settings': ContractSetting;
+    'contact-section': ContactSection;
+    hero: Hero;
+    'services-section': ServicesSection;
+    'car-fleet-section': CarFleetSection;
+    'opinion-section': OpinionSection;
+    'realizations-section': RealizationsSection;
+    'faq-section': FAQSection;
+    'about-us-header': AboutUsHeader;
+    'about-us-overview': AboutUsOverview;
+    'about-us-statistics': AboutUsStatistic;
+    'about-us-team': AboutUsTeam;
+    'car-fleet-header': CarFleetHeader;
+    'rental-calculator-header': RentalCalculatorHeader;
+    'shop-header': ShopHeader;
+    'vip-transfer-header': VipTransferHeader;
+    'vip-transfer-content': VipTransferContent;
+    'investor-model-header': InvestorModelHeader;
+    'investor-model-content': InvestorModelContent;
+  };
+  globalsSelect?: {
+    'contract-settings': ContractSettingsSelect<false> | ContractSettingsSelect<true>;
+    'contact-section': ContactSectionSelect<false> | ContactSectionSelect<true>;
+    hero: HeroSelect<false> | HeroSelect<true>;
+    'services-section': ServicesSectionSelect<false> | ServicesSectionSelect<true>;
+    'car-fleet-section': CarFleetSectionSelect<false> | CarFleetSectionSelect<true>;
+    'opinion-section': OpinionSectionSelect<false> | OpinionSectionSelect<true>;
+    'realizations-section': RealizationsSectionSelect<false> | RealizationsSectionSelect<true>;
+    'faq-section': FaqSectionSelect<false> | FaqSectionSelect<true>;
+    'about-us-header': AboutUsHeaderSelect<false> | AboutUsHeaderSelect<true>;
+    'about-us-overview': AboutUsOverviewSelect<false> | AboutUsOverviewSelect<true>;
+    'about-us-statistics': AboutUsStatisticsSelect<false> | AboutUsStatisticsSelect<true>;
+    'about-us-team': AboutUsTeamSelect<false> | AboutUsTeamSelect<true>;
+    'car-fleet-header': CarFleetHeaderSelect<false> | CarFleetHeaderSelect<true>;
+    'rental-calculator-header': RentalCalculatorHeaderSelect<false> | RentalCalculatorHeaderSelect<true>;
+    'shop-header': ShopHeaderSelect<false> | ShopHeaderSelect<true>;
+    'vip-transfer-header': VipTransferHeaderSelect<false> | VipTransferHeaderSelect<true>;
+    'vip-transfer-content': VipTransferContentSelect<false> | VipTransferContentSelect<true>;
+    'investor-model-header': InvestorModelHeaderSelect<false> | InvestorModelHeaderSelect<true>;
+    'investor-model-content': InvestorModelContentSelect<false> | InvestorModelContentSelect<true>;
+  };
+  locale: null;
+  user: User & {
+    collection: 'users';
+  };
+  jobs?: {
+    tasks: unknown;
+    workflows?: unknown;
+  };
 }
 export interface UserAuthOperations {
-	forgotPassword: {
-		email: string;
-		password: string;
-	};
-	login: {
-		email: string;
-		password: string;
-	};
-	registerFirstUser: {
-		email: string;
-		password: string;
-	};
-	unlock: {
-		email: string;
-		password: string;
-	};
+  forgotPassword: {
+    email: string;
+    password: string;
+  };
+  login: {
+    email: string;
+    password: string;
+  };
+  registerFirstUser: {
+    email: string;
+    password: string;
+  };
+  unlock: {
+    email: string;
+    password: string;
+  };
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "customers".
  */
 export interface Customer {
-	id: number;
-	email: string;
-	personalData: {
-		email: string;
-		gender: 'Male' | 'Female';
-		fullName?: string | null;
-		phoneNumber?: string | null;
-		address?: string | null;
-		pesel?: string | null;
-		idNumber?: string | null;
-	};
-	drivingLicense?: {
-		number?: string | null;
-		blankNumber?: string | null;
-		issueDate?: string | null;
-		expirationDate?: string | null;
-		issuingAuthority?: string | null;
-	};
-	invoiceDetails?: {
-		companyName?: string | null;
-		NIP?: string | null;
-		address?: string | null;
-	};
-	updatedAt: string;
-	createdAt: string;
+  id: number;
+  email: string;
+  personalData: {
+    email: string;
+    gender: 'Male' | 'Female';
+    fullName?: string | null;
+    phoneNumber?: string | null;
+    address?: string | null;
+    pesel?: string | null;
+    idNumber?: string | null;
+  };
+  drivingLicense?: {
+    seriesAndNumber?: string | null;
+    blankNumber?: string | null;
+    issueDate?: string | null;
+    expirationDate?: string | null;
+    issuingAuthority?: string | null;
+  };
+  invoiceDetails?: {
+    companyName?: string | null;
+    NIP?: string | null;
+    address?: string | null;
+  };
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "rentals".
  */
 export interface Rental {
-	id: number;
-	customer: number | Customer;
-	car: number | CarFleet;
-	startDate: string;
-	endDate: string;
-	rentalPrice: number;
-	depositAmount: number;
-	pickUpAddress: string;
-	returnAddress: string;
-	mileageLimit: number;
-	mileageBefore: number;
-	mileageAfter: number;
-	status: 'Provisional' | 'Offer Sent' | 'Confirmed' | 'Rejected';
-	updatedAt: string;
-	createdAt: string;
+  id: number;
+  customer: number | Customer;
+  additionalDriver?: (number | null) | Customer;
+  car: number | CarFleet;
+  startDate: string;
+  endDate: string;
+  rentalPrice: number;
+  depositAmount: number;
+  pickUpAddress: string;
+  returnAddress: string;
+  mileageLimit: number;
+  mileageBefore: number;
+  mileageAfter: number;
+  status: 'Provisional' | 'Offer Sent' | 'Confirmed' | 'Rejected';
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "car-fleet".
  */
 export interface CarFleet {
-	id: number;
-	image: number | Media;
-	slug: string;
-	name: string;
-	description: string;
-	brand: number | CarFleetBrand;
-	type: number | CarFleetType;
-	deposit: number;
-	additionalMileagePrice: number;
-	details: {
-		hp: number;
-		transmission: 'manual' | 'sequential' | 'automatic';
-		seats: number;
-		fuel: 'gasoline' | 'diesel' | 'lpg' | 'hybrid';
-	};
-	media?: {
-		info?: (number | null) | Media;
-		rentalPrice?: (number | null) | Media;
-		gallery?:
-			| {
-					image?: (number | null) | Media;
-					id?: string | null;
-			  }[]
-			| null;
-	};
-	prices: {
-		d_1_2: number;
-		d_3_6: number;
-		d_7_13: number;
-		d_14_20: number;
-		d_21_30: number;
-		m_1: number;
-		m_3: number;
-	};
-	mileageLimits: {
-		d_1_2: number;
-		d_3_6: number;
-		d_7_13: number;
-		d_14_20: number;
-		d_21_30: number;
-		m_1: number;
-		m_3: number;
-	};
-	updatedAt: string;
-	createdAt: string;
+  id: number;
+  image: number | Media;
+  slug: string;
+  name: string;
+  description: string;
+  brand: number | CarFleetBrand;
+  type: number | CarFleetType;
+  deposit: number;
+  additionalMileagePrice: number;
+  contract: {
+    registrationNumber?: string | null;
+    registrationCertificateNumber?: string | null;
+    VIN?: string | null;
+    oc?: string | null;
+    keysAmount: number;
+    tires?: string | null;
+    accessories?: string | null;
+  };
+  details: {
+    hp: number;
+    transmission: 'manual' | 'sequential' | 'automatic';
+    seats: number;
+    fuel: 'gasoline' | 'diesel' | 'lpg' | 'hybrid';
+  };
+  media?: {
+    info?: (number | null) | Media;
+    rentalPrice?: (number | null) | Media;
+    gallery?:
+      | {
+          image?: (number | null) | Media;
+          id?: string | null;
+        }[]
+      | null;
+  };
+  prices: {
+    d_1_2: number;
+    d_3_6: number;
+    d_7_13: number;
+    d_14_20: number;
+    d_21_30: number;
+    m_1: number;
+    m_3: number;
+  };
+  mileageLimits: {
+    d_1_2: number;
+    d_3_6: number;
+    d_7_13: number;
+    d_14_20: number;
+    d_21_30: number;
+    m_1: number;
+    m_3: number;
+  };
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "media".
  */
 export interface Media {
-	id: number;
-	alt: string;
-	updatedAt: string;
-	createdAt: string;
-	url?: string | null;
-	thumbnailURL?: string | null;
-	filename?: string | null;
-	mimeType?: string | null;
-	filesize?: number | null;
-	width?: number | null;
-	height?: number | null;
-	focalX?: number | null;
-	focalY?: number | null;
+  id: number;
+  alt: string;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  thumbnailURL?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+  focalX?: number | null;
+  focalY?: number | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "car-fleet-brands".
  */
 export interface CarFleetBrand {
-	id: number;
-	brand: string;
+  id: number;
+  brand: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "car-fleet-types".
  */
 export interface CarFleetType {
-	id: number;
-	type: string;
+  id: number;
+  type: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "contract-templates".
+ */
+export interface ContractTemplate {
+  id: number;
+  name: string;
+  template: string;
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "contact-request".
  */
 export interface ContactRequest {
-	id: number;
-	email: string;
-	firstName: string;
-	phoneNumber: string;
-	car: number | CarFleet;
-	date: string;
-	updatedAt: string;
-	createdAt: string;
+  id: number;
+  email: string;
+  firstName: string;
+  phoneNumber: string;
+  car: number | CarFleet;
+  date: string;
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "users".
  */
 export interface User {
-	id: number;
-	updatedAt: string;
-	createdAt: string;
-	email: string;
-	resetPasswordToken?: string | null;
-	resetPasswordExpiration?: string | null;
-	salt?: string | null;
-	hash?: string | null;
-	loginAttempts?: number | null;
-	lockUntil?: string | null;
-	password?: string | null;
+  id: number;
+  updatedAt: string;
+  createdAt: string;
+  email: string;
+  resetPasswordToken?: string | null;
+  resetPasswordExpiration?: string | null;
+  salt?: string | null;
+  hash?: string | null;
+  loginAttempts?: number | null;
+  lockUntil?: string | null;
+  password?: string | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents".
  */
 export interface PayloadLockedDocument {
-	id: number;
-	document?:
-		| ({
-				relationTo: 'customers';
-				value: number | Customer;
-		  } | null)
-		| ({
-				relationTo: 'rentals';
-				value: number | Rental;
-		  } | null)
-		| ({
-				relationTo: 'contact-request';
-				value: number | ContactRequest;
-		  } | null)
-		| ({
-				relationTo: 'media';
-				value: number | Media;
-		  } | null)
-		| ({
-				relationTo: 'car-fleet-brands';
-				value: number | CarFleetBrand;
-		  } | null)
-		| ({
-				relationTo: 'car-fleet-types';
-				value: number | CarFleetType;
-		  } | null)
-		| ({
-				relationTo: 'car-fleet';
-				value: number | CarFleet;
-		  } | null)
-		| ({
-				relationTo: 'users';
-				value: number | User;
-		  } | null);
-	globalSlug?: string | null;
-	user: {
-		relationTo: 'users';
-		value: number | User;
-	};
-	updatedAt: string;
-	createdAt: string;
+  id: number;
+  document?:
+    | ({
+        relationTo: 'customers';
+        value: number | Customer;
+      } | null)
+    | ({
+        relationTo: 'rentals';
+        value: number | Rental;
+      } | null)
+    | ({
+        relationTo: 'contract-templates';
+        value: number | ContractTemplate;
+      } | null)
+    | ({
+        relationTo: 'contact-request';
+        value: number | ContactRequest;
+      } | null)
+    | ({
+        relationTo: 'media';
+        value: number | Media;
+      } | null)
+    | ({
+        relationTo: 'car-fleet-brands';
+        value: number | CarFleetBrand;
+      } | null)
+    | ({
+        relationTo: 'car-fleet-types';
+        value: number | CarFleetType;
+      } | null)
+    | ({
+        relationTo: 'car-fleet';
+        value: number | CarFleet;
+      } | null)
+    | ({
+        relationTo: 'users';
+        value: number | User;
+      } | null);
+  globalSlug?: string | null;
+  user: {
+    relationTo: 'users';
+    value: number | User;
+  };
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-preferences".
  */
 export interface PayloadPreference {
-	id: number;
-	user: {
-		relationTo: 'users';
-		value: number | User;
-	};
-	key?: string | null;
-	value?:
-		| {
-				[k: string]: unknown;
-		  }
-		| unknown[]
-		| string
-		| number
-		| boolean
-		| null;
-	updatedAt: string;
-	createdAt: string;
+  id: number;
+  user: {
+    relationTo: 'users';
+    value: number | User;
+  };
+  key?: string | null;
+  value?:
+    | {
+        [k: string]: unknown;
+      }
+    | unknown[]
+    | string
+    | number
+    | boolean
+    | null;
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-migrations".
  */
 export interface PayloadMigration {
-	id: number;
-	name?: string | null;
-	batch?: number | null;
-	updatedAt: string;
-	createdAt: string;
+  id: number;
+  name?: string | null;
+  batch?: number | null;
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "customers_select".
  */
 export interface CustomersSelect<T extends boolean = true> {
-	email?: T;
-	personalData?:
-		| T
-		| {
-				email?: T;
-				gender?: T;
-				fullName?: T;
-				phoneNumber?: T;
-				address?: T;
-				pesel?: T;
-				idNumber?: T;
-		  };
-	drivingLicense?:
-		| T
-		| {
-				number?: T;
-				blankNumber?: T;
-				issueDate?: T;
-				expirationDate?: T;
-				issuingAuthority?: T;
-		  };
-	invoiceDetails?:
-		| T
-		| {
-				companyName?: T;
-				NIP?: T;
-				address?: T;
-		  };
-	updatedAt?: T;
-	createdAt?: T;
+  email?: T;
+  personalData?:
+    | T
+    | {
+        email?: T;
+        gender?: T;
+        fullName?: T;
+        phoneNumber?: T;
+        address?: T;
+        pesel?: T;
+        idNumber?: T;
+      };
+  drivingLicense?:
+    | T
+    | {
+        seriesAndNumber?: T;
+        blankNumber?: T;
+        issueDate?: T;
+        expirationDate?: T;
+        issuingAuthority?: T;
+      };
+  invoiceDetails?:
+    | T
+    | {
+        companyName?: T;
+        NIP?: T;
+        address?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "rentals_select".
  */
 export interface RentalsSelect<T extends boolean = true> {
-	customer?: T;
-	car?: T;
-	startDate?: T;
-	endDate?: T;
-	rentalPrice?: T;
-	depositAmount?: T;
-	pickUpAddress?: T;
-	returnAddress?: T;
-	mileageLimit?: T;
-	mileageBefore?: T;
-	mileageAfter?: T;
-	status?: T;
-	statusAction?: T;
-	state?: T;
-	updatedAt?: T;
-	createdAt?: T;
+  customer?: T;
+  additionalDriver?: T;
+  car?: T;
+  startDate?: T;
+  endDate?: T;
+  rentalPrice?: T;
+  depositAmount?: T;
+  pickUpAddress?: T;
+  returnAddress?: T;
+  mileageLimit?: T;
+  mileageBefore?: T;
+  mileageAfter?: T;
+  status?: T;
+  statusAction?: T;
+  state?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "contract-templates_select".
+ */
+export interface ContractTemplatesSelect<T extends boolean = true> {
+  generate?: T;
+  name?: T;
+  template?: T;
+  updatedAt?: T;
+  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "contact-request_select".
  */
 export interface ContactRequestSelect<T extends boolean = true> {
-	email?: T;
-	firstName?: T;
-	phoneNumber?: T;
-	car?: T;
-	date?: T;
-	updatedAt?: T;
-	createdAt?: T;
+  email?: T;
+  firstName?: T;
+  phoneNumber?: T;
+  car?: T;
+  date?: T;
+  updatedAt?: T;
+  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "media_select".
  */
 export interface MediaSelect<T extends boolean = true> {
-	alt?: T;
-	updatedAt?: T;
-	createdAt?: T;
-	url?: T;
-	thumbnailURL?: T;
-	filename?: T;
-	mimeType?: T;
-	filesize?: T;
-	width?: T;
-	height?: T;
-	focalX?: T;
-	focalY?: T;
+  alt?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  url?: T;
+  thumbnailURL?: T;
+  filename?: T;
+  mimeType?: T;
+  filesize?: T;
+  width?: T;
+  height?: T;
+  focalX?: T;
+  focalY?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "car-fleet-brands_select".
  */
 export interface CarFleetBrandsSelect<T extends boolean = true> {
-	brand?: T;
+  brand?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "car-fleet-types_select".
  */
 export interface CarFleetTypesSelect<T extends boolean = true> {
-	type?: T;
+  type?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "car-fleet_select".
  */
 export interface CarFleetSelect<T extends boolean = true> {
-	image?: T;
-	slug?: T;
-	name?: T;
-	description?: T;
-	brand?: T;
-	type?: T;
-	deposit?: T;
-	additionalMileagePrice?: T;
-	details?:
-		| T
-		| {
-				hp?: T;
-				transmission?: T;
-				seats?: T;
-				fuel?: T;
-		  };
-	media?:
-		| T
-		| {
-				info?: T;
-				rentalPrice?: T;
-				gallery?:
-					| T
-					| {
-							image?: T;
-							id?: T;
-					  };
-		  };
-	prices?:
-		| T
-		| {
-				d_1_2?: T;
-				d_3_6?: T;
-				d_7_13?: T;
-				d_14_20?: T;
-				d_21_30?: T;
-				m_1?: T;
-				m_3?: T;
-		  };
-	mileageLimits?:
-		| T
-		| {
-				d_1_2?: T;
-				d_3_6?: T;
-				d_7_13?: T;
-				d_14_20?: T;
-				d_21_30?: T;
-				m_1?: T;
-				m_3?: T;
-		  };
-	updatedAt?: T;
-	createdAt?: T;
+  image?: T;
+  slug?: T;
+  name?: T;
+  description?: T;
+  brand?: T;
+  type?: T;
+  deposit?: T;
+  additionalMileagePrice?: T;
+  contract?:
+    | T
+    | {
+        registrationNumber?: T;
+        registrationCertificateNumber?: T;
+        VIN?: T;
+        oc?: T;
+        keysAmount?: T;
+        tires?: T;
+        accessories?: T;
+      };
+  details?:
+    | T
+    | {
+        hp?: T;
+        transmission?: T;
+        seats?: T;
+        fuel?: T;
+      };
+  media?:
+    | T
+    | {
+        info?: T;
+        rentalPrice?: T;
+        gallery?:
+          | T
+          | {
+              image?: T;
+              id?: T;
+            };
+      };
+  prices?:
+    | T
+    | {
+        d_1_2?: T;
+        d_3_6?: T;
+        d_7_13?: T;
+        d_14_20?: T;
+        d_21_30?: T;
+        m_1?: T;
+        m_3?: T;
+      };
+  mileageLimits?:
+    | T
+    | {
+        d_1_2?: T;
+        d_3_6?: T;
+        d_7_13?: T;
+        d_14_20?: T;
+        d_21_30?: T;
+        m_1?: T;
+        m_3?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "users_select".
  */
 export interface UsersSelect<T extends boolean = true> {
-	updatedAt?: T;
-	createdAt?: T;
-	email?: T;
-	resetPasswordToken?: T;
-	resetPasswordExpiration?: T;
-	salt?: T;
-	hash?: T;
-	loginAttempts?: T;
-	lockUntil?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  email?: T;
+  resetPasswordToken?: T;
+  resetPasswordExpiration?: T;
+  salt?: T;
+  hash?: T;
+  loginAttempts?: T;
+  lockUntil?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents_select".
  */
 export interface PayloadLockedDocumentsSelect<T extends boolean = true> {
-	document?: T;
-	globalSlug?: T;
-	user?: T;
-	updatedAt?: T;
-	createdAt?: T;
+  document?: T;
+  globalSlug?: T;
+  user?: T;
+  updatedAt?: T;
+  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-preferences_select".
  */
 export interface PayloadPreferencesSelect<T extends boolean = true> {
-	user?: T;
-	key?: T;
-	value?: T;
-	updatedAt?: T;
-	createdAt?: T;
+  user?: T;
+  key?: T;
+  value?: T;
+  updatedAt?: T;
+  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-migrations_select".
  */
 export interface PayloadMigrationsSelect<T extends boolean = true> {
-	name?: T;
-	batch?: T;
-	updatedAt?: T;
-	createdAt?: T;
+  name?: T;
+  batch?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "contract-settings".
+ */
+export interface ContractSetting {
+  id: number;
+  vehiclePickUp: number | ContractTemplate;
+  vehicleRelease: number | ContractTemplate;
+  vehicleRental: number | ContractTemplate;
+  vehicleRentalAuthorized: number | ContractTemplate;
+  layout: {
+    header: string;
+    footer: string;
+  };
+  updatedAt?: string | null;
+  createdAt?: string | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "contact-section".
  */
 export interface ContactSection {
-	id: number;
-	title: string;
-	label?: string | null;
-	image: number | Media;
-	updatedAt?: string | null;
-	createdAt?: string | null;
+  id: number;
+  title: string;
+  label?: string | null;
+  image: number | Media;
+  updatedAt?: string | null;
+  createdAt?: string | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "hero".
  */
 export interface Hero {
-	id: number;
-	title: {
-		firstPart: string;
-		secondPart: string;
-	};
-	description: string;
-	updatedAt?: string | null;
-	createdAt?: string | null;
+  id: number;
+  title: {
+    firstPart: string;
+    secondPart: string;
+  };
+  description: string;
+  updatedAt?: string | null;
+  createdAt?: string | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "services-section".
  */
 export interface ServicesSection {
-	id: number;
-	title: string;
-	label?: string | null;
-	reelSection: {
-		title: string;
-		label?: string | null;
-		video: number | Media;
-		isHidden: boolean;
-	};
-	services: {
-		title: string;
-		content: string;
-		isNew: boolean;
-		id?: string | null;
-	}[];
-	updatedAt?: string | null;
-	createdAt?: string | null;
+  id: number;
+  title: string;
+  label?: string | null;
+  reelSection: {
+    title: string;
+    label?: string | null;
+    video: number | Media;
+    isHidden: boolean;
+  };
+  services: {
+    title: string;
+    content: string;
+    isNew: boolean;
+    id?: string | null;
+  }[];
+  updatedAt?: string | null;
+  createdAt?: string | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "car-fleet-section".
  */
 export interface CarFleetSection {
-	id: number;
-	title: string;
-	label?: string | null;
-	cars: (number | CarFleet)[];
-	updatedAt?: string | null;
-	createdAt?: string | null;
+  id: number;
+  title: string;
+  label?: string | null;
+  cars: (number | CarFleet)[];
+  updatedAt?: string | null;
+  createdAt?: string | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "opinion-section".
  */
 export interface OpinionSection {
-	id: number;
-	title: string;
-	label?: string | null;
-	opinions: {
-		image: number | Media;
-		fullName: string;
-		content: string;
-		id?: string | null;
-	}[];
-	updatedAt?: string | null;
-	createdAt?: string | null;
+  id: number;
+  title: string;
+  label?: string | null;
+  opinions: {
+    image: number | Media;
+    fullName: string;
+    content: string;
+    id?: string | null;
+  }[];
+  updatedAt?: string | null;
+  createdAt?: string | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "realizations-section".
  */
 export interface RealizationsSection {
-	id: number;
-	title: string;
-	label?: string | null;
-	realizations: {
-		video: number | Media;
-		title: string;
-		description: string;
-		id?: string | null;
-	}[];
-	updatedAt?: string | null;
-	createdAt?: string | null;
+  id: number;
+  title: string;
+  label?: string | null;
+  realizations: {
+    video: number | Media;
+    title: string;
+    description: string;
+    id?: string | null;
+  }[];
+  updatedAt?: string | null;
+  createdAt?: string | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "faq-section".
  */
 export interface FAQSection {
-	id: number;
-	title: string;
-	label?: string | null;
-	images: {
-		image: number | Media;
-		id?: string | null;
-	}[];
-	faqs: {
-		question: string;
-		answer: string;
-		id?: string | null;
-	}[];
-	updatedAt?: string | null;
-	createdAt?: string | null;
+  id: number;
+  title: string;
+  label?: string | null;
+  images: {
+    image: number | Media;
+    id?: string | null;
+  }[];
+  faqs: {
+    question: string;
+    answer: string;
+    id?: string | null;
+  }[];
+  updatedAt?: string | null;
+  createdAt?: string | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "about-us-header".
  */
 export interface AboutUsHeader {
-	id: number;
-	title: string;
-	label?: string | null;
-	content: string;
-	subContent?: string | null;
-	updatedAt?: string | null;
-	createdAt?: string | null;
+  id: number;
+  title: string;
+  label?: string | null;
+  content: string;
+  subContent?: string | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "about-us-overview".
  */
 export interface AboutUsOverview {
-	id: number;
-	video: number | Media;
-	title: string;
-	subTitle: string;
-	content: string;
-	updatedAt?: string | null;
-	createdAt?: string | null;
+  id: number;
+  video: number | Media;
+  title: string;
+  subTitle: string;
+  content: string;
+  updatedAt?: string | null;
+  createdAt?: string | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "about-us-statistics".
  */
 export interface AboutUsStatistic {
-	id: number;
-	title: string;
-	label?: string | null;
-	statistics: {
-		clients: number;
-		kilometers: number;
-	};
-	updatedAt?: string | null;
-	createdAt?: string | null;
+  id: number;
+  title: string;
+  label?: string | null;
+  statistics: {
+    clients: number;
+    kilometers: number;
+  };
+  updatedAt?: string | null;
+  createdAt?: string | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "about-us-team".
  */
 export interface AboutUsTeam {
-	id: number;
-	title: string;
-	label?: string | null;
-	team: {
-		image: number | Media;
-		firstName: string;
-		description: string;
-		id?: string | null;
-	}[];
-	updatedAt?: string | null;
-	createdAt?: string | null;
+  id: number;
+  title: string;
+  label?: string | null;
+  team: {
+    image: number | Media;
+    firstName: string;
+    description: string;
+    id?: string | null;
+  }[];
+  updatedAt?: string | null;
+  createdAt?: string | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "car-fleet-header".
  */
 export interface CarFleetHeader {
-	id: number;
-	title: string;
-	label?: string | null;
-	content: string;
-	subContent?: string | null;
-	updatedAt?: string | null;
-	createdAt?: string | null;
+  id: number;
+  title: string;
+  label?: string | null;
+  content: string;
+  subContent?: string | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "rental-calculator-header".
  */
 export interface RentalCalculatorHeader {
-	id: number;
-	title: string;
-	label?: string | null;
-	content: string;
-	subContent?: string | null;
-	updatedAt?: string | null;
-	createdAt?: string | null;
+  id: number;
+  title: string;
+  label?: string | null;
+  content: string;
+  subContent?: string | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "shop-header".
  */
 export interface ShopHeader {
-	id: number;
-	title: string;
-	label?: string | null;
-	content: string;
-	subContent?: string | null;
-	updatedAt?: string | null;
-	createdAt?: string | null;
+  id: number;
+  title: string;
+  label?: string | null;
+  content: string;
+  subContent?: string | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "vip-transfer-header".
  */
 export interface VipTransferHeader {
-	id: number;
-	title: string;
-	label?: string | null;
-	content: string;
-	subContent?: string | null;
-	updatedAt?: string | null;
-	createdAt?: string | null;
+  id: number;
+  title: string;
+  label?: string | null;
+  content: string;
+  subContent?: string | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "vip-transfer-content".
  */
 export interface VipTransferContent {
-	id: number;
-	serviceDescription: {
-		media: number | Media;
-		title: string;
-		content: string;
-	};
-	whyWorth: {
-		title: string;
-		description: string;
-		needments: {
-			content: string;
-			id?: string | null;
-		}[];
-	};
-	process: {
-		media: number | Media;
-		title: string;
-		content: string;
-	};
-	updatedAt?: string | null;
-	createdAt?: string | null;
+  id: number;
+  serviceDescription: {
+    media: number | Media;
+    title: string;
+    content: string;
+  };
+  whyWorth: {
+    title: string;
+    description: string;
+    needments: {
+      content: string;
+      id?: string | null;
+    }[];
+  };
+  process: {
+    media: number | Media;
+    title: string;
+    content: string;
+  };
+  updatedAt?: string | null;
+  createdAt?: string | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "investor-model-header".
  */
 export interface InvestorModelHeader {
-	id: number;
-	title: string;
-	label?: string | null;
-	content: string;
-	subContent?: string | null;
-	updatedAt?: string | null;
-	createdAt?: string | null;
+  id: number;
+  title: string;
+  label?: string | null;
+  content: string;
+  subContent?: string | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "investor-model-content".
  */
 export interface InvestorModelContent {
-	id: number;
-	media: number | Media;
-	description: string;
-	steps: {
-		title: string;
-		content: string;
-		id?: string | null;
-	}[];
-	updatedAt?: string | null;
-	createdAt?: string | null;
+  id: number;
+  media: number | Media;
+  description: string;
+  steps: {
+    title: string;
+    content: string;
+    id?: string | null;
+  }[];
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "contract-settings_select".
+ */
+export interface ContractSettingsSelect<T extends boolean = true> {
+  vehiclePickUp?: T;
+  generateVehiclePickUp?: T;
+  vehicleRelease?: T;
+  generateVehicleRelease?: T;
+  vehicleRental?: T;
+  generateVehicleRental?: T;
+  vehicleRentalAuthorized?: T;
+  generateVehicleRentalAuthorized?: T;
+  layout?:
+    | T
+    | {
+        header?: T;
+        footer?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "contact-section_select".
  */
 export interface ContactSectionSelect<T extends boolean = true> {
-	title?: T;
-	label?: T;
-	image?: T;
-	updatedAt?: T;
-	createdAt?: T;
-	globalType?: T;
+  title?: T;
+  label?: T;
+  image?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "hero_select".
  */
 export interface HeroSelect<T extends boolean = true> {
-	title?:
-		| T
-		| {
-				firstPart?: T;
-				secondPart?: T;
-		  };
-	description?: T;
-	updatedAt?: T;
-	createdAt?: T;
-	globalType?: T;
+  title?:
+    | T
+    | {
+        firstPart?: T;
+        secondPart?: T;
+      };
+  description?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "services-section_select".
  */
 export interface ServicesSectionSelect<T extends boolean = true> {
-	title?: T;
-	label?: T;
-	reelSection?:
-		| T
-		| {
-				title?: T;
-				label?: T;
-				video?: T;
-				isHidden?: T;
-		  };
-	services?:
-		| T
-		| {
-				title?: T;
-				content?: T;
-				isNew?: T;
-				id?: T;
-		  };
-	updatedAt?: T;
-	createdAt?: T;
-	globalType?: T;
+  title?: T;
+  label?: T;
+  reelSection?:
+    | T
+    | {
+        title?: T;
+        label?: T;
+        video?: T;
+        isHidden?: T;
+      };
+  services?:
+    | T
+    | {
+        title?: T;
+        content?: T;
+        isNew?: T;
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "car-fleet-section_select".
  */
 export interface CarFleetSectionSelect<T extends boolean = true> {
-	title?: T;
-	label?: T;
-	cars?: T;
-	updatedAt?: T;
-	createdAt?: T;
-	globalType?: T;
+  title?: T;
+  label?: T;
+  cars?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "opinion-section_select".
  */
 export interface OpinionSectionSelect<T extends boolean = true> {
-	title?: T;
-	label?: T;
-	opinions?:
-		| T
-		| {
-				image?: T;
-				fullName?: T;
-				content?: T;
-				id?: T;
-		  };
-	updatedAt?: T;
-	createdAt?: T;
-	globalType?: T;
+  title?: T;
+  label?: T;
+  opinions?:
+    | T
+    | {
+        image?: T;
+        fullName?: T;
+        content?: T;
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "realizations-section_select".
  */
 export interface RealizationsSectionSelect<T extends boolean = true> {
-	title?: T;
-	label?: T;
-	realizations?:
-		| T
-		| {
-				video?: T;
-				title?: T;
-				description?: T;
-				id?: T;
-		  };
-	updatedAt?: T;
-	createdAt?: T;
-	globalType?: T;
+  title?: T;
+  label?: T;
+  realizations?:
+    | T
+    | {
+        video?: T;
+        title?: T;
+        description?: T;
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "faq-section_select".
  */
 export interface FaqSectionSelect<T extends boolean = true> {
-	title?: T;
-	label?: T;
-	images?:
-		| T
-		| {
-				image?: T;
-				id?: T;
-		  };
-	faqs?:
-		| T
-		| {
-				question?: T;
-				answer?: T;
-				id?: T;
-		  };
-	updatedAt?: T;
-	createdAt?: T;
-	globalType?: T;
+  title?: T;
+  label?: T;
+  images?:
+    | T
+    | {
+        image?: T;
+        id?: T;
+      };
+  faqs?:
+    | T
+    | {
+        question?: T;
+        answer?: T;
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "about-us-header_select".
  */
 export interface AboutUsHeaderSelect<T extends boolean = true> {
-	title?: T;
-	label?: T;
-	content?: T;
-	subContent?: T;
-	updatedAt?: T;
-	createdAt?: T;
-	globalType?: T;
+  title?: T;
+  label?: T;
+  content?: T;
+  subContent?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "about-us-overview_select".
  */
 export interface AboutUsOverviewSelect<T extends boolean = true> {
-	video?: T;
-	title?: T;
-	subTitle?: T;
-	content?: T;
-	updatedAt?: T;
-	createdAt?: T;
-	globalType?: T;
+  video?: T;
+  title?: T;
+  subTitle?: T;
+  content?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "about-us-statistics_select".
  */
 export interface AboutUsStatisticsSelect<T extends boolean = true> {
-	title?: T;
-	label?: T;
-	statistics?:
-		| T
-		| {
-				clients?: T;
-				kilometers?: T;
-		  };
-	updatedAt?: T;
-	createdAt?: T;
-	globalType?: T;
+  title?: T;
+  label?: T;
+  statistics?:
+    | T
+    | {
+        clients?: T;
+        kilometers?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "about-us-team_select".
  */
 export interface AboutUsTeamSelect<T extends boolean = true> {
-	title?: T;
-	label?: T;
-	team?:
-		| T
-		| {
-				image?: T;
-				firstName?: T;
-				description?: T;
-				id?: T;
-		  };
-	updatedAt?: T;
-	createdAt?: T;
-	globalType?: T;
+  title?: T;
+  label?: T;
+  team?:
+    | T
+    | {
+        image?: T;
+        firstName?: T;
+        description?: T;
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "car-fleet-header_select".
  */
 export interface CarFleetHeaderSelect<T extends boolean = true> {
-	title?: T;
-	label?: T;
-	content?: T;
-	subContent?: T;
-	updatedAt?: T;
-	createdAt?: T;
-	globalType?: T;
+  title?: T;
+  label?: T;
+  content?: T;
+  subContent?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "rental-calculator-header_select".
  */
 export interface RentalCalculatorHeaderSelect<T extends boolean = true> {
-	title?: T;
-	label?: T;
-	content?: T;
-	subContent?: T;
-	updatedAt?: T;
-	createdAt?: T;
-	globalType?: T;
+  title?: T;
+  label?: T;
+  content?: T;
+  subContent?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "shop-header_select".
  */
 export interface ShopHeaderSelect<T extends boolean = true> {
-	title?: T;
-	label?: T;
-	content?: T;
-	subContent?: T;
-	updatedAt?: T;
-	createdAt?: T;
-	globalType?: T;
+  title?: T;
+  label?: T;
+  content?: T;
+  subContent?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "vip-transfer-header_select".
  */
 export interface VipTransferHeaderSelect<T extends boolean = true> {
-	title?: T;
-	label?: T;
-	content?: T;
-	subContent?: T;
-	updatedAt?: T;
-	createdAt?: T;
-	globalType?: T;
+  title?: T;
+  label?: T;
+  content?: T;
+  subContent?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "vip-transfer-content_select".
  */
 export interface VipTransferContentSelect<T extends boolean = true> {
-	serviceDescription?:
-		| T
-		| {
-				media?: T;
-				title?: T;
-				content?: T;
-		  };
-	whyWorth?:
-		| T
-		| {
-				title?: T;
-				description?: T;
-				needments?:
-					| T
-					| {
-							content?: T;
-							id?: T;
-					  };
-		  };
-	process?:
-		| T
-		| {
-				media?: T;
-				title?: T;
-				content?: T;
-		  };
-	updatedAt?: T;
-	createdAt?: T;
-	globalType?: T;
+  serviceDescription?:
+    | T
+    | {
+        media?: T;
+        title?: T;
+        content?: T;
+      };
+  whyWorth?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        needments?:
+          | T
+          | {
+              content?: T;
+              id?: T;
+            };
+      };
+  process?:
+    | T
+    | {
+        media?: T;
+        title?: T;
+        content?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "investor-model-header_select".
  */
 export interface InvestorModelHeaderSelect<T extends boolean = true> {
-	title?: T;
-	label?: T;
-	content?: T;
-	subContent?: T;
-	updatedAt?: T;
-	createdAt?: T;
-	globalType?: T;
+  title?: T;
+  label?: T;
+  content?: T;
+  subContent?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "investor-model-content_select".
  */
 export interface InvestorModelContentSelect<T extends boolean = true> {
-	media?: T;
-	description?: T;
-	steps?:
-		| T
-		| {
-				title?: T;
-				content?: T;
-				id?: T;
-		  };
-	updatedAt?: T;
-	createdAt?: T;
-	globalType?: T;
+  media?: T;
+  description?: T;
+  steps?:
+    | T
+    | {
+        title?: T;
+        content?: T;
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "auth".
  */
 export interface Auth {
-	[k: string]: unknown;
+  [k: string]: unknown;
 }
 
+
 declare module 'payload' {
-	export interface GeneratedTypes extends Config {}
+  export interface GeneratedTypes extends Config {}
 }

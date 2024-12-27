@@ -2,7 +2,7 @@ import { Button, toast } from '@payloadcms/ui';
 import { useMutation } from '@tanstack/react-query';
 import { ImSpinner9 } from 'react-icons/im';
 
-import { sendRentalOffer as sendRentalOfferAction } from '@/actions/dashboard';
+import { sendRentalOffer as sendRentalOfferAction } from '@/actions/dashboard/rentals';
 
 type SendOfferButtonProps = Readonly<{
 	documentId: string | number;

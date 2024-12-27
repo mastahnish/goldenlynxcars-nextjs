@@ -59,7 +59,7 @@ export const Customers: CollectionConfig = {
 					name: 'drivingLicense',
 					fields: [
 						{
-							name: 'number',
+							name: 'seriesAndNumber',
 							type: 'text',
 						},
 						{
