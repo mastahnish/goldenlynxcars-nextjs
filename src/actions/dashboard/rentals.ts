@@ -15,7 +15,7 @@ import { numberToWords } from '@/utils/number-to-words';
 const customerSchema = z.object({
 	id: z.number(),
 	personalData: z.object({
-		email: z.string().email().min(1),
+		email: z.string().min(1),
 		gender: z.union([z.literal('Male'), z.literal('Female')]),
 		fullName: z.string().min(1),
 		phoneNumber: z.string().min(1),

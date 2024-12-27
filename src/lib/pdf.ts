@@ -1,14 +1,10 @@
-import chromium from '@sparticuz/chromium-min';
-
-import { env } from './env';
-
 interface GeneratePDFParams {
 	html: string;
 	templates?: { header?: string; footer?: string };
 }
 
 const createBrowser = async () => {
-	if (env.NODE_ENV === 'production') {
+	/* if (env.NODE_ENV === 'production') {
 		const puppeteer = await import('puppeteer-core');
 
 		return puppeteer.launch({
@@ -17,7 +13,7 @@ const createBrowser = async () => {
 			executablePath: await chromium.executablePath(env.CHEROMIUM_URL),
 			headless: chromium.headless,
 		});
-	}
+	} */
 
 	const puppeteer = await import('puppeteer');
 
