@@ -9,7 +9,7 @@ import { sendZip } from '../utils/file.utils';
 
 import { injectHTMLValues } from '@/actions/utils/html.utils';
 import { sendMail } from '@/lib/mailer';
-import { generatePDF } from '@/lib/pdf';
+import { generateMultiplePDFs } from '@/lib/pdf';
 import { numberToWords } from '@/utils/number-to-words';
 
 const customerSchema = z.object({
@@ -277,20 +277,22 @@ export const generateRentalContracts = async (id: string | number) => {
 			additionalDriverData.drivingLicense.issuingAuthority;
 	}
 
-	const files = await Promise.all(
-		templates.map(async ({ name, template }) => {
-			const html = injectHTMLValues({
-				html: template,
-				values,
-			});
-			const buffer = await generatePDF({
-				html,
-				templates: { ...layout },
-			});
+	const data = templates.map(({ template }) => {
+		const html = injectHTMLValues({
+			html: template,
+			values,
+		});
 
-			return { name: `${contractId}_${name}.pdf`, buffer };
-		}),
-	);
+		return {
+			html,
+			templates: { ...layout },
+		};
+	});
+	const buffers = await generateMultiplePDFs(data);
+	const files = templates.map(({ name }, i) => ({
+		name: `${contractId}_${name}.pdf`,
+		buffer: buffers[i],
+	}));
 
 	return { contractId, href: sendZip(files) };
 };

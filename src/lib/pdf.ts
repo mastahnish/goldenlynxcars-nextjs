@@ -24,24 +24,36 @@ const createBrowser = async () => {
 	return puppeteer.launch();
 };
 
-export const generatePDF = async ({ html, templates }: GeneratePDFParams) => {
+export const generateMultiplePDFs = async (data: GeneratePDFParams[]) => {
 	const browser = await createBrowser();
-	const page = await browser.newPage();
+	const buffers: Buffer[] = [];
 
-	await page.setContent(html, {
-		waitUntil: 'domcontentloaded',
-	});
-	await page.emulateMediaType('screen');
+	for await (const { html, templates } of data) {
+		const page = await browser.newPage();
 
-	const data = await page.pdf({
-		format: 'A4',
-		displayHeaderFooter: !!templates,
-		headerTemplate: templates?.header,
-		footerTemplate: templates?.footer,
-	});
+		await page.setContent(html, {
+			waitUntil: 'domcontentloaded',
+		});
+		await page.emulateMediaType('screen');
 
-	await page.close();
+		const data = await page.pdf({
+			format: 'A4',
+			displayHeaderFooter: !!templates,
+			headerTemplate: templates?.header,
+			footerTemplate: templates?.footer,
+		});
+
+		await page.close();
+		buffers.push(Buffer.from(data));
+	}
+
 	await browser.close();
 
-	return Buffer.from(data);
+	return buffers;
+};
+
+export const generatePDF = async (data: GeneratePDFParams) => {
+	const buffers = await generateMultiplePDFs([data]);
+
+	return buffers[0];
 };
