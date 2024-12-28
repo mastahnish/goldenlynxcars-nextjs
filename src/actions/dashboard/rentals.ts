@@ -228,9 +228,9 @@ export const generateRentalContracts = async (id: string | number) => {
 		),
 		drivingLicenseIssuingAuthority:
 			customerData.drivingLicense.issuingAuthority,
-		vehicleName: `${car.brand.brand} ${car.name}`,
+		vehicleName: car.name,
 		vehicleBrand: car.brand.brand,
-		vehicleModel: car.name, // TODO: change it
+		vehicleModel: car.model,
 		vehicleRegistrationNumber: car.contract.registrationNumber ?? '',
 		vehicleRegistrationCertificateNumber:
 			car.contract.registrationCertificateNumber ?? '',

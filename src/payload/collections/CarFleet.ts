@@ -6,6 +6,26 @@ export const CarFleet: CollectionConfig = {
 	slug: 'car-fleet',
 	fields: [
 		{
+			name: 'name',
+			type: 'text',
+			required: true,
+			admin: {
+				hidden: true,
+			},
+			hooks: {
+				beforeChange: [
+					async ({ data, req }) => {
+						const brand = await req.payload.findByID({
+							collection: 'car-fleet-brands',
+							id: data?.brand,
+						});
+
+						return `${brand.brand} ${data?.model}`;
+					},
+				],
+			},
+		},
+		{
 			name: 'image',
 			type: 'upload',
 			relationTo: 'media',
@@ -17,7 +37,14 @@ export const CarFleet: CollectionConfig = {
 			required: true,
 		},
 		{
-			name: 'name',
+			name: 'brand',
+			type: 'relationship',
+			relationTo: 'car-fleet-brands',
+			required: true,
+			hasMany: false,
+		},
+		{
+			name: 'model',
 			type: 'text',
 			required: true,
 		},
@@ -26,13 +53,6 @@ export const CarFleet: CollectionConfig = {
 			type: 'textarea',
 			required: true,
 			defaultValue: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-		},
-		{
-			name: 'brand',
-			type: 'relationship',
-			relationTo: 'car-fleet-brands',
-			required: true,
-			hasMany: false,
 		},
 		{
 			name: 'type',

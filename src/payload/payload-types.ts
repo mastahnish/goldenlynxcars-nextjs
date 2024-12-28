@@ -169,11 +169,12 @@ export interface Rental {
  */
 export interface CarFleet {
   id: number;
+  name: string;
   image: number | Media;
   slug: string;
-  name: string;
-  description: string;
   brand: number | CarFleetBrand;
+  model: string;
+  description: string;
   type: number | CarFleetType;
   deposit: number;
   additionalMileagePrice: number;
@@ -505,11 +506,12 @@ export interface CarFleetTypesSelect<T extends boolean = true> {
  * via the `definition` "car-fleet_select".
  */
 export interface CarFleetSelect<T extends boolean = true> {
+  name?: T;
   image?: T;
   slug?: T;
-  name?: T;
-  description?: T;
   brand?: T;
+  model?: T;
+  description?: T;
   type?: T;
   deposit?: T;
   additionalMileagePrice?: T;
