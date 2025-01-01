@@ -1,7 +1,7 @@
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-import { anyone } from '../access/anyone';
+import { admins } from '../access/admin';
 
 import type { CollectionConfig } from 'payload';
 
@@ -17,7 +17,7 @@ export const Media: CollectionConfig = {
 		},
 	],
 	access: {
-		read: anyone,
+		read: admins,
 	},
 	upload: true,
 };

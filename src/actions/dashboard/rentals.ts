@@ -138,6 +138,31 @@ export const sendRentalOffer = async (id: string | number) => {
 	});
 };
 
+export type RentalSignatureTarget = 'customer' | 'employee';
+
+interface SetRentalSignatureParams {
+	rentalId: string | number;
+	target: RentalSignatureTarget;
+	signature: string;
+}
+
+export const setRentalSignature = async ({
+	rentalId,
+	target,
+	signature,
+}: SetRentalSignatureParams) => {
+	const payload = await getPayloadHMR({ config });
+
+	await payload.update({
+		id: rentalId,
+		collection: 'rentals',
+		data: {
+			...(target === 'customer' && { customerSignatureJSON: { signature } }),
+			...(target === 'employee' && { employeeSignatureJSON: { signature } }),
+		},
+	});
+};
+
 export const generateRentalContracts = async (id: string | number) => {
 	const payload = await getPayloadHMR({ config });
 	const {
@@ -148,8 +173,11 @@ export const generateRentalContracts = async (id: string | number) => {
 		endDate,
 		rentalPrice,
 		depositAmount,
+		status,
 		mileageBefore,
 		mileageLimit,
+		customerSignatureJSON,
+		employeeSignatureJSON,
 	} = await payload.findByID({
 		id,
 		collection: 'rentals',
@@ -161,6 +189,10 @@ export const generateRentalContracts = async (id: string | number) => {
 		typeof car.brand === 'number'
 	) {
 		throw new Error('Something went wrong');
+	}
+
+	if (status !== 'Confirmed' && status !== 'In Progress') {
+		throw new Error('Niepoprawny status rezerwacji');
 	}
 
 	const { success: customerSuccess, data: customerData } =
@@ -175,6 +207,21 @@ export const generateRentalContracts = async (id: string | number) => {
 
 	if (additionalDriver && !additionalDriverSuccess) {
 		throw new Error('Wypełnij wszystkie dane upoważnionego klienta!');
+	}
+
+	const customerSignature = customerSignatureJSON
+		? (customerSignatureJSON as Record<string, string>)['signature']
+		: null;
+	const employeeSignature = employeeSignatureJSON
+		? (employeeSignatureJSON as Record<string, string>)['signature']
+		: null;
+
+	if (!customerSignature) {
+		throw new Error('Dodaj podpis klienta do umowy!');
+	}
+
+	if (!employeeSignature) {
+		throw new Error('Dodaj podpis pracownika do umowy!');
 	}
 
 	const {
@@ -200,15 +247,19 @@ export const generateRentalContracts = async (id: string | number) => {
 	const isAdditionalDriver =
 		!!additionalDriver && typeof additionalDriver !== 'number';
 
-	const templates = [
-		{ name: 'protokół_odbioru_pojazdu', template: vehiclePickUp.template },
-		{ name: 'protokół_wydania_pojazdu', template: vehicleRelease.template },
-		{
-			name: 'umowa_wynajmu_pojazdu',
-			template: (isAdditionalDriver ? vehicleRentalAuthorized : vehicleRental)
-				.template,
-		},
-	];
+	const templates = {
+		Confirmed: [
+			{
+				name: 'umowa_wynajmu_pojazdu',
+				template: (isAdditionalDriver ? vehicleRentalAuthorized : vehicleRental)
+					.template,
+			},
+			{ name: 'protokół_wydania_pojazdu', template: vehicleRelease.template },
+		],
+		'In Progress': [
+			{ name: 'protokół_odbioru_pojazdu', template: vehiclePickUp.template },
+		],
+	};
 	const values: Record<string, string> = {
 		fullName: customerData.personalData.fullName,
 		email: customerData.personalData.email,
@@ -220,11 +271,11 @@ export const generateRentalContracts = async (id: string | number) => {
 		drivingLicenseBlankNumber: customerData.drivingLicense.blankNumber,
 		drivingLicenseIssueDate: format(
 			customerData.drivingLicense.issueDate,
-			'MM.dd.yyyy',
+			'dd.MM.yyyy',
 		),
 		drivingLicenseExpirationDate: format(
 			customerData.drivingLicense.expirationDate,
-			'MM.dd.yyyy',
+			'dd.MM.yyyy',
 		),
 		drivingLicenseIssuingAuthority:
 			customerData.drivingLicense.issuingAuthority,
@@ -247,10 +298,15 @@ export const generateRentalContracts = async (id: string | number) => {
 		accessories: car.contract.accessories ?? '',
 		depositAmount: depositAmount.toString(),
 		depositAmountInWords: numberToWords(depositAmount),
-		startDate: format(startDate, 'MM.dd.yyyy'),
+		startDate: format(startDate, 'dd.MM.yyyy'),
 		startDateHour: format(startDate, 'kk:mm'),
-		endDate: format(endDate, 'MM.dd.yyyy'),
+		endDate: format(endDate, 'dd.MM.yyyy'),
 		endDateHour: format(endDate, 'kk:mm'),
+		currentDate: format(new Date(), 'dd.MM.yyyy'),
+	};
+	const images: Record<string, string> = {
+		customerSignature,
+		employeeSignature,
 	};
 
 	if (isAdditionalDriver && additionalDriverData) {
@@ -277,10 +333,11 @@ export const generateRentalContracts = async (id: string | number) => {
 			additionalDriverData.drivingLicense.issuingAuthority;
 	}
 
-	const data = templates.map(({ template }) => {
+	const data = templates[status].map(({ template }) => {
 		const html = injectHTMLValues({
 			html: template,
 			values,
+			images,
 		});
 
 		return {
@@ -289,10 +346,21 @@ export const generateRentalContracts = async (id: string | number) => {
 		};
 	});
 	const buffers = await generateMultiplePDFs(data);
-	const files = templates.map(({ name }, i) => ({
+	const files = templates[status].map(({ name }, i) => ({
 		name: `${contractId}_${name}.pdf`,
 		buffer: buffers[i],
 	}));
+
+	await payload.update({
+		id,
+		collection: 'rentals',
+		data: {
+			customerSignatureJSON: null,
+			employeeSignatureJSON: null,
+			...(status === 'Confirmed' && { status: 'In Progress' }),
+			...(status === 'In Progress' && { status: 'Completed' }),
+		},
+	});
 
 	return { contractId, href: sendZip(files) };
 };

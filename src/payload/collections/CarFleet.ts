@@ -1,5 +1,9 @@
+import { admins } from '../access/admin';
+import { checkRoles } from '../access/check-role';
+
 import { createRevalidateCollectionHook } from '@/payload/utils/create-revalidate-collection-hook';
 
+import type { User } from '../payload-types';
 import type { CollectionConfig } from 'payload';
 
 export const CarFleet: CollectionConfig = {
@@ -285,8 +289,14 @@ export const CarFleet: CollectionConfig = {
 	admin: {
 		useAsTitle: 'name',
 		group: 'Car Fleet',
+		hidden: ({ user }) => !checkRoles(user as unknown as User, ['admin']),
 	},
 	hooks: {
 		afterChange: [createRevalidateCollectionHook('car-fleet')],
+	},
+	access: {
+		create: admins,
+		update: admins,
+		delete: admins,
 	},
 };

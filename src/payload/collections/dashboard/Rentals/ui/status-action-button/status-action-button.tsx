@@ -16,7 +16,10 @@ const StatusActionButton = () => {
 
 	return match(value)
 		.with('Provisional', () => <SendOfferButton documentId={id} />)
-		.with('Confirmed', () => <GenerateContractsButton documentId={id} />)
+		.when(
+			value => value === 'Confirmed' || value === 'In Progress',
+			() => <GenerateContractsButton documentId={id} />,
+		)
 		.otherwise(() => null);
 };
 

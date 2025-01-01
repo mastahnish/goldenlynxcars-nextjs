@@ -1,3 +1,5 @@
+import { admins } from '@/payload/access/admin';
+
 import type { CollectionConfig } from 'payload';
 
 export const ContractTemplates: CollectionConfig = {
@@ -36,5 +38,8 @@ export const ContractTemplates: CollectionConfig = {
 	admin: {
 		group: 'Dashboard',
 		useAsTitle: 'name',
+	},
+	access: {
+		read: admins,
 	},
 };

@@ -1,6 +1,8 @@
 import { noone } from '../../access/noone';
 import { sendContactRequestMail } from './hooks/send-contact-request-mail';
 
+import { admins } from '@/payload/access/admin';
+
 import type { CollectionConfig } from 'payload';
 
 export const ContactRequest: CollectionConfig = {
@@ -35,6 +37,7 @@ export const ContactRequest: CollectionConfig = {
 	],
 	access: {
 		create: noone,
+		read: admins,
 		update: noone,
 	},
 	hooks: {

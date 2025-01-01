@@ -1,3 +1,4 @@
+import { admins } from '@/payload/access/admin';
 import { createRevalidateCollectionHook } from '@/payload/utils/create-revalidate-collection-hook';
 
 import type { CollectionConfig } from 'payload';
@@ -18,5 +19,8 @@ export const CarFleetBrands: CollectionConfig = {
 	},
 	hooks: {
 		afterChange: [createRevalidateCollectionHook('car-fleet-brands')],
+	},
+	access: {
+		read: admins,
 	},
 };

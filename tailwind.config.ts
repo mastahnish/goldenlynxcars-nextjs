@@ -69,6 +69,7 @@ export default {
 			},
 			width: {
 				'shopping-cart-drawer': '28rem',
+				'signature-pad': '50rem',
 			},
 			zIndex: {
 				1: '1',

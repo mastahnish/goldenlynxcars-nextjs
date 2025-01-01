@@ -1,3 +1,4 @@
+import { admins } from '@/payload/access/admin';
 import { createRevalidateGlobalHook } from '@/payload/utils/create-revalidate-global-hook';
 
 import type { GlobalConfig } from 'payload';
@@ -36,5 +37,8 @@ export const AboutUsHeader: GlobalConfig = {
 	},
 	hooks: {
 		afterChange: [createRevalidateGlobalHook('about-us-header')],
+	},
+	access: {
+		read: admins,
 	},
 };

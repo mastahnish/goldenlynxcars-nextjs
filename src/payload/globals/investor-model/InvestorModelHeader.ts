@@ -1,3 +1,4 @@
+import { admins } from '@/payload/access/admin';
 import { createRevalidateGlobalHook } from '@/payload/utils/create-revalidate-global-hook';
 
 import type { GlobalConfig } from 'payload';
@@ -33,5 +34,8 @@ export const InvestorModelHeader: GlobalConfig = {
 	},
 	hooks: {
 		afterChange: [createRevalidateGlobalHook('investor-model-header')],
+	},
+	access: {
+		read: admins,
 	},
 };

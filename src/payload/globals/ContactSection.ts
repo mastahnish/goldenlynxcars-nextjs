@@ -1,3 +1,5 @@
+import { admins } from '../access/admin';
+
 import { createRevalidateGlobalHook } from '@/payload/utils/create-revalidate-global-hook';
 
 import type { GlobalConfig } from 'payload';
@@ -25,5 +27,8 @@ export const ContactSection: GlobalConfig = {
 	],
 	hooks: {
 		afterChange: [createRevalidateGlobalHook('contact-section')],
+	},
+	access: {
+		read: admins,
 	},
 };

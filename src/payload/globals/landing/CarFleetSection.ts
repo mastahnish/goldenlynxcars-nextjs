@@ -1,3 +1,4 @@
+import { admins } from '@/payload/access/admin';
 import { createRevalidateGlobalHook } from '@/payload/utils/create-revalidate-global-hook';
 
 import type { GlobalConfig } from 'payload';
@@ -29,5 +30,8 @@ export const CarFleetSection: GlobalConfig = {
 	},
 	hooks: {
 		afterChange: [createRevalidateGlobalHook('car-fleet-section')],
+	},
+	access: {
+		read: admins,
 	},
 };

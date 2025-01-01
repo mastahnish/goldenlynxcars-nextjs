@@ -1,3 +1,4 @@
+import { admins } from '../access/admin';
 import { createRevalidateGlobalHook } from '../utils/create-revalidate-global-hook';
 
 import type { GlobalConfig } from 'payload';
@@ -30,5 +31,8 @@ export const ShopHeader: GlobalConfig = {
 	],
 	hooks: {
 		afterChange: [createRevalidateGlobalHook('shop-header')],
+	},
+	access: {
+		read: admins,
 	},
 };

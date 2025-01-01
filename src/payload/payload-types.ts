@@ -11,6 +11,7 @@ export interface Config {
     users: UserAuthOperations;
   };
   collections: {
+    users: User;
     customers: Customer;
     rentals: Rental;
     'contract-templates': ContractTemplate;
@@ -19,12 +20,12 @@ export interface Config {
     'car-fleet-brands': CarFleetBrand;
     'car-fleet-types': CarFleetType;
     'car-fleet': CarFleet;
-    users: User;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
   };
   collectionsSelect?: {
+    users: UsersSelect<false> | UsersSelect<true>;
     customers: CustomersSelect<false> | CustomersSelect<true>;
     rentals: RentalsSelect<false> | RentalsSelect<true>;
     'contract-templates': ContractTemplatesSelect<false> | ContractTemplatesSelect<true>;
@@ -33,7 +34,6 @@ export interface Config {
     'car-fleet-brands': CarFleetBrandsSelect<false> | CarFleetBrandsSelect<true>;
     'car-fleet-types': CarFleetTypesSelect<false> | CarFleetTypesSelect<true>;
     'car-fleet': CarFleetSelect<false> | CarFleetSelect<true>;
-    users: UsersSelect<false> | UsersSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -112,6 +112,24 @@ export interface UserAuthOperations {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "users".
+ */
+export interface User {
+  id: number;
+  roles: ('employee' | 'admin')[];
+  updatedAt: string;
+  createdAt: string;
+  email: string;
+  resetPasswordToken?: string | null;
+  resetPasswordExpiration?: string | null;
+  salt?: string | null;
+  hash?: string | null;
+  loginAttempts?: number | null;
+  lockUntil?: string | null;
+  password?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "customers".
  */
 export interface Customer {
@@ -159,7 +177,25 @@ export interface Rental {
   mileageLimit: number;
   mileageBefore: number;
   mileageAfter: number;
-  status: 'Provisional' | 'Offer Sent' | 'Confirmed' | 'Rejected';
+  status: 'Provisional' | 'Offer Sent' | 'Confirmed' | 'In Progress' | 'Completed' | 'Rejected';
+  customerSignatureJSON?:
+    | {
+        [k: string]: unknown;
+      }
+    | unknown[]
+    | string
+    | number
+    | boolean
+    | null;
+  employeeSignatureJSON?:
+    | {
+        [k: string]: unknown;
+      }
+    | unknown[]
+    | string
+    | number
+    | boolean
+    | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -286,28 +322,15 @@ export interface ContactRequest {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "users".
- */
-export interface User {
-  id: number;
-  updatedAt: string;
-  createdAt: string;
-  email: string;
-  resetPasswordToken?: string | null;
-  resetPasswordExpiration?: string | null;
-  salt?: string | null;
-  hash?: string | null;
-  loginAttempts?: number | null;
-  lockUntil?: string | null;
-  password?: string | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents".
  */
 export interface PayloadLockedDocument {
   id: number;
   document?:
+    | ({
+        relationTo: 'users';
+        value: number | User;
+      } | null)
     | ({
         relationTo: 'customers';
         value: number | Customer;
@@ -339,10 +362,6 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'car-fleet';
         value: number | CarFleet;
-      } | null)
-    | ({
-        relationTo: 'users';
-        value: number | User;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -385,6 +404,22 @@ export interface PayloadMigration {
   batch?: number | null;
   updatedAt: string;
   createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "users_select".
+ */
+export interface UsersSelect<T extends boolean = true> {
+  roles?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  email?: T;
+  resetPasswordToken?: T;
+  resetPasswordExpiration?: T;
+  salt?: T;
+  hash?: T;
+  loginAttempts?: T;
+  lockUntil?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -442,6 +477,10 @@ export interface RentalsSelect<T extends boolean = true> {
   status?: T;
   statusAction?: T;
   state?: T;
+  'add-customer-signature'?: T;
+  'add-employee-signature'?: T;
+  customerSignatureJSON?: T;
+  employeeSignatureJSON?: T;
   updatedAt?: T;
   createdAt?: T;
 }
@@ -570,21 +609,6 @@ export interface CarFleetSelect<T extends boolean = true> {
       };
   updatedAt?: T;
   createdAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "users_select".
- */
-export interface UsersSelect<T extends boolean = true> {
-  updatedAt?: T;
-  createdAt?: T;
-  email?: T;
-  resetPasswordToken?: T;
-  resetPasswordExpiration?: T;
-  salt?: T;
-  hash?: T;
-  loginAttempts?: T;
-  lockUntil?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

@@ -1,3 +1,4 @@
+import { admins } from '@/payload/access/admin';
 import { createRevalidateGlobalHook } from '@/payload/utils/create-revalidate-global-hook';
 
 import type { GlobalConfig } from 'payload';
@@ -93,5 +94,8 @@ export const VIPTransferContent: GlobalConfig = {
 	},
 	hooks: {
 		afterChange: [createRevalidateGlobalHook('vip-transfer-content')],
+	},
+	access: {
+		read: admins,
 	},
 };

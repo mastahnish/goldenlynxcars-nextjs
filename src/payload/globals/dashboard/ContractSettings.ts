@@ -1,3 +1,5 @@
+import { admins } from '@/payload/access/admin';
+
 import type { GlobalConfig } from 'payload';
 
 export const ContractSettings: GlobalConfig = {
@@ -138,5 +140,8 @@ export const ContractSettings: GlobalConfig = {
 	],
 	admin: {
 		group: 'Dashboard',
+	},
+	access: {
+		read: admins,
 	},
 };

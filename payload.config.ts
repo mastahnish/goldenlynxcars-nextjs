@@ -14,6 +14,7 @@ import { ContractTemplates } from '@/payload/collections/dashboard/ContractTempl
 import { Customers } from '@/payload/collections/dashboard/Customers';
 import { Rentals } from '@/payload/collections/dashboard/Rentals/Rentals';
 import { Media } from '@/payload/collections/Media';
+import { Users } from '@/payload/collections/Users/Users';
 import { AboutUsHeader } from '@/payload/globals/about-us/AboutUsHeader';
 import { AboutUsOverview } from '@/payload/globals/about-us/AboutUsOverview';
 import { AboutUsStatistics } from '@/payload/globals/about-us/AboutUsStatistics';
@@ -39,7 +40,11 @@ import { VIPTransferHeader } from '@/payload/globals/vip-transfer/VIPTransferHea
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 export default buildConfig({
+	admin: {
+		user: Users.slug,
+	},
 	collections: [
+		Users,
 		Customers,
 		Rentals,
 		ContractTemplates,

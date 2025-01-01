@@ -1,3 +1,6 @@
+import { admins } from '@/payload/access/admin';
+import { checkRoles } from '@/payload/access/check-role';
+
 import type { CollectionConfig } from 'payload';
 
 export const Rentals: CollectionConfig = {
@@ -112,7 +115,14 @@ export const Rentals: CollectionConfig = {
 					name: 'status',
 					type: 'select',
 					required: true,
-					options: ['Provisional', 'Offer Sent', 'Confirmed', 'Rejected'],
+					options: [
+						'Provisional',
+						'Offer Sent',
+						'Confirmed',
+						'In Progress',
+						'Completed',
+						'Rejected',
+					],
 					defaultValue: 'Provisional',
 				},
 				{
@@ -137,9 +147,67 @@ export const Rentals: CollectionConfig = {
 				},
 			},
 		},
+		{
+			name: 'add-customer-signature',
+			type: 'ui',
+			admin: {
+				components: {
+					Field: {
+						path: '@/payload/collections/dashboard/Rentals/ui/add-signature-button/add-signature-button',
+						clientProps: {
+							target: 'customer',
+						},
+					},
+				},
+			},
+		},
+		{
+			name: 'add-employee-signature',
+			type: 'ui',
+			admin: {
+				components: {
+					Field: {
+						path: '@/payload/collections/dashboard/Rentals/ui/add-signature-button/add-signature-button',
+						clientProps: {
+							target: 'employee',
+						},
+					},
+				},
+			},
+		},
+		{
+			name: 'customerSignatureJSON',
+			type: 'json',
+			admin: {
+				hidden: true,
+			},
+		},
+		{
+			name: 'employeeSignatureJSON',
+			type: 'json',
+			admin: {
+				hidden: true,
+			},
+		},
 	],
 	admin: {
 		group: 'Dashboard',
 		defaultColumns: ['id', 'customer', 'car', 'status'],
+	},
+	access: {
+		create: admins,
+		delete: admins,
+		update: admins,
+		read: ({ req }) => {
+			if (checkRoles(req.user, ['admin'])) {
+				return true;
+			}
+
+			return {
+				status: {
+					equals: 'Confirmed',
+				},
+			};
+		},
 	},
 };
