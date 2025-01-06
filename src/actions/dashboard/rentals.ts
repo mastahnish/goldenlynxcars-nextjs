@@ -128,6 +128,12 @@ export const sendRentalOffer = async (id: string | number) => {
 			<a href="https://www.goldenlynxcars.com/" style="margin-left:16px;color:#4f4f4f">www.goldenlynxcars.com</a>
 		</div>
 		`,
+		attachments: [
+			{
+				filename: 'OWNP_Golden Lynx Cars.pdf',
+				path: 'src/assets/files/OWNP_Golden Lynx Cars.pdf',
+			},
+		],
 	});
 	await payload.update({
 		id,
