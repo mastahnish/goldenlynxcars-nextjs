@@ -16,7 +16,14 @@ export const Customers: CollectionConfig = {
 				hidden: true,
 			},
 			hooks: {
-				beforeChange: [({ data }) => `${data?.personalData.email}`],
+				beforeChange: [
+					({ data }) => {
+						const { email, fullName } = data?.personalData ?? {};
+						const prefix = fullName ? `(${fullName}) ` : '';
+
+						return `${prefix}${email}`;
+					},
+				],
 			},
 		},
 		{

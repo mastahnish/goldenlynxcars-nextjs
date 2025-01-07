@@ -11,6 +11,16 @@ export const Users: CollectionConfig = {
 	auth: true,
 	fields: [
 		{
+			name: 'fullName',
+			type: 'text',
+			required: true,
+		},
+		{
+			name: 'phoneNumber',
+			type: 'text',
+			required: true,
+		},
+		{
 			name: 'roles',
 			type: 'select',
 			options: [

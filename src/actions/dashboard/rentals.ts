@@ -28,7 +28,7 @@ const customerSchema = z.object({
 		seriesAndNumber: z.string().min(1),
 		blankNumber: z.string().min(1),
 		issueDate: z.string().min(1),
-		expirationDate: z.string().min(1),
+		expirationDate: z.string().nullable(),
 		issuingAuthority: z.string().min(1),
 	}),
 });
@@ -40,7 +40,15 @@ const fuelLabels = {
 	hybrid: 'Hybrid',
 };
 
-export const sendRentalOffer = async (id: string | number) => {
+interface SendRentalOfferInput {
+	userId: string | number;
+	rentalId: string | number;
+}
+
+export const sendRentalOffer = async ({
+	userId,
+	rentalId,
+}: SendRentalOfferInput) => {
 	const payload = await getPayloadHMR({ config });
 	const {
 		customer,
@@ -53,8 +61,12 @@ export const sendRentalOffer = async (id: string | number) => {
 		returnAddress,
 		mileageLimit,
 	} = await payload.findByID({
-		id,
+		id: rentalId,
 		collection: 'rentals',
+	});
+	const user = await payload.findByID({
+		id: userId,
+		collection: 'users',
 	});
 
 	if (typeof customer === 'number' || typeof car === 'number') {
@@ -63,9 +75,9 @@ export const sendRentalOffer = async (id: string | number) => {
 
 	const { gender } = customer.personalData;
 
-	const startDateTitle = format(startDate, 'MM.dd');
-	const startDateFormatted = format(startDate, 'MM.dd.yyyy');
-	const endDateFormatted = format(endDate, 'MM.dd.yyyy');
+	const startDateTitle = format(startDate, 'dd.MM');
+	const startDateFormatted = format(startDate, 'dd.MM.yyyy');
+	const endDateFormatted = format(endDate, 'dd.MM.yyyy');
 
 	await sendMail({
 		to: customer.email,
@@ -105,7 +117,7 @@ export const sendRentalOffer = async (id: string | number) => {
 		<div>Pozdrawiam,</div>
 		<br>
 		<div style="display:flex;max-width:510px">
-			<span style="font-size:18px;font-weight:bold;color:#4f4f4f;margin-right:auto">Jacek&nbsp;Ryś</span>
+			<span style="font-size:18px;font-weight:bold;color:#4f4f4f;margin-right:auto">${user.fullName}</span>
 			<a href="https://www.facebook.com/goldenlynxcars" style="margin-right:4px;height:24px;display:inline-block;background:#c69e00" target="_blank">
 				<img src="https://cdn2.hubspot.net/hubfs/53/tools/email-signature-generator/icons/facebook-icon-2x.png" alt="facebook" height="24" style="display:block">
 			</a>
@@ -118,7 +130,7 @@ export const sendRentalOffer = async (id: string | number) => {
 		<div style="margin-top:24px;margin-bottom:24px;width:215px;border-bottom:1px solid #c69e00"></div>
 		<div style="display:flex;align-items:center">
 			<img src="https://ci3.googleusercontent.com/meips/ADKq_NY-ugLnvhx8EKeU0NoFaQJxnwUBulA05De1Rj0lx5Itfo-At2BqiyZXrzXbvQpcbueon521QOzfNQ1y06xq7dVDLerq6ZY-nsYtDo9sdlsmC5ul1-T6XUQ4kEevfpeLQJDdM73VqUrTn1dnZ8Q_IA=s0-d-e1-ft#https://cdn2.hubspot.net/hubfs/53/tools/email-signature-generator/icons/phone-icon-2x.png" alt="phone" width="13" height="13" style="background:#c69e00;margin-top:auto;margin-bottom:auto">
-			<a href="tel:+48725521454" style="margin-left:16px;color:#4f4f4f">+48 725 521 454</a>
+			<a href="tel:${user.phoneNumber}" style="margin-left:16px;color:#4f4f4f">${user.phoneNumber}</a>
 		</div>
 		<div style="display:flex;align-items:center;margin-top:4px">
 			<img src="https://ci3.googleusercontent.com/meips/ADKq_NZKllki1F8xHX3XP1B8cJ115cbaoAUYAu0XTemKLCDs4_mFQYcGkKTngars90NA25lBabg-0V6FL9Mdhi9cigSGVAoYg4fcRMPJxQoDUevRI9C9IJiurl0-cw3g5URKDFkoNJmeT24yAoCOJzjgkA=s0-d-e1-ft#https://cdn2.hubspot.net/hubfs/53/tools/email-signature-generator/icons/email-icon-2x.png" alt="email" width="13" height="13" style="background:#c69e00;margin-top:auto;margin-bottom:auto">
@@ -137,7 +149,7 @@ export const sendRentalOffer = async (id: string | number) => {
 		],
 	});
 	await payload.update({
-		id,
+		id: rentalId,
 		collection: 'rentals',
 		data: {
 			status: 'Offer Sent',
@@ -267,7 +279,8 @@ export const generateRentalContracts = async (id: string | number) => {
 			{ name: 'protokół_odbioru_pojazdu', template: vehiclePickUp.template },
 		],
 	};
-	const values: Record<string, string> = {
+
+	const values: Record<string, string | null> = {
 		fullName: customerData.personalData.fullName,
 		email: customerData.personalData.email,
 		phoneNumber: customerData.personalData.phoneNumber,
@@ -280,10 +293,9 @@ export const generateRentalContracts = async (id: string | number) => {
 			customerData.drivingLicense.issueDate,
 			'dd.MM.yyyy',
 		),
-		drivingLicenseExpirationDate: format(
-			customerData.drivingLicense.expirationDate,
-			'dd.MM.yyyy',
-		),
+		drivingLicenseExpirationDate:
+			customerData.drivingLicense.expirationDate &&
+			format(customerData.drivingLicense.expirationDate, 'dd.MM.yyyy'),
 		drivingLicenseIssuingAuthority:
 			customerData.drivingLicense.issuingAuthority,
 		vehicleName: car.name,
@@ -330,12 +342,11 @@ export const generateRentalContracts = async (id: string | number) => {
 			additionalDriverData.drivingLicense.blankNumber;
 		values.authorizedDrivingLicenseIssueDate = format(
 			additionalDriverData.drivingLicense.issueDate,
-			'MM.dd.yyyy',
+			'dd.MM.yyyy',
 		);
-		values.authorizedDrivingLicenseExpirationDate = format(
-			additionalDriverData.drivingLicense.expirationDate,
-			'MM.dd.yyyy',
-		);
+		values.authorizedDrivingLicenseExpirationDate =
+			additionalDriverData.drivingLicense.expirationDate &&
+			format(additionalDriverData.drivingLicense.expirationDate, 'dd.MM.yyyy');
 		values.authorizedDrivingLicenseIssuingAuthority =
 			additionalDriverData.drivingLicense.issuingAuthority;
 	}

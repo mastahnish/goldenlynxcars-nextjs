@@ -1,4 +1,4 @@
-import { Button, toast } from '@payloadcms/ui';
+import { Button, toast, useAuth } from '@payloadcms/ui';
 import { useMutation } from '@tanstack/react-query';
 import { ImSpinner9 } from 'react-icons/im';
 
@@ -9,6 +9,7 @@ type SendOfferButtonProps = Readonly<{
 }>;
 
 export const SendOfferButton = ({ documentId }: SendOfferButtonProps) => {
+	const { user } = useAuth();
 	const {
 		mutateAsync: sendRentalOffer,
 		isPending,
@@ -17,12 +18,18 @@ export const SendOfferButton = ({ documentId }: SendOfferButtonProps) => {
 		mutationFn: sendRentalOfferAction,
 	});
 
-	const handleButtonClick = () =>
-		sendRentalOffer(documentId)
+	const handleButtonClick = () => {
+		if (!user) {
+			toast.error('Unauthorized');
+			return;
+		}
+
+		return sendRentalOffer({ userId: user.id, rentalId: documentId })
 			.then(() =>
 				toast.success('The email with the offer was sent to the customer!'),
 			)
 			.catch(() => toast.error('Something went wrong!'));
+	};
 
 	return (
 		<Button
