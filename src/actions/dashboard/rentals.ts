@@ -8,6 +8,7 @@ import { z } from 'zod';
 import { sendZip } from '../utils/file.utils';
 
 import { injectHTMLValues } from '@/actions/utils/html.utils';
+import { env } from '@/lib/env';
 import { sendMail } from '@/lib/mailer';
 import { generateMultiplePDFs } from '@/lib/pdf';
 import { numberToWords } from '@/utils/number-to-words';
@@ -131,7 +132,7 @@ export const sendRentalOffer = async (id: string | number) => {
 		attachments: [
 			{
 				filename: 'OWNP_Golden Lynx Cars.pdf',
-				path: 'src/assets/files/OWNP_Golden Lynx Cars.pdf',
+				path: env.OWNP_URL,
 			},
 		],
 	});
