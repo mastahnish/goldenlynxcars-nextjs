@@ -2,12 +2,13 @@
 
 import config from '@payload-config';
 import { getPayloadHMR } from '@payloadcms/next/utilities';
-import { format } from 'date-fns';
+import { formatInTimeZone } from 'date-fns-tz';
 import { z } from 'zod';
 
 import { sendZip } from '../utils/file.utils';
 
 import { injectHTMLValues } from '@/actions/utils/html.utils';
+import { TIMEZONE } from '@/lib/constants';
 import { env } from '@/lib/env';
 import { sendMail } from '@/lib/mailer';
 import { generateMultiplePDFs } from '@/lib/pdf';
@@ -75,9 +76,13 @@ export const sendRentalOffer = async ({
 
 	const { gender } = customer.personalData;
 
-	const startDateTitle = format(startDate, 'dd.MM');
-	const startDateFormatted = format(startDate, 'dd.MM.yyyy');
-	const endDateFormatted = format(endDate, 'dd.MM.yyyy');
+	const startDateTitle = formatInTimeZone(startDate, TIMEZONE, 'dd.MM');
+	const startDateFormatted = formatInTimeZone(
+		startDate,
+		TIMEZONE,
+		'dd.MM.yyyy',
+	);
+	const endDateFormatted = formatInTimeZone(endDate, TIMEZONE, 'dd.MM.yyyy');
 
 	await sendMail({
 		to: customer.email,
@@ -262,7 +267,7 @@ export const generateRentalContracts = async (id: string | number) => {
 		return { error: 'Something went wrong' };
 	}
 
-	const contractId = `${format(startDate, 'yyyy_MM_dd')}_${car.contract.registrationNumber}`;
+	const contractId = `${formatInTimeZone(startDate, TIMEZONE, 'yyyy_MM_dd')}_${car.contract.registrationNumber}`;
 	const isAdditionalDriver =
 		!!additionalDriver && typeof additionalDriver !== 'number';
 
@@ -289,13 +294,18 @@ export const generateRentalContracts = async (id: string | number) => {
 		idNumber: customerData.personalData.idNumber,
 		drivingLicenseSeriesAndNumber: customerData.drivingLicense.seriesAndNumber,
 		drivingLicenseBlankNumber: customerData.drivingLicense.blankNumber,
-		drivingLicenseIssueDate: format(
+		drivingLicenseIssueDate: formatInTimeZone(
 			customerData.drivingLicense.issueDate,
+			TIMEZONE,
 			'dd.MM.yyyy',
 		),
 		drivingLicenseExpirationDate:
 			customerData.drivingLicense.expirationDate &&
-			format(customerData.drivingLicense.expirationDate, 'dd.MM.yyyy'),
+			formatInTimeZone(
+				customerData.drivingLicense.expirationDate,
+				TIMEZONE,
+				'dd.MM.yyyy',
+			),
 		drivingLicenseIssuingAuthority:
 			customerData.drivingLicense.issuingAuthority,
 		vehicleName: car.name,
@@ -317,11 +327,11 @@ export const generateRentalContracts = async (id: string | number) => {
 		accessories: car.contract.accessories ?? '',
 		depositAmount: depositAmount.toString(),
 		depositAmountInWords: numberToWords(depositAmount),
-		startDate: format(startDate, 'dd.MM.yyyy'),
-		startDateHour: format(startDate, 'kk:mm'),
-		endDate: format(endDate, 'dd.MM.yyyy'),
-		endDateHour: format(endDate, 'kk:mm'),
-		currentDate: format(new Date(), 'dd.MM.yyyy'),
+		startDate: formatInTimeZone(startDate, TIMEZONE, 'dd.MM.yyyy'),
+		startDateHour: formatInTimeZone(startDate, TIMEZONE, 'kk:mm'),
+		endDate: formatInTimeZone(endDate, TIMEZONE, 'dd.MM.yyyy'),
+		endDateHour: formatInTimeZone(endDate, TIMEZONE, 'kk:mm'),
+		currentDate: formatInTimeZone(new Date(), TIMEZONE, 'dd.MM.yyyy'),
 	};
 	const images: Record<string, string> = {
 		customerSignature,
@@ -340,13 +350,18 @@ export const generateRentalContracts = async (id: string | number) => {
 			additionalDriverData.drivingLicense.seriesAndNumber;
 		values.authorizedDrivingLicenseBlankNumber =
 			additionalDriverData.drivingLicense.blankNumber;
-		values.authorizedDrivingLicenseIssueDate = format(
+		values.authorizedDrivingLicenseIssueDate = formatInTimeZone(
 			additionalDriverData.drivingLicense.issueDate,
+			TIMEZONE,
 			'dd.MM.yyyy',
 		);
 		values.authorizedDrivingLicenseExpirationDate =
 			additionalDriverData.drivingLicense.expirationDate &&
-			format(additionalDriverData.drivingLicense.expirationDate, 'dd.MM.yyyy');
+			formatInTimeZone(
+				additionalDriverData.drivingLicense.expirationDate,
+				TIMEZONE,
+				'dd.MM.yyyy',
+			);
 		values.authorizedDrivingLicenseIssuingAuthority =
 			additionalDriverData.drivingLicense.issuingAuthority;
 	}
