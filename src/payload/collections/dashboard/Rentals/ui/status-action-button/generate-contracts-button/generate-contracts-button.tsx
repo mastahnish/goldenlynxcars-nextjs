@@ -17,16 +17,16 @@ export const GenerateContractsButton = ({
 	});
 
 	const handleButtonClick = async () => {
-		try {
-			const { contractId, href } = await generateRentalContracts(documentId);
+		const { error, contractId, href } =
+			await generateRentalContracts(documentId);
 
-			downloadFile({ href, fileName: `${contractId}_umowy.zip` });
-			toast.success('Wygenerowano');
-		} catch (err) {
-			if (!(err instanceof Error)) return;
-
-			toast.error(err.message);
+		if (typeof error === 'string') {
+			toast.error(error);
+			return;
 		}
+
+		downloadFile({ href, fileName: `${contractId}_umowy.zip` });
+		toast.success('Wygenerowano');
 	};
 
 	return (

@@ -207,25 +207,25 @@ export const generateRentalContracts = async (id: string | number) => {
 		typeof car === 'number' ||
 		typeof car.brand === 'number'
 	) {
-		throw new Error('Something went wrong');
+		return { error: 'Something went wrong' };
 	}
 
 	if (status !== 'Confirmed' && status !== 'In Progress') {
-		throw new Error('Niepoprawny status rezerwacji');
+		return { error: 'Niepoprawny status rezerwacji' };
 	}
 
 	const { success: customerSuccess, data: customerData } =
 		await customerSchema.safeParseAsync(customer);
 
 	if (!customerSuccess) {
-		throw new Error('Wypełnij wszystkie dane klienta!');
+		return { error: 'Wypełnij wszystkie dane klienta!' };
 	}
 
 	const { success: additionalDriverSuccess, data: additionalDriverData } =
 		await customerSchema.safeParseAsync(additionalDriver);
 
 	if (additionalDriver && !additionalDriverSuccess) {
-		throw new Error('Wypełnij wszystkie dane upoważnionego klienta!');
+		return { error: 'Wypełnij wszystkie dane upoważnionego klienta!' };
 	}
 
 	const customerSignature = customerSignatureJSON
@@ -236,11 +236,11 @@ export const generateRentalContracts = async (id: string | number) => {
 		: null;
 
 	if (!customerSignature) {
-		throw new Error('Dodaj podpis klienta do umowy!');
+		return { error: 'Dodaj podpis klienta do umowy!' };
 	}
 
 	if (!employeeSignature) {
-		throw new Error('Dodaj podpis pracownika do umowy!');
+		return { error: 'Dodaj podpis pracownika do umowy!' };
 	}
 
 	const {
@@ -259,7 +259,7 @@ export const generateRentalContracts = async (id: string | number) => {
 		typeof vehiclePickUp === 'number' ||
 		typeof vehicleRelease === 'number'
 	) {
-		throw new Error('Something went wrong');
+		return { error: 'Something went wrong' };
 	}
 
 	const contractId = `${format(startDate, 'yyyy_MM_dd')}_${car.contract.registrationNumber}`;
