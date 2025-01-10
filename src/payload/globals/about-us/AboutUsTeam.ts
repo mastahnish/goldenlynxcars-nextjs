@@ -1,7 +1,9 @@
-import { admins } from '@/payload/access/admin';
+import { checkRoles } from '@/payload/access/check-role';
 import { createRevalidateGlobalHook } from '@/payload/utils/create-revalidate-global-hook';
 
 import type { GlobalConfig } from 'payload';
+
+import type { User } from '@/payload/payload-types';
 
 export const AboutUsTeam: GlobalConfig = {
 	slug: 'about-us-team',
@@ -44,11 +46,9 @@ export const AboutUsTeam: GlobalConfig = {
 	],
 	admin: {
 		group: 'About Us',
+		hidden: ({ user }) => !checkRoles(user as unknown as User, ['admin']),
 	},
 	hooks: {
 		afterChange: [createRevalidateGlobalHook('about-us-team')],
-	},
-	access: {
-		read: admins,
 	},
 };

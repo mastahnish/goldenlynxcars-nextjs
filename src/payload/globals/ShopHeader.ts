@@ -1,6 +1,7 @@
-import { admins } from '../access/admin';
+import { checkRoles } from '../access/check-role';
 import { createRevalidateGlobalHook } from '../utils/create-revalidate-global-hook';
 
+import type { User } from '../payload-types';
 import type { GlobalConfig } from 'payload';
 
 export const ShopHeader: GlobalConfig = {
@@ -32,7 +33,7 @@ export const ShopHeader: GlobalConfig = {
 	hooks: {
 		afterChange: [createRevalidateGlobalHook('shop-header')],
 	},
-	access: {
-		read: admins,
+	admin: {
+		hidden: ({ user }) => !checkRoles(user as unknown as User, ['admin']),
 	},
 };

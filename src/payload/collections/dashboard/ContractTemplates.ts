@@ -1,6 +1,8 @@
-import { admins } from '@/payload/access/admin';
+import { checkRoles } from '@/payload/access/check-role';
 
 import type { CollectionConfig } from 'payload';
+
+import type { User } from '@/payload/payload-types';
 
 export const ContractTemplates: CollectionConfig = {
 	slug: 'contract-templates',
@@ -38,8 +40,6 @@ export const ContractTemplates: CollectionConfig = {
 	admin: {
 		group: 'Dashboard',
 		useAsTitle: 'name',
-	},
-	access: {
-		read: admins,
+		hidden: ({ user }) => !checkRoles(user as unknown as User, ['admin']),
 	},
 };

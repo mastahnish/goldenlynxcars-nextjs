@@ -1,7 +1,9 @@
-import { admins } from '@/payload/access/admin';
+import { checkRoles } from '@/payload/access/check-role';
 import { createRevalidateGlobalHook } from '@/payload/utils/create-revalidate-global-hook';
 
 import type { GlobalConfig } from 'payload';
+
+import type { User } from '@/payload/payload-types';
 
 export const VIPTransferHeader: GlobalConfig = {
 	slug: 'vip-transfer-header',
@@ -32,11 +34,9 @@ export const VIPTransferHeader: GlobalConfig = {
 	],
 	admin: {
 		group: 'VIP Transfer',
+		hidden: ({ user }) => !checkRoles(user as unknown as User, ['admin']),
 	},
 	hooks: {
 		afterChange: [createRevalidateGlobalHook('vip-transfer-header')],
-	},
-	access: {
-		read: admins,
 	},
 };

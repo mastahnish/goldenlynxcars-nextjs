@@ -1,4 +1,3 @@
-import { admins } from '../access/admin';
 import { checkRoles } from '../access/check-role';
 
 import { createRevalidateCollectionHook } from '@/payload/utils/create-revalidate-collection-hook';
@@ -293,10 +292,5 @@ export const CarFleet: CollectionConfig = {
 	},
 	hooks: {
 		afterChange: [createRevalidateCollectionHook('car-fleet')],
-	},
-	access: {
-		create: admins,
-		update: admins,
-		delete: admins,
 	},
 };

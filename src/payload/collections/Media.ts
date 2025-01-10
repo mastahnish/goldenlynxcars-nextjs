@@ -1,11 +1,7 @@
-import path from 'node:path';
-import { fileURLToPath } from 'node:url';
+import { checkRoles } from '../access/check-role';
 
-import { admins } from '../access/admin';
-
+import type { User } from '../payload-types';
 import type { CollectionConfig } from 'payload';
-
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 export const Media: CollectionConfig = {
 	slug: 'media',
@@ -16,8 +12,11 @@ export const Media: CollectionConfig = {
 			required: true,
 		},
 	],
+	admin: {
+		hidden: ({ user }) => !checkRoles(user as unknown as User, ['admin']),
+	},
 	access: {
-		read: admins,
+		read: () => true,
 	},
 	upload: true,
 };

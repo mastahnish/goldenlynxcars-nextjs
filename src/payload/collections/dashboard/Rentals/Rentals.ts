@@ -11,17 +11,26 @@ export const Rentals: CollectionConfig = {
 			type: 'relationship',
 			relationTo: 'customers',
 			required: true,
+			access: {
+				update: ({ req: { user } }) => checkRoles(user, ['admin']),
+			},
 		},
 		{
 			name: 'additionalDriver',
 			type: 'relationship',
 			relationTo: 'customers',
+			access: {
+				update: ({ req: { user } }) => checkRoles(user, ['admin']),
+			},
 		},
 		{
 			name: 'car',
 			type: 'relationship',
 			relationTo: 'car-fleet',
 			required: true,
+			access: {
+				update: ({ req: { user } }) => checkRoles(user, ['admin']),
+			},
 		},
 		{
 			type: 'row',
@@ -35,6 +44,9 @@ export const Rentals: CollectionConfig = {
 							pickerAppearance: 'dayAndTime',
 						},
 					},
+					access: {
+						update: ({ req: { user } }) => checkRoles(user, ['admin']),
+					},
 				},
 				{
 					name: 'endDate',
@@ -44,6 +56,9 @@ export const Rentals: CollectionConfig = {
 						date: {
 							pickerAppearance: 'dayAndTime',
 						},
+					},
+					access: {
+						update: ({ req: { user } }) => checkRoles(user, ['admin']),
 					},
 				},
 			],
@@ -56,12 +71,18 @@ export const Rentals: CollectionConfig = {
 					type: 'number',
 					required: true,
 					defaultValue: 1480,
+					access: {
+						update: ({ req: { user } }) => checkRoles(user, ['admin']),
+					},
 				},
 				{
 					name: 'depositAmount',
 					type: 'number',
 					required: true,
 					defaultValue: 5000,
+					access: {
+						update: ({ req: { user } }) => checkRoles(user, ['admin']),
+					},
 				},
 			],
 		},
@@ -75,6 +96,9 @@ export const Rentals: CollectionConfig = {
 					required: true,
 					defaultValue:
 						'ul. Krótka 2/2, Dębgórze-Wybudowanie 84-230 (siedziba)',
+					access: {
+						update: ({ req: { user } }) => checkRoles(user, ['admin']),
+					},
 				},
 				{
 					name: 'returnAddress',
@@ -82,6 +106,9 @@ export const Rentals: CollectionConfig = {
 					required: true,
 					defaultValue:
 						'ul. Krótka 2/2, Dębgórze-Wybudowanie 84-230 (siedziba)',
+					access: {
+						update: ({ req: { user } }) => checkRoles(user, ['admin']),
+					},
 				},
 			],
 		},
@@ -93,6 +120,9 @@ export const Rentals: CollectionConfig = {
 					type: 'number',
 					required: true,
 					defaultValue: 500,
+					access: {
+						update: ({ req: { user } }) => checkRoles(user, ['admin']),
+					},
 				},
 				{
 					name: 'mileageBefore',
@@ -124,6 +154,9 @@ export const Rentals: CollectionConfig = {
 						'Rejected',
 					],
 					defaultValue: 'Provisional',
+					access: {
+						update: ({ req: { user } }) => checkRoles(user, ['admin']),
+					},
 				},
 				{
 					name: 'statusAction',
@@ -197,7 +230,6 @@ export const Rentals: CollectionConfig = {
 	access: {
 		create: admins,
 		delete: admins,
-		update: admins,
 		read: ({ req }) => {
 			if (checkRoles(req.user, ['admin'])) {
 				return true;
@@ -205,7 +237,7 @@ export const Rentals: CollectionConfig = {
 
 			return {
 				status: {
-					equals: 'Confirmed',
+					in: 'Confirmed,In Progress',
 				},
 			};
 		},

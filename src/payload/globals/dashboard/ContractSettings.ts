@@ -1,6 +1,8 @@
-import { admins } from '@/payload/access/admin';
+import { checkRoles } from '@/payload/access/check-role';
 
 import type { GlobalConfig } from 'payload';
+
+import type { User } from '@/payload/payload-types';
 
 export const ContractSettings: GlobalConfig = {
 	slug: 'contract-settings',
@@ -140,8 +142,6 @@ export const ContractSettings: GlobalConfig = {
 	],
 	admin: {
 		group: 'Dashboard',
-	},
-	access: {
-		read: admins,
+		hidden: ({ user }) => !checkRoles(user as unknown as User, ['admin']),
 	},
 };

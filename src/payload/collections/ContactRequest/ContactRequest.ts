@@ -1,9 +1,11 @@
 import { noone } from '../../access/noone';
 import { sendContactRequestMail } from './hooks/send-contact-request-mail';
 
-import { admins } from '@/payload/access/admin';
+import { checkRoles } from '@/payload/access/check-role';
 
 import type { CollectionConfig } from 'payload';
+
+import type { User } from '@/payload/payload-types';
 
 export const ContactRequest: CollectionConfig = {
 	slug: 'contact-request',
@@ -35,9 +37,11 @@ export const ContactRequest: CollectionConfig = {
 			required: true,
 		},
 	],
+	admin: {
+		hidden: ({ user }) => !checkRoles(user as unknown as User, ['admin']),
+	},
 	access: {
 		create: noone,
-		read: admins,
 		update: noone,
 	},
 	hooks: {
