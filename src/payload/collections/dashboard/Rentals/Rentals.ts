@@ -1,3 +1,8 @@
+import { fromZonedTime } from 'date-fns-tz';
+
+import { calculateRentalPrice } from '@/components/rental-calculator/rental-calculator-form/utils/calculate-rental-price';
+
+import { TIMEZONE } from '@/lib/constants';
 import { admins } from '@/payload/access/admin';
 import { checkRoles } from '@/payload/access/check-role';
 
@@ -70,9 +75,31 @@ export const Rentals: CollectionConfig = {
 					name: 'rentalPrice',
 					type: 'number',
 					required: true,
-					defaultValue: 1480,
+					defaultValue: 0,
 					access: {
 						update: ({ req: { user } }) => checkRoles(user, ['admin']),
+					},
+					hooks: {
+						beforeChange: [
+							async ({ req, data, originalDoc }) => {
+								if (
+									data?.car === originalDoc.car &&
+									data?.startDate === originalDoc.startDate &&
+									data?.endDate === originalDoc.endDate
+								) {
+									return;
+								}
+
+								const car = await req.payload.findByID({
+									collection: 'car-fleet',
+									id: data?.car,
+								});
+								const startDate = fromZonedTime(data?.startDate, TIMEZONE);
+								const endDate = fromZonedTime(data?.endDate, TIMEZONE);
+
+								return calculateRentalPrice({ car, startDate, endDate });
+							},
+						],
 					},
 				},
 				{
