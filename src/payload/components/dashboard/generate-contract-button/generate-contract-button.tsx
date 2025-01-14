@@ -25,9 +25,9 @@ const GenerateContractButton = ({
 			: ({ target: 'templates', id: String(id) } as const);
 
 		try {
-			const href = await generateContract(options);
+			const content = await generateContract(options);
 
-			downloadFile({ href, fileName: 'example.pdf' });
+			downloadFile({ content, fileName: 'example.pdf' });
 			toast.success('Generated!');
 		} catch {
 			toast.error('Something went wrong');

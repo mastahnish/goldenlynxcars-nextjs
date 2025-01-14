@@ -1,12 +1,12 @@
 interface DownloadFileParams {
-	href: string;
+	content: string;
 	fileName: string;
 }
 
-export const downloadFile = ({ href, fileName }: DownloadFileParams) => {
+export const downloadFile = ({ content, fileName }: DownloadFileParams) => {
 	const link = document.createElement('a');
 
-	link.href = href;
+	link.href = `data:application/octet-stream;base64,${content}`;
 	link.download = fileName;
 
 	link.click();

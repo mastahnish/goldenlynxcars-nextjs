@@ -1,7 +1,6 @@
 import AdmZip from 'adm-zip';
 
-export const sendFile = (buffer: Buffer) =>
-	`data:application/octet-stream;base64,${buffer.toString('base64')}`;
+export const sendFile = (buffer: Buffer) => buffer.toString('base64');
 
 interface SendZipFile {
 	name: string;
@@ -16,4 +15,10 @@ export const sendZip = (files: SendZipFile[]) => {
 	});
 
 	return sendFile(zip.toBuffer());
+};
+
+export const unzip = (buffer: Buffer) => {
+	const zip = new AdmZip(buffer);
+
+	return zip.getEntries();
 };

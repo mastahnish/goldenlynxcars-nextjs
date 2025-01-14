@@ -5,7 +5,8 @@ import { getPayloadHMR } from '@payloadcms/next/utilities';
 import { formatInTimeZone } from 'date-fns-tz';
 import { z } from 'zod';
 
-import { sendZip } from '../utils/file.utils';
+import { sendZip, unzip } from '../utils/file.utils';
+import { getMailFooter } from '../utils/mail.utils';
 
 import { injectHTMLValues } from '@/actions/utils/html.utils';
 import { TIMEZONE } from '@/lib/constants';
@@ -118,33 +119,7 @@ export const sendRentalOffer = async ({
 			<li>dane do faktury FV - nazwa, NIP oraz adres</li>
 		</ul>
 		<div>Zachęcamy do śledzenia Nas w mediach społecznościowych.</div>
-		<br>
-		<div>Pozdrawiam,</div>
-		<br>
-		<div style="display:flex;max-width:510px">
-			<span style="font-size:18px;font-weight:bold;color:#4f4f4f;margin-right:auto">${user.fullName}</span>
-			<a href="https://www.facebook.com/goldenlynxcars" style="margin-right:4px;height:24px;display:inline-block;background:#c69e00" target="_blank">
-				<img src="https://cdn2.hubspot.net/hubfs/53/tools/email-signature-generator/icons/facebook-icon-2x.png" alt="facebook" height="24" style="display:block">
-			</a>
-			<a href="https://www.facebook.com/goldenlynxcars" style="height:24px;display:inline-block;background:#c69e00" target="_blank">
-				<img src="https://cdn2.hubspot.net/hubfs/53/tools/email-signature-generator/icons/instagram-icon-2x.png" alt="instagram" height="24" style="display:block">
-			</a>
-		</div>
-		<div>Golden Lynx Cars</div>
-		<img src="https://ci3.googleusercontent.com/mail-sig/AIorK4yORrnev3qGDimbwbcn4DlAURYBZnKraNRHbiCc2dbxMEDdHO87cSleUumghz5iwGitsAxUc5Y" width="420" height="277">
-		<div style="margin-top:24px;margin-bottom:24px;width:215px;border-bottom:1px solid #c69e00"></div>
-		<div style="display:flex;align-items:center">
-			<img src="https://ci3.googleusercontent.com/meips/ADKq_NY-ugLnvhx8EKeU0NoFaQJxnwUBulA05De1Rj0lx5Itfo-At2BqiyZXrzXbvQpcbueon521QOzfNQ1y06xq7dVDLerq6ZY-nsYtDo9sdlsmC5ul1-T6XUQ4kEevfpeLQJDdM73VqUrTn1dnZ8Q_IA=s0-d-e1-ft#https://cdn2.hubspot.net/hubfs/53/tools/email-signature-generator/icons/phone-icon-2x.png" alt="phone" width="13" height="13" style="background:#c69e00;margin-top:auto;margin-bottom:auto">
-			<a href="tel:${user.phoneNumber}" style="margin-left:16px;color:#4f4f4f">${user.phoneNumber}</a>
-		</div>
-		<div style="display:flex;align-items:center;margin-top:4px">
-			<img src="https://ci3.googleusercontent.com/meips/ADKq_NZKllki1F8xHX3XP1B8cJ115cbaoAUYAu0XTemKLCDs4_mFQYcGkKTngars90NA25lBabg-0V6FL9Mdhi9cigSGVAoYg4fcRMPJxQoDUevRI9C9IJiurl0-cw3g5URKDFkoNJmeT24yAoCOJzjgkA=s0-d-e1-ft#https://cdn2.hubspot.net/hubfs/53/tools/email-signature-generator/icons/email-icon-2x.png" alt="email" width="13" height="13" style="background:#c69e00;margin-top:auto;margin-bottom:auto">
-			<a href="mailto:contact@goldenlynxcars.com" style="margin-left:16px;color:#4f4f4f">contact@goldenlynxcars.com</a>
-		</div>
-		<div style="display:flex;align-items:center;margin-top:4px">
-			<img src="https://ci3.googleusercontent.com/meips/ADKq_NZvHSmYu2-NCG_NPzpk6NN_gLctE_NdNQKl7PyZGOXUs0vhhus3sq6WQfnK-AYvhuwDc7H9-s1s_Oh-WV_dXppqqemufsUxJXZX8qrOyxW_1Ers_LaxvK1fdZqA5notV1_TjaMGyU0Sd9UgtjvB=s0-d-e1-ft#https://cdn2.hubspot.net/hubfs/53/tools/email-signature-generator/icons/link-icon-2x.png" alt="link" width="13" height="13" style="background:#c69e00;margin-top:auto;margin-bottom:auto">
-			<a href="https://www.goldenlynxcars.com/" style="margin-left:16px;color:#4f4f4f">www.goldenlynxcars.com</a>
-		</div>
+		${getMailFooter({ user })}
 		`,
 		attachments: [
 			{
@@ -159,6 +134,54 @@ export const sendRentalOffer = async ({
 		data: {
 			status: 'Offer Sent',
 		},
+	});
+};
+
+interface SendRentalContractsInput {
+	userId: string | number;
+	rentalId: string | number;
+	content: string;
+}
+
+export const sendRentalContracts = async ({
+	userId,
+	rentalId,
+	content,
+}: SendRentalContractsInput) => {
+	const payload = await getPayloadHMR({ config });
+	const { customer, car, startDate, endDate } = await payload.findByID({
+		id: rentalId,
+		collection: 'rentals',
+	});
+	const user = await payload.findByID({
+		id: userId,
+		collection: 'users',
+	});
+
+	if (typeof customer === 'number' || typeof car === 'number') {
+		return;
+	}
+
+	const files = unzip(Buffer.from(content, 'base64'));
+	const startDateSubject = formatInTimeZone(startDate, TIMEZONE, 'dd.MM');
+	const endDateSubject = formatInTimeZone(endDate, TIMEZONE, 'dd.MM.yyyy');
+
+	await sendMail({
+		to: customer.email,
+		subject: `Wynajem Auta ${startDateSubject}-${endDateSubject} - Umowy | ${car.name} | Golden Lynx Cars`,
+		html: `
+			<div>Dzień dobry,</div>
+			<br>
+			<div>Dziękujemy za skorzystanie z usług Golden Lynx Cars.</div>
+			<div>W załączniku przesyłamy dokumenty podpisane podczas odbioru auta.</div>
+			<br>
+			<div>Dziękujemy za zaufanie!</div>
+			${getMailFooter({ user })}
+		`,
+		attachments: files.map(({ entryName, getData }) => ({
+			filename: entryName,
+			content: getData(),
+		})),
 	});
 };
 
@@ -395,5 +418,5 @@ export const generateRentalContracts = async (id: string | number) => {
 		},
 	});
 
-	return { contractId, href: sendZip(files) };
+	return { contractId, content: sendZip(files) };
 };
