@@ -220,6 +220,8 @@ export const generateRentalContracts = async (id: string | number) => {
 		endDate,
 		rentalPrice,
 		depositAmount,
+		installmentAmount,
+		installmentDate,
 		status,
 		mileageBefore,
 		mileageLimit,
@@ -347,6 +349,11 @@ export const generateRentalContracts = async (id: string | number) => {
 		contractId,
 		rentalPrice: rentalPrice.toString(),
 		rentalPriceInWords: numberToWords(rentalPrice),
+		installmentRentalPrice: (rentalPrice - (installmentAmount ?? 0)).toString(),
+		installmentAmount: installmentAmount?.toString() ?? '',
+		installmentDate: installmentDate
+			? formatInTimeZone(installmentDate, TIMEZONE, 'dd.MM.yyyy')
+			: null,
 		accessories: car.contract.accessories ?? '',
 		depositAmount: depositAmount.toString(),
 		depositAmountInWords: numberToWords(depositAmount),

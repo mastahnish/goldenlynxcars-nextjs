@@ -117,6 +117,25 @@ export const Rentals: CollectionConfig = {
 			type: 'row',
 			fields: [
 				{
+					name: 'installmentAmount',
+					type: 'number',
+					access: {
+						update: ({ req: { user } }) => checkRoles(user, ['admin']),
+					},
+				},
+				{
+					name: 'installmentDate',
+					type: 'date',
+					access: {
+						update: ({ req: { user } }) => checkRoles(user, ['admin']),
+					},
+				},
+			],
+		},
+		{
+			type: 'row',
+			fields: [
+				{
 					name: 'pickUpAddress',
 					label: 'Pick-Up Address',
 					type: 'text',

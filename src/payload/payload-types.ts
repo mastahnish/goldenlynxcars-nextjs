@@ -174,6 +174,8 @@ export interface Rental {
   endDate: string;
   rentalPrice: number;
   depositAmount: number;
+  installmentAmount?: number | null;
+  installmentDate?: string | null;
   pickUpAddress: string;
   returnAddress: string;
   mileageLimit: number;
@@ -473,6 +475,8 @@ export interface RentalsSelect<T extends boolean = true> {
   endDate?: T;
   rentalPrice?: T;
   depositAmount?: T;
+  installmentAmount?: T;
+  installmentDate?: T;
   pickUpAddress?: T;
   returnAddress?: T;
   mileageLimit?: T;

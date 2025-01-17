@@ -14,6 +14,18 @@ export const injectHTMLValues = ({
 	const dom = new JSDOM(html);
 
 	Object.entries(values).forEach(([className, value]) => {
+		if (value) {
+			const wrappers = dom.window.document.querySelectorAll(
+				`.wrapper__not__${className}`,
+			);
+
+			wrappers.forEach(wrapper => {
+				wrapper.remove();
+			});
+		}
+	});
+
+	Object.entries(values).forEach(([className, value]) => {
 		if (!value || value.startsWith('-')) {
 			const wrappers = dom.window.document.querySelectorAll(
 				`.wrapper__${className}`,
