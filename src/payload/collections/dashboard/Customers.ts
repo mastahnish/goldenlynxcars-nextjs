@@ -81,10 +81,20 @@ export const Customers: CollectionConfig = {
 						{
 							name: 'issueDate',
 							type: 'date',
+							admin: {
+								date: {
+									displayFormat: 'dd/MM/yyyy',
+								},
+							},
 						},
 						{
 							name: 'expirationDate',
 							type: 'date',
+							admin: {
+								date: {
+									displayFormat: 'dd/MM/yyyy',
+								},
+							},
 						},
 						{
 							name: 'issuingAuthority',

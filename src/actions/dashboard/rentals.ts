@@ -42,6 +42,16 @@ const fuelLabels = {
 	hybrid: 'Hybrid',
 };
 
+const currencyWords = {
+	PLN: 'złotych',
+	USD: 'dolarów',
+	EUR: 'euro',
+	GBP: 'funtów',
+	CHF: 'franków',
+	NOK: 'koron norweskich',
+	BTC: 'bitcoinów',
+};
+
 interface SendRentalOfferInput {
 	userId: string | number;
 	rentalId: string | number;
@@ -218,12 +228,14 @@ export const generateRentalContracts = async (id: string | number) => {
 		car,
 		startDate,
 		endDate,
+		currency,
 		rentalPrice,
 		depositAmount,
 		installmentAmount,
 		installmentDate,
 		status,
 		mileageBefore,
+		mileageAfter,
 		mileageLimit,
 		customerSignatureJSON,
 		employeeSignatureJSON,
@@ -344,9 +356,13 @@ export const generateRentalContracts = async (id: string | number) => {
 		vehicleKeysAmount: car.contract.keysAmount.toString(),
 		vehicleTires: car.contract.tires ?? '',
 		currentMileage: mileageBefore.toString(),
+		mileageAfter: mileageAfter.toString(),
 		mileageLimit: mileageLimit.toString(),
+		totalMileageLimit: (mileageBefore + mileageLimit).toString(),
 		fuelType: fuelLabels[car.details.fuel],
 		contractId,
+		currency,
+		currencyWord: currencyWords[currency],
 		rentalPrice: rentalPrice.toString(),
 		rentalPriceInWords: numberToWords(rentalPrice),
 		installmentRentalPrice: (rentalPrice - (installmentAmount ?? 0)).toString(),

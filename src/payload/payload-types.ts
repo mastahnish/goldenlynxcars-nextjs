@@ -172,6 +172,7 @@ export interface Rental {
   car: number | CarFleet;
   startDate: string;
   endDate: string;
+  currency: 'PLN' | 'USD' | 'EUR' | 'GBP' | 'CHF' | 'NOK' | 'BTC';
   rentalPrice: number;
   depositAmount: number;
   installmentAmount?: number | null;
@@ -473,6 +474,7 @@ export interface RentalsSelect<T extends boolean = true> {
   car?: T;
   startDate?: T;
   endDate?: T;
+  currency?: T;
   rentalPrice?: T;
   depositAmount?: T;
   installmentAmount?: T;

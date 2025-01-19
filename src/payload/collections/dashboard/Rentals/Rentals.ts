@@ -72,6 +72,13 @@ export const Rentals: CollectionConfig = {
 			type: 'row',
 			fields: [
 				{
+					name: 'currency',
+					type: 'select',
+					options: ['PLN', 'USD', 'EUR', 'GBP', 'CHF', 'NOK', 'BTC'],
+					defaultValue: 'PLN',
+					required: true,
+				},
+				{
 					name: 'rentalPrice',
 					type: 'number',
 					required: true,
