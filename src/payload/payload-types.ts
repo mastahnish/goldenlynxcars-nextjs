@@ -172,9 +172,11 @@ export interface Rental {
   car: number | CarFleet;
   startDate: string;
   endDate: string;
-  currency: 'PLN' | 'USD' | 'EUR' | 'GBP' | 'CHF' | 'NOK' | 'BTC';
+  rentalCurrency: 'PLN' | 'USD' | 'EUR' | 'GBP' | 'CHF' | 'NOK' | 'BTC';
   rentalPrice: number;
+  depositCurrency: 'PLN' | 'USD' | 'EUR' | 'GBP' | 'CHF' | 'NOK' | 'BTC';
   depositAmount: number;
+  installmentCurrency: 'PLN' | 'USD' | 'EUR' | 'GBP' | 'CHF' | 'NOK' | 'BTC';
   installmentAmount?: number | null;
   installmentDate?: string | null;
   pickUpAddress: string;
@@ -474,9 +476,11 @@ export interface RentalsSelect<T extends boolean = true> {
   car?: T;
   startDate?: T;
   endDate?: T;
-  currency?: T;
+  rentalCurrency?: T;
   rentalPrice?: T;
+  depositCurrency?: T;
   depositAmount?: T;
+  installmentCurrency?: T;
   installmentAmount?: T;
   installmentDate?: T;
   pickUpAddress?: T;

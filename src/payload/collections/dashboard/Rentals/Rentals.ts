@@ -8,6 +8,8 @@ import { checkRoles } from '@/payload/access/check-role';
 
 import type { CollectionConfig } from 'payload';
 
+const CURRENCIES = ['PLN', 'USD', 'EUR', 'GBP', 'CHF', 'NOK', 'BTC'];
+
 export const Rentals: CollectionConfig = {
 	slug: 'rentals',
 	fields: [
@@ -72,11 +74,14 @@ export const Rentals: CollectionConfig = {
 			type: 'row',
 			fields: [
 				{
-					name: 'currency',
+					name: 'rentalCurrency',
 					type: 'select',
-					options: ['PLN', 'USD', 'EUR', 'GBP', 'CHF', 'NOK', 'BTC'],
+					options: CURRENCIES,
 					defaultValue: 'PLN',
 					required: true,
+					access: {
+						update: ({ req: { user } }) => checkRoles(user, ['admin']),
+					},
 				},
 				{
 					name: 'rentalPrice',
@@ -110,6 +115,16 @@ export const Rentals: CollectionConfig = {
 					},
 				},
 				{
+					name: 'depositCurrency',
+					type: 'select',
+					options: CURRENCIES,
+					defaultValue: 'PLN',
+					required: true,
+					access: {
+						update: ({ req: { user } }) => checkRoles(user, ['admin']),
+					},
+				},
+				{
 					name: 'depositAmount',
 					type: 'number',
 					required: true,
@@ -123,6 +138,16 @@ export const Rentals: CollectionConfig = {
 		{
 			type: 'row',
 			fields: [
+				{
+					name: 'installmentCurrency',
+					type: 'select',
+					options: CURRENCIES,
+					defaultValue: 'PLN',
+					required: true,
+					access: {
+						update: ({ req: { user } }) => checkRoles(user, ['admin']),
+					},
+				},
 				{
 					name: 'installmentAmount',
 					type: 'number',
