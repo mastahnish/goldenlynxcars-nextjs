@@ -67,7 +67,9 @@ export const sendRentalOffer = async ({
 		car,
 		startDate,
 		endDate,
+		rentalCurrency,
 		rentalPrice,
+		depositCurrency,
 		depositAmount,
 		pickUpAddress,
 		returnAddress,
@@ -106,12 +108,32 @@ export const sendRentalOffer = async ({
 		<br>
 		<div>Okres wynajmu: <b>${startDateFormatted} - ${endDateFormatted}</b></div>
 		<br>
-		<div>Całkowita cena usługi wynajmu ${car.name}: <b>${rentalPrice} zł brutto</b></div>
-		<div>Kaucja: <b>${depositAmount} zł</b> (gotówka płatna przy odbiorze)</div>
+		<div>Całkowita cena usługi wynajmu ${car.name}: <b>${rentalPrice.toLocaleString(
+			'pl-PL',
+			{
+				style: 'currency',
+				currency: rentalCurrency,
+				...(Number.isInteger(rentalPrice) && { maximumFractionDigits: 0 }),
+			},
+		)} brutto</b></div>
+		<div>Kaucja: <b>${depositAmount.toLocaleString('pl-PL', {
+			style: 'currency',
+			currency: depositCurrency,
+			...(Number.isInteger(depositCurrency) && { maximumFractionDigits: 0 }),
+		})}</b> (gotówka płatna przy odbiorze)</div>
 		<div>Miejsce podstawienia: <b>${pickUpAddress}</b></div>
 		<div>Miejsce zwrotu: <b>${returnAddress}</b></div>
 		<br>
-		<div>🏁 Limit kilometrów: <b>${mileageLimit} km / wynajem.</b> Nadmiarowe km: <b>${car.additionalMileagePrice} zł / km</b></div>
+		<div>🏁 Limit kilometrów: <b>${mileageLimit} km / wynajem.</b> Nadmiarowe km: <b>${car.additionalMileagePrice.toLocaleString(
+			'pl-PL',
+			{
+				style: 'currency',
+				currency: rentalCurrency,
+				...(Number.isInteger(car.additionalMileagePrice) && {
+					maximumFractionDigits: 0,
+				}),
+			},
+		)} / km</b></div>
 		<br>
 		<div>Jeżeli ${gender === 'Male' ? 'miałby Pan' : 'miałaby Pani'} jakieś dodatkowe pytania pozostajemy do dyspozycji.</div>
 		<br>
