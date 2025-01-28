@@ -462,8 +462,6 @@ export const generateRentalContracts = async (id: string | number) => {
 		id,
 		collection: 'rentals',
 		data: {
-			customerSignatureJSON: null,
-			employeeSignatureJSON: null,
 			...(status === 'Confirmed' && { status: 'In Progress' }),
 			...(status === 'In Progress' && { status: 'Completed' }),
 		},

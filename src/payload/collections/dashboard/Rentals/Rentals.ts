@@ -51,9 +51,6 @@ export const Rentals: CollectionConfig = {
 							pickerAppearance: 'dayAndTime',
 						},
 					},
-					access: {
-						update: ({ req: { user } }) => checkRoles(user, ['admin']),
-					},
 				},
 				{
 					name: 'endDate',
@@ -63,9 +60,6 @@ export const Rentals: CollectionConfig = {
 						date: {
 							pickerAppearance: 'dayAndTime',
 						},
-					},
-					access: {
-						update: ({ req: { user } }) => checkRoles(user, ['admin']),
 					},
 				},
 			],
