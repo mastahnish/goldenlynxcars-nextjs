@@ -155,6 +155,28 @@ export const CarFleet: CollectionConfig = {
 			],
 		},
 		{
+			name: 'reminders',
+			type: 'array',
+			fields: [
+				{
+					name: 'name',
+					type: 'text',
+					required: true,
+				},
+				{
+					name: 'date',
+					type: 'date',
+					required: true,
+				},
+				{
+					name: 'daysBeforeNotification',
+					type: 'number',
+					defaultValue: 7,
+					required: true,
+				},
+			],
+		},
+		{
 			name: 'media',
 			type: 'group',
 			fields: [

@@ -236,6 +236,14 @@ export interface CarFleet {
     seats: number;
     fuel: 'gasoline' | 'diesel' | 'lpg' | 'hybrid';
   };
+  reminders?:
+    | {
+        name: string;
+        date: string;
+        daysBeforeNotification: number;
+        id?: string | null;
+      }[]
+    | null;
   media?: {
     info?: (number | null) | Media;
     rentalPrice?: (number | null) | Media;
@@ -586,6 +594,14 @@ export interface CarFleetSelect<T extends boolean = true> {
         transmission?: T;
         seats?: T;
         fuel?: T;
+      };
+  reminders?:
+    | T
+    | {
+        name?: T;
+        date?: T;
+        daysBeforeNotification?: T;
+        id?: T;
       };
   media?:
     | T

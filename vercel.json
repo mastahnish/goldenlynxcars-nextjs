@@ -1,0 +1,8 @@
+{
+	"crons": [
+		{
+			"path": "/api/cron/car-fleet-reminder",
+			"schedule": "0 6 * * *"
+		}
+	]
+}
