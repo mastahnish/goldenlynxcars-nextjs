@@ -2,7 +2,7 @@ import { JSDOM } from 'jsdom';
 
 interface InjectHTMLValuesParams {
 	html: string;
-	values: Record<string, string | null>;
+	values: Record<string, string | string[] | null>;
 	images?: Record<string, string>;
 }
 
@@ -26,7 +26,7 @@ export const injectHTMLValues = ({
 	});
 
 	Object.entries(values).forEach(([className, value]) => {
-		if (!value || value.startsWith('-')) {
+		if (!value || (typeof value === 'string' && value.startsWith('-'))) {
 			const wrappers = dom.window.document.querySelectorAll(
 				`.wrapper__${className}`,
 			);
@@ -43,6 +43,13 @@ export const injectHTMLValues = ({
 		const elements = dom.window.document.querySelectorAll(`.${className}`);
 
 		elements.forEach(element => {
+			if (Array.isArray(value)) {
+				element.innerHTML = value
+					.map(content => `<li class="Body">${content}</li>`)
+					.join('');
+				return;
+			}
+
 			element.innerHTML = value;
 		});
 	});

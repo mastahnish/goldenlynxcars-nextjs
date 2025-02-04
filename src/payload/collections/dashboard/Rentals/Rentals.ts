@@ -243,6 +243,21 @@ export const Rentals: CollectionConfig = {
 			],
 		},
 		{
+			name: 'caveats',
+			type: 'array',
+			fields: [
+				{
+					name: 'content',
+					type: 'text',
+					required: true,
+				},
+			],
+			admin: {
+				condition: ({ status }) =>
+					status === 'Confirmed' || status === 'In Progress',
+			},
+		},
+		{
 			name: 'state',
 			type: 'ui',
 			admin: {

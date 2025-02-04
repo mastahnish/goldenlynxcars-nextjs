@@ -185,6 +185,12 @@ export interface Rental {
   mileageBefore: number;
   mileageAfter: number;
   status: 'Provisional' | 'Offer Sent' | 'Confirmed' | 'In Progress' | 'Completed' | 'Rejected';
+  caveats?:
+    | {
+        content: string;
+        id?: string | null;
+      }[]
+    | null;
   customerSignatureJSON?:
     | {
         [k: string]: unknown;
@@ -498,6 +504,12 @@ export interface RentalsSelect<T extends boolean = true> {
   mileageAfter?: T;
   status?: T;
   statusAction?: T;
+  caveats?:
+    | T
+    | {
+        content?: T;
+        id?: T;
+      };
   state?: T;
   'add-customer-signature'?: T;
   'add-employee-signature'?: T;

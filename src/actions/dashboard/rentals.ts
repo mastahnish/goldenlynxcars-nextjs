@@ -258,6 +258,7 @@ export const generateRentalContracts = async (id: string | number) => {
 		installmentAmount,
 		installmentDate,
 		status,
+		caveats,
 		mileageBefore,
 		mileageAfter,
 		mileageLimit,
@@ -345,8 +346,13 @@ export const generateRentalContracts = async (id: string | number) => {
 			{ name: 'protokół_odbioru_pojazdu', template: vehiclePickUp.template },
 		],
 	};
+	const caveatContents = caveats?.map(({ content }) => content) ?? [];
 
-	const values: Record<string, string | null> = {
+	if (!caveatContents.length) {
+		caveatContents.push('BRAK');
+	}
+
+	const values: Record<string, string | string[] | null> = {
 		fullName: customerData.personalData.fullName,
 		email: customerData.personalData.email,
 		phoneNumber: customerData.personalData.phoneNumber,
@@ -406,6 +412,7 @@ export const generateRentalContracts = async (id: string | number) => {
 		endDate: formatInTimeZone(endDate, TIMEZONE, 'dd.MM.yyyy'),
 		endDateHour: formatInTimeZone(endDate, TIMEZONE, 'kk:mm'),
 		currentDate: formatInTimeZone(new Date(), TIMEZONE, 'dd.MM.yyyy'),
+		caveats: caveatContents,
 	};
 	const images: Record<string, string> = {
 		customerSignature,
@@ -462,6 +469,7 @@ export const generateRentalContracts = async (id: string | number) => {
 		id,
 		collection: 'rentals',
 		data: {
+			caveats: null,
 			...(status === 'Confirmed' && { status: 'In Progress' }),
 			...(status === 'In Progress' && { status: 'Completed' }),
 		},
