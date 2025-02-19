@@ -33,6 +33,11 @@ const customerSchema = z.object({
 		expirationDate: z.string().nullable(),
 		issuingAuthority: z.string().min(1),
 	}),
+	invoiceDetails: z.object({
+		companyName: z.string().nullable(),
+		NIP: z.string().nullable(),
+		address: z.string().nullable(),
+	}),
 });
 
 const fuelLabels = {
@@ -352,7 +357,14 @@ export const generateRentalContracts = async (id: string | number) => {
 		caveatContents.push('BRAK');
 	}
 
+	const { companyName, address, NIP } = customerData.invoiceDetails;
+	const company =
+		companyName && address && NIP
+			? `${companyName}, ${address}, NIP: ${NIP}`
+			: null;
+
 	const values: Record<string, string | string[] | null> = {
+		company,
 		fullName: customerData.personalData.fullName,
 		email: customerData.personalData.email,
 		phoneNumber: customerData.personalData.phoneNumber,
