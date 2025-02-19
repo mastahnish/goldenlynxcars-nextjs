@@ -61,6 +61,7 @@ export interface Config {
     'vip-transfer-content': VipTransferContent;
     'investor-model-header': InvestorModelHeader;
     'investor-model-content': InvestorModelContent;
+    'rentals-schedule': RentalsSchedule;
   };
   globalsSelect?: {
     'contract-settings': ContractSettingsSelect<false> | ContractSettingsSelect<true>;
@@ -82,6 +83,7 @@ export interface Config {
     'vip-transfer-content': VipTransferContentSelect<false> | VipTransferContentSelect<true>;
     'investor-model-header': InvestorModelHeaderSelect<false> | InvestorModelHeaderSelect<true>;
     'investor-model-content': InvestorModelContentSelect<false> | InvestorModelContentSelect<true>;
+    'rentals-schedule': RentalsScheduleSelect<false> | RentalsScheduleSelect<true>;
   };
   locale: null;
   user: User & {
@@ -984,6 +986,15 @@ export interface InvestorModelContent {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "rentals-schedule".
+ */
+export interface RentalsSchedule {
+  id: number;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "contract-settings_select".
  */
 export interface ContractSettingsSelect<T extends boolean = true> {
@@ -1310,6 +1321,16 @@ export interface InvestorModelContentSelect<T extends boolean = true> {
         content?: T;
         id?: T;
       };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "rentals-schedule_select".
+ */
+export interface RentalsScheduleSelect<T extends boolean = true> {
+  schedule?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;

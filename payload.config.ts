@@ -13,6 +13,7 @@ import { ContactRequest } from '@/payload/collections/ContactRequest/ContactRequ
 import { ContractTemplates } from '@/payload/collections/dashboard/ContractTemplates';
 import { Customers } from '@/payload/collections/dashboard/Customers';
 import { Rentals } from '@/payload/collections/dashboard/Rentals/Rentals';
+import { RentalsSchedule } from '@/payload/collections/dashboard/RentalsSchedule/RentalsSchedule';
 import { Media } from '@/payload/collections/Media';
 import { Users } from '@/payload/collections/Users/Users';
 import { AboutUsHeader } from '@/payload/globals/about-us/AboutUsHeader';
@@ -74,6 +75,7 @@ export default buildConfig({
 		VIPTransferContent,
 		InvestorModelHeader,
 		InvestorModelContent,
+		RentalsSchedule,
 	],
 	editor: slateEditor({}),
 	secret: env.PAYLOAD_SECRET,

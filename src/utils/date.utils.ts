@@ -7,3 +7,11 @@ export const daysAndMonthsBetween = (start: Date, end: Date) => {
 
 	return { days, months };
 };
+
+export const getAllMonths = () => {
+	const formatter = new Intl.DateTimeFormat('pl-PL', { month: 'long' });
+
+	return Array.from({ length: 12 }).map((_, i) =>
+		formatter.format(new Date(Date.UTC(0, i))),
+	);
+};
