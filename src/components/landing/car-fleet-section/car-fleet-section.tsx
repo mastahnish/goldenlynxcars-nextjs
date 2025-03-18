@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 import { CarFleetSectionCars } from './car-fleet-section-cars';
 
 import { Section } from '@/components/common/section';
@@ -16,7 +18,9 @@ export const CarFleetSection = async () => {
 		<Section title={title} label={label}>
 			<CarFleetSectionCars cars={filteredCars} />
 			<div className="mx-auto mt-4 w-fit">
-				<Button size="large">Zobacz pełną flotę</Button>
+				<Button size="large" asChild>
+					<Link href="/flota-samochodow">Zobacz pełną flotę</Link>
+				</Button>
 			</div>
 		</Section>
 	);

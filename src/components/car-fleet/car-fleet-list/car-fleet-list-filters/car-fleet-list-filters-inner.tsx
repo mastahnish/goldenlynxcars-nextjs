@@ -29,30 +29,35 @@ export const CarFleetListFiltersInner = ({
 				placeholder="Nazwa auta"
 				value={name ?? ''}
 				onChange={({ target }) => setFilters({ name: target.value })}
+				fullWidth
 			/>
 			<Select
 				placeholder="Marka"
 				options={brands}
 				value={brand ?? undefined}
 				onValueChange={value => setFilters({ brand: value })}
+				fullWidth
 			/>
 			<Select
 				placeholder="Typ"
 				options={types}
 				value={type ?? undefined}
 				onValueChange={value => setFilters({ type: value })}
+				fullWidth
 			/>
 			<Select
 				placeholder="Cena / dzień"
 				options={prices}
 				value={price ?? undefined}
 				onValueChange={value => setFilters({ price: value })}
+				fullWidth
 			/>
 			<Select
 				placeholder="Ilość miejsc"
 				options={seatsOptions}
 				value={seats ?? undefined}
 				onValueChange={value => setFilters({ seats: value })}
+				fullWidth
 			/>
 		</div>
 	);

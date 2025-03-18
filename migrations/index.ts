@@ -5,6 +5,7 @@ import * as migration_20240818_152625_add_car_fleet from './20240818_152625_add_
 import * as migration_20240819_074811_add_opinion_section from './20240819_074811_add_opinion_section';
 import * as migration_20240820_133214_add_faq_section from './20240820_133214_add_faq_section';
 import * as migration_20240823_101829_add_contact_section from './20240823_101829_add_contact_section';
+import * as migration_20250313_204254 from './20250313_204254';
 
 export const migrations = [
 	{
@@ -41,5 +42,10 @@ export const migrations = [
 		up: migration_20240823_101829_add_contact_section.up,
 		down: migration_20240823_101829_add_contact_section.down,
 		name: '20240823_101829_add_contact_section',
+	},
+	{
+		up: migration_20250313_204254.up,
+		down: migration_20250313_204254.down,
+		name: '20250313_204254',
 	},
 ];
