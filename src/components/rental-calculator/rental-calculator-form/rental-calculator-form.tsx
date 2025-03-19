@@ -37,6 +37,7 @@ export const RentalCalculatorForm = ({
 		control,
 		errors,
 		car,
+		isLoading,
 		diffCollectionAndReturnAddress,
 		biggerMileageLimit,
 		selectOptions,
@@ -225,7 +226,7 @@ export const RentalCalculatorForm = ({
 					</div>
 					<RentalCalculatorFormInfo
 						title="Twoja cena:"
-						content={Math.round(price)}
+						content={isLoading ? '...' : Math.round(price)}
 						suffix="zł"
 					/>
 					<RentalCalculatorFormInfo

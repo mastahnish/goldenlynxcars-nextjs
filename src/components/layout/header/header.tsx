@@ -5,6 +5,8 @@ import { HeaderShoppingCart } from './header-shopping-cart/header-shopping-cart'
 
 import { ContactPhoneButton } from '@/components/common/contact-phone-button';
 
+import { PHONE_NUMBERS } from '@/lib/constants';
+
 export const Header = () => (
 	<>
 		<header className="absolute inset-x-0 top-0 z-50 h-16 bg-black px-4 text-white sm:h-20 sm:bg-transparent sm:px-10">
@@ -12,8 +14,10 @@ export const Header = () => (
 				<HeaderLogo />
 				<HeaderNavigation />
 				<div className="flex justify-center gap-7">
-					<div className="hidden xl:block">
-						<ContactPhoneButton />
+					<div className="mt-14 hidden flex-col gap-2 xl:flex">
+						{PHONE_NUMBERS.map(phoneNumber => (
+							<ContactPhoneButton key={phoneNumber} phoneNumber={phoneNumber} />
+						))}
 					</div>
 					<HeaderShoppingCart />
 				</div>

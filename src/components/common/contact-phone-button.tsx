@@ -2,8 +2,14 @@ import { Button } from '../ui/button/button';
 
 import { OutlinePhone } from '@/components/ui/icons';
 
-export const ContactPhoneButton = () => (
+type ContactPhoneButtonProps = Readonly<{
+	phoneNumber: string;
+}>;
+
+export const ContactPhoneButton = ({
+	phoneNumber,
+}: ContactPhoneButtonProps) => (
 	<Button color="white" size="small" icon={OutlinePhone} asChild>
-		<a href="tel:+48555123456">+48 555 123 456</a>
+		<a href={`tel:${phoneNumber.replaceAll(' ', '')}`}>{phoneNumber}</a>
 	</Button>
 );

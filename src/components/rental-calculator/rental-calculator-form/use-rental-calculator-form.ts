@@ -1,9 +1,10 @@
+import { useQuery } from '@tanstack/react-query';
 import { useWatch } from 'react-hook-form';
 import { toast } from 'react-hot-toast';
 
+import { calculateLocationPrice } from './actions/calculate-location-price';
 import { DEFAULT_ADDRESS } from './rental-calculator-form.constants';
 import { rentalCalculatorFormSchema } from './rental-calculator-form.schema';
-import { calculateLocationPrice } from './utils/calculate-location-price';
 import { calculateMileageLimit } from './utils/calculate-mileage-limit';
 import { calculateRentalPrice } from './utils/calculate-rental-price';
 
@@ -57,6 +58,32 @@ export const useRentalCalculatorForm = ({
 			'additionalMileageLimit',
 		],
 	});
+	const locationPriceQuery = useQuery({
+		queryKey: [
+			'location-price',
+			carId,
+			diffCollectionAndReturnAddress,
+			collectionAndReturnAddress,
+			collectionAddress,
+			returnAddress,
+		],
+		queryFn: () =>
+			calculateLocationPrice({
+				carId,
+				defaultAddress: DEFAULT_ADDRESS,
+				collectionAddress: diffCollectionAndReturnAddress
+					? (collectionAddress ?? '')
+					: (collectionAndReturnAddress ?? ''),
+				returnAddress: diffCollectionAndReturnAddress
+					? (returnAddress ?? '')
+					: (collectionAndReturnAddress ?? ''),
+			}),
+		enabled:
+			!!carId &&
+			(diffCollectionAndReturnAddress
+				? !!collectionAddress && !!returnAddress
+				: !!collectionAndReturnAddress),
+	});
 
 	const selectOptions = cars.map(({ id, name }) => ({
 		value: id.toString(),
@@ -67,15 +94,6 @@ export const useRentalCalculatorForm = ({
 		car && startDate && endDate
 			? calculateRentalPrice({ car, startDate, endDate })
 			: 0;
-	const locationPrice = calculateLocationPrice({
-		defaultAddress: DEFAULT_ADDRESS,
-		collectionAddress: diffCollectionAndReturnAddress
-			? (collectionAddress ?? '')
-			: (collectionAndReturnAddress ?? ''),
-		returnAddress: diffCollectionAndReturnAddress
-			? (returnAddress ?? '')
-			: (collectionAndReturnAddress ?? ''),
-	});
 	const deposit = car?.deposit ?? 0;
 	const mileageLimit =
 		car && startDate && endDate
@@ -85,7 +103,10 @@ export const useRentalCalculatorForm = ({
 		car && biggerMileageLimit
 			? car.additionalMileagePrice * additionalMileageLimit
 			: 0;
-	const price = rentalPrice + locationPrice + additionalMileagePrice;
+	const price =
+		rentalPrice + additionalMileagePrice + (locationPriceQuery.data ?? 0);
+
+	const isLoading = locationPriceQuery.isLoading;
 
 	const onSubmit = handleSubmit(
 		({ carId, startDate, endDate, age, email, phoneNumber, ...data }) => {
@@ -124,6 +145,7 @@ export const useRentalCalculatorForm = ({
 		control,
 		errors,
 		car,
+		isLoading,
 		diffCollectionAndReturnAddress,
 		biggerMileageLimit,
 		selectOptions,
