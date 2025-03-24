@@ -1,4 +1,4 @@
-export { ContactSection } from '../ContactSection';
+export { ContactSection } from '../contact/ContactSection';
 export { CarFleetSection } from './CarFleetSection';
 export { FAQSection } from './FAQSection';
 export { Hero } from './Hero';

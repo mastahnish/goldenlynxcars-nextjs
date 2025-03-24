@@ -98,6 +98,7 @@ export interface Config {
     defaultIDType: number;
   };
   globals: {
+    'contact-header': ContactHeader;
     'contract-settings': ContractSetting;
     'contact-section': ContactSection;
     hero: Hero;
@@ -120,6 +121,7 @@ export interface Config {
     'rentals-schedule': RentalsSchedule;
   };
   globalsSelect: {
+    'contact-header': ContactHeaderSelect<false> | ContactHeaderSelect<true>;
     'contract-settings': ContractSettingsSelect<false> | ContractSettingsSelect<true>;
     'contact-section': ContactSectionSelect<false> | ContactSectionSelect<true>;
     hero: HeroSelect<false> | HeroSelect<true>;
@@ -739,6 +741,19 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "contact-header".
+ */
+export interface ContactHeader {
+  id: number;
+  title: string;
+  label?: string | null;
+  content: string;
+  subContent?: string | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "contract-settings".
  */
 export interface ContractSetting {
@@ -1043,6 +1058,19 @@ export interface RentalsSchedule {
   id: number;
   updatedAt?: string | null;
   createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "contact-header_select".
+ */
+export interface ContactHeaderSelect<T extends boolean = true> {
+  title?: T;
+  label?: T;
+  content?: T;
+  subContent?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

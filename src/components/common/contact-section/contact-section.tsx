@@ -13,7 +13,7 @@ export const ContactSection = async () => {
 	const carFleet = await getCachedCollection('car-fleet')();
 
 	return (
-		<section className="flex bg-semi-black pb-6">
+		<section id="contact-section" className="flex bg-semi-black pb-6">
 			<Section
 				as="div"
 				title={title}

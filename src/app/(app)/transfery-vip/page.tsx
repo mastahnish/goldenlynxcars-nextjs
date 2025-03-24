@@ -13,8 +13,8 @@ const VipTransfersPage = () => (
 		<VipTransferWhyWorth />
 		<VipTransferProcess />
 		<div className="mx-auto mb-20 mt-6 w-fit">
-			<Button icon={ArrowRight} moveIcon>
-				Wyślij zapytanie
+			<Button icon={ArrowRight} moveIcon asChild>
+				<a href="#contact-section">Wyślij zapytanie</a>
 			</Button>
 		</div>
 		<ContactSection />

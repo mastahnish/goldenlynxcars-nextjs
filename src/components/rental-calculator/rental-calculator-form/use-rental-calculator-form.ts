@@ -72,17 +72,21 @@ export const useRentalCalculatorForm = ({
 				carId,
 				defaultAddress: DEFAULT_ADDRESS,
 				collectionAddress: diffCollectionAndReturnAddress
-					? (collectionAddress ?? '')
-					: (collectionAndReturnAddress ?? ''),
+					? collectionAddress
+						? collectionAddress
+						: DEFAULT_ADDRESS
+					: collectionAndReturnAddress
+						? collectionAndReturnAddress
+						: DEFAULT_ADDRESS,
 				returnAddress: diffCollectionAndReturnAddress
-					? (returnAddress ?? '')
-					: (collectionAndReturnAddress ?? ''),
+					? returnAddress
+						? returnAddress
+						: DEFAULT_ADDRESS
+					: collectionAndReturnAddress
+						? collectionAndReturnAddress
+						: DEFAULT_ADDRESS,
 			}),
-		enabled:
-			!!carId &&
-			(diffCollectionAndReturnAddress
-				? !!collectionAddress && !!returnAddress
-				: !!collectionAndReturnAddress),
+		enabled: !!carId,
 	});
 
 	const selectOptions = cars.map(({ id, name }) => ({

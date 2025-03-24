@@ -31,10 +31,6 @@ export const footerSections: FooterSection[] = [
 			},
 			{
 				href: '#',
-				label: 'Wynajem na godziny',
-			},
-			{
-				href: '#',
 				label: 'Subskrypcja samochodowa',
 			},
 		],
@@ -43,23 +39,23 @@ export const footerSections: FooterSection[] = [
 		title: 'MAPA STRONY',
 		items: [
 			{
-				href: '#',
+				href: '/',
 				label: 'Strona główna',
 			},
 			{
-				href: '#',
+				href: '/#services',
 				label: 'Usługi',
 			},
 			{
-				href: '#',
+				href: '/sklep',
 				label: 'Sklep',
 			},
 			{
-				href: '#',
+				href: '/o-nas',
 				label: 'O nas',
 			},
 			{
-				href: '#',
+				href: '/kontakt',
 				label: 'Kontakt',
 			},
 		],
@@ -72,8 +68,8 @@ export const footerSections: FooterSection[] = [
 				label: 'Polityka prywatności',
 			},
 			{
-				href: 'maps:?q=Dmowskiego 60, 05-260 Marki',
-				label: 'Rewa, ul. Lorem ipsum 4, 55-444',
+				href: 'maps:?q=Krótka 2/2, 84-230 Dębogórze',
+				label: 'Dębogórze-Wybudowanie, ul. Krótka 2/2, 84-230',
 			},
 		],
 	},

@@ -13,7 +13,7 @@ export const Header = () => (
 			<div className="mx-auto flex h-full max-w-screen-2xl items-center justify-between">
 				<HeaderLogo />
 				<HeaderNavigation />
-				<div className="flex justify-center gap-7">
+				<div className="flex items-center justify-center gap-7">
 					<div className="mt-14 hidden flex-col gap-2 xl:flex">
 						{PHONE_NUMBERS.map(phoneNumber => (
 							<ContactPhoneButton key={phoneNumber} phoneNumber={phoneNumber} />

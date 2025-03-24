@@ -14,7 +14,11 @@ export const HeaderShoppingCartButton = ({
 	const { cartItemsAmount } = useCart();
 
 	return (
-		<button type="button" className="relative mr-10 sm:mr-4" onClick={onClick}>
+		<button
+			type="button"
+			className="relative mr-10 h-fit sm:mr-4"
+			onClick={onClick}
+		>
 			<span className="sr-only">Koszyk</span>
 			<ShoppingCart size={32} aria-hidden />
 			{!!cartItemsAmount && (

@@ -8,6 +8,7 @@ type PageHeaderProps = Readonly<{
 	global:
 		| 'about-us-header'
 		| 'car-fleet-header'
+		| 'contact-header'
 		| 'investor-model-header'
 		| 'rental-calculator-header'
 		| 'shop-header'

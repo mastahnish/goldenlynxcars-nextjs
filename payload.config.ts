@@ -23,7 +23,8 @@ import { AboutUsTeam } from '@/payload/globals/about-us/AboutUsTeam';
 import { CarFleetBrands } from '@/payload/globals/car-fieet/CarFleetBrands';
 import { CarFleetHeader } from '@/payload/globals/car-fieet/CarFleetHeader';
 import { CarFleetTypes } from '@/payload/globals/car-fieet/CarFleetTypes';
-import { ContactSection } from '@/payload/globals/ContactSection';
+import { ContactHeader } from '@/payload/globals/contact/ContactHeader';
+import { ContactSection } from '@/payload/globals/contact/ContactSection';
 import { ContractSettings } from '@/payload/globals/dashboard/ContractSettings';
 import { InvestorModelContent } from '@/payload/globals/investor-model/InvestorModelContent';
 import { InvestorModelHeader } from '@/payload/globals/investor-model/InvestorModelHeader';
@@ -56,6 +57,7 @@ export default buildConfig({
 		CarFleet,
 	],
 	globals: [
+		ContactHeader,
 		ContractSettings,
 		ContactSection,
 		Hero,
