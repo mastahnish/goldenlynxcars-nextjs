@@ -119,6 +119,8 @@ export interface Config {
     'investor-model-header': InvestorModelHeader;
     'investor-model-content': InvestorModelContent;
     'rentals-schedule': RentalsSchedule;
+    'car-subscription-header': CarSubscriptionHeader;
+    'car-subscription-content': CarSubscriptionContent;
   };
   globalsSelect: {
     'contact-header': ContactHeaderSelect<false> | ContactHeaderSelect<true>;
@@ -142,6 +144,8 @@ export interface Config {
     'investor-model-header': InvestorModelHeaderSelect<false> | InvestorModelHeaderSelect<true>;
     'investor-model-content': InvestorModelContentSelect<false> | InvestorModelContentSelect<true>;
     'rentals-schedule': RentalsScheduleSelect<false> | RentalsScheduleSelect<true>;
+    'car-subscription-header': CarSubscriptionHeaderSelect<false> | CarSubscriptionHeaderSelect<true>;
+    'car-subscription-content': CarSubscriptionContentSelect<false> | CarSubscriptionContentSelect<true>;
   };
   locale: null;
   user: User & {
@@ -1061,6 +1065,62 @@ export interface RentalsSchedule {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "car-subscription-header".
+ */
+export interface CarSubscriptionHeader {
+  id: number;
+  title: string;
+  label?: string | null;
+  content: string;
+  subContent?: string | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "car-subscription-content".
+ */
+export interface CarSubscriptionContent {
+  id: number;
+  description: string;
+  benefits: {
+    title: string;
+    label: string;
+    list: {
+      content: string;
+      id?: string | null;
+    }[];
+  };
+  comparisonTable: {
+    title: string;
+    label: string;
+    categories: {
+      category: string;
+      id?: string | null;
+    }[];
+    contents: {
+      parameter: string;
+      content: {
+        item: string;
+        id?: string | null;
+      }[];
+      id?: string | null;
+    }[];
+  };
+  chooseReasons: {
+    title: string;
+    label: string;
+    list: {
+      content: string;
+      id?: string | null;
+    }[];
+  };
+  summary: string;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "contact-header_select".
  */
 export interface ContactHeaderSelect<T extends boolean = true> {
@@ -1405,6 +1465,78 @@ export interface InvestorModelContentSelect<T extends boolean = true> {
  * via the `definition` "rentals-schedule_select".
  */
 export interface RentalsScheduleSelect<T extends boolean = true> {
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "car-subscription-header_select".
+ */
+export interface CarSubscriptionHeaderSelect<T extends boolean = true> {
+  title?: T;
+  label?: T;
+  content?: T;
+  subContent?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "car-subscription-content_select".
+ */
+export interface CarSubscriptionContentSelect<T extends boolean = true> {
+  description?: T;
+  benefits?:
+    | T
+    | {
+        title?: T;
+        label?: T;
+        list?:
+          | T
+          | {
+              content?: T;
+              id?: T;
+            };
+      };
+  comparisonTable?:
+    | T
+    | {
+        title?: T;
+        label?: T;
+        categories?:
+          | T
+          | {
+              category?: T;
+              id?: T;
+            };
+        contents?:
+          | T
+          | {
+              parameter?: T;
+              content?:
+                | T
+                | {
+                    item?: T;
+                    id?: T;
+                  };
+              id?: T;
+            };
+      };
+  chooseReasons?:
+    | T
+    | {
+        title?: T;
+        label?: T;
+        list?:
+          | T
+          | {
+              content?: T;
+              id?: T;
+            };
+      };
+  summary?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;

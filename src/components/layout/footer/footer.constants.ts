@@ -30,7 +30,7 @@ export const footerSections: FooterSection[] = [
 				label: 'Najem długoterminowy',
 			},
 			{
-				href: '#',
+				href: '/subskrypcja-samochodowa',
 				label: 'Subskrypcja samochodowa',
 			},
 		],

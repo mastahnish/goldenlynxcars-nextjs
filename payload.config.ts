@@ -23,6 +23,8 @@ import { AboutUsTeam } from '@/payload/globals/about-us/AboutUsTeam';
 import { CarFleetBrands } from '@/payload/globals/car-fieet/CarFleetBrands';
 import { CarFleetHeader } from '@/payload/globals/car-fieet/CarFleetHeader';
 import { CarFleetTypes } from '@/payload/globals/car-fieet/CarFleetTypes';
+import { CarSubscriptionContent } from '@/payload/globals/car-subscription/CarSubscriptionContent';
+import { CarSubscriptionHeader } from '@/payload/globals/car-subscription/CarSubscriptionHeader';
 import { ContactHeader } from '@/payload/globals/contact/ContactHeader';
 import { ContactSection } from '@/payload/globals/contact/ContactSection';
 import { ContractSettings } from '@/payload/globals/dashboard/ContractSettings';
@@ -78,6 +80,8 @@ export default buildConfig({
 		InvestorModelHeader,
 		InvestorModelContent,
 		RentalsSchedule,
+		CarSubscriptionHeader,
+		CarSubscriptionContent,
 	],
 	editor: slateEditor({}),
 	secret: env.PAYLOAD_SECRET,
