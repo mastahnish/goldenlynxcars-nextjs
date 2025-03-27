@@ -2,13 +2,12 @@ import config from '@payload-config';
 import { getPayload } from 'payload';
 import { z } from 'zod';
 
+import { DEFAULT_ADDRESS } from './rental-calculation-constants';
 import { calculateLocationPrice } from './utils/calculate-location-price';
 import { calculateMileageLimit } from './utils/calculate-mileage-limit';
 import { calculateRentalPrice } from './utils/calculate-rental-price';
 
 import type { NextRequest } from 'next/server';
-
-export const DEFAULT_ADDRESS = 'ul. Krótka 2/2, Dębgórze-Wybudowanie 84-230';
 
 const payloadSchema = z.object({
 	startDate: z.date({ coerce: true }),

@@ -1,4 +1,4 @@
-import { DEFAULT_ADDRESS } from '../route';
+import { DEFAULT_ADDRESS } from '../rental-calculation-constants';
 
 import { getDistanceBetweenPlaces } from '@/actions/google-maps-api';
 
