@@ -7,6 +7,7 @@ import * as migration_20240820_133214_add_faq_section from './20240820_133214_ad
 import * as migration_20240823_101829_add_contact_section from './20240823_101829_add_contact_section';
 import * as migration_20250313_204254 from './20250313_204254';
 import * as migration_20250326_130621_add_car_subscription from './20250326_130621_add_car_subscription';
+import * as migration_20250327_172134_add_long_term_rental from './20250327_172134_add_long_term_rental';
 
 export const migrations = [
 	{
@@ -53,5 +54,10 @@ export const migrations = [
 		up: migration_20250326_130621_add_car_subscription.up,
 		down: migration_20250326_130621_add_car_subscription.down,
 		name: '20250326_130621_add_car_subscription',
+	},
+	{
+		up: migration_20250327_172134_add_long_term_rental.up,
+		down: migration_20250327_172134_add_long_term_rental.down,
+		name: '20250327_172134_add_long_term_rental',
 	},
 ];

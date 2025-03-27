@@ -36,6 +36,8 @@ import { Hero } from '@/payload/globals/landing/Hero';
 import { OpinionSection } from '@/payload/globals/landing/OpinionSection';
 import { RealizationsSection } from '@/payload/globals/landing/RealizationsSection';
 import { ServicesSection } from '@/payload/globals/landing/ServicesSection';
+import { LongTermRentalContent } from '@/payload/globals/long-term-rental/LongTermRentalContent';
+import { LongTermRentalHeader } from '@/payload/globals/long-term-rental/LongTermRentalHeader';
 import { RentalCalculatorHeader } from '@/payload/globals/rental-calculator/RentalCalculatorHeader';
 import { ShopHeader } from '@/payload/globals/ShopHeader';
 import { VIPTransferContent } from '@/payload/globals/vip-transfer/VIPTransferContent';
@@ -82,6 +84,8 @@ export default buildConfig({
 		RentalsSchedule,
 		CarSubscriptionHeader,
 		CarSubscriptionContent,
+		LongTermRentalHeader,
+		LongTermRentalContent,
 	],
 	editor: slateEditor({}),
 	secret: env.PAYLOAD_SECRET,

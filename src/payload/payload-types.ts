@@ -121,6 +121,8 @@ export interface Config {
     'rentals-schedule': RentalsSchedule;
     'car-subscription-header': CarSubscriptionHeader;
     'car-subscription-content': CarSubscriptionContent;
+    'long-term-rental-header': LongTermRentalHeader;
+    'long-term-rental-content': LongTermRentalContent;
   };
   globalsSelect: {
     'contact-header': ContactHeaderSelect<false> | ContactHeaderSelect<true>;
@@ -146,6 +148,8 @@ export interface Config {
     'rentals-schedule': RentalsScheduleSelect<false> | RentalsScheduleSelect<true>;
     'car-subscription-header': CarSubscriptionHeaderSelect<false> | CarSubscriptionHeaderSelect<true>;
     'car-subscription-content': CarSubscriptionContentSelect<false> | CarSubscriptionContentSelect<true>;
+    'long-term-rental-header': LongTermRentalHeaderSelect<false> | LongTermRentalHeaderSelect<true>;
+    'long-term-rental-content': LongTermRentalContentSelect<false> | LongTermRentalContentSelect<true>;
   };
   locale: null;
   user: User & {
@@ -1121,6 +1125,45 @@ export interface CarSubscriptionContent {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "long-term-rental-header".
+ */
+export interface LongTermRentalHeader {
+  id: number;
+  title: string;
+  label?: string | null;
+  content: string;
+  subContent?: string | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "long-term-rental-content".
+ */
+export interface LongTermRentalContent {
+  id: number;
+  process: {
+    title: string;
+    label?: string | null;
+    steps: {
+      content: string;
+      id?: string | null;
+    }[];
+  };
+  additionalInformation: {
+    title: string;
+    label?: string | null;
+    informations: {
+      content: string;
+      id?: string | null;
+    }[];
+  };
+  summary: string;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "contact-header_select".
  */
 export interface ContactHeaderSelect<T extends boolean = true> {
@@ -1530,6 +1573,53 @@ export interface CarSubscriptionContentSelect<T extends boolean = true> {
         title?: T;
         label?: T;
         list?:
+          | T
+          | {
+              content?: T;
+              id?: T;
+            };
+      };
+  summary?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "long-term-rental-header_select".
+ */
+export interface LongTermRentalHeaderSelect<T extends boolean = true> {
+  title?: T;
+  label?: T;
+  content?: T;
+  subContent?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "long-term-rental-content_select".
+ */
+export interface LongTermRentalContentSelect<T extends boolean = true> {
+  process?:
+    | T
+    | {
+        title?: T;
+        label?: T;
+        steps?:
+          | T
+          | {
+              content?: T;
+              id?: T;
+            };
+      };
+  additionalInformation?:
+    | T
+    | {
+        title?: T;
+        label?: T;
+        informations?:
           | T
           | {
               content?: T;

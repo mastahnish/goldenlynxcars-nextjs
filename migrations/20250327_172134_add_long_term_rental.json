@@ -1,0 +1,5628 @@
+{
+	"id": "c7b44e3f-22d8-47bc-ae3a-0bb7376e9b06",
+	"prevId": "00000000-0000-0000-0000-000000000000",
+	"version": "7",
+	"dialect": "postgresql",
+	"tables": {
+		"public.users_roles": {
+			"name": "users_roles",
+			"schema": "",
+			"columns": {
+				"order": {
+					"name": "order",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"parent_id": {
+					"name": "parent_id",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"value": {
+					"name": "value",
+					"type": "enum_users_roles",
+					"typeSchema": "public",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"id": {
+					"name": "id",
+					"type": "serial",
+					"primaryKey": true,
+					"notNull": true
+				}
+			},
+			"indexes": {
+				"users_roles_order_idx": {
+					"name": "users_roles_order_idx",
+					"columns": [
+						{
+							"expression": "order",
+							"isExpression": false,
+							"asc": true,
+							"nulls": "last"
+						}
+					],
+					"isUnique": false,
+					"concurrently": false,
+					"method": "btree",
+					"with": {}
+				},
+				"users_roles_parent_idx": {
+					"name": "users_roles_parent_idx",
+					"columns": [
+						{
+							"expression": "parent_id",
+							"isExpression": false,
+							"asc": true,
+							"nulls": "last"
+						}
+					],
+					"isUnique": false,
+					"concurrently": false,
+					"method": "btree",
+					"with": {}
+				}
+			},
+			"foreignKeys": {
+				"users_roles_parent_fk": {
+					"name": "users_roles_parent_fk",
+					"tableFrom": "users_roles",
+					"tableTo": "users",
+					"columnsFrom": ["parent_id"],
+					"columnsTo": ["id"],
+					"onDelete": "cascade",
+					"onUpdate": "no action"
+				}
+			},
+			"compositePrimaryKeys": {},
+			"uniqueConstraints": {},
+			"policies": {},
+			"checkConstraints": {},
+			"isRLSEnabled": false
+		},
+		"public.users": {
+			"name": "users",
+			"schema": "",
+			"columns": {
+				"id": {
+					"name": "id",
+					"type": "serial",
+					"primaryKey": true,
+					"notNull": true
+				},
+				"full_name": {
+					"name": "full_name",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"phone_number": {
+					"name": "phone_number",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"updated_at": {
+					"name": "updated_at",
+					"type": "timestamp(3) with time zone",
+					"primaryKey": false,
+					"notNull": true,
+					"default": "now()"
+				},
+				"created_at": {
+					"name": "created_at",
+					"type": "timestamp(3) with time zone",
+					"primaryKey": false,
+					"notNull": true,
+					"default": "now()"
+				},
+				"email": {
+					"name": "email",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"reset_password_token": {
+					"name": "reset_password_token",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"reset_password_expiration": {
+					"name": "reset_password_expiration",
+					"type": "timestamp(3) with time zone",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"salt": {
+					"name": "salt",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"hash": {
+					"name": "hash",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"login_attempts": {
+					"name": "login_attempts",
+					"type": "numeric",
+					"primaryKey": false,
+					"notNull": false,
+					"default": 0
+				},
+				"lock_until": {
+					"name": "lock_until",
+					"type": "timestamp(3) with time zone",
+					"primaryKey": false,
+					"notNull": false
+				}
+			},
+			"indexes": {
+				"users_updated_at_idx": {
+					"name": "users_updated_at_idx",
+					"columns": [
+						{
+							"expression": "updated_at",
+							"isExpression": false,
+							"asc": true,
+							"nulls": "last"
+						}
+					],
+					"isUnique": false,
+					"concurrently": false,
+					"method": "btree",
+					"with": {}
+				},
+				"users_created_at_idx": {
+					"name": "users_created_at_idx",
+					"columns": [
+						{
+							"expression": "created_at",
+							"isExpression": false,
+							"asc": true,
+							"nulls": "last"
+						}
+					],
+					"isUnique": false,
+					"concurrently": false,
+					"method": "btree",
+					"with": {}
+				},
+				"users_email_idx": {
+					"name": "users_email_idx",
+					"columns": [
+						{
+							"expression": "email",
+							"isExpression": false,
+							"asc": true,
+							"nulls": "last"
+						}
+					],
+					"isUnique": true,
+					"concurrently": false,
+					"method": "btree",
+					"with": {}
+				}
+			},
+			"foreignKeys": {},
+			"compositePrimaryKeys": {},
+			"uniqueConstraints": {},
+			"policies": {},
+			"checkConstraints": {},
+			"isRLSEnabled": false
+		},
+		"public.customers": {
+			"name": "customers",
+			"schema": "",
+			"columns": {
+				"id": {
+					"name": "id",
+					"type": "serial",
+					"primaryKey": true,
+					"notNull": true
+				},
+				"email": {
+					"name": "email",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"personal_data_email": {
+					"name": "personal_data_email",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"personal_data_gender": {
+					"name": "personal_data_gender",
+					"type": "enum_customers_personal_data_gender",
+					"typeSchema": "public",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"personal_data_full_name": {
+					"name": "personal_data_full_name",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"personal_data_phone_number": {
+					"name": "personal_data_phone_number",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"personal_data_address": {
+					"name": "personal_data_address",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"personal_data_pesel": {
+					"name": "personal_data_pesel",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"personal_data_id_number": {
+					"name": "personal_data_id_number",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"driving_license_series_and_number": {
+					"name": "driving_license_series_and_number",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"driving_license_blank_number": {
+					"name": "driving_license_blank_number",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"driving_license_issue_date": {
+					"name": "driving_license_issue_date",
+					"type": "timestamp(3) with time zone",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"driving_license_expiration_date": {
+					"name": "driving_license_expiration_date",
+					"type": "timestamp(3) with time zone",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"driving_license_issuing_authority": {
+					"name": "driving_license_issuing_authority",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"invoice_details_company_name": {
+					"name": "invoice_details_company_name",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"invoice_details_nip": {
+					"name": "invoice_details_nip",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"invoice_details_address": {
+					"name": "invoice_details_address",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"updated_at": {
+					"name": "updated_at",
+					"type": "timestamp(3) with time zone",
+					"primaryKey": false,
+					"notNull": true,
+					"default": "now()"
+				},
+				"created_at": {
+					"name": "created_at",
+					"type": "timestamp(3) with time zone",
+					"primaryKey": false,
+					"notNull": true,
+					"default": "now()"
+				}
+			},
+			"indexes": {
+				"customers_updated_at_idx": {
+					"name": "customers_updated_at_idx",
+					"columns": [
+						{
+							"expression": "updated_at",
+							"isExpression": false,
+							"asc": true,
+							"nulls": "last"
+						}
+					],
+					"isUnique": false,
+					"concurrently": false,
+					"method": "btree",
+					"with": {}
+				},
+				"customers_created_at_idx": {
+					"name": "customers_created_at_idx",
+					"columns": [
+						{
+							"expression": "created_at",
+							"isExpression": false,
+							"asc": true,
+							"nulls": "last"
+						}
+					],
+					"isUnique": false,
+					"concurrently": false,
+					"method": "btree",
+					"with": {}
+				}
+			},
+			"foreignKeys": {},
+			"compositePrimaryKeys": {},
+			"uniqueConstraints": {},
+			"policies": {},
+			"checkConstraints": {},
+			"isRLSEnabled": false
+		},
+		"public.rentals_caveats": {
+			"name": "rentals_caveats",
+			"schema": "",
+			"columns": {
+				"_order": {
+					"name": "_order",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"_parent_id": {
+					"name": "_parent_id",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"id": {
+					"name": "id",
+					"type": "varchar",
+					"primaryKey": true,
+					"notNull": true
+				},
+				"content": {
+					"name": "content",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": false
+				}
+			},
+			"indexes": {
+				"rentals_caveats_order_idx": {
+					"name": "rentals_caveats_order_idx",
+					"columns": [
+						{
+							"expression": "_order",
+							"isExpression": false,
+							"asc": true,
+							"nulls": "last"
+						}
+					],
+					"isUnique": false,
+					"concurrently": false,
+					"method": "btree",
+					"with": {}
+				},
+				"rentals_caveats_parent_id_idx": {
+					"name": "rentals_caveats_parent_id_idx",
+					"columns": [
+						{
+							"expression": "_parent_id",
+							"isExpression": false,
+							"asc": true,
+							"nulls": "last"
+						}
+					],
+					"isUnique": false,
+					"concurrently": false,
+					"method": "btree",
+					"with": {}
+				}
+			},
+			"foreignKeys": {
+				"rentals_caveats_parent_id_fk": {
+					"name": "rentals_caveats_parent_id_fk",
+					"tableFrom": "rentals_caveats",
+					"tableTo": "rentals",
+					"columnsFrom": ["_parent_id"],
+					"columnsTo": ["id"],
+					"onDelete": "cascade",
+					"onUpdate": "no action"
+				}
+			},
+			"compositePrimaryKeys": {},
+			"uniqueConstraints": {},
+			"policies": {},
+			"checkConstraints": {},
+			"isRLSEnabled": false
+		},
+		"public.rentals": {
+			"name": "rentals",
+			"schema": "",
+			"columns": {
+				"id": {
+					"name": "id",
+					"type": "serial",
+					"primaryKey": true,
+					"notNull": true
+				},
+				"customer_id": {
+					"name": "customer_id",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"additional_driver_id": {
+					"name": "additional_driver_id",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"car_id": {
+					"name": "car_id",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"start_date": {
+					"name": "start_date",
+					"type": "timestamp(3) with time zone",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"end_date": {
+					"name": "end_date",
+					"type": "timestamp(3) with time zone",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"rental_currency": {
+					"name": "rental_currency",
+					"type": "enum_rentals_rental_currency",
+					"typeSchema": "public",
+					"primaryKey": false,
+					"notNull": true,
+					"default": "'PLN'"
+				},
+				"rental_price": {
+					"name": "rental_price",
+					"type": "numeric",
+					"primaryKey": false,
+					"notNull": true,
+					"default": 0
+				},
+				"deposit_currency": {
+					"name": "deposit_currency",
+					"type": "enum_rentals_deposit_currency",
+					"typeSchema": "public",
+					"primaryKey": false,
+					"notNull": true,
+					"default": "'PLN'"
+				},
+				"deposit_amount": {
+					"name": "deposit_amount",
+					"type": "numeric",
+					"primaryKey": false,
+					"notNull": true,
+					"default": 5000
+				},
+				"installment_currency": {
+					"name": "installment_currency",
+					"type": "enum_rentals_installment_currency",
+					"typeSchema": "public",
+					"primaryKey": false,
+					"notNull": true,
+					"default": "'PLN'"
+				},
+				"installment_amount": {
+					"name": "installment_amount",
+					"type": "numeric",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"installment_date": {
+					"name": "installment_date",
+					"type": "timestamp(3) with time zone",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"pick_up_address": {
+					"name": "pick_up_address",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": true,
+					"default": "'ul. Krótka 2/2, Dębgórze-Wybudowanie 84-230 (siedziba)'"
+				},
+				"return_address": {
+					"name": "return_address",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": true,
+					"default": "'ul. Krótka 2/2, Dębgórze-Wybudowanie 84-230 (siedziba)'"
+				},
+				"mileage_limit": {
+					"name": "mileage_limit",
+					"type": "numeric",
+					"primaryKey": false,
+					"notNull": true,
+					"default": 500
+				},
+				"mileage_before": {
+					"name": "mileage_before",
+					"type": "numeric",
+					"primaryKey": false,
+					"notNull": true,
+					"default": 0
+				},
+				"mileage_after": {
+					"name": "mileage_after",
+					"type": "numeric",
+					"primaryKey": false,
+					"notNull": true,
+					"default": 0
+				},
+				"status": {
+					"name": "status",
+					"type": "enum_rentals_status",
+					"typeSchema": "public",
+					"primaryKey": false,
+					"notNull": true,
+					"default": "'Provisional'"
+				},
+				"customer_signature_j_s_o_n": {
+					"name": "customer_signature_j_s_o_n",
+					"type": "jsonb",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"employee_signature_j_s_o_n": {
+					"name": "employee_signature_j_s_o_n",
+					"type": "jsonb",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"updated_at": {
+					"name": "updated_at",
+					"type": "timestamp(3) with time zone",
+					"primaryKey": false,
+					"notNull": true,
+					"default": "now()"
+				},
+				"created_at": {
+					"name": "created_at",
+					"type": "timestamp(3) with time zone",
+					"primaryKey": false,
+					"notNull": true,
+					"default": "now()"
+				}
+			},
+			"indexes": {
+				"rentals_customer_idx": {
+					"name": "rentals_customer_idx",
+					"columns": [
+						{
+							"expression": "customer_id",
+							"isExpression": false,
+							"asc": true,
+							"nulls": "last"
+						}
+					],
+					"isUnique": false,
+					"concurrently": false,
+					"method": "btree",
+					"with": {}
+				},
+				"rentals_additional_driver_idx": {
+					"name": "rentals_additional_driver_idx",
+					"columns": [
+						{
+							"expression": "additional_driver_id",
+							"isExpression": false,
+							"asc": true,
+							"nulls": "last"
+						}
+					],
+					"isUnique": false,
+					"concurrently": false,
+					"method": "btree",
+					"with": {}
+				},
+				"rentals_car_idx": {
+					"name": "rentals_car_idx",
+					"columns": [
+						{
+							"expression": "car_id",
+							"isExpression": false,
+							"asc": true,
+							"nulls": "last"
+						}
+					],
+					"isUnique": false,
+					"concurrently": false,
+					"method": "btree",
+					"with": {}
+				},
+				"rentals_updated_at_idx": {
+					"name": "rentals_updated_at_idx",
+					"columns": [
+						{
+							"expression": "updated_at",
+							"isExpression": false,
+							"asc": true,
+							"nulls": "last"
+						}
+					],
+					"isUnique": false,
+					"concurrently": false,
+					"method": "btree",
+					"with": {}
+				},
+				"rentals_created_at_idx": {
+					"name": "rentals_created_at_idx",
+					"columns": [
+						{
+							"expression": "created_at",
+							"isExpression": false,
+							"asc": true,
+							"nulls": "last"
+						}
+					],
+					"isUnique": false,
+					"concurrently": false,
+					"method": "btree",
+					"with": {}
+				}
+			},
+			"foreignKeys": {
+				"rentals_customer_id_customers_id_fk": {
+					"name": "rentals_customer_id_customers_id_fk",
+					"tableFrom": "rentals",
+					"tableTo": "customers",
+					"columnsFrom": ["customer_id"],
+					"columnsTo": ["id"],
+					"onDelete": "set null",
+					"onUpdate": "no action"
+				},
+				"rentals_additional_driver_id_customers_id_fk": {
+					"name": "rentals_additional_driver_id_customers_id_fk",
+					"tableFrom": "rentals",
+					"tableTo": "customers",
+					"columnsFrom": ["additional_driver_id"],
+					"columnsTo": ["id"],
+					"onDelete": "set null",
+					"onUpdate": "no action"
+				},
+				"rentals_car_id_car_fleet_id_fk": {
+					"name": "rentals_car_id_car_fleet_id_fk",
+					"tableFrom": "rentals",
+					"tableTo": "car_fleet",
+					"columnsFrom": ["car_id"],
+					"columnsTo": ["id"],
+					"onDelete": "set null",
+					"onUpdate": "no action"
+				}
+			},
+			"compositePrimaryKeys": {},
+			"uniqueConstraints": {},
+			"policies": {},
+			"checkConstraints": {},
+			"isRLSEnabled": false
+		},
+		"public.contract_templates": {
+			"name": "contract_templates",
+			"schema": "",
+			"columns": {
+				"id": {
+					"name": "id",
+					"type": "serial",
+					"primaryKey": true,
+					"notNull": true
+				},
+				"name": {
+					"name": "name",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"template": {
+					"name": "template",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"updated_at": {
+					"name": "updated_at",
+					"type": "timestamp(3) with time zone",
+					"primaryKey": false,
+					"notNull": true,
+					"default": "now()"
+				},
+				"created_at": {
+					"name": "created_at",
+					"type": "timestamp(3) with time zone",
+					"primaryKey": false,
+					"notNull": true,
+					"default": "now()"
+				}
+			},
+			"indexes": {
+				"contract_templates_updated_at_idx": {
+					"name": "contract_templates_updated_at_idx",
+					"columns": [
+						{
+							"expression": "updated_at",
+							"isExpression": false,
+							"asc": true,
+							"nulls": "last"
+						}
+					],
+					"isUnique": false,
+					"concurrently": false,
+					"method": "btree",
+					"with": {}
+				},
+				"contract_templates_created_at_idx": {
+					"name": "contract_templates_created_at_idx",
+					"columns": [
+						{
+							"expression": "created_at",
+							"isExpression": false,
+							"asc": true,
+							"nulls": "last"
+						}
+					],
+					"isUnique": false,
+					"concurrently": false,
+					"method": "btree",
+					"with": {}
+				}
+			},
+			"foreignKeys": {},
+			"compositePrimaryKeys": {},
+			"uniqueConstraints": {},
+			"policies": {},
+			"checkConstraints": {},
+			"isRLSEnabled": false
+		},
+		"public.contact_request": {
+			"name": "contact_request",
+			"schema": "",
+			"columns": {
+				"id": {
+					"name": "id",
+					"type": "serial",
+					"primaryKey": true,
+					"notNull": true
+				},
+				"email": {
+					"name": "email",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"first_name": {
+					"name": "first_name",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"phone_number": {
+					"name": "phone_number",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"car_id": {
+					"name": "car_id",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"date": {
+					"name": "date",
+					"type": "timestamp(3) with time zone",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"updated_at": {
+					"name": "updated_at",
+					"type": "timestamp(3) with time zone",
+					"primaryKey": false,
+					"notNull": true,
+					"default": "now()"
+				},
+				"created_at": {
+					"name": "created_at",
+					"type": "timestamp(3) with time zone",
+					"primaryKey": false,
+					"notNull": true,
+					"default": "now()"
+				}
+			},
+			"indexes": {
+				"contact_request_car_idx": {
+					"name": "contact_request_car_idx",
+					"columns": [
+						{
+							"expression": "car_id",
+							"isExpression": false,
+							"asc": true,
+							"nulls": "last"
+						}
+					],
+					"isUnique": false,
+					"concurrently": false,
+					"method": "btree",
+					"with": {}
+				},
+				"contact_request_updated_at_idx": {
+					"name": "contact_request_updated_at_idx",
+					"columns": [
+						{
+							"expression": "updated_at",
+							"isExpression": false,
+							"asc": true,
+							"nulls": "last"
+						}
+					],
+					"isUnique": false,
+					"concurrently": false,
+					"method": "btree",
+					"with": {}
+				},
+				"contact_request_created_at_idx": {
+					"name": "contact_request_created_at_idx",
+					"columns": [
+						{
+							"expression": "created_at",
+							"isExpression": false,
+							"asc": true,
+							"nulls": "last"
+						}
+					],
+					"isUnique": false,
+					"concurrently": false,
+					"method": "btree",
+					"with": {}
+				}
+			},
+			"foreignKeys": {
+				"contact_request_car_id_car_fleet_id_fk": {
+					"name": "contact_request_car_id_car_fleet_id_fk",
+					"tableFrom": "contact_request",
+					"tableTo": "car_fleet",
+					"columnsFrom": ["car_id"],
+					"columnsTo": ["id"],
+					"onDelete": "set null",
+					"onUpdate": "no action"
+				}
+			},
+			"compositePrimaryKeys": {},
+			"uniqueConstraints": {},
+			"policies": {},
+			"checkConstraints": {},
+			"isRLSEnabled": false
+		},
+		"public.media": {
+			"name": "media",
+			"schema": "",
+			"columns": {
+				"id": {
+					"name": "id",
+					"type": "serial",
+					"primaryKey": true,
+					"notNull": true
+				},
+				"alt": {
+					"name": "alt",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"updated_at": {
+					"name": "updated_at",
+					"type": "timestamp(3) with time zone",
+					"primaryKey": false,
+					"notNull": true,
+					"default": "now()"
+				},
+				"created_at": {
+					"name": "created_at",
+					"type": "timestamp(3) with time zone",
+					"primaryKey": false,
+					"notNull": true,
+					"default": "now()"
+				},
+				"url": {
+					"name": "url",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"thumbnail_u_r_l": {
+					"name": "thumbnail_u_r_l",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"filename": {
+					"name": "filename",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"mime_type": {
+					"name": "mime_type",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"filesize": {
+					"name": "filesize",
+					"type": "numeric",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"width": {
+					"name": "width",
+					"type": "numeric",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"height": {
+					"name": "height",
+					"type": "numeric",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"focal_x": {
+					"name": "focal_x",
+					"type": "numeric",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"focal_y": {
+					"name": "focal_y",
+					"type": "numeric",
+					"primaryKey": false,
+					"notNull": false
+				}
+			},
+			"indexes": {
+				"media_updated_at_idx": {
+					"name": "media_updated_at_idx",
+					"columns": [
+						{
+							"expression": "updated_at",
+							"isExpression": false,
+							"asc": true,
+							"nulls": "last"
+						}
+					],
+					"isUnique": false,
+					"concurrently": false,
+					"method": "btree",
+					"with": {}
+				},
+				"media_created_at_idx": {
+					"name": "media_created_at_idx",
+					"columns": [
+						{
+							"expression": "created_at",
+							"isExpression": false,
+							"asc": true,
+							"nulls": "last"
+						}
+					],
+					"isUnique": false,
+					"concurrently": false,
+					"method": "btree",
+					"with": {}
+				},
+				"media_filename_idx": {
+					"name": "media_filename_idx",
+					"columns": [
+						{
+							"expression": "filename",
+							"isExpression": false,
+							"asc": true,
+							"nulls": "last"
+						}
+					],
+					"isUnique": true,
+					"concurrently": false,
+					"method": "btree",
+					"with": {}
+				}
+			},
+			"foreignKeys": {},
+			"compositePrimaryKeys": {},
+			"uniqueConstraints": {},
+			"policies": {},
+			"checkConstraints": {},
+			"isRLSEnabled": false
+		},
+		"public.car_fleet_brands": {
+			"name": "car_fleet_brands",
+			"schema": "",
+			"columns": {
+				"id": {
+					"name": "id",
+					"type": "serial",
+					"primaryKey": true,
+					"notNull": true
+				},
+				"brand": {
+					"name": "brand",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": true
+				}
+			},
+			"indexes": {},
+			"foreignKeys": {},
+			"compositePrimaryKeys": {},
+			"uniqueConstraints": {},
+			"policies": {},
+			"checkConstraints": {},
+			"isRLSEnabled": false
+		},
+		"public.car_fleet_types": {
+			"name": "car_fleet_types",
+			"schema": "",
+			"columns": {
+				"id": {
+					"name": "id",
+					"type": "serial",
+					"primaryKey": true,
+					"notNull": true
+				},
+				"type": {
+					"name": "type",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": true
+				}
+			},
+			"indexes": {},
+			"foreignKeys": {},
+			"compositePrimaryKeys": {},
+			"uniqueConstraints": {},
+			"policies": {},
+			"checkConstraints": {},
+			"isRLSEnabled": false
+		},
+		"public.car_fleet_reminders": {
+			"name": "car_fleet_reminders",
+			"schema": "",
+			"columns": {
+				"_order": {
+					"name": "_order",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"_parent_id": {
+					"name": "_parent_id",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"id": {
+					"name": "id",
+					"type": "varchar",
+					"primaryKey": true,
+					"notNull": true
+				},
+				"name": {
+					"name": "name",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"date": {
+					"name": "date",
+					"type": "timestamp(3) with time zone",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"days_before_notification": {
+					"name": "days_before_notification",
+					"type": "numeric",
+					"primaryKey": false,
+					"notNull": true,
+					"default": 7
+				}
+			},
+			"indexes": {
+				"car_fleet_reminders_order_idx": {
+					"name": "car_fleet_reminders_order_idx",
+					"columns": [
+						{
+							"expression": "_order",
+							"isExpression": false,
+							"asc": true,
+							"nulls": "last"
+						}
+					],
+					"isUnique": false,
+					"concurrently": false,
+					"method": "btree",
+					"with": {}
+				},
+				"car_fleet_reminders_parent_id_idx": {
+					"name": "car_fleet_reminders_parent_id_idx",
+					"columns": [
+						{
+							"expression": "_parent_id",
+							"isExpression": false,
+							"asc": true,
+							"nulls": "last"
+						}
+					],
+					"isUnique": false,
+					"concurrently": false,
+					"method": "btree",
+					"with": {}
+				}
+			},
+			"foreignKeys": {
+				"car_fleet_reminders_parent_id_fk": {
+					"name": "car_fleet_reminders_parent_id_fk",
+					"tableFrom": "car_fleet_reminders",
+					"tableTo": "car_fleet",
+					"columnsFrom": ["_parent_id"],
+					"columnsTo": ["id"],
+					"onDelete": "cascade",
+					"onUpdate": "no action"
+				}
+			},
+			"compositePrimaryKeys": {},
+			"uniqueConstraints": {},
+			"policies": {},
+			"checkConstraints": {},
+			"isRLSEnabled": false
+		},
+		"public.car_fleet_media_gallery": {
+			"name": "car_fleet_media_gallery",
+			"schema": "",
+			"columns": {
+				"_order": {
+					"name": "_order",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"_parent_id": {
+					"name": "_parent_id",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"id": {
+					"name": "id",
+					"type": "varchar",
+					"primaryKey": true,
+					"notNull": true
+				},
+				"image_id": {
+					"name": "image_id",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": false
+				}
+			},
+			"indexes": {
+				"car_fleet_media_gallery_order_idx": {
+					"name": "car_fleet_media_gallery_order_idx",
+					"columns": [
+						{
+							"expression": "_order",
+							"isExpression": false,
+							"asc": true,
+							"nulls": "last"
+						}
+					],
+					"isUnique": false,
+					"concurrently": false,
+					"method": "btree",
+					"with": {}
+				},
+				"car_fleet_media_gallery_parent_id_idx": {
+					"name": "car_fleet_media_gallery_parent_id_idx",
+					"columns": [
+						{
+							"expression": "_parent_id",
+							"isExpression": false,
+							"asc": true,
+							"nulls": "last"
+						}
+					],
+					"isUnique": false,
+					"concurrently": false,
+					"method": "btree",
+					"with": {}
+				},
+				"car_fleet_media_gallery_image_idx": {
+					"name": "car_fleet_media_gallery_image_idx",
+					"columns": [
+						{
+							"expression": "image_id",
+							"isExpression": false,
+							"asc": true,
+							"nulls": "last"
+						}
+					],
+					"isUnique": false,
+					"concurrently": false,
+					"method": "btree",
+					"with": {}
+				}
+			},
+			"foreignKeys": {
+				"car_fleet_media_gallery_image_id_media_id_fk": {
+					"name": "car_fleet_media_gallery_image_id_media_id_fk",
+					"tableFrom": "car_fleet_media_gallery",
+					"tableTo": "media",
+					"columnsFrom": ["image_id"],
+					"columnsTo": ["id"],
+					"onDelete": "set null",
+					"onUpdate": "no action"
+				},
+				"car_fleet_media_gallery_parent_id_fk": {
+					"name": "car_fleet_media_gallery_parent_id_fk",
+					"tableFrom": "car_fleet_media_gallery",
+					"tableTo": "car_fleet",
+					"columnsFrom": ["_parent_id"],
+					"columnsTo": ["id"],
+					"onDelete": "cascade",
+					"onUpdate": "no action"
+				}
+			},
+			"compositePrimaryKeys": {},
+			"uniqueConstraints": {},
+			"policies": {},
+			"checkConstraints": {},
+			"isRLSEnabled": false
+		},
+		"public.car_fleet": {
+			"name": "car_fleet",
+			"schema": "",
+			"columns": {
+				"id": {
+					"name": "id",
+					"type": "serial",
+					"primaryKey": true,
+					"notNull": true
+				},
+				"name": {
+					"name": "name",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"image_id": {
+					"name": "image_id",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"slug": {
+					"name": "slug",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"brand_id": {
+					"name": "brand_id",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"model": {
+					"name": "model",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"description": {
+					"name": "description",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": true,
+					"default": "'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'"
+				},
+				"type_id": {
+					"name": "type_id",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"deposit": {
+					"name": "deposit",
+					"type": "numeric",
+					"primaryKey": false,
+					"notNull": true,
+					"default": 0
+				},
+				"additional_mileage_price": {
+					"name": "additional_mileage_price",
+					"type": "numeric",
+					"primaryKey": false,
+					"notNull": true,
+					"default": 0
+				},
+				"contract_registration_number": {
+					"name": "contract_registration_number",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"contract_registration_certificate_number": {
+					"name": "contract_registration_certificate_number",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"contract_vin": {
+					"name": "contract_vin",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"contract_oc": {
+					"name": "contract_oc",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"contract_keys_amount": {
+					"name": "contract_keys_amount",
+					"type": "numeric",
+					"primaryKey": false,
+					"notNull": true,
+					"default": 1
+				},
+				"contract_tires": {
+					"name": "contract_tires",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"contract_accessories": {
+					"name": "contract_accessories",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"details_hp": {
+					"name": "details_hp",
+					"type": "numeric",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"details_transmission": {
+					"name": "details_transmission",
+					"type": "enum_car_fleet_details_transmission",
+					"typeSchema": "public",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"details_seats": {
+					"name": "details_seats",
+					"type": "numeric",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"details_fuel": {
+					"name": "details_fuel",
+					"type": "enum_car_fleet_details_fuel",
+					"typeSchema": "public",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"media_info_id": {
+					"name": "media_info_id",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"media_rental_price_id": {
+					"name": "media_rental_price_id",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"prices_d_1_2": {
+					"name": "prices_d_1_2",
+					"type": "numeric",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"prices_d_3_6": {
+					"name": "prices_d_3_6",
+					"type": "numeric",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"prices_d_7_13": {
+					"name": "prices_d_7_13",
+					"type": "numeric",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"prices_d_14_20": {
+					"name": "prices_d_14_20",
+					"type": "numeric",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"prices_d_21_30": {
+					"name": "prices_d_21_30",
+					"type": "numeric",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"prices_m_1": {
+					"name": "prices_m_1",
+					"type": "numeric",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"prices_m_3": {
+					"name": "prices_m_3",
+					"type": "numeric",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"mileage_limits_d_1_2": {
+					"name": "mileage_limits_d_1_2",
+					"type": "numeric",
+					"primaryKey": false,
+					"notNull": true,
+					"default": 0
+				},
+				"mileage_limits_d_3_6": {
+					"name": "mileage_limits_d_3_6",
+					"type": "numeric",
+					"primaryKey": false,
+					"notNull": true,
+					"default": 0
+				},
+				"mileage_limits_d_7_13": {
+					"name": "mileage_limits_d_7_13",
+					"type": "numeric",
+					"primaryKey": false,
+					"notNull": true,
+					"default": 0
+				},
+				"mileage_limits_d_14_20": {
+					"name": "mileage_limits_d_14_20",
+					"type": "numeric",
+					"primaryKey": false,
+					"notNull": true,
+					"default": 0
+				},
+				"mileage_limits_d_21_30": {
+					"name": "mileage_limits_d_21_30",
+					"type": "numeric",
+					"primaryKey": false,
+					"notNull": true,
+					"default": 0
+				},
+				"mileage_limits_m_1": {
+					"name": "mileage_limits_m_1",
+					"type": "numeric",
+					"primaryKey": false,
+					"notNull": true,
+					"default": 0
+				},
+				"mileage_limits_m_3": {
+					"name": "mileage_limits_m_3",
+					"type": "numeric",
+					"primaryKey": false,
+					"notNull": true,
+					"default": 0
+				},
+				"updated_at": {
+					"name": "updated_at",
+					"type": "timestamp(3) with time zone",
+					"primaryKey": false,
+					"notNull": true,
+					"default": "now()"
+				},
+				"created_at": {
+					"name": "created_at",
+					"type": "timestamp(3) with time zone",
+					"primaryKey": false,
+					"notNull": true,
+					"default": "now()"
+				}
+			},
+			"indexes": {
+				"car_fleet_image_idx": {
+					"name": "car_fleet_image_idx",
+					"columns": [
+						{
+							"expression": "image_id",
+							"isExpression": false,
+							"asc": true,
+							"nulls": "last"
+						}
+					],
+					"isUnique": false,
+					"concurrently": false,
+					"method": "btree",
+					"with": {}
+				},
+				"car_fleet_brand_idx": {
+					"name": "car_fleet_brand_idx",
+					"columns": [
+						{
+							"expression": "brand_id",
+							"isExpression": false,
+							"asc": true,
+							"nulls": "last"
+						}
+					],
+					"isUnique": false,
+					"concurrently": false,
+					"method": "btree",
+					"with": {}
+				},
+				"car_fleet_type_idx": {
+					"name": "car_fleet_type_idx",
+					"columns": [
+						{
+							"expression": "type_id",
+							"isExpression": false,
+							"asc": true,
+							"nulls": "last"
+						}
+					],
+					"isUnique": false,
+					"concurrently": false,
+					"method": "btree",
+					"with": {}
+				},
+				"car_fleet_media_media_info_idx": {
+					"name": "car_fleet_media_media_info_idx",
+					"columns": [
+						{
+							"expression": "media_info_id",
+							"isExpression": false,
+							"asc": true,
+							"nulls": "last"
+						}
+					],
+					"isUnique": false,
+					"concurrently": false,
+					"method": "btree",
+					"with": {}
+				},
+				"car_fleet_media_media_rental_price_idx": {
+					"name": "car_fleet_media_media_rental_price_idx",
+					"columns": [
+						{
+							"expression": "media_rental_price_id",
+							"isExpression": false,
+							"asc": true,
+							"nulls": "last"
+						}
+					],
+					"isUnique": false,
+					"concurrently": false,
+					"method": "btree",
+					"with": {}
+				},
+				"car_fleet_updated_at_idx": {
+					"name": "car_fleet_updated_at_idx",
+					"columns": [
+						{
+							"expression": "updated_at",
+							"isExpression": false,
+							"asc": true,
+							"nulls": "last"
+						}
+					],
+					"isUnique": false,
+					"concurrently": false,
+					"method": "btree",
+					"with": {}
+				},
+				"car_fleet_created_at_idx": {
+					"name": "car_fleet_created_at_idx",
+					"columns": [
+						{
+							"expression": "created_at",
+							"isExpression": false,
+							"asc": true,
+							"nulls": "last"
+						}
+					],
+					"isUnique": false,
+					"concurrently": false,
+					"method": "btree",
+					"with": {}
+				}
+			},
+			"foreignKeys": {
+				"car_fleet_image_id_media_id_fk": {
+					"name": "car_fleet_image_id_media_id_fk",
+					"tableFrom": "car_fleet",
+					"tableTo": "media",
+					"columnsFrom": ["image_id"],
+					"columnsTo": ["id"],
+					"onDelete": "set null",
+					"onUpdate": "no action"
+				},
+				"car_fleet_brand_id_car_fleet_brands_id_fk": {
+					"name": "car_fleet_brand_id_car_fleet_brands_id_fk",
+					"tableFrom": "car_fleet",
+					"tableTo": "car_fleet_brands",
+					"columnsFrom": ["brand_id"],
+					"columnsTo": ["id"],
+					"onDelete": "set null",
+					"onUpdate": "no action"
+				},
+				"car_fleet_type_id_car_fleet_types_id_fk": {
+					"name": "car_fleet_type_id_car_fleet_types_id_fk",
+					"tableFrom": "car_fleet",
+					"tableTo": "car_fleet_types",
+					"columnsFrom": ["type_id"],
+					"columnsTo": ["id"],
+					"onDelete": "set null",
+					"onUpdate": "no action"
+				},
+				"car_fleet_media_info_id_media_id_fk": {
+					"name": "car_fleet_media_info_id_media_id_fk",
+					"tableFrom": "car_fleet",
+					"tableTo": "media",
+					"columnsFrom": ["media_info_id"],
+					"columnsTo": ["id"],
+					"onDelete": "set null",
+					"onUpdate": "no action"
+				},
+				"car_fleet_media_rental_price_id_media_id_fk": {
+					"name": "car_fleet_media_rental_price_id_media_id_fk",
+					"tableFrom": "car_fleet",
+					"tableTo": "media",
+					"columnsFrom": ["media_rental_price_id"],
+					"columnsTo": ["id"],
+					"onDelete": "set null",
+					"onUpdate": "no action"
+				}
+			},
+			"compositePrimaryKeys": {},
+			"uniqueConstraints": {},
+			"policies": {},
+			"checkConstraints": {},
+			"isRLSEnabled": false
+		},
+		"public.payload_locked_documents": {
+			"name": "payload_locked_documents",
+			"schema": "",
+			"columns": {
+				"id": {
+					"name": "id",
+					"type": "serial",
+					"primaryKey": true,
+					"notNull": true
+				},
+				"global_slug": {
+					"name": "global_slug",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"updated_at": {
+					"name": "updated_at",
+					"type": "timestamp(3) with time zone",
+					"primaryKey": false,
+					"notNull": true,
+					"default": "now()"
+				},
+				"created_at": {
+					"name": "created_at",
+					"type": "timestamp(3) with time zone",
+					"primaryKey": false,
+					"notNull": true,
+					"default": "now()"
+				}
+			},
+			"indexes": {
+				"payload_locked_documents_global_slug_idx": {
+					"name": "payload_locked_documents_global_slug_idx",
+					"columns": [
+						{
+							"expression": "global_slug",
+							"isExpression": false,
+							"asc": true,
+							"nulls": "last"
+						}
+					],
+					"isUnique": false,
+					"concurrently": false,
+					"method": "btree",
+					"with": {}
+				},
+				"payload_locked_documents_updated_at_idx": {
+					"name": "payload_locked_documents_updated_at_idx",
+					"columns": [
+						{
+							"expression": "updated_at",
+							"isExpression": false,
+							"asc": true,
+							"nulls": "last"
+						}
+					],
+					"isUnique": false,
+					"concurrently": false,
+					"method": "btree",
+					"with": {}
+				},
+				"payload_locked_documents_created_at_idx": {
+					"name": "payload_locked_documents_created_at_idx",
+					"columns": [
+						{
+							"expression": "created_at",
+							"isExpression": false,
+							"asc": true,
+							"nulls": "last"
+						}
+					],
+					"isUnique": false,
+					"concurrently": false,
+					"method": "btree",
+					"with": {}
+				}
+			},
+			"foreignKeys": {},
+			"compositePrimaryKeys": {},
+			"uniqueConstraints": {},
+			"policies": {},
+			"checkConstraints": {},
+			"isRLSEnabled": false
+		},
+		"public.payload_locked_documents_rels": {
+			"name": "payload_locked_documents_rels",
+			"schema": "",
+			"columns": {
+				"id": {
+					"name": "id",
+					"type": "serial",
+					"primaryKey": true,
+					"notNull": true
+				},
+				"order": {
+					"name": "order",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"parent_id": {
+					"name": "parent_id",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"path": {
+					"name": "path",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"users_id": {
+					"name": "users_id",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"customers_id": {
+					"name": "customers_id",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"rentals_id": {
+					"name": "rentals_id",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"contract_templates_id": {
+					"name": "contract_templates_id",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"contact_request_id": {
+					"name": "contact_request_id",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"media_id": {
+					"name": "media_id",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"car_fleet_brands_id": {
+					"name": "car_fleet_brands_id",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"car_fleet_types_id": {
+					"name": "car_fleet_types_id",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"car_fleet_id": {
+					"name": "car_fleet_id",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": false
+				}
+			},
+			"indexes": {
+				"payload_locked_documents_rels_order_idx": {
+					"name": "payload_locked_documents_rels_order_idx",
+					"columns": [
+						{
+							"expression": "order",
+							"isExpression": false,
+							"asc": true,
+							"nulls": "last"
+						}
+					],
+					"isUnique": false,
+					"concurrently": false,
+					"method": "btree",
+					"with": {}
+				},
+				"payload_locked_documents_rels_parent_idx": {
+					"name": "payload_locked_documents_rels_parent_idx",
+					"columns": [
+						{
+							"expression": "parent_id",
+							"isExpression": false,
+							"asc": true,
+							"nulls": "last"
+						}
+					],
+					"isUnique": false,
+					"concurrently": false,
+					"method": "btree",
+					"with": {}
+				},
+				"payload_locked_documents_rels_path_idx": {
+					"name": "payload_locked_documents_rels_path_idx",
+					"columns": [
+						{
+							"expression": "path",
+							"isExpression": false,
+							"asc": true,
+							"nulls": "last"
+						}
+					],
+					"isUnique": false,
+					"concurrently": false,
+					"method": "btree",
+					"with": {}
+				},
+				"payload_locked_documents_rels_users_id_idx": {
+					"name": "payload_locked_documents_rels_users_id_idx",
+					"columns": [
+						{
+							"expression": "users_id",
+							"isExpression": false,
+							"asc": true,
+							"nulls": "last"
+						}
+					],
+					"isUnique": false,
+					"concurrently": false,
+					"method": "btree",
+					"with": {}
+				},
+				"payload_locked_documents_rels_customers_id_idx": {
+					"name": "payload_locked_documents_rels_customers_id_idx",
+					"columns": [
+						{
+							"expression": "customers_id",
+							"isExpression": false,
+							"asc": true,
+							"nulls": "last"
+						}
+					],
+					"isUnique": false,
+					"concurrently": false,
+					"method": "btree",
+					"with": {}
+				},
+				"payload_locked_documents_rels_rentals_id_idx": {
+					"name": "payload_locked_documents_rels_rentals_id_idx",
+					"columns": [
+						{
+							"expression": "rentals_id",
+							"isExpression": false,
+							"asc": true,
+							"nulls": "last"
+						}
+					],
+					"isUnique": false,
+					"concurrently": false,
+					"method": "btree",
+					"with": {}
+				},
+				"payload_locked_documents_rels_contract_templates_id_idx": {
+					"name": "payload_locked_documents_rels_contract_templates_id_idx",
+					"columns": [
+						{
+							"expression": "contract_templates_id",
+							"isExpression": false,
+							"asc": true,
+							"nulls": "last"
+						}
+					],
+					"isUnique": false,
+					"concurrently": false,
+					"method": "btree",
+					"with": {}
+				},
+				"payload_locked_documents_rels_contact_request_id_idx": {
+					"name": "payload_locked_documents_rels_contact_request_id_idx",
+					"columns": [
+						{
+							"expression": "contact_request_id",
+							"isExpression": false,
+							"asc": true,
+							"nulls": "last"
+						}
+					],
+					"isUnique": false,
+					"concurrently": false,
+					"method": "btree",
+					"with": {}
+				},
+				"payload_locked_documents_rels_media_id_idx": {
+					"name": "payload_locked_documents_rels_media_id_idx",
+					"columns": [
+						{
+							"expression": "media_id",
+							"isExpression": false,
+							"asc": true,
+							"nulls": "last"
+						}
+					],
+					"isUnique": false,
+					"concurrently": false,
+					"method": "btree",
+					"with": {}
+				},
+				"payload_locked_documents_rels_car_fleet_brands_id_idx": {
+					"name": "payload_locked_documents_rels_car_fleet_brands_id_idx",
+					"columns": [
+						{
+							"expression": "car_fleet_brands_id",
+							"isExpression": false,
+							"asc": true,
+							"nulls": "last"
+						}
+					],
+					"isUnique": false,
+					"concurrently": false,
+					"method": "btree",
+					"with": {}
+				},
+				"payload_locked_documents_rels_car_fleet_types_id_idx": {
+					"name": "payload_locked_documents_rels_car_fleet_types_id_idx",
+					"columns": [
+						{
+							"expression": "car_fleet_types_id",
+							"isExpression": false,
+							"asc": true,
+							"nulls": "last"
+						}
+					],
+					"isUnique": false,
+					"concurrently": false,
+					"method": "btree",
+					"with": {}
+				},
+				"payload_locked_documents_rels_car_fleet_id_idx": {
+					"name": "payload_locked_documents_rels_car_fleet_id_idx",
+					"columns": [
+						{
+							"expression": "car_fleet_id",
+							"isExpression": false,
+							"asc": true,
+							"nulls": "last"
+						}
+					],
+					"isUnique": false,
+					"concurrently": false,
+					"method": "btree",
+					"with": {}
+				}
+			},
+			"foreignKeys": {
+				"payload_locked_documents_rels_parent_fk": {
+					"name": "payload_locked_documents_rels_parent_fk",
+					"tableFrom": "payload_locked_documents_rels",
+					"tableTo": "payload_locked_documents",
+					"columnsFrom": ["parent_id"],
+					"columnsTo": ["id"],
+					"onDelete": "cascade",
+					"onUpdate": "no action"
+				},
+				"payload_locked_documents_rels_users_fk": {
+					"name": "payload_locked_documents_rels_users_fk",
+					"tableFrom": "payload_locked_documents_rels",
+					"tableTo": "users",
+					"columnsFrom": ["users_id"],
+					"columnsTo": ["id"],
+					"onDelete": "cascade",
+					"onUpdate": "no action"
+				},
+				"payload_locked_documents_rels_customers_fk": {
+					"name": "payload_locked_documents_rels_customers_fk",
+					"tableFrom": "payload_locked_documents_rels",
+					"tableTo": "customers",
+					"columnsFrom": ["customers_id"],
+					"columnsTo": ["id"],
+					"onDelete": "cascade",
+					"onUpdate": "no action"
+				},
+				"payload_locked_documents_rels_rentals_fk": {
+					"name": "payload_locked_documents_rels_rentals_fk",
+					"tableFrom": "payload_locked_documents_rels",
+					"tableTo": "rentals",
+					"columnsFrom": ["rentals_id"],
+					"columnsTo": ["id"],
+					"onDelete": "cascade",
+					"onUpdate": "no action"
+				},
+				"payload_locked_documents_rels_contract_templates_fk": {
+					"name": "payload_locked_documents_rels_contract_templates_fk",
+					"tableFrom": "payload_locked_documents_rels",
+					"tableTo": "contract_templates",
+					"columnsFrom": ["contract_templates_id"],
+					"columnsTo": ["id"],
+					"onDelete": "cascade",
+					"onUpdate": "no action"
+				},
+				"payload_locked_documents_rels_contact_request_fk": {
+					"name": "payload_locked_documents_rels_contact_request_fk",
+					"tableFrom": "payload_locked_documents_rels",
+					"tableTo": "contact_request",
+					"columnsFrom": ["contact_request_id"],
+					"columnsTo": ["id"],
+					"onDelete": "cascade",
+					"onUpdate": "no action"
+				},
+				"payload_locked_documents_rels_media_fk": {
+					"name": "payload_locked_documents_rels_media_fk",
+					"tableFrom": "payload_locked_documents_rels",
+					"tableTo": "media",
+					"columnsFrom": ["media_id"],
+					"columnsTo": ["id"],
+					"onDelete": "cascade",
+					"onUpdate": "no action"
+				},
+				"payload_locked_documents_rels_car_fleet_brands_fk": {
+					"name": "payload_locked_documents_rels_car_fleet_brands_fk",
+					"tableFrom": "payload_locked_documents_rels",
+					"tableTo": "car_fleet_brands",
+					"columnsFrom": ["car_fleet_brands_id"],
+					"columnsTo": ["id"],
+					"onDelete": "cascade",
+					"onUpdate": "no action"
+				},
+				"payload_locked_documents_rels_car_fleet_types_fk": {
+					"name": "payload_locked_documents_rels_car_fleet_types_fk",
+					"tableFrom": "payload_locked_documents_rels",
+					"tableTo": "car_fleet_types",
+					"columnsFrom": ["car_fleet_types_id"],
+					"columnsTo": ["id"],
+					"onDelete": "cascade",
+					"onUpdate": "no action"
+				},
+				"payload_locked_documents_rels_car_fleet_fk": {
+					"name": "payload_locked_documents_rels_car_fleet_fk",
+					"tableFrom": "payload_locked_documents_rels",
+					"tableTo": "car_fleet",
+					"columnsFrom": ["car_fleet_id"],
+					"columnsTo": ["id"],
+					"onDelete": "cascade",
+					"onUpdate": "no action"
+				}
+			},
+			"compositePrimaryKeys": {},
+			"uniqueConstraints": {},
+			"policies": {},
+			"checkConstraints": {},
+			"isRLSEnabled": false
+		},
+		"public.payload_preferences": {
+			"name": "payload_preferences",
+			"schema": "",
+			"columns": {
+				"id": {
+					"name": "id",
+					"type": "serial",
+					"primaryKey": true,
+					"notNull": true
+				},
+				"key": {
+					"name": "key",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"value": {
+					"name": "value",
+					"type": "jsonb",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"updated_at": {
+					"name": "updated_at",
+					"type": "timestamp(3) with time zone",
+					"primaryKey": false,
+					"notNull": true,
+					"default": "now()"
+				},
+				"created_at": {
+					"name": "created_at",
+					"type": "timestamp(3) with time zone",
+					"primaryKey": false,
+					"notNull": true,
+					"default": "now()"
+				}
+			},
+			"indexes": {
+				"payload_preferences_key_idx": {
+					"name": "payload_preferences_key_idx",
+					"columns": [
+						{
+							"expression": "key",
+							"isExpression": false,
+							"asc": true,
+							"nulls": "last"
+						}
+					],
+					"isUnique": false,
+					"concurrently": false,
+					"method": "btree",
+					"with": {}
+				},
+				"payload_preferences_updated_at_idx": {
+					"name": "payload_preferences_updated_at_idx",
+					"columns": [
+						{
+							"expression": "updated_at",
+							"isExpression": false,
+							"asc": true,
+							"nulls": "last"
+						}
+					],
+					"isUnique": false,
+					"concurrently": false,
+					"method": "btree",
+					"with": {}
+				},
+				"payload_preferences_created_at_idx": {
+					"name": "payload_preferences_created_at_idx",
+					"columns": [
+						{
+							"expression": "created_at",
+							"isExpression": false,
+							"asc": true,
+							"nulls": "last"
+						}
+					],
+					"isUnique": false,
+					"concurrently": false,
+					"method": "btree",
+					"with": {}
+				}
+			},
+			"foreignKeys": {},
+			"compositePrimaryKeys": {},
+			"uniqueConstraints": {},
+			"policies": {},
+			"checkConstraints": {},
+			"isRLSEnabled": false
+		},
+		"public.payload_preferences_rels": {
+			"name": "payload_preferences_rels",
+			"schema": "",
+			"columns": {
+				"id": {
+					"name": "id",
+					"type": "serial",
+					"primaryKey": true,
+					"notNull": true
+				},
+				"order": {
+					"name": "order",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"parent_id": {
+					"name": "parent_id",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"path": {
+					"name": "path",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"users_id": {
+					"name": "users_id",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": false
+				}
+			},
+			"indexes": {
+				"payload_preferences_rels_order_idx": {
+					"name": "payload_preferences_rels_order_idx",
+					"columns": [
+						{
+							"expression": "order",
+							"isExpression": false,
+							"asc": true,
+							"nulls": "last"
+						}
+					],
+					"isUnique": false,
+					"concurrently": false,
+					"method": "btree",
+					"with": {}
+				},
+				"payload_preferences_rels_parent_idx": {
+					"name": "payload_preferences_rels_parent_idx",
+					"columns": [
+						{
+							"expression": "parent_id",
+							"isExpression": false,
+							"asc": true,
+							"nulls": "last"
+						}
+					],
+					"isUnique": false,
+					"concurrently": false,
+					"method": "btree",
+					"with": {}
+				},
+				"payload_preferences_rels_path_idx": {
+					"name": "payload_preferences_rels_path_idx",
+					"columns": [
+						{
+							"expression": "path",
+							"isExpression": false,
+							"asc": true,
+							"nulls": "last"
+						}
+					],
+					"isUnique": false,
+					"concurrently": false,
+					"method": "btree",
+					"with": {}
+				},
+				"payload_preferences_rels_users_id_idx": {
+					"name": "payload_preferences_rels_users_id_idx",
+					"columns": [
+						{
+							"expression": "users_id",
+							"isExpression": false,
+							"asc": true,
+							"nulls": "last"
+						}
+					],
+					"isUnique": false,
+					"concurrently": false,
+					"method": "btree",
+					"with": {}
+				}
+			},
+			"foreignKeys": {
+				"payload_preferences_rels_parent_fk": {
+					"name": "payload_preferences_rels_parent_fk",
+					"tableFrom": "payload_preferences_rels",
+					"tableTo": "payload_preferences",
+					"columnsFrom": ["parent_id"],
+					"columnsTo": ["id"],
+					"onDelete": "cascade",
+					"onUpdate": "no action"
+				},
+				"payload_preferences_rels_users_fk": {
+					"name": "payload_preferences_rels_users_fk",
+					"tableFrom": "payload_preferences_rels",
+					"tableTo": "users",
+					"columnsFrom": ["users_id"],
+					"columnsTo": ["id"],
+					"onDelete": "cascade",
+					"onUpdate": "no action"
+				}
+			},
+			"compositePrimaryKeys": {},
+			"uniqueConstraints": {},
+			"policies": {},
+			"checkConstraints": {},
+			"isRLSEnabled": false
+		},
+		"public.payload_migrations": {
+			"name": "payload_migrations",
+			"schema": "",
+			"columns": {
+				"id": {
+					"name": "id",
+					"type": "serial",
+					"primaryKey": true,
+					"notNull": true
+				},
+				"name": {
+					"name": "name",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"batch": {
+					"name": "batch",
+					"type": "numeric",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"updated_at": {
+					"name": "updated_at",
+					"type": "timestamp(3) with time zone",
+					"primaryKey": false,
+					"notNull": true,
+					"default": "now()"
+				},
+				"created_at": {
+					"name": "created_at",
+					"type": "timestamp(3) with time zone",
+					"primaryKey": false,
+					"notNull": true,
+					"default": "now()"
+				}
+			},
+			"indexes": {
+				"payload_migrations_updated_at_idx": {
+					"name": "payload_migrations_updated_at_idx",
+					"columns": [
+						{
+							"expression": "updated_at",
+							"isExpression": false,
+							"asc": true,
+							"nulls": "last"
+						}
+					],
+					"isUnique": false,
+					"concurrently": false,
+					"method": "btree",
+					"with": {}
+				},
+				"payload_migrations_created_at_idx": {
+					"name": "payload_migrations_created_at_idx",
+					"columns": [
+						{
+							"expression": "created_at",
+							"isExpression": false,
+							"asc": true,
+							"nulls": "last"
+						}
+					],
+					"isUnique": false,
+					"concurrently": false,
+					"method": "btree",
+					"with": {}
+				}
+			},
+			"foreignKeys": {},
+			"compositePrimaryKeys": {},
+			"uniqueConstraints": {},
+			"policies": {},
+			"checkConstraints": {},
+			"isRLSEnabled": false
+		},
+		"public.contact_header": {
+			"name": "contact_header",
+			"schema": "",
+			"columns": {
+				"id": {
+					"name": "id",
+					"type": "serial",
+					"primaryKey": true,
+					"notNull": true
+				},
+				"title": {
+					"name": "title",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": true,
+					"default": "'Kontakt'"
+				},
+				"label": {
+					"name": "label",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": false,
+					"default": "'Kontakt'"
+				},
+				"content": {
+					"name": "content",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": true,
+					"default": "'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ac purus turpis. Maecenas vel rutrum ligula, ut tincidunt magna.'"
+				},
+				"sub_content": {
+					"name": "sub_content",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"updated_at": {
+					"name": "updated_at",
+					"type": "timestamp(3) with time zone",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"created_at": {
+					"name": "created_at",
+					"type": "timestamp(3) with time zone",
+					"primaryKey": false,
+					"notNull": false
+				}
+			},
+			"indexes": {},
+			"foreignKeys": {},
+			"compositePrimaryKeys": {},
+			"uniqueConstraints": {},
+			"policies": {},
+			"checkConstraints": {},
+			"isRLSEnabled": false
+		},
+		"public.contract_settings": {
+			"name": "contract_settings",
+			"schema": "",
+			"columns": {
+				"id": {
+					"name": "id",
+					"type": "serial",
+					"primaryKey": true,
+					"notNull": true
+				},
+				"vehicle_pick_up_id": {
+					"name": "vehicle_pick_up_id",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"vehicle_release_id": {
+					"name": "vehicle_release_id",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"vehicle_rental_id": {
+					"name": "vehicle_rental_id",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"vehicle_rental_authorized_id": {
+					"name": "vehicle_rental_authorized_id",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"layout_header": {
+					"name": "layout_header",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"layout_footer": {
+					"name": "layout_footer",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"updated_at": {
+					"name": "updated_at",
+					"type": "timestamp(3) with time zone",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"created_at": {
+					"name": "created_at",
+					"type": "timestamp(3) with time zone",
+					"primaryKey": false,
+					"notNull": false
+				}
+			},
+			"indexes": {
+				"contract_settings_vehicle_pick_up_idx": {
+					"name": "contract_settings_vehicle_pick_up_idx",
+					"columns": [
+						{
+							"expression": "vehicle_pick_up_id",
+							"isExpression": false,
+							"asc": true,
+							"nulls": "last"
+						}
+					],
+					"isUnique": false,
+					"concurrently": false,
+					"method": "btree",
+					"with": {}
+				},
+				"contract_settings_vehicle_release_idx": {
+					"name": "contract_settings_vehicle_release_idx",
+					"columns": [
+						{
+							"expression": "vehicle_release_id",
+							"isExpression": false,
+							"asc": true,
+							"nulls": "last"
+						}
+					],
+					"isUnique": false,
+					"concurrently": false,
+					"method": "btree",
+					"with": {}
+				},
+				"contract_settings_vehicle_rental_idx": {
+					"name": "contract_settings_vehicle_rental_idx",
+					"columns": [
+						{
+							"expression": "vehicle_rental_id",
+							"isExpression": false,
+							"asc": true,
+							"nulls": "last"
+						}
+					],
+					"isUnique": false,
+					"concurrently": false,
+					"method": "btree",
+					"with": {}
+				},
+				"contract_settings_vehicle_rental_authorized_idx": {
+					"name": "contract_settings_vehicle_rental_authorized_idx",
+					"columns": [
+						{
+							"expression": "vehicle_rental_authorized_id",
+							"isExpression": false,
+							"asc": true,
+							"nulls": "last"
+						}
+					],
+					"isUnique": false,
+					"concurrently": false,
+					"method": "btree",
+					"with": {}
+				}
+			},
+			"foreignKeys": {
+				"contract_settings_vehicle_pick_up_id_contract_templates_id_fk": {
+					"name": "contract_settings_vehicle_pick_up_id_contract_templates_id_fk",
+					"tableFrom": "contract_settings",
+					"tableTo": "contract_templates",
+					"columnsFrom": ["vehicle_pick_up_id"],
+					"columnsTo": ["id"],
+					"onDelete": "set null",
+					"onUpdate": "no action"
+				},
+				"contract_settings_vehicle_release_id_contract_templates_id_fk": {
+					"name": "contract_settings_vehicle_release_id_contract_templates_id_fk",
+					"tableFrom": "contract_settings",
+					"tableTo": "contract_templates",
+					"columnsFrom": ["vehicle_release_id"],
+					"columnsTo": ["id"],
+					"onDelete": "set null",
+					"onUpdate": "no action"
+				},
+				"contract_settings_vehicle_rental_id_contract_templates_id_fk": {
+					"name": "contract_settings_vehicle_rental_id_contract_templates_id_fk",
+					"tableFrom": "contract_settings",
+					"tableTo": "contract_templates",
+					"columnsFrom": ["vehicle_rental_id"],
+					"columnsTo": ["id"],
+					"onDelete": "set null",
+					"onUpdate": "no action"
+				},
+				"contract_settings_vehicle_rental_authorized_id_contract_templates_id_fk": {
+					"name": "contract_settings_vehicle_rental_authorized_id_contract_templates_id_fk",
+					"tableFrom": "contract_settings",
+					"tableTo": "contract_templates",
+					"columnsFrom": ["vehicle_rental_authorized_id"],
+					"columnsTo": ["id"],
+					"onDelete": "set null",
+					"onUpdate": "no action"
+				}
+			},
+			"compositePrimaryKeys": {},
+			"uniqueConstraints": {},
+			"policies": {},
+			"checkConstraints": {},
+			"isRLSEnabled": false
+		},
+		"public.contact_section": {
+			"name": "contact_section",
+			"schema": "",
+			"columns": {
+				"id": {
+					"name": "id",
+					"type": "serial",
+					"primaryKey": true,
+					"notNull": true
+				},
+				"title": {
+					"name": "title",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": true,
+					"default": "'Zadzwoń do nas'"
+				},
+				"label": {
+					"name": "label",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": false,
+					"default": "'Kontakt'"
+				},
+				"image_id": {
+					"name": "image_id",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"updated_at": {
+					"name": "updated_at",
+					"type": "timestamp(3) with time zone",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"created_at": {
+					"name": "created_at",
+					"type": "timestamp(3) with time zone",
+					"primaryKey": false,
+					"notNull": false
+				}
+			},
+			"indexes": {
+				"contact_section_image_idx": {
+					"name": "contact_section_image_idx",
+					"columns": [
+						{
+							"expression": "image_id",
+							"isExpression": false,
+							"asc": true,
+							"nulls": "last"
+						}
+					],
+					"isUnique": false,
+					"concurrently": false,
+					"method": "btree",
+					"with": {}
+				}
+			},
+			"foreignKeys": {
+				"contact_section_image_id_media_id_fk": {
+					"name": "contact_section_image_id_media_id_fk",
+					"tableFrom": "contact_section",
+					"tableTo": "media",
+					"columnsFrom": ["image_id"],
+					"columnsTo": ["id"],
+					"onDelete": "set null",
+					"onUpdate": "no action"
+				}
+			},
+			"compositePrimaryKeys": {},
+			"uniqueConstraints": {},
+			"policies": {},
+			"checkConstraints": {},
+			"isRLSEnabled": false
+		},
+		"public.hero": {
+			"name": "hero",
+			"schema": "",
+			"columns": {
+				"id": {
+					"name": "id",
+					"type": "serial",
+					"primaryKey": true,
+					"notNull": true
+				},
+				"title_first_part": {
+					"name": "title_first_part",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": true,
+					"default": "'Zmień'"
+				},
+				"title_second_part": {
+					"name": "title_second_part",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": true,
+					"default": "'Perspektywę'"
+				},
+				"description": {
+					"name": "description",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": true,
+					"default": "'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed venenatis justo at consequat finibus. Sed sit amet tempor neque.'"
+				},
+				"updated_at": {
+					"name": "updated_at",
+					"type": "timestamp(3) with time zone",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"created_at": {
+					"name": "created_at",
+					"type": "timestamp(3) with time zone",
+					"primaryKey": false,
+					"notNull": false
+				}
+			},
+			"indexes": {},
+			"foreignKeys": {},
+			"compositePrimaryKeys": {},
+			"uniqueConstraints": {},
+			"policies": {},
+			"checkConstraints": {},
+			"isRLSEnabled": false
+		},
+		"public.services_section_services": {
+			"name": "services_section_services",
+			"schema": "",
+			"columns": {
+				"_order": {
+					"name": "_order",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"_parent_id": {
+					"name": "_parent_id",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"id": {
+					"name": "id",
+					"type": "varchar",
+					"primaryKey": true,
+					"notNull": true
+				},
+				"title": {
+					"name": "title",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"content": {
+					"name": "content",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"is_new": {
+					"name": "is_new",
+					"type": "boolean",
+					"primaryKey": false,
+					"notNull": true,
+					"default": false
+				}
+			},
+			"indexes": {
+				"services_section_services_order_idx": {
+					"name": "services_section_services_order_idx",
+					"columns": [
+						{
+							"expression": "_order",
+							"isExpression": false,
+							"asc": true,
+							"nulls": "last"
+						}
+					],
+					"isUnique": false,
+					"concurrently": false,
+					"method": "btree",
+					"with": {}
+				},
+				"services_section_services_parent_id_idx": {
+					"name": "services_section_services_parent_id_idx",
+					"columns": [
+						{
+							"expression": "_parent_id",
+							"isExpression": false,
+							"asc": true,
+							"nulls": "last"
+						}
+					],
+					"isUnique": false,
+					"concurrently": false,
+					"method": "btree",
+					"with": {}
+				}
+			},
+			"foreignKeys": {
+				"services_section_services_parent_id_fk": {
+					"name": "services_section_services_parent_id_fk",
+					"tableFrom": "services_section_services",
+					"tableTo": "services_section",
+					"columnsFrom": ["_parent_id"],
+					"columnsTo": ["id"],
+					"onDelete": "cascade",
+					"onUpdate": "no action"
+				}
+			},
+			"compositePrimaryKeys": {},
+			"uniqueConstraints": {},
+			"policies": {},
+			"checkConstraints": {},
+			"isRLSEnabled": false
+		},
+		"public.services_section": {
+			"name": "services_section",
+			"schema": "",
+			"columns": {
+				"id": {
+					"name": "id",
+					"type": "serial",
+					"primaryKey": true,
+					"notNull": true
+				},
+				"title": {
+					"name": "title",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": true,
+					"default": "'Nasze usługi'"
+				},
+				"label": {
+					"name": "label",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": false,
+					"default": "'Usługi'"
+				},
+				"reel_section_title": {
+					"name": "reel_section_title",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": true,
+					"default": "'Obejrzyj REEL'"
+				},
+				"reel_section_label": {
+					"name": "reel_section_label",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": false,
+					"default": "'REEL'"
+				},
+				"reel_section_video_id": {
+					"name": "reel_section_video_id",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"reel_section_is_hidden": {
+					"name": "reel_section_is_hidden",
+					"type": "boolean",
+					"primaryKey": false,
+					"notNull": true,
+					"default": false
+				},
+				"updated_at": {
+					"name": "updated_at",
+					"type": "timestamp(3) with time zone",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"created_at": {
+					"name": "created_at",
+					"type": "timestamp(3) with time zone",
+					"primaryKey": false,
+					"notNull": false
+				}
+			},
+			"indexes": {
+				"services_section_reel_section_reel_section_video_idx": {
+					"name": "services_section_reel_section_reel_section_video_idx",
+					"columns": [
+						{
+							"expression": "reel_section_video_id",
+							"isExpression": false,
+							"asc": true,
+							"nulls": "last"
+						}
+					],
+					"isUnique": false,
+					"concurrently": false,
+					"method": "btree",
+					"with": {}
+				}
+			},
+			"foreignKeys": {
+				"services_section_reel_section_video_id_media_id_fk": {
+					"name": "services_section_reel_section_video_id_media_id_fk",
+					"tableFrom": "services_section",
+					"tableTo": "media",
+					"columnsFrom": ["reel_section_video_id"],
+					"columnsTo": ["id"],
+					"onDelete": "set null",
+					"onUpdate": "no action"
+				}
+			},
+			"compositePrimaryKeys": {},
+			"uniqueConstraints": {},
+			"policies": {},
+			"checkConstraints": {},
+			"isRLSEnabled": false
+		},
+		"public.car_fleet_section": {
+			"name": "car_fleet_section",
+			"schema": "",
+			"columns": {
+				"id": {
+					"name": "id",
+					"type": "serial",
+					"primaryKey": true,
+					"notNull": true
+				},
+				"title": {
+					"name": "title",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": true,
+					"default": "'Flota samochodów'"
+				},
+				"label": {
+					"name": "label",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": false,
+					"default": "'Samochody'"
+				},
+				"updated_at": {
+					"name": "updated_at",
+					"type": "timestamp(3) with time zone",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"created_at": {
+					"name": "created_at",
+					"type": "timestamp(3) with time zone",
+					"primaryKey": false,
+					"notNull": false
+				}
+			},
+			"indexes": {},
+			"foreignKeys": {},
+			"compositePrimaryKeys": {},
+			"uniqueConstraints": {},
+			"policies": {},
+			"checkConstraints": {},
+			"isRLSEnabled": false
+		},
+		"public.car_fleet_section_rels": {
+			"name": "car_fleet_section_rels",
+			"schema": "",
+			"columns": {
+				"id": {
+					"name": "id",
+					"type": "serial",
+					"primaryKey": true,
+					"notNull": true
+				},
+				"order": {
+					"name": "order",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"parent_id": {
+					"name": "parent_id",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"path": {
+					"name": "path",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"car_fleet_id": {
+					"name": "car_fleet_id",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": false
+				}
+			},
+			"indexes": {
+				"car_fleet_section_rels_order_idx": {
+					"name": "car_fleet_section_rels_order_idx",
+					"columns": [
+						{
+							"expression": "order",
+							"isExpression": false,
+							"asc": true,
+							"nulls": "last"
+						}
+					],
+					"isUnique": false,
+					"concurrently": false,
+					"method": "btree",
+					"with": {}
+				},
+				"car_fleet_section_rels_parent_idx": {
+					"name": "car_fleet_section_rels_parent_idx",
+					"columns": [
+						{
+							"expression": "parent_id",
+							"isExpression": false,
+							"asc": true,
+							"nulls": "last"
+						}
+					],
+					"isUnique": false,
+					"concurrently": false,
+					"method": "btree",
+					"with": {}
+				},
+				"car_fleet_section_rels_path_idx": {
+					"name": "car_fleet_section_rels_path_idx",
+					"columns": [
+						{
+							"expression": "path",
+							"isExpression": false,
+							"asc": true,
+							"nulls": "last"
+						}
+					],
+					"isUnique": false,
+					"concurrently": false,
+					"method": "btree",
+					"with": {}
+				},
+				"car_fleet_section_rels_car_fleet_id_idx": {
+					"name": "car_fleet_section_rels_car_fleet_id_idx",
+					"columns": [
+						{
+							"expression": "car_fleet_id",
+							"isExpression": false,
+							"asc": true,
+							"nulls": "last"
+						}
+					],
+					"isUnique": false,
+					"concurrently": false,
+					"method": "btree",
+					"with": {}
+				}
+			},
+			"foreignKeys": {
+				"car_fleet_section_rels_parent_fk": {
+					"name": "car_fleet_section_rels_parent_fk",
+					"tableFrom": "car_fleet_section_rels",
+					"tableTo": "car_fleet_section",
+					"columnsFrom": ["parent_id"],
+					"columnsTo": ["id"],
+					"onDelete": "cascade",
+					"onUpdate": "no action"
+				},
+				"car_fleet_section_rels_car_fleet_fk": {
+					"name": "car_fleet_section_rels_car_fleet_fk",
+					"tableFrom": "car_fleet_section_rels",
+					"tableTo": "car_fleet",
+					"columnsFrom": ["car_fleet_id"],
+					"columnsTo": ["id"],
+					"onDelete": "cascade",
+					"onUpdate": "no action"
+				}
+			},
+			"compositePrimaryKeys": {},
+			"uniqueConstraints": {},
+			"policies": {},
+			"checkConstraints": {},
+			"isRLSEnabled": false
+		},
+		"public.opinion_section_opinions": {
+			"name": "opinion_section_opinions",
+			"schema": "",
+			"columns": {
+				"_order": {
+					"name": "_order",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"_parent_id": {
+					"name": "_parent_id",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"id": {
+					"name": "id",
+					"type": "varchar",
+					"primaryKey": true,
+					"notNull": true
+				},
+				"image_id": {
+					"name": "image_id",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"full_name": {
+					"name": "full_name",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"content": {
+					"name": "content",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": true
+				}
+			},
+			"indexes": {
+				"opinion_section_opinions_order_idx": {
+					"name": "opinion_section_opinions_order_idx",
+					"columns": [
+						{
+							"expression": "_order",
+							"isExpression": false,
+							"asc": true,
+							"nulls": "last"
+						}
+					],
+					"isUnique": false,
+					"concurrently": false,
+					"method": "btree",
+					"with": {}
+				},
+				"opinion_section_opinions_parent_id_idx": {
+					"name": "opinion_section_opinions_parent_id_idx",
+					"columns": [
+						{
+							"expression": "_parent_id",
+							"isExpression": false,
+							"asc": true,
+							"nulls": "last"
+						}
+					],
+					"isUnique": false,
+					"concurrently": false,
+					"method": "btree",
+					"with": {}
+				},
+				"opinion_section_opinions_image_idx": {
+					"name": "opinion_section_opinions_image_idx",
+					"columns": [
+						{
+							"expression": "image_id",
+							"isExpression": false,
+							"asc": true,
+							"nulls": "last"
+						}
+					],
+					"isUnique": false,
+					"concurrently": false,
+					"method": "btree",
+					"with": {}
+				}
+			},
+			"foreignKeys": {
+				"opinion_section_opinions_image_id_media_id_fk": {
+					"name": "opinion_section_opinions_image_id_media_id_fk",
+					"tableFrom": "opinion_section_opinions",
+					"tableTo": "media",
+					"columnsFrom": ["image_id"],
+					"columnsTo": ["id"],
+					"onDelete": "set null",
+					"onUpdate": "no action"
+				},
+				"opinion_section_opinions_parent_id_fk": {
+					"name": "opinion_section_opinions_parent_id_fk",
+					"tableFrom": "opinion_section_opinions",
+					"tableTo": "opinion_section",
+					"columnsFrom": ["_parent_id"],
+					"columnsTo": ["id"],
+					"onDelete": "cascade",
+					"onUpdate": "no action"
+				}
+			},
+			"compositePrimaryKeys": {},
+			"uniqueConstraints": {},
+			"policies": {},
+			"checkConstraints": {},
+			"isRLSEnabled": false
+		},
+		"public.opinion_section": {
+			"name": "opinion_section",
+			"schema": "",
+			"columns": {
+				"id": {
+					"name": "id",
+					"type": "serial",
+					"primaryKey": true,
+					"notNull": true
+				},
+				"title": {
+					"name": "title",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": true,
+					"default": "'Opinie o Golden Lynx Cars'"
+				},
+				"label": {
+					"name": "label",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": false,
+					"default": "'Opinie'"
+				},
+				"updated_at": {
+					"name": "updated_at",
+					"type": "timestamp(3) with time zone",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"created_at": {
+					"name": "created_at",
+					"type": "timestamp(3) with time zone",
+					"primaryKey": false,
+					"notNull": false
+				}
+			},
+			"indexes": {},
+			"foreignKeys": {},
+			"compositePrimaryKeys": {},
+			"uniqueConstraints": {},
+			"policies": {},
+			"checkConstraints": {},
+			"isRLSEnabled": false
+		},
+		"public.realizations_section_realizations": {
+			"name": "realizations_section_realizations",
+			"schema": "",
+			"columns": {
+				"_order": {
+					"name": "_order",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"_parent_id": {
+					"name": "_parent_id",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"id": {
+					"name": "id",
+					"type": "varchar",
+					"primaryKey": true,
+					"notNull": true
+				},
+				"video_id": {
+					"name": "video_id",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"title": {
+					"name": "title",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"description": {
+					"name": "description",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": true
+				}
+			},
+			"indexes": {
+				"realizations_section_realizations_order_idx": {
+					"name": "realizations_section_realizations_order_idx",
+					"columns": [
+						{
+							"expression": "_order",
+							"isExpression": false,
+							"asc": true,
+							"nulls": "last"
+						}
+					],
+					"isUnique": false,
+					"concurrently": false,
+					"method": "btree",
+					"with": {}
+				},
+				"realizations_section_realizations_parent_id_idx": {
+					"name": "realizations_section_realizations_parent_id_idx",
+					"columns": [
+						{
+							"expression": "_parent_id",
+							"isExpression": false,
+							"asc": true,
+							"nulls": "last"
+						}
+					],
+					"isUnique": false,
+					"concurrently": false,
+					"method": "btree",
+					"with": {}
+				},
+				"realizations_section_realizations_video_idx": {
+					"name": "realizations_section_realizations_video_idx",
+					"columns": [
+						{
+							"expression": "video_id",
+							"isExpression": false,
+							"asc": true,
+							"nulls": "last"
+						}
+					],
+					"isUnique": false,
+					"concurrently": false,
+					"method": "btree",
+					"with": {}
+				}
+			},
+			"foreignKeys": {
+				"realizations_section_realizations_video_id_media_id_fk": {
+					"name": "realizations_section_realizations_video_id_media_id_fk",
+					"tableFrom": "realizations_section_realizations",
+					"tableTo": "media",
+					"columnsFrom": ["video_id"],
+					"columnsTo": ["id"],
+					"onDelete": "set null",
+					"onUpdate": "no action"
+				},
+				"realizations_section_realizations_parent_id_fk": {
+					"name": "realizations_section_realizations_parent_id_fk",
+					"tableFrom": "realizations_section_realizations",
+					"tableTo": "realizations_section",
+					"columnsFrom": ["_parent_id"],
+					"columnsTo": ["id"],
+					"onDelete": "cascade",
+					"onUpdate": "no action"
+				}
+			},
+			"compositePrimaryKeys": {},
+			"uniqueConstraints": {},
+			"policies": {},
+			"checkConstraints": {},
+			"isRLSEnabled": false
+		},
+		"public.realizations_section": {
+			"name": "realizations_section",
+			"schema": "",
+			"columns": {
+				"id": {
+					"name": "id",
+					"type": "serial",
+					"primaryKey": true,
+					"notNull": true
+				},
+				"title": {
+					"name": "title",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": true,
+					"default": "'Realizacje z udziałem naszych samochodów'"
+				},
+				"label": {
+					"name": "label",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": false,
+					"default": "'Realizacje'"
+				},
+				"updated_at": {
+					"name": "updated_at",
+					"type": "timestamp(3) with time zone",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"created_at": {
+					"name": "created_at",
+					"type": "timestamp(3) with time zone",
+					"primaryKey": false,
+					"notNull": false
+				}
+			},
+			"indexes": {},
+			"foreignKeys": {},
+			"compositePrimaryKeys": {},
+			"uniqueConstraints": {},
+			"policies": {},
+			"checkConstraints": {},
+			"isRLSEnabled": false
+		},
+		"public.faq_section_images": {
+			"name": "faq_section_images",
+			"schema": "",
+			"columns": {
+				"_order": {
+					"name": "_order",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"_parent_id": {
+					"name": "_parent_id",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"id": {
+					"name": "id",
+					"type": "varchar",
+					"primaryKey": true,
+					"notNull": true
+				},
+				"image_id": {
+					"name": "image_id",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": true
+				}
+			},
+			"indexes": {
+				"faq_section_images_order_idx": {
+					"name": "faq_section_images_order_idx",
+					"columns": [
+						{
+							"expression": "_order",
+							"isExpression": false,
+							"asc": true,
+							"nulls": "last"
+						}
+					],
+					"isUnique": false,
+					"concurrently": false,
+					"method": "btree",
+					"with": {}
+				},
+				"faq_section_images_parent_id_idx": {
+					"name": "faq_section_images_parent_id_idx",
+					"columns": [
+						{
+							"expression": "_parent_id",
+							"isExpression": false,
+							"asc": true,
+							"nulls": "last"
+						}
+					],
+					"isUnique": false,
+					"concurrently": false,
+					"method": "btree",
+					"with": {}
+				},
+				"faq_section_images_image_idx": {
+					"name": "faq_section_images_image_idx",
+					"columns": [
+						{
+							"expression": "image_id",
+							"isExpression": false,
+							"asc": true,
+							"nulls": "last"
+						}
+					],
+					"isUnique": false,
+					"concurrently": false,
+					"method": "btree",
+					"with": {}
+				}
+			},
+			"foreignKeys": {
+				"faq_section_images_image_id_media_id_fk": {
+					"name": "faq_section_images_image_id_media_id_fk",
+					"tableFrom": "faq_section_images",
+					"tableTo": "media",
+					"columnsFrom": ["image_id"],
+					"columnsTo": ["id"],
+					"onDelete": "set null",
+					"onUpdate": "no action"
+				},
+				"faq_section_images_parent_id_fk": {
+					"name": "faq_section_images_parent_id_fk",
+					"tableFrom": "faq_section_images",
+					"tableTo": "faq_section",
+					"columnsFrom": ["_parent_id"],
+					"columnsTo": ["id"],
+					"onDelete": "cascade",
+					"onUpdate": "no action"
+				}
+			},
+			"compositePrimaryKeys": {},
+			"uniqueConstraints": {},
+			"policies": {},
+			"checkConstraints": {},
+			"isRLSEnabled": false
+		},
+		"public.faq_section_faqs": {
+			"name": "faq_section_faqs",
+			"schema": "",
+			"columns": {
+				"_order": {
+					"name": "_order",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"_parent_id": {
+					"name": "_parent_id",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"id": {
+					"name": "id",
+					"type": "varchar",
+					"primaryKey": true,
+					"notNull": true
+				},
+				"question": {
+					"name": "question",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"answer": {
+					"name": "answer",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": true
+				}
+			},
+			"indexes": {
+				"faq_section_faqs_order_idx": {
+					"name": "faq_section_faqs_order_idx",
+					"columns": [
+						{
+							"expression": "_order",
+							"isExpression": false,
+							"asc": true,
+							"nulls": "last"
+						}
+					],
+					"isUnique": false,
+					"concurrently": false,
+					"method": "btree",
+					"with": {}
+				},
+				"faq_section_faqs_parent_id_idx": {
+					"name": "faq_section_faqs_parent_id_idx",
+					"columns": [
+						{
+							"expression": "_parent_id",
+							"isExpression": false,
+							"asc": true,
+							"nulls": "last"
+						}
+					],
+					"isUnique": false,
+					"concurrently": false,
+					"method": "btree",
+					"with": {}
+				}
+			},
+			"foreignKeys": {
+				"faq_section_faqs_parent_id_fk": {
+					"name": "faq_section_faqs_parent_id_fk",
+					"tableFrom": "faq_section_faqs",
+					"tableTo": "faq_section",
+					"columnsFrom": ["_parent_id"],
+					"columnsTo": ["id"],
+					"onDelete": "cascade",
+					"onUpdate": "no action"
+				}
+			},
+			"compositePrimaryKeys": {},
+			"uniqueConstraints": {},
+			"policies": {},
+			"checkConstraints": {},
+			"isRLSEnabled": false
+		},
+		"public.faq_section": {
+			"name": "faq_section",
+			"schema": "",
+			"columns": {
+				"id": {
+					"name": "id",
+					"type": "serial",
+					"primaryKey": true,
+					"notNull": true
+				},
+				"title": {
+					"name": "title",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": true,
+					"default": "'Najczęściej Zadawane Pytania'"
+				},
+				"label": {
+					"name": "label",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": false,
+					"default": "'FAQ'"
+				},
+				"updated_at": {
+					"name": "updated_at",
+					"type": "timestamp(3) with time zone",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"created_at": {
+					"name": "created_at",
+					"type": "timestamp(3) with time zone",
+					"primaryKey": false,
+					"notNull": false
+				}
+			},
+			"indexes": {},
+			"foreignKeys": {},
+			"compositePrimaryKeys": {},
+			"uniqueConstraints": {},
+			"policies": {},
+			"checkConstraints": {},
+			"isRLSEnabled": false
+		},
+		"public.about_us_header": {
+			"name": "about_us_header",
+			"schema": "",
+			"columns": {
+				"id": {
+					"name": "id",
+					"type": "serial",
+					"primaryKey": true,
+					"notNull": true
+				},
+				"title": {
+					"name": "title",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": true,
+					"default": "'O Golden Lynx Cars'"
+				},
+				"label": {
+					"name": "label",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": false,
+					"default": "'O Firmie'"
+				},
+				"content": {
+					"name": "content",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": true,
+					"default": "'W Golden Lynx cars cenimy zaufanie - dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'"
+				},
+				"sub_content": {
+					"name": "sub_content",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": false,
+					"default": "'Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.'"
+				},
+				"updated_at": {
+					"name": "updated_at",
+					"type": "timestamp(3) with time zone",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"created_at": {
+					"name": "created_at",
+					"type": "timestamp(3) with time zone",
+					"primaryKey": false,
+					"notNull": false
+				}
+			},
+			"indexes": {},
+			"foreignKeys": {},
+			"compositePrimaryKeys": {},
+			"uniqueConstraints": {},
+			"policies": {},
+			"checkConstraints": {},
+			"isRLSEnabled": false
+		},
+		"public.about_us_overview": {
+			"name": "about_us_overview",
+			"schema": "",
+			"columns": {
+				"id": {
+					"name": "id",
+					"type": "serial",
+					"primaryKey": true,
+					"notNull": true
+				},
+				"video_id": {
+					"name": "video_id",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"title": {
+					"name": "title",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": true,
+					"default": "'Misja i Wizja'"
+				},
+				"sub_title": {
+					"name": "sub_title",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": true,
+					"default": "'W Golden Lynx cars cenimy zaufanie - dolor sit amet, consectetur adipiscing'"
+				},
+				"content": {
+					"name": "content",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": true,
+					"default": "'Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,'"
+				},
+				"updated_at": {
+					"name": "updated_at",
+					"type": "timestamp(3) with time zone",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"created_at": {
+					"name": "created_at",
+					"type": "timestamp(3) with time zone",
+					"primaryKey": false,
+					"notNull": false
+				}
+			},
+			"indexes": {
+				"about_us_overview_video_idx": {
+					"name": "about_us_overview_video_idx",
+					"columns": [
+						{
+							"expression": "video_id",
+							"isExpression": false,
+							"asc": true,
+							"nulls": "last"
+						}
+					],
+					"isUnique": false,
+					"concurrently": false,
+					"method": "btree",
+					"with": {}
+				}
+			},
+			"foreignKeys": {
+				"about_us_overview_video_id_media_id_fk": {
+					"name": "about_us_overview_video_id_media_id_fk",
+					"tableFrom": "about_us_overview",
+					"tableTo": "media",
+					"columnsFrom": ["video_id"],
+					"columnsTo": ["id"],
+					"onDelete": "set null",
+					"onUpdate": "no action"
+				}
+			},
+			"compositePrimaryKeys": {},
+			"uniqueConstraints": {},
+			"policies": {},
+			"checkConstraints": {},
+			"isRLSEnabled": false
+		},
+		"public.about_us_statistics": {
+			"name": "about_us_statistics",
+			"schema": "",
+			"columns": {
+				"id": {
+					"name": "id",
+					"type": "serial",
+					"primaryKey": true,
+					"notNull": true
+				},
+				"title": {
+					"name": "title",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": true,
+					"default": "'Nasza firma w liczbach'"
+				},
+				"label": {
+					"name": "label",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": false,
+					"default": "'Budujemy Zaufanie'"
+				},
+				"statistics_clients": {
+					"name": "statistics_clients",
+					"type": "numeric",
+					"primaryKey": false,
+					"notNull": true,
+					"default": 142
+				},
+				"statistics_kilometers": {
+					"name": "statistics_kilometers",
+					"type": "numeric",
+					"primaryKey": false,
+					"notNull": true,
+					"default": 780
+				},
+				"updated_at": {
+					"name": "updated_at",
+					"type": "timestamp(3) with time zone",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"created_at": {
+					"name": "created_at",
+					"type": "timestamp(3) with time zone",
+					"primaryKey": false,
+					"notNull": false
+				}
+			},
+			"indexes": {},
+			"foreignKeys": {},
+			"compositePrimaryKeys": {},
+			"uniqueConstraints": {},
+			"policies": {},
+			"checkConstraints": {},
+			"isRLSEnabled": false
+		},
+		"public.about_us_team_team": {
+			"name": "about_us_team_team",
+			"schema": "",
+			"columns": {
+				"_order": {
+					"name": "_order",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"_parent_id": {
+					"name": "_parent_id",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"id": {
+					"name": "id",
+					"type": "varchar",
+					"primaryKey": true,
+					"notNull": true
+				},
+				"image_id": {
+					"name": "image_id",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"first_name": {
+					"name": "first_name",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"description": {
+					"name": "description",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": true
+				}
+			},
+			"indexes": {
+				"about_us_team_team_order_idx": {
+					"name": "about_us_team_team_order_idx",
+					"columns": [
+						{
+							"expression": "_order",
+							"isExpression": false,
+							"asc": true,
+							"nulls": "last"
+						}
+					],
+					"isUnique": false,
+					"concurrently": false,
+					"method": "btree",
+					"with": {}
+				},
+				"about_us_team_team_parent_id_idx": {
+					"name": "about_us_team_team_parent_id_idx",
+					"columns": [
+						{
+							"expression": "_parent_id",
+							"isExpression": false,
+							"asc": true,
+							"nulls": "last"
+						}
+					],
+					"isUnique": false,
+					"concurrently": false,
+					"method": "btree",
+					"with": {}
+				},
+				"about_us_team_team_image_idx": {
+					"name": "about_us_team_team_image_idx",
+					"columns": [
+						{
+							"expression": "image_id",
+							"isExpression": false,
+							"asc": true,
+							"nulls": "last"
+						}
+					],
+					"isUnique": false,
+					"concurrently": false,
+					"method": "btree",
+					"with": {}
+				}
+			},
+			"foreignKeys": {
+				"about_us_team_team_image_id_media_id_fk": {
+					"name": "about_us_team_team_image_id_media_id_fk",
+					"tableFrom": "about_us_team_team",
+					"tableTo": "media",
+					"columnsFrom": ["image_id"],
+					"columnsTo": ["id"],
+					"onDelete": "set null",
+					"onUpdate": "no action"
+				},
+				"about_us_team_team_parent_id_fk": {
+					"name": "about_us_team_team_parent_id_fk",
+					"tableFrom": "about_us_team_team",
+					"tableTo": "about_us_team",
+					"columnsFrom": ["_parent_id"],
+					"columnsTo": ["id"],
+					"onDelete": "cascade",
+					"onUpdate": "no action"
+				}
+			},
+			"compositePrimaryKeys": {},
+			"uniqueConstraints": {},
+			"policies": {},
+			"checkConstraints": {},
+			"isRLSEnabled": false
+		},
+		"public.about_us_team": {
+			"name": "about_us_team",
+			"schema": "",
+			"columns": {
+				"id": {
+					"name": "id",
+					"type": "serial",
+					"primaryKey": true,
+					"notNull": true
+				},
+				"title": {
+					"name": "title",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": true,
+					"default": "'Kto stoi za Golden Lynx Cars'"
+				},
+				"label": {
+					"name": "label",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": false,
+					"default": "'Właściciele'"
+				},
+				"updated_at": {
+					"name": "updated_at",
+					"type": "timestamp(3) with time zone",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"created_at": {
+					"name": "created_at",
+					"type": "timestamp(3) with time zone",
+					"primaryKey": false,
+					"notNull": false
+				}
+			},
+			"indexes": {},
+			"foreignKeys": {},
+			"compositePrimaryKeys": {},
+			"uniqueConstraints": {},
+			"policies": {},
+			"checkConstraints": {},
+			"isRLSEnabled": false
+		},
+		"public.car_fleet_header": {
+			"name": "car_fleet_header",
+			"schema": "",
+			"columns": {
+				"id": {
+					"name": "id",
+					"type": "serial",
+					"primaryKey": true,
+					"notNull": true
+				},
+				"title": {
+					"name": "title",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": true,
+					"default": "'Flota Samochodów'"
+				},
+				"label": {
+					"name": "label",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": false,
+					"default": "'Samochody'"
+				},
+				"content": {
+					"name": "content",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": true,
+					"default": "'W Golden Lynx cars cenimy zaufanie - dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'"
+				},
+				"sub_content": {
+					"name": "sub_content",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"updated_at": {
+					"name": "updated_at",
+					"type": "timestamp(3) with time zone",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"created_at": {
+					"name": "created_at",
+					"type": "timestamp(3) with time zone",
+					"primaryKey": false,
+					"notNull": false
+				}
+			},
+			"indexes": {},
+			"foreignKeys": {},
+			"compositePrimaryKeys": {},
+			"uniqueConstraints": {},
+			"policies": {},
+			"checkConstraints": {},
+			"isRLSEnabled": false
+		},
+		"public.rental_calculator_header": {
+			"name": "rental_calculator_header",
+			"schema": "",
+			"columns": {
+				"id": {
+					"name": "id",
+					"type": "serial",
+					"primaryKey": true,
+					"notNull": true
+				},
+				"title": {
+					"name": "title",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": true,
+					"default": "'Kalkulator Najmu'"
+				},
+				"label": {
+					"name": "label",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": false,
+					"default": "'Wycena'"
+				},
+				"content": {
+					"name": "content",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": true,
+					"default": "'Jeśli zastanawiasz się ile zapłacisz za wynajem u nas tp  ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.'"
+				},
+				"sub_content": {
+					"name": "sub_content",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"updated_at": {
+					"name": "updated_at",
+					"type": "timestamp(3) with time zone",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"created_at": {
+					"name": "created_at",
+					"type": "timestamp(3) with time zone",
+					"primaryKey": false,
+					"notNull": false
+				}
+			},
+			"indexes": {},
+			"foreignKeys": {},
+			"compositePrimaryKeys": {},
+			"uniqueConstraints": {},
+			"policies": {},
+			"checkConstraints": {},
+			"isRLSEnabled": false
+		},
+		"public.shop_header": {
+			"name": "shop_header",
+			"schema": "",
+			"columns": {
+				"id": {
+					"name": "id",
+					"type": "serial",
+					"primaryKey": true,
+					"notNull": true
+				},
+				"title": {
+					"name": "title",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": true,
+					"default": "'Nasz Merch'"
+				},
+				"label": {
+					"name": "label",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": false,
+					"default": "'Merch'"
+				},
+				"content": {
+					"name": "content",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": true,
+					"default": "'W Golden Lynx cars cenimy zaufanie - dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'"
+				},
+				"sub_content": {
+					"name": "sub_content",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"updated_at": {
+					"name": "updated_at",
+					"type": "timestamp(3) with time zone",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"created_at": {
+					"name": "created_at",
+					"type": "timestamp(3) with time zone",
+					"primaryKey": false,
+					"notNull": false
+				}
+			},
+			"indexes": {},
+			"foreignKeys": {},
+			"compositePrimaryKeys": {},
+			"uniqueConstraints": {},
+			"policies": {},
+			"checkConstraints": {},
+			"isRLSEnabled": false
+		},
+		"public.vip_transfer_header": {
+			"name": "vip_transfer_header",
+			"schema": "",
+			"columns": {
+				"id": {
+					"name": "id",
+					"type": "serial",
+					"primaryKey": true,
+					"notNull": true
+				},
+				"title": {
+					"name": "title",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": true,
+					"default": "'Oferta transferów VIP'"
+				},
+				"label": {
+					"name": "label",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": false,
+					"default": "'Transfery'"
+				},
+				"content": {
+					"name": "content",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": true,
+					"default": "'Twój pobyt w Warszawie zaczyna się od momentu wylądowania na lotnisku? Chcesz, aby ten moment był równie wyjątkowy jak reszta Twojej podróży?'"
+				},
+				"sub_content": {
+					"name": "sub_content",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"updated_at": {
+					"name": "updated_at",
+					"type": "timestamp(3) with time zone",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"created_at": {
+					"name": "created_at",
+					"type": "timestamp(3) with time zone",
+					"primaryKey": false,
+					"notNull": false
+				}
+			},
+			"indexes": {},
+			"foreignKeys": {},
+			"compositePrimaryKeys": {},
+			"uniqueConstraints": {},
+			"policies": {},
+			"checkConstraints": {},
+			"isRLSEnabled": false
+		},
+		"public.vip_transfer_content_why_worth_needments": {
+			"name": "vip_transfer_content_why_worth_needments",
+			"schema": "",
+			"columns": {
+				"_order": {
+					"name": "_order",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"_parent_id": {
+					"name": "_parent_id",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"id": {
+					"name": "id",
+					"type": "varchar",
+					"primaryKey": true,
+					"notNull": true
+				},
+				"content": {
+					"name": "content",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": true
+				}
+			},
+			"indexes": {
+				"vip_transfer_content_why_worth_needments_order_idx": {
+					"name": "vip_transfer_content_why_worth_needments_order_idx",
+					"columns": [
+						{
+							"expression": "_order",
+							"isExpression": false,
+							"asc": true,
+							"nulls": "last"
+						}
+					],
+					"isUnique": false,
+					"concurrently": false,
+					"method": "btree",
+					"with": {}
+				},
+				"vip_transfer_content_why_worth_needments_parent_id_idx": {
+					"name": "vip_transfer_content_why_worth_needments_parent_id_idx",
+					"columns": [
+						{
+							"expression": "_parent_id",
+							"isExpression": false,
+							"asc": true,
+							"nulls": "last"
+						}
+					],
+					"isUnique": false,
+					"concurrently": false,
+					"method": "btree",
+					"with": {}
+				}
+			},
+			"foreignKeys": {
+				"vip_transfer_content_why_worth_needments_parent_id_fk": {
+					"name": "vip_transfer_content_why_worth_needments_parent_id_fk",
+					"tableFrom": "vip_transfer_content_why_worth_needments",
+					"tableTo": "vip_transfer_content",
+					"columnsFrom": ["_parent_id"],
+					"columnsTo": ["id"],
+					"onDelete": "cascade",
+					"onUpdate": "no action"
+				}
+			},
+			"compositePrimaryKeys": {},
+			"uniqueConstraints": {},
+			"policies": {},
+			"checkConstraints": {},
+			"isRLSEnabled": false
+		},
+		"public.vip_transfer_content": {
+			"name": "vip_transfer_content",
+			"schema": "",
+			"columns": {
+				"id": {
+					"name": "id",
+					"type": "serial",
+					"primaryKey": true,
+					"notNull": true
+				},
+				"service_description_media_id": {
+					"name": "service_description_media_id",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"service_description_title": {
+					"name": "service_description_title",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": true,
+					"default": "'Opis usługi'"
+				},
+				"service_description_content": {
+					"name": "service_description_content",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": true,
+					"default": "'Dysponujemy szerokim wyborem ekskluzywnych samochodów, które spełnią najbardziej wymagające oczekiwania. Bez względu na to, czy potrzebujesz eleganckiej limuzyny czy szybkiego sportowego auta, mamy odpowiedni pojazd, który podkreśli Twój styl i nadaje się do Twoich potrzeb.'"
+				},
+				"why_worth_title": {
+					"name": "why_worth_title",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": true,
+					"default": "'Dlaczego warto?'"
+				},
+				"why_worth_description": {
+					"name": "why_worth_description",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": true,
+					"default": "'Dysponujemy szerokim wyborem ekskluzywnych samochodów, które spełnią najbardziej wymagające oczekiwania:'"
+				},
+				"process_media_id": {
+					"name": "process_media_id",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"process_title": {
+					"name": "process_title",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": true,
+					"default": "'Jak wygląda proces?'"
+				},
+				"process_content": {
+					"name": "process_content",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": true,
+					"default": "'Dysponujemy szerokim wyborem ekskluzywnych samochodów, które spełnią najbardziej wymagające oczekiwania. Bez względu na to, czy potrzebujesz eleganckiej limuzyny czy szybkiego sportowego auta, mamy odpowiedni pojazd, który podkreśli Twój styl i nadaje się do Twoich potrzeb.'"
+				},
+				"updated_at": {
+					"name": "updated_at",
+					"type": "timestamp(3) with time zone",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"created_at": {
+					"name": "created_at",
+					"type": "timestamp(3) with time zone",
+					"primaryKey": false,
+					"notNull": false
+				}
+			},
+			"indexes": {
+				"vip_transfer_content_service_description_service_description_media_idx": {
+					"name": "vip_transfer_content_service_description_service_description_media_idx",
+					"columns": [
+						{
+							"expression": "service_description_media_id",
+							"isExpression": false,
+							"asc": true,
+							"nulls": "last"
+						}
+					],
+					"isUnique": false,
+					"concurrently": false,
+					"method": "btree",
+					"with": {}
+				},
+				"vip_transfer_content_process_process_media_idx": {
+					"name": "vip_transfer_content_process_process_media_idx",
+					"columns": [
+						{
+							"expression": "process_media_id",
+							"isExpression": false,
+							"asc": true,
+							"nulls": "last"
+						}
+					],
+					"isUnique": false,
+					"concurrently": false,
+					"method": "btree",
+					"with": {}
+				}
+			},
+			"foreignKeys": {
+				"vip_transfer_content_service_description_media_id_media_id_fk": {
+					"name": "vip_transfer_content_service_description_media_id_media_id_fk",
+					"tableFrom": "vip_transfer_content",
+					"tableTo": "media",
+					"columnsFrom": ["service_description_media_id"],
+					"columnsTo": ["id"],
+					"onDelete": "set null",
+					"onUpdate": "no action"
+				},
+				"vip_transfer_content_process_media_id_media_id_fk": {
+					"name": "vip_transfer_content_process_media_id_media_id_fk",
+					"tableFrom": "vip_transfer_content",
+					"tableTo": "media",
+					"columnsFrom": ["process_media_id"],
+					"columnsTo": ["id"],
+					"onDelete": "set null",
+					"onUpdate": "no action"
+				}
+			},
+			"compositePrimaryKeys": {},
+			"uniqueConstraints": {},
+			"policies": {},
+			"checkConstraints": {},
+			"isRLSEnabled": false
+		},
+		"public.investor_model_header": {
+			"name": "investor_model_header",
+			"schema": "",
+			"columns": {
+				"id": {
+					"name": "id",
+					"type": "serial",
+					"primaryKey": true,
+					"notNull": true
+				},
+				"title": {
+					"name": "title",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": true,
+					"default": "'Model Inwestorski'"
+				},
+				"label": {
+					"name": "label",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": false,
+					"default": "'Inwestowanie'"
+				},
+				"content": {
+					"name": "content",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": true,
+					"default": "'Dołącz do Golden Lynx Cars i zacznij zarabiać, udostępniając swój pojazd na naszej platformie.'"
+				},
+				"sub_content": {
+					"name": "sub_content",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"updated_at": {
+					"name": "updated_at",
+					"type": "timestamp(3) with time zone",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"created_at": {
+					"name": "created_at",
+					"type": "timestamp(3) with time zone",
+					"primaryKey": false,
+					"notNull": false
+				}
+			},
+			"indexes": {},
+			"foreignKeys": {},
+			"compositePrimaryKeys": {},
+			"uniqueConstraints": {},
+			"policies": {},
+			"checkConstraints": {},
+			"isRLSEnabled": false
+		},
+		"public.investor_model_content_steps": {
+			"name": "investor_model_content_steps",
+			"schema": "",
+			"columns": {
+				"_order": {
+					"name": "_order",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"_parent_id": {
+					"name": "_parent_id",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"id": {
+					"name": "id",
+					"type": "varchar",
+					"primaryKey": true,
+					"notNull": true
+				},
+				"title": {
+					"name": "title",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"content": {
+					"name": "content",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": true
+				}
+			},
+			"indexes": {
+				"investor_model_content_steps_order_idx": {
+					"name": "investor_model_content_steps_order_idx",
+					"columns": [
+						{
+							"expression": "_order",
+							"isExpression": false,
+							"asc": true,
+							"nulls": "last"
+						}
+					],
+					"isUnique": false,
+					"concurrently": false,
+					"method": "btree",
+					"with": {}
+				},
+				"investor_model_content_steps_parent_id_idx": {
+					"name": "investor_model_content_steps_parent_id_idx",
+					"columns": [
+						{
+							"expression": "_parent_id",
+							"isExpression": false,
+							"asc": true,
+							"nulls": "last"
+						}
+					],
+					"isUnique": false,
+					"concurrently": false,
+					"method": "btree",
+					"with": {}
+				}
+			},
+			"foreignKeys": {
+				"investor_model_content_steps_parent_id_fk": {
+					"name": "investor_model_content_steps_parent_id_fk",
+					"tableFrom": "investor_model_content_steps",
+					"tableTo": "investor_model_content",
+					"columnsFrom": ["_parent_id"],
+					"columnsTo": ["id"],
+					"onDelete": "cascade",
+					"onUpdate": "no action"
+				}
+			},
+			"compositePrimaryKeys": {},
+			"uniqueConstraints": {},
+			"policies": {},
+			"checkConstraints": {},
+			"isRLSEnabled": false
+		},
+		"public.investor_model_content": {
+			"name": "investor_model_content",
+			"schema": "",
+			"columns": {
+				"id": {
+					"name": "id",
+					"type": "serial",
+					"primaryKey": true,
+					"notNull": true
+				},
+				"media_id": {
+					"name": "media_id",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"description": {
+					"name": "description",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"updated_at": {
+					"name": "updated_at",
+					"type": "timestamp(3) with time zone",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"created_at": {
+					"name": "created_at",
+					"type": "timestamp(3) with time zone",
+					"primaryKey": false,
+					"notNull": false
+				}
+			},
+			"indexes": {
+				"investor_model_content_media_idx": {
+					"name": "investor_model_content_media_idx",
+					"columns": [
+						{
+							"expression": "media_id",
+							"isExpression": false,
+							"asc": true,
+							"nulls": "last"
+						}
+					],
+					"isUnique": false,
+					"concurrently": false,
+					"method": "btree",
+					"with": {}
+				}
+			},
+			"foreignKeys": {
+				"investor_model_content_media_id_media_id_fk": {
+					"name": "investor_model_content_media_id_media_id_fk",
+					"tableFrom": "investor_model_content",
+					"tableTo": "media",
+					"columnsFrom": ["media_id"],
+					"columnsTo": ["id"],
+					"onDelete": "set null",
+					"onUpdate": "no action"
+				}
+			},
+			"compositePrimaryKeys": {},
+			"uniqueConstraints": {},
+			"policies": {},
+			"checkConstraints": {},
+			"isRLSEnabled": false
+		},
+		"public.rentals_schedule": {
+			"name": "rentals_schedule",
+			"schema": "",
+			"columns": {
+				"id": {
+					"name": "id",
+					"type": "serial",
+					"primaryKey": true,
+					"notNull": true
+				},
+				"updated_at": {
+					"name": "updated_at",
+					"type": "timestamp(3) with time zone",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"created_at": {
+					"name": "created_at",
+					"type": "timestamp(3) with time zone",
+					"primaryKey": false,
+					"notNull": false
+				}
+			},
+			"indexes": {},
+			"foreignKeys": {},
+			"compositePrimaryKeys": {},
+			"uniqueConstraints": {},
+			"policies": {},
+			"checkConstraints": {},
+			"isRLSEnabled": false
+		},
+		"public.car_subscription_header": {
+			"name": "car_subscription_header",
+			"schema": "",
+			"columns": {
+				"id": {
+					"name": "id",
+					"type": "serial",
+					"primaryKey": true,
+					"notNull": true
+				},
+				"title": {
+					"name": "title",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": true,
+					"default": "'Subskrypcja Samochodowa'"
+				},
+				"label": {
+					"name": "label",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": false,
+					"default": "'Subskrypcja'"
+				},
+				"content": {
+					"name": "content",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": true,
+					"default": "'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis vehicula vel nunc ac porta. Donec ut ligula nec nunc efficitur facilisis.'"
+				},
+				"sub_content": {
+					"name": "sub_content",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"updated_at": {
+					"name": "updated_at",
+					"type": "timestamp(3) with time zone",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"created_at": {
+					"name": "created_at",
+					"type": "timestamp(3) with time zone",
+					"primaryKey": false,
+					"notNull": false
+				}
+			},
+			"indexes": {},
+			"foreignKeys": {},
+			"compositePrimaryKeys": {},
+			"uniqueConstraints": {},
+			"policies": {},
+			"checkConstraints": {},
+			"isRLSEnabled": false
+		},
+		"public.car_subscription_content_benefits_list": {
+			"name": "car_subscription_content_benefits_list",
+			"schema": "",
+			"columns": {
+				"_order": {
+					"name": "_order",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"_parent_id": {
+					"name": "_parent_id",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"id": {
+					"name": "id",
+					"type": "varchar",
+					"primaryKey": true,
+					"notNull": true
+				},
+				"content": {
+					"name": "content",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": true
+				}
+			},
+			"indexes": {
+				"car_subscription_content_benefits_list_order_idx": {
+					"name": "car_subscription_content_benefits_list_order_idx",
+					"columns": [
+						{
+							"expression": "_order",
+							"isExpression": false,
+							"asc": true,
+							"nulls": "last"
+						}
+					],
+					"isUnique": false,
+					"concurrently": false,
+					"method": "btree",
+					"with": {}
+				},
+				"car_subscription_content_benefits_list_parent_id_idx": {
+					"name": "car_subscription_content_benefits_list_parent_id_idx",
+					"columns": [
+						{
+							"expression": "_parent_id",
+							"isExpression": false,
+							"asc": true,
+							"nulls": "last"
+						}
+					],
+					"isUnique": false,
+					"concurrently": false,
+					"method": "btree",
+					"with": {}
+				}
+			},
+			"foreignKeys": {
+				"car_subscription_content_benefits_list_parent_id_fk": {
+					"name": "car_subscription_content_benefits_list_parent_id_fk",
+					"tableFrom": "car_subscription_content_benefits_list",
+					"tableTo": "car_subscription_content",
+					"columnsFrom": ["_parent_id"],
+					"columnsTo": ["id"],
+					"onDelete": "cascade",
+					"onUpdate": "no action"
+				}
+			},
+			"compositePrimaryKeys": {},
+			"uniqueConstraints": {},
+			"policies": {},
+			"checkConstraints": {},
+			"isRLSEnabled": false
+		},
+		"public.car_subscription_content_comparison_table_categories": {
+			"name": "car_subscription_content_comparison_table_categories",
+			"schema": "",
+			"columns": {
+				"_order": {
+					"name": "_order",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"_parent_id": {
+					"name": "_parent_id",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"id": {
+					"name": "id",
+					"type": "varchar",
+					"primaryKey": true,
+					"notNull": true
+				},
+				"category": {
+					"name": "category",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": true
+				}
+			},
+			"indexes": {
+				"car_subscription_content_comparison_table_categories_order_idx": {
+					"name": "car_subscription_content_comparison_table_categories_order_idx",
+					"columns": [
+						{
+							"expression": "_order",
+							"isExpression": false,
+							"asc": true,
+							"nulls": "last"
+						}
+					],
+					"isUnique": false,
+					"concurrently": false,
+					"method": "btree",
+					"with": {}
+				},
+				"car_subscription_content_comparison_table_categories_parent_id_idx": {
+					"name": "car_subscription_content_comparison_table_categories_parent_id_idx",
+					"columns": [
+						{
+							"expression": "_parent_id",
+							"isExpression": false,
+							"asc": true,
+							"nulls": "last"
+						}
+					],
+					"isUnique": false,
+					"concurrently": false,
+					"method": "btree",
+					"with": {}
+				}
+			},
+			"foreignKeys": {
+				"car_subscription_content_comparison_table_categories_parent_id_fk": {
+					"name": "car_subscription_content_comparison_table_categories_parent_id_fk",
+					"tableFrom": "car_subscription_content_comparison_table_categories",
+					"tableTo": "car_subscription_content",
+					"columnsFrom": ["_parent_id"],
+					"columnsTo": ["id"],
+					"onDelete": "cascade",
+					"onUpdate": "no action"
+				}
+			},
+			"compositePrimaryKeys": {},
+			"uniqueConstraints": {},
+			"policies": {},
+			"checkConstraints": {},
+			"isRLSEnabled": false
+		},
+		"public.car_subscription_content_comparison_table_contents_content": {
+			"name": "car_subscription_content_comparison_table_contents_content",
+			"schema": "",
+			"columns": {
+				"_order": {
+					"name": "_order",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"_parent_id": {
+					"name": "_parent_id",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"id": {
+					"name": "id",
+					"type": "varchar",
+					"primaryKey": true,
+					"notNull": true
+				},
+				"item": {
+					"name": "item",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": true
+				}
+			},
+			"indexes": {
+				"car_subscription_content_comparison_table_contents_content_order_idx": {
+					"name": "car_subscription_content_comparison_table_contents_content_order_idx",
+					"columns": [
+						{
+							"expression": "_order",
+							"isExpression": false,
+							"asc": true,
+							"nulls": "last"
+						}
+					],
+					"isUnique": false,
+					"concurrently": false,
+					"method": "btree",
+					"with": {}
+				},
+				"car_subscription_content_comparison_table_contents_content_parent_id_idx": {
+					"name": "car_subscription_content_comparison_table_contents_content_parent_id_idx",
+					"columns": [
+						{
+							"expression": "_parent_id",
+							"isExpression": false,
+							"asc": true,
+							"nulls": "last"
+						}
+					],
+					"isUnique": false,
+					"concurrently": false,
+					"method": "btree",
+					"with": {}
+				}
+			},
+			"foreignKeys": {
+				"car_subscription_content_comparison_table_contents_content_parent_id_fk": {
+					"name": "car_subscription_content_comparison_table_contents_content_parent_id_fk",
+					"tableFrom": "car_subscription_content_comparison_table_contents_content",
+					"tableTo": "car_subscription_content_comparison_table_contents",
+					"columnsFrom": ["_parent_id"],
+					"columnsTo": ["id"],
+					"onDelete": "cascade",
+					"onUpdate": "no action"
+				}
+			},
+			"compositePrimaryKeys": {},
+			"uniqueConstraints": {},
+			"policies": {},
+			"checkConstraints": {},
+			"isRLSEnabled": false
+		},
+		"public.car_subscription_content_comparison_table_contents": {
+			"name": "car_subscription_content_comparison_table_contents",
+			"schema": "",
+			"columns": {
+				"_order": {
+					"name": "_order",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"_parent_id": {
+					"name": "_parent_id",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"id": {
+					"name": "id",
+					"type": "varchar",
+					"primaryKey": true,
+					"notNull": true
+				},
+				"parameter": {
+					"name": "parameter",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": true
+				}
+			},
+			"indexes": {
+				"car_subscription_content_comparison_table_contents_order_idx": {
+					"name": "car_subscription_content_comparison_table_contents_order_idx",
+					"columns": [
+						{
+							"expression": "_order",
+							"isExpression": false,
+							"asc": true,
+							"nulls": "last"
+						}
+					],
+					"isUnique": false,
+					"concurrently": false,
+					"method": "btree",
+					"with": {}
+				},
+				"car_subscription_content_comparison_table_contents_parent_id_idx": {
+					"name": "car_subscription_content_comparison_table_contents_parent_id_idx",
+					"columns": [
+						{
+							"expression": "_parent_id",
+							"isExpression": false,
+							"asc": true,
+							"nulls": "last"
+						}
+					],
+					"isUnique": false,
+					"concurrently": false,
+					"method": "btree",
+					"with": {}
+				}
+			},
+			"foreignKeys": {
+				"car_subscription_content_comparison_table_contents_parent_id_fk": {
+					"name": "car_subscription_content_comparison_table_contents_parent_id_fk",
+					"tableFrom": "car_subscription_content_comparison_table_contents",
+					"tableTo": "car_subscription_content",
+					"columnsFrom": ["_parent_id"],
+					"columnsTo": ["id"],
+					"onDelete": "cascade",
+					"onUpdate": "no action"
+				}
+			},
+			"compositePrimaryKeys": {},
+			"uniqueConstraints": {},
+			"policies": {},
+			"checkConstraints": {},
+			"isRLSEnabled": false
+		},
+		"public.car_subscription_content_choose_reasons_list": {
+			"name": "car_subscription_content_choose_reasons_list",
+			"schema": "",
+			"columns": {
+				"_order": {
+					"name": "_order",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"_parent_id": {
+					"name": "_parent_id",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"id": {
+					"name": "id",
+					"type": "varchar",
+					"primaryKey": true,
+					"notNull": true
+				},
+				"content": {
+					"name": "content",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": true
+				}
+			},
+			"indexes": {
+				"car_subscription_content_choose_reasons_list_order_idx": {
+					"name": "car_subscription_content_choose_reasons_list_order_idx",
+					"columns": [
+						{
+							"expression": "_order",
+							"isExpression": false,
+							"asc": true,
+							"nulls": "last"
+						}
+					],
+					"isUnique": false,
+					"concurrently": false,
+					"method": "btree",
+					"with": {}
+				},
+				"car_subscription_content_choose_reasons_list_parent_id_idx": {
+					"name": "car_subscription_content_choose_reasons_list_parent_id_idx",
+					"columns": [
+						{
+							"expression": "_parent_id",
+							"isExpression": false,
+							"asc": true,
+							"nulls": "last"
+						}
+					],
+					"isUnique": false,
+					"concurrently": false,
+					"method": "btree",
+					"with": {}
+				}
+			},
+			"foreignKeys": {
+				"car_subscription_content_choose_reasons_list_parent_id_fk": {
+					"name": "car_subscription_content_choose_reasons_list_parent_id_fk",
+					"tableFrom": "car_subscription_content_choose_reasons_list",
+					"tableTo": "car_subscription_content",
+					"columnsFrom": ["_parent_id"],
+					"columnsTo": ["id"],
+					"onDelete": "cascade",
+					"onUpdate": "no action"
+				}
+			},
+			"compositePrimaryKeys": {},
+			"uniqueConstraints": {},
+			"policies": {},
+			"checkConstraints": {},
+			"isRLSEnabled": false
+		},
+		"public.car_subscription_content": {
+			"name": "car_subscription_content",
+			"schema": "",
+			"columns": {
+				"id": {
+					"name": "id",
+					"type": "serial",
+					"primaryKey": true,
+					"notNull": true
+				},
+				"description": {
+					"name": "description",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"benefits_title": {
+					"name": "benefits_title",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"benefits_label": {
+					"name": "benefits_label",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"comparison_table_title": {
+					"name": "comparison_table_title",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"comparison_table_label": {
+					"name": "comparison_table_label",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"choose_reasons_title": {
+					"name": "choose_reasons_title",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"choose_reasons_label": {
+					"name": "choose_reasons_label",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"summary": {
+					"name": "summary",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"updated_at": {
+					"name": "updated_at",
+					"type": "timestamp(3) with time zone",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"created_at": {
+					"name": "created_at",
+					"type": "timestamp(3) with time zone",
+					"primaryKey": false,
+					"notNull": false
+				}
+			},
+			"indexes": {},
+			"foreignKeys": {},
+			"compositePrimaryKeys": {},
+			"uniqueConstraints": {},
+			"policies": {},
+			"checkConstraints": {},
+			"isRLSEnabled": false
+		},
+		"public.long_term_rental_header": {
+			"name": "long_term_rental_header",
+			"schema": "",
+			"columns": {
+				"id": {
+					"name": "id",
+					"type": "serial",
+					"primaryKey": true,
+					"notNull": true
+				},
+				"title": {
+					"name": "title",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": true,
+					"default": "'Wynajem Długoterminowy'"
+				},
+				"label": {
+					"name": "label",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": false,
+					"default": "'Wynajem'"
+				},
+				"content": {
+					"name": "content",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": true,
+					"default": "'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis vehicula vel nunc ac porta. Donec ut ligula nec nunc efficitur facilisis.'"
+				},
+				"sub_content": {
+					"name": "sub_content",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"updated_at": {
+					"name": "updated_at",
+					"type": "timestamp(3) with time zone",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"created_at": {
+					"name": "created_at",
+					"type": "timestamp(3) with time zone",
+					"primaryKey": false,
+					"notNull": false
+				}
+			},
+			"indexes": {},
+			"foreignKeys": {},
+			"compositePrimaryKeys": {},
+			"uniqueConstraints": {},
+			"policies": {},
+			"checkConstraints": {},
+			"isRLSEnabled": false
+		},
+		"public.long_term_rental_content_process_steps": {
+			"name": "long_term_rental_content_process_steps",
+			"schema": "",
+			"columns": {
+				"_order": {
+					"name": "_order",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"_parent_id": {
+					"name": "_parent_id",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"id": {
+					"name": "id",
+					"type": "varchar",
+					"primaryKey": true,
+					"notNull": true
+				},
+				"content": {
+					"name": "content",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": true
+				}
+			},
+			"indexes": {
+				"long_term_rental_content_process_steps_order_idx": {
+					"name": "long_term_rental_content_process_steps_order_idx",
+					"columns": [
+						{
+							"expression": "_order",
+							"isExpression": false,
+							"asc": true,
+							"nulls": "last"
+						}
+					],
+					"isUnique": false,
+					"concurrently": false,
+					"method": "btree",
+					"with": {}
+				},
+				"long_term_rental_content_process_steps_parent_id_idx": {
+					"name": "long_term_rental_content_process_steps_parent_id_idx",
+					"columns": [
+						{
+							"expression": "_parent_id",
+							"isExpression": false,
+							"asc": true,
+							"nulls": "last"
+						}
+					],
+					"isUnique": false,
+					"concurrently": false,
+					"method": "btree",
+					"with": {}
+				}
+			},
+			"foreignKeys": {
+				"long_term_rental_content_process_steps_parent_id_fk": {
+					"name": "long_term_rental_content_process_steps_parent_id_fk",
+					"tableFrom": "long_term_rental_content_process_steps",
+					"tableTo": "long_term_rental_content",
+					"columnsFrom": ["_parent_id"],
+					"columnsTo": ["id"],
+					"onDelete": "cascade",
+					"onUpdate": "no action"
+				}
+			},
+			"compositePrimaryKeys": {},
+			"uniqueConstraints": {},
+			"policies": {},
+			"checkConstraints": {},
+			"isRLSEnabled": false
+		},
+		"public.long_term_rental_content_additional_information_informations": {
+			"name": "long_term_rental_content_additional_information_informations",
+			"schema": "",
+			"columns": {
+				"_order": {
+					"name": "_order",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"_parent_id": {
+					"name": "_parent_id",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"id": {
+					"name": "id",
+					"type": "varchar",
+					"primaryKey": true,
+					"notNull": true
+				},
+				"content": {
+					"name": "content",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": true
+				}
+			},
+			"indexes": {
+				"long_term_rental_content_additional_information_informations_order_idx": {
+					"name": "long_term_rental_content_additional_information_informations_order_idx",
+					"columns": [
+						{
+							"expression": "_order",
+							"isExpression": false,
+							"asc": true,
+							"nulls": "last"
+						}
+					],
+					"isUnique": false,
+					"concurrently": false,
+					"method": "btree",
+					"with": {}
+				},
+				"long_term_rental_content_additional_information_informations_parent_id_idx": {
+					"name": "long_term_rental_content_additional_information_informations_parent_id_idx",
+					"columns": [
+						{
+							"expression": "_parent_id",
+							"isExpression": false,
+							"asc": true,
+							"nulls": "last"
+						}
+					],
+					"isUnique": false,
+					"concurrently": false,
+					"method": "btree",
+					"with": {}
+				}
+			},
+			"foreignKeys": {
+				"long_term_rental_content_additional_information_informations_parent_id_fk": {
+					"name": "long_term_rental_content_additional_information_informations_parent_id_fk",
+					"tableFrom": "long_term_rental_content_additional_information_informations",
+					"tableTo": "long_term_rental_content",
+					"columnsFrom": ["_parent_id"],
+					"columnsTo": ["id"],
+					"onDelete": "cascade",
+					"onUpdate": "no action"
+				}
+			},
+			"compositePrimaryKeys": {},
+			"uniqueConstraints": {},
+			"policies": {},
+			"checkConstraints": {},
+			"isRLSEnabled": false
+		},
+		"public.long_term_rental_content": {
+			"name": "long_term_rental_content",
+			"schema": "",
+			"columns": {
+				"id": {
+					"name": "id",
+					"type": "serial",
+					"primaryKey": true,
+					"notNull": true
+				},
+				"process_title": {
+					"name": "process_title",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"process_label": {
+					"name": "process_label",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"additional_information_title": {
+					"name": "additional_information_title",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"additional_information_label": {
+					"name": "additional_information_label",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"summary": {
+					"name": "summary",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"updated_at": {
+					"name": "updated_at",
+					"type": "timestamp(3) with time zone",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"created_at": {
+					"name": "created_at",
+					"type": "timestamp(3) with time zone",
+					"primaryKey": false,
+					"notNull": false
+				}
+			},
+			"indexes": {},
+			"foreignKeys": {},
+			"compositePrimaryKeys": {},
+			"uniqueConstraints": {},
+			"policies": {},
+			"checkConstraints": {},
+			"isRLSEnabled": false
+		}
+	},
+	"enums": {
+		"public.enum_users_roles": {
+			"name": "enum_users_roles",
+			"schema": "public",
+			"values": ["employee", "admin"]
+		},
+		"public.enum_customers_personal_data_gender": {
+			"name": "enum_customers_personal_data_gender",
+			"schema": "public",
+			"values": ["Male", "Female"]
+		},
+		"public.enum_rentals_rental_currency": {
+			"name": "enum_rentals_rental_currency",
+			"schema": "public",
+			"values": ["PLN", "USD", "EUR", "GBP", "CHF", "NOK", "BTC"]
+		},
+		"public.enum_rentals_deposit_currency": {
+			"name": "enum_rentals_deposit_currency",
+			"schema": "public",
+			"values": ["PLN", "USD", "EUR", "GBP", "CHF", "NOK", "BTC"]
+		},
+		"public.enum_rentals_installment_currency": {
+			"name": "enum_rentals_installment_currency",
+			"schema": "public",
+			"values": ["PLN", "USD", "EUR", "GBP", "CHF", "NOK", "BTC"]
+		},
+		"public.enum_rentals_status": {
+			"name": "enum_rentals_status",
+			"schema": "public",
+			"values": [
+				"Provisional",
+				"Offer Sent",
+				"Confirmed",
+				"In Progress",
+				"Completed",
+				"Rejected"
+			]
+		},
+		"public.enum_car_fleet_details_transmission": {
+			"name": "enum_car_fleet_details_transmission",
+			"schema": "public",
+			"values": ["manual", "sequential", "automatic"]
+		},
+		"public.enum_car_fleet_details_fuel": {
+			"name": "enum_car_fleet_details_fuel",
+			"schema": "public",
+			"values": ["gasoline", "diesel", "lpg", "hybrid"]
+		}
+	},
+	"schemas": {},
+	"sequences": {},
+	"roles": {},
+	"policies": {},
+	"views": {},
+	"_meta": {
+		"schemas": {},
+		"tables": {},
+		"columns": {}
+	}
+}

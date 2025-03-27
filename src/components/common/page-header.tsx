@@ -11,6 +11,7 @@ type PageHeaderProps = Readonly<{
 		| 'car-subscription-header'
 		| 'contact-header'
 		| 'investor-model-header'
+		| 'long-term-rental-header'
 		| 'rental-calculator-header'
 		| 'shop-header'
 		| 'vip-transfer-header';

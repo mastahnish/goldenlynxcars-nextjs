@@ -26,7 +26,7 @@ export const footerSections: FooterSection[] = [
 				label: 'Model inwestorski',
 			},
 			{
-				href: '#',
+				href: '/wynajem-dlugoterminowy',
 				label: 'Najem długoterminowy',
 			},
 			{
