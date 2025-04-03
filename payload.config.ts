@@ -28,6 +28,7 @@ import { CarSubscriptionHeader } from '@/payload/globals/car-subscription/CarSub
 import { ContactHeader } from '@/payload/globals/contact/ContactHeader';
 import { ContactSection } from '@/payload/globals/contact/ContactSection';
 import { ContractSettings } from '@/payload/globals/dashboard/ContractSettings';
+import { Flags } from '@/payload/globals/Flags';
 import { InvestorModelContent } from '@/payload/globals/investor-model/InvestorModelContent';
 import { InvestorModelHeader } from '@/payload/globals/investor-model/InvestorModelHeader';
 import { CarFleetSection } from '@/payload/globals/landing/CarFleetSection';
@@ -86,6 +87,7 @@ export default buildConfig({
 		CarSubscriptionContent,
 		LongTermRentalHeader,
 		LongTermRentalContent,
+		Flags,
 	],
 	editor: slateEditor({}),
 	secret: env.PAYLOAD_SECRET,

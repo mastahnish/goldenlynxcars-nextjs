@@ -123,6 +123,7 @@ export interface Config {
     'car-subscription-content': CarSubscriptionContent;
     'long-term-rental-header': LongTermRentalHeader;
     'long-term-rental-content': LongTermRentalContent;
+    flags: Flag;
   };
   globalsSelect: {
     'contact-header': ContactHeaderSelect<false> | ContactHeaderSelect<true>;
@@ -150,6 +151,7 @@ export interface Config {
     'car-subscription-content': CarSubscriptionContentSelect<false> | CarSubscriptionContentSelect<true>;
     'long-term-rental-header': LongTermRentalHeaderSelect<false> | LongTermRentalHeaderSelect<true>;
     'long-term-rental-content': LongTermRentalContentSelect<false> | LongTermRentalContentSelect<true>;
+    flags: FlagsSelect<false> | FlagsSelect<true>;
   };
   locale: null;
   user: User & {
@@ -1164,6 +1166,16 @@ export interface LongTermRentalContent {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "flags".
+ */
+export interface Flag {
+  id: number;
+  isShopEnabled: boolean;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "contact-header_select".
  */
 export interface ContactHeaderSelect<T extends boolean = true> {
@@ -1627,6 +1639,16 @@ export interface LongTermRentalContentSelect<T extends boolean = true> {
             };
       };
   summary?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "flags_select".
+ */
+export interface FlagsSelect<T extends boolean = true> {
+  isShopEnabled?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;

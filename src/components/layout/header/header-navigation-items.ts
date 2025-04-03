@@ -1,8 +1,11 @@
 import type { LinkProps } from 'next/link';
 
+import type { Flags } from '@/lib/flags';
+
 export interface NavItem {
 	href: LinkProps<unknown>['href'];
 	label: string;
+	flag?: Flags;
 }
 
 export const navItems: NavItem[] = [
@@ -17,6 +20,7 @@ export const navItems: NavItem[] = [
 	{
 		href: '/sklep',
 		label: 'Sklep z merchem',
+		flag: 'shop',
 	},
 	{
 		href: '/kalkulator-najmu',
