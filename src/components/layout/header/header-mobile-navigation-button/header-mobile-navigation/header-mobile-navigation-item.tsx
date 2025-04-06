@@ -14,7 +14,7 @@ export const HeaderMobileNavigationItem = ({
 	<Link
 		href={href}
 		onClick={onClick}
-		className="text-xl uppercase text-white transition-colors duration-300 hover:text-neutral-300"
+		className="text-lg uppercase text-white transition-colors duration-300 hover:text-neutral-300 sm:text-xl"
 	>
 		{label}
 	</Link>

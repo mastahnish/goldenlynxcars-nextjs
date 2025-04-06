@@ -30,7 +30,7 @@ export const AccordionContent = ({
 				>
 					<p
 						className={twMerge(
-							'pt-4 text-neutral-300',
+							'text-sm xs:text-base pt-4 text-neutral-300',
 							!bottomSection && 'pb-6',
 						)}
 					>

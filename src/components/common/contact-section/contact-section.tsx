@@ -21,7 +21,7 @@ export const ContactSection = async () => {
 				label={label}
 				className="w-full space-y-6"
 			>
-				<div className="-mt-8 space-x-2">
+				<div className="-mt-8 flex w-fit flex-col gap-2 text-nowrap xs:flex-row">
 					{PHONE_NUMBERS.map(phoneNumber => (
 						<ContactPhoneButton key={phoneNumber} phoneNumber={phoneNumber} />
 					))}

@@ -18,7 +18,7 @@ export const AccordionTitle = ({ children }: AccordionTitleProps) => {
 			type="button"
 			aria-expanded={isExpanded}
 			onClick={() => changeExpandedElement(value)}
-			className="mt-3 flex h-12 w-full items-center text-left text-xl font-semibold xs:text-2xl"
+			className="mt-3 flex h-12 w-full items-center text-left text-lg font-semibold xs:text-xl sm:text-2xl"
 		>
 			{children}
 		</button>

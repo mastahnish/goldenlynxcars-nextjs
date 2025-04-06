@@ -15,7 +15,7 @@ export const AboutUsStatisticsList = ({
 	cars,
 	kilometers,
 }: AboutUsStatisticsListProps) => (
-	<ul className="grid grid-cols-1 gap-4 lg:grid-cols-3">
+	<ul className="relative z-1 grid grid-cols-1 gap-4 lg:grid-cols-3">
 		<li>
 			<AboutUsStatisticsListItem
 				value={clients}
