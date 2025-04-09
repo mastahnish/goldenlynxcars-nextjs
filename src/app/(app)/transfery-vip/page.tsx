@@ -6,6 +6,12 @@ import { VipTransferProcess } from '@/components/vip-transfer/vip-transfer-proce
 import { VipTransferService } from '@/components/vip-transfer/vip-transfer-service';
 import { VipTransferWhyWorth } from '@/components/vip-transfer/vip-transfer-why-worth';
 
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+	title: 'Transfery VIP',
+};
+
 const VipTransfersPage = () => (
 	<>
 		<PageHeader global="vip-transfer-header" />

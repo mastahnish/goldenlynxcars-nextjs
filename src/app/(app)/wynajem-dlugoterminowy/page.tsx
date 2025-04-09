@@ -4,6 +4,12 @@ import { LongTermRentalAdditionalInformation } from '@/components/long-term-rent
 import { LongTermRentalProcess } from '@/components/long-term-rental/long-term-rental-process/long-term-rental-process';
 import { LongTermRentalSummary } from '@/components/long-term-rental/long-term-rental-summary';
 
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+	title: 'Wynajem Długoterminowy',
+};
+
 const LongTermRentalPage = () => (
 	<>
 		<PageHeader global="long-term-rental-header" />

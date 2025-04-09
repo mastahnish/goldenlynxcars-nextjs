@@ -6,6 +6,14 @@ import { OpinionSection } from '@/components/landing/opinion-section/opinion-sec
 import { RealizationsSection } from '@/components/landing/realizations-section/realizations-section';
 import { ServicesSection } from '@/components/landing/services-section/services-section';
 
+import { APP_NAME } from '@/lib/constants';
+
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+	title: `Strona Główna | ${APP_NAME}`,
+};
+
 const IndexPage = () => (
 	<>
 		<Hero />

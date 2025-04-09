@@ -6,6 +6,12 @@ import { CarSubscriptionSummary } from '@/components/car-subscription/car-subscr
 import { Container } from '@/components/common/container';
 import { PageHeader } from '@/components/common/page-header';
 
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+	title: 'Subskrypcja Samochodowa',
+};
+
 const CarSubscriptionPage = () => (
 	<>
 		<PageHeader global="car-subscription-header" />

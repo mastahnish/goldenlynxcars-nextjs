@@ -4,6 +4,12 @@ import { ShopProductList } from '@/components/shop/shop-product-list/shop-produc
 
 import * as shop from '@/lib/shop';
 
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+	title: 'Sklep',
+};
+
 const ShopPage = async () => {
 	const products = await shop.getAllProducts();
 

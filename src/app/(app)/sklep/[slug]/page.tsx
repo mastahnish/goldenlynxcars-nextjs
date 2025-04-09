@@ -7,11 +7,26 @@ import { ProductGallery } from '@/components/shop/product-gallery/product-galler
 
 import * as shop from '@/lib/shop';
 
+import type { Metadata } from 'next';
+
 import type { Params } from '@/types/next.types';
 
 type ShopProductPageProps = Readonly<{
 	params: Params<'slug'>;
 }>;
+
+export const generateMetadata = async ({
+	params,
+}: {
+	params: Params<'slug'>;
+}): Promise<Metadata> => {
+	const { slug } = await params;
+	const product = await shop.getProductBySlug(slug);
+
+	return {
+		title: `Sklep | ${product?.name}`,
+	};
+};
 
 const ShopProductPage = async ({ params }: ShopProductPageProps) => {
 	const { slug } = await params;

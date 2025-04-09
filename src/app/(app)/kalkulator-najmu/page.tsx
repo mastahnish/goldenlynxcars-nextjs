@@ -3,6 +3,12 @@ import { RentalCalculatorForm } from '@/components/rental-calculator/rental-calc
 
 import { getCachedCollection } from '@/lib/get-cached-collection';
 
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+	title: 'Kalkulator Najmu',
+};
+
 const RentalCalculatorPage = async () => {
 	const carFleet = await getCachedCollection('car-fleet')();
 

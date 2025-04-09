@@ -4,6 +4,12 @@ import { InvestorModelContactSection } from '@/components/investor-model/investo
 import { InvestorModelDescription } from '@/components/investor-model/investor-model-description';
 import { InvestorModelStepList } from '@/components/investor-model/investor-model-step-list/investor-model-step-list';
 
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+	title: 'Model Inwestorski',
+};
+
 const InvestorModelPage = () => (
 	<>
 		<PageHeader global="investor-model-header" />

@@ -4,6 +4,12 @@ import { PageHeader } from '@/components/common/page-header';
 
 import { getCachedCollection } from '@/lib/get-cached-collection';
 
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+	title: 'Flota Samochodów',
+};
+
 const CarFleetPage = async () => {
 	const carFleet = await getCachedCollection('car-fleet')();
 

@@ -21,6 +21,27 @@ export const generateStaticParams = async () => {
 	}));
 }; */
 
+export const generateMetadata = async ({
+	params,
+}: {
+	params: Params<'slug'>;
+}) => {
+	const { slug } = await params;
+	const payload = await getPayloadHMR({ config });
+	const {
+		docs: [car],
+	} = await payload.find({
+		collection: 'car-fleet',
+		where: {
+			slug: { equals: slug },
+		},
+	});
+
+	return {
+		title: `Auto | ${car.name}`,
+	};
+};
+
 type CarPageProps = Readonly<{
 	params: Params<'slug'>;
 }>;

@@ -7,7 +7,13 @@ import { OrderStatusOpen } from '@/components/shop/order-status/order-status-ope
 
 import { getCheckoutSession } from '@/actions/shop';
 
+import type { Metadata } from 'next';
+
 import type { SearchParams } from '@/types/next.types';
+
+export const metadata: Metadata = {
+	title: 'Sklep | Status Zamówienia',
+};
 
 type ShopSuccessPageProps = Readonly<{
 	searchParams: SearchParams<'sessionId'>;
