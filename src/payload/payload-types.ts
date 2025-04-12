@@ -297,6 +297,7 @@ export interface CarFleet {
   type: number | CarFleetType;
   deposit: number;
   additionalMileagePrice: number;
+  additionalMileagePriceForLargerLimit: number;
   contract: {
     registrationNumber?: string | null;
     registrationCertificateNumber?: string | null;
@@ -653,6 +654,7 @@ export interface CarFleetSelect<T extends boolean = true> {
   type?: T;
   deposit?: T;
   additionalMileagePrice?: T;
+  additionalMileagePriceForLargerLimit?: T;
   contract?:
     | T
     | {

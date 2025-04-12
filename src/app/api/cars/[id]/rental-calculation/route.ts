@@ -49,7 +49,7 @@ export const GET = async (
 	const rentalPrice = calculateRentalPrice({ car, ...data });
 	const locationPrice = await calculateLocationPrice({ car, ...data });
 	const additionalMileagePrice =
-		car.additionalMileagePrice * data.additionalMileageLimit;
+		car.additionalMileagePriceForLargerLimit * data.additionalMileageLimit;
 
 	const mileageLimit = calculateMileageLimit({ car, ...data });
 

@@ -9,6 +9,7 @@ import * as migration_20250313_204254 from './20250313_204254';
 import * as migration_20250326_130621_add_car_subscription from './20250326_130621_add_car_subscription';
 import * as migration_20250327_172134_add_long_term_rental from './20250327_172134_add_long_term_rental';
 import * as migration_20250403_172757_add_feature_flags from './20250403_172757_add_feature_flags';
+import * as migration_20250412_100000_add_car_fleet_additional_mileage_price_for_larger_limit from './20250412_100000_add_car_fleet_additional_mileage_price_for_larger_limit';
 
 export const migrations = [
 	{
@@ -65,5 +66,10 @@ export const migrations = [
 		up: migration_20250403_172757_add_feature_flags.up,
 		down: migration_20250403_172757_add_feature_flags.down,
 		name: '20250403_172757_add_feature_flags',
+	},
+	{
+		up: migration_20250412_100000_add_car_fleet_additional_mileage_price_for_larger_limit.up,
+		down: migration_20250412_100000_add_car_fleet_additional_mileage_price_for_larger_limit.down,
+		name: '20250412_100000_add_car_fleet_additional_mileage_price_for_larger_limit',
 	},
 ];

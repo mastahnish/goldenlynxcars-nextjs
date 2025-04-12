@@ -105,7 +105,7 @@ export const useRentalCalculatorForm = ({
 			: 0;
 	const additionalMileagePrice =
 		car && biggerMileageLimit
-			? car.additionalMileagePrice * additionalMileageLimit
+			? car.additionalMileagePriceForLargerLimit * additionalMileageLimit
 			: 0;
 	const price =
 		rentalPrice + additionalMileagePrice + (locationPriceQuery.data ?? 0);

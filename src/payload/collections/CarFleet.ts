@@ -74,7 +74,13 @@ export const CarFleet: CollectionConfig = {
 			name: 'additionalMileagePrice',
 			type: 'number',
 			required: true,
-			defaultValue: 0,
+			defaultValue: 1,
+		},
+		{
+			name: 'additionalMileagePriceForLargerLimit',
+			type: 'number',
+			required: true,
+			defaultValue: 1,
 		},
 		{
 			name: 'contract',
