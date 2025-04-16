@@ -4,10 +4,14 @@ import { unstable_cache } from 'next/cache';
 
 import type { CollectionSlug } from 'payload';
 
-const getCollection = async <TSlug extends CollectionSlug>(slug: TSlug) => {
+const getCollection = async <TSlug extends CollectionSlug>(
+	slug: TSlug,
+	limit?: number,
+) => {
 	const payload = await getPayloadHMR({ config });
 	const collection = await payload.find({
 		collection: slug,
+		limit,
 	});
 
 	return collection;
@@ -15,12 +19,13 @@ const getCollection = async <TSlug extends CollectionSlug>(slug: TSlug) => {
 
 interface getCachedCollectionOptions {
 	tags?: string[];
+	limit?: number;
 }
 
 export const getCachedCollection = <TSlug extends CollectionSlug>(
 	slug: TSlug,
-	{ tags = [] }: getCachedCollectionOptions = {},
+	{ tags = [], limit }: getCachedCollectionOptions = {},
 ) =>
-	unstable_cache(() => getCollection(slug), [slug], {
+	unstable_cache(() => getCollection(slug, limit), [slug], {
 		tags: [`collection_${slug}`, ...tags],
 	});

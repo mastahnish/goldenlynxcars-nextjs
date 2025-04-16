@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 };
 
 const CarFleetPage = async () => {
-	const carFleet = await getCachedCollection('car-fleet')();
+	const carFleet = await getCachedCollection('car-fleet', { limit: 100 })();
 
 	return (
 		<main>
