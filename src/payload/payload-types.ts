@@ -824,6 +824,7 @@ export interface ServicesSection {
   services: {
     title: string;
     content: string;
+    href: string;
     isNew: boolean;
     id?: string | null;
   }[];
@@ -1256,6 +1257,7 @@ export interface ServicesSectionSelect<T extends boolean = true> {
     | {
         title?: T;
         content?: T;
+        href?: T;
         isNew?: T;
         id?: T;
       };

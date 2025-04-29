@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 };
 
 const RentalCalculatorPage = async () => {
-	const carFleet = await getCachedCollection('car-fleet')();
+	const carFleet = await getCachedCollection('car-fleet', { limit: 100 })();
 
 	return (
 		<>

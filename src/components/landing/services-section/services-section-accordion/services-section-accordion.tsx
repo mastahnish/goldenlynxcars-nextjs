@@ -16,7 +16,7 @@ export const ServicesSectionAccordion = ({
 		{services.map((service, i) => (
 			<Accordion.Item key={i} value={i}>
 				<ServicesSectionAccordionTitle service={service} />
-				<ServicesSectionAccordionContent content={service.content} />
+				<ServicesSectionAccordionContent service={service} />
 			</Accordion.Item>
 		))}
 	</Accordion>

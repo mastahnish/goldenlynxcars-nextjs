@@ -9,7 +9,7 @@ export const AboutUsStatistics = async () => {
 	const { title, label, statistics } = await getCachedGlobal(
 		'about-us-statistics',
 	)();
-	const carFleet = await getCachedCollection('car-fleet')();
+	const carFleet = await getCachedCollection('car-fleet', { limit: 100 })();
 
 	return (
 		<Section title={title} label={label}>

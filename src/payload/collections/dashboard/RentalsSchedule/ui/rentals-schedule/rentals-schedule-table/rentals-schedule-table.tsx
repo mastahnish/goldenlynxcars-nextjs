@@ -23,7 +23,9 @@ export const RentalsScheduleTable = async ({
 			? `0${Math.min(monthIndex + 2, 12)}`
 			: Math.min(monthIndex + 2, 12);
 
-	const { docs: carFleet } = await getCachedCollection('car-fleet')();
+	const { docs: carFleet } = await getCachedCollection('car-fleet', {
+		limit: 100,
+	})();
 	const { docs: rentals } = await payload.find({
 		collection: 'rentals',
 		where: {

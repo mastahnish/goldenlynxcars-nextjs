@@ -19,7 +19,7 @@ type CarFleetInfoDetailsStatisticsProps = Readonly<{
 export const CarFleetInfoDetailsStatistics = ({
 	details,
 }: CarFleetInfoDetailsStatisticsProps) => (
-	<ul className="flex gap-6 border-t border-primary/10 pt-4">
+	<ul className="flex flex-wrap gap-6 border-t border-primary/10 pt-4">
 		<CarFleetInfoDetailsStatisticsItem
 			icon={<EngineIcon />}
 			content={`${details.hp} KM`}

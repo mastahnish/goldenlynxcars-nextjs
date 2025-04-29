@@ -63,6 +63,11 @@ export const ServicesSection: GlobalConfig = {
 					required: true,
 				},
 				{
+					name: 'href',
+					type: 'text',
+					required: true,
+				},
+				{
 					name: 'isNew',
 					type: 'checkbox',
 					required: true,

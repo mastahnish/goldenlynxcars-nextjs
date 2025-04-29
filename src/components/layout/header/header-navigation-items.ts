@@ -10,7 +10,7 @@ export interface NavItem {
 
 export const navItems: NavItem[] = [
 	{
-		href: '#',
+		href: '/#services',
 		label: 'Usługi',
 	},
 	{

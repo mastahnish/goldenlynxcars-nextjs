@@ -14,7 +14,7 @@ type CarFleetListProps = Readonly<{
 }>;
 
 export const CarFleetList = async ({ cars }: CarFleetListProps) => {
-	const carFleet = await getCachedCollection('car-fleet')();
+	const carFleet = await getCachedCollection('car-fleet', { limit: 100 })();
 	const brandsCollection = await getCachedCollection('car-fleet-brands')();
 	const typesCollection = await getCachedCollection('car-fleet-types')();
 

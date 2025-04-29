@@ -10,7 +10,7 @@ import { getCachedGlobal } from '@/lib/get-cached-global';
 
 export const ContactSection = async () => {
 	const { title, label, image } = await getCachedGlobal('contact-section')();
-	const carFleet = await getCachedCollection('car-fleet')();
+	const carFleet = await getCachedCollection('car-fleet', { limit: 100 })();
 
 	return (
 		<section id="contact-section" className="flex bg-semi-black pb-6">

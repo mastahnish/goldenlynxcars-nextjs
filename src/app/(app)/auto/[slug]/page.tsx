@@ -1,5 +1,5 @@
 import config from '@payload-config';
-import { getPayloadHMR } from '@payloadcms/next/utilities';
+import { getPayload } from 'payload';
 
 import { CarFleetGallerySection } from '@/components/car-fleet/car-fleet-gallery-section/car-fleet-gallery-section';
 import { CarFleetInfo } from '@/components/car-fleet/car-fleet-info/car-fleet-info';
@@ -8,10 +8,12 @@ import { CarFleetPricingSection } from '@/components/car-fleet/car-fleet-pricing
 import { ContactSection } from '@/components/common/contact-section/contact-section';
 import { RentalCalculatorForm } from '@/components/rental-calculator/rental-calculator-form/rental-calculator-form';
 
-// import { getCachedCollection } from '@/lib/get-cached-collection';
 import type { Params } from '@/types/next.types';
 
-/* export const dynamicParams = false;
+/*
+import { getCachedCollection } from '@/lib/get-cached-collection';
+
+export const dynamicParams = false;
 
 export const generateStaticParams = async () => {
 	const { docs } = await getCachedCollection('car-fleet')();
@@ -19,7 +21,7 @@ export const generateStaticParams = async () => {
 	return docs.map(({ id }) => ({
 		slug: String(id),
 	}));
-}; */
+};
 
 export const generateMetadata = async ({
 	params,
@@ -27,7 +29,7 @@ export const generateMetadata = async ({
 	params: Params<'slug'>;
 }) => {
 	const { slug } = await params;
-	const payload = await getPayloadHMR({ config });
+	const payload = await getPayload({ config });
 	const {
 		docs: [car],
 	} = await payload.find({
@@ -40,7 +42,7 @@ export const generateMetadata = async ({
 	return {
 		title: `Auto | ${car.name}`,
 	};
-};
+}; */
 
 type CarPageProps = Readonly<{
 	params: Params<'slug'>;
@@ -48,7 +50,7 @@ type CarPageProps = Readonly<{
 
 const CarPage = async ({ params }: CarPageProps) => {
 	const { slug } = await params;
-	const payload = await getPayloadHMR({ config });
+	const payload = await getPayload({ config });
 	const {
 		docs: [car],
 	} = await payload.find({
