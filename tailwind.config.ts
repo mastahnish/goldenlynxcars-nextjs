@@ -61,7 +61,6 @@ export default {
 			},
 			screens: {
 				xs: '475px',
-				heroBiggerFont: { raw: '(min-height: 700px)' },
 			},
 			textColor: {
 				'form-field-placeholder': '#727272',
