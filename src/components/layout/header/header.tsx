@@ -18,7 +18,7 @@ export const Header = async () => {
 					<HeaderLogo />
 					<HeaderNavigation />
 					<div className="flex items-center justify-center gap-7">
-						<div className="mt-14 hidden flex-col gap-2 xl:flex">
+						<div className="min-[1124px]:flex mt-14 hidden flex-col gap-2">
 							{PHONE_NUMBERS.map(phoneNumber => (
 								<ContactPhoneButton
 									key={phoneNumber}
