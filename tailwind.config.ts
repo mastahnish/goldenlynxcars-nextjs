@@ -46,6 +46,7 @@ export default {
 			height: {
 				'opinion-item': '21.5rem',
 				'contact-iframe': '37.5rem',
+				'hero-image': 'calc(100dvh * 2 / 3)',
 			},
 			margin: {
 				'opinion-item': '4.5rem',
