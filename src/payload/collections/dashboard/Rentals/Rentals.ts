@@ -2,6 +2,7 @@ import { fromZonedTime } from 'date-fns-tz';
 
 import { calculateRentalPrice } from '@/components/rental-calculator/rental-calculator-form/utils/calculate-rental-price';
 
+import { calculateMileageLimit } from '@/app/api/cars/[id]/rental-calculation/utils/calculate-mileage-limit';
 import { TIMEZONE } from '@/lib/constants';
 import { admins } from '@/payload/access/admin';
 import { checkRoles } from '@/payload/access/check-role';
@@ -191,9 +192,27 @@ export const Rentals: CollectionConfig = {
 					name: 'mileageLimit',
 					type: 'number',
 					required: true,
-					defaultValue: 500,
+					defaultValue: 0,
 					access: {
 						update: ({ req: { user } }) => checkRoles(user, ['admin']),
+					},
+					hooks: {
+						beforeChange: [
+							async ({ req, data, originalDoc }) => {
+								if (data?.mileageLimit === originalDoc?.mileageLimit) {
+									return;
+								}
+
+								const car = await req.payload.findByID({
+									collection: 'car-fleet',
+									id: data?.car,
+								});
+								const startDate = fromZonedTime(data?.startDate, TIMEZONE);
+								const endDate = fromZonedTime(data?.endDate, TIMEZONE);
+
+								return calculateMileageLimit({ car, startDate, endDate });
+							},
+						],
 					},
 				},
 				{
