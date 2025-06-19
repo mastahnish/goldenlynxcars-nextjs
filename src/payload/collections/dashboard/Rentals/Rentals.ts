@@ -123,9 +123,25 @@ export const Rentals: CollectionConfig = {
 					name: 'depositAmount',
 					type: 'number',
 					required: true,
-					defaultValue: 5000,
+					defaultValue: 0,
 					access: {
 						update: ({ req: { user } }) => checkRoles(user, ['admin']),
+					},
+					hooks: {
+						beforeChange: [
+							async ({ req, data, originalDoc }) => {
+								if (data?.depositAmount === originalDoc?.depositAmount) {
+									return;
+								}
+
+								const car = await req.payload.findByID({
+									collection: 'car-fleet',
+									id: data?.car,
+								});
+
+								return car.deposit;
+							},
+						],
 					},
 				},
 			],
@@ -199,7 +215,11 @@ export const Rentals: CollectionConfig = {
 					hooks: {
 						beforeChange: [
 							async ({ req, data, originalDoc }) => {
-								if (data?.mileageLimit === originalDoc?.mileageLimit) {
+								if (
+									data?.mileageLimit === originalDoc?.mileageLimit &&
+									data?.startDate === originalDoc.startDate &&
+									data?.endDate === originalDoc.endDate
+								) {
 									return;
 								}
 
