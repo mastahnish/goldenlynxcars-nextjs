@@ -130,7 +130,7 @@ export const Rentals: CollectionConfig = {
 					hooks: {
 						beforeChange: [
 							async ({ req, data, originalDoc }) => {
-								if (data?.depositAmount === originalDoc?.depositAmount) {
+								if (data?.car === originalDoc?.car) {
 									return;
 								}
 
@@ -216,7 +216,7 @@ export const Rentals: CollectionConfig = {
 						beforeChange: [
 							async ({ req, data, originalDoc }) => {
 								if (
-									data?.mileageLimit === originalDoc?.mileageLimit &&
+									data?.car === originalDoc.car &&
 									data?.startDate === originalDoc.startDate &&
 									data?.endDate === originalDoc.endDate
 								) {
