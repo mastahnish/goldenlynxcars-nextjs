@@ -78,7 +78,7 @@ export const numberToWords = (value: number) => {
 		result += `${units[value]} `;
 	}
 
-	return result.trim();
+	return result.trim().replaceAll(/\bundefined\b\s/g, '');
 };
 
 const getThousandWord = (amount: number) => {
